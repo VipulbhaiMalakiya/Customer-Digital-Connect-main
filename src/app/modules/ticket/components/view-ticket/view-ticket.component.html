@@ -1,0 +1,126 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">View Ticket</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-modal-form" [formGroup]="ticketMasterForm">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="ticketId">S.NO</label>
+            <input type="text" class="form-control" id="ticketId" name="ticketId" formControlName="ticketId">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="category">Category</label>
+            <input type="text" class="form-control" id="category" name="category" formControlName="category">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="subCategory">Sub Category</label>
+            <input type="text" id="subCategory" class="form-control" id="subCategory" name="subCategory"
+              formControlName="subCategory">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="serviceTitle">Service Title</label>
+            <input type="text" class="form-control" id="serviceTitle" name="serviceTitle"
+              formControlName="serviceTitle">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="department">Department</label>
+            <input type="text" class="form-control" id="department" name="department" formControlName="department">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="priority">Prority</label>
+            <input type="text" class="form-control" id="priority" name="priority" formControlName="priority">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="emailId">Email</label>
+            <input type="text" class="form-control" id="emailId" name="emailId" formControlName="emailId">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="alternativeContactNo">Mobile</label>
+            <input type="text" class="form-control" id="alternativeContactNo" name="alternativeContactNo"
+              formControlName="alternativeContactNo">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="issue">Issue</label>
+            <input type="text" class="form-control" id="issue" name="issue" formControlName="issue">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="assignedTo">Assigned To</label>
+            <input type="text" class="form-control" id="assignedTo" name="assignedTo" formControlName="assignedTo">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="createForUser">Create by user</label>
+            <input type="text" class="form-control" id="createForUser" name="createForUser"
+              formControlName="createForUser">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="shortNotes">Short Decription</label>
+            <input type="text" class="form-control" id="shortNotes" name="shortNotes" formControlName="shortNotes">
+          </div>
+        </div>
+        <!-- <div class="col-md-6">
+          <div class="form-group">
+            <label for="file">Attachment</label>
+            <input type="text" class="form-control" id="file" name="file" formControlName="file">
+          </div>
+        </div> -->
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="createdDate"> Created Date</label>
+            <input type="text" class="form-control" id="createdDate" name="createdDate" formControlName="createdDate">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="createdBy"> Created By</label>
+            <input type="text" class="form-control" id="createdBy" name="createdBy" formControlName="createdBy">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="createdDate"> Updated Date</label>
+            <input type="text" class="form-control" id="createdDate" name="createdDate" formControlName="createdDate">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="updatedBy"> Updated By</label>
+            <input type="text" class="form-control" placeholder="Updated By" id="updatedBy" name="updatedBy" formControlName="updatedBy">
+          </div>
+        </div>
+        <!-- <div class="col-md-3">
+          <div class="form-group">
+            <label for="additionalComments">Additional Comment</label>
+            <input type="text" class="form-control" placeholder="Additional Comment" id="additionalComments" name="additionalComments"
+              formControlName="additionalComments">
+          </div>
+        </div> -->
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+.form-control {
+  border-radius: 6px;
+  height: 40px !important;
+  background: #fff;
+  border-color: #ccc;
+  font-size: 13px;
+}

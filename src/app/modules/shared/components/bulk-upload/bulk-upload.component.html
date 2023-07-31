@@ -1,0 +1,28 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">{{heading}} Bulk Upload </h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <!-- <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup> -->
+    <div class="bulk-mcontent">
+      <h4>Upload a .CSV file to bulk upload</h4>
+      <ul>
+        <li>Max 50 MB file allowed. (upto 500000 contacts)</li>
+        <li>If a contact in the CSV already exists in your account, the existing contact's traits will be updated as per
+          the traits given in the CSV. (matching of contacts is done based on Phone Number)</li>
+      </ul>
+    </div>
+    <form class="common-modal-form" [formGroup]="bulkUploadForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <input class="form-control" (change)="onFileChange($event)" type="file" id="formFile" formControlName="file">
+        <div *ngIf="shouldShowError('file','required')" class="form-validate-err">
+          This field is required.
+        </div>
+      </div>
+      <div class="form-group mb-0 text-end">
+        <button type="submit" class="common-btn">Upload Now</button>
+      </div>
+    </form>
+  </div>
+</div>

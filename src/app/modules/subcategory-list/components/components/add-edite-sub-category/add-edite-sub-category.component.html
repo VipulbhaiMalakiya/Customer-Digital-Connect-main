@@ -1,0 +1,55 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">{{title}}</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-modal-form" [formGroup]="subCategoryMasterForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="subCategoryName">Name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="subCategoryName" name="subCategoryName"
+          formControlName="subCategoryName" placeholder="Sub Category Name">
+        <div *ngIf="shouldShowError('subCategoryName','required')" class="form-validate-err">
+          Please Enter Sub Category Name.
+        </div>
+        <div *ngIf="shouldShowError('subCategoryName','minlength')" class="form-validate-err">
+          Sub Category Name requied atleast 2 characters.
+        </div>
+        <div *ngIf="shouldShowError('subCategoryName','maxlength')" class="form-validate-err">
+          Sub Category Name requied only 30 characters.
+        </div>
+        <div *ngIf="shouldShowError('subCategoryName','pattern')" class="form-validate-err">
+          Only characters are allowed.
+        </div>
+        <div *ngIf="shouldShowError('subCategoryName','capitalLetter')" class="form-validate-err">
+          Start with a capital letter.
+        </div>
+        <div *ngIf="shouldShowError('subCategoryName','noEmptySpaces')" class="form-validate-err">
+          Sub category name should not contain empty spaces at the beginning or end.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="categoryId">Category <span class="text-danger">*</span></label>
+        <select class="form-select" id="categoryId" formControlName="categoryId">
+          <option value="">Select</option>
+          <option *ngFor="let i of data" [value]="i.categoryId">{{i.categoryName}}</option>
+        </select>
+        <div *ngIf="shouldShowError('categoryId','required')" class="text-danger">This field is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="status">Status </label>
+        <select class="form-select" id="status" formControlName="status">
+          <option value="true">Active</option>
+          <option value="false">Deactive</option>
+        </select>
+        <div *ngIf="shouldShowError('status','required')" class="text-danger">This field is required
+        </div>
+      </div>
+      <div class="form-group mb-0 text-end">
+        <button type="submit" class="common-btn">{{this.check ?'Update Now' : 'Add New'}}</button>
+      </div>
+    </form>
+  </div>
+</div>

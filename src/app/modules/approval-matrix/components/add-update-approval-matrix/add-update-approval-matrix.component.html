@@ -1,0 +1,40 @@
+
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">{{ title }}</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0" >
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-modal-form" [formGroup]="approvalMatrixMasterForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <input type="text" class="form-control" name="Name" formControlName="Name" placeholder="Name">
+        <div *ngIf="shouldShowError('Name','required')" class="form-validate-err">
+          This field is required.
+        </div>
+        <div *ngIf="shouldShowError('Name','minlength')" class="form-validate-err">
+          Name must be 3 alphabets.
+        </div>
+        <div *ngIf="shouldShowError('Name','pattern')" class="form-validate-err">
+          Please enter valid name.
+        </div>
+      </div>
+      <div class="form-group">
+        <textarea cols="0" rows="3" name="Descirption" formControlName="Descirption" class="form-control"
+          placeholder="Description"></textarea>
+          <div *ngIf="shouldShowError('Descirption','required')" class="form-validate-err">
+            This field is required.
+          </div>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control" name="ApiKey" formControlName="ApiKey" placeholder="Api Key">
+        <div *ngIf="shouldShowError('ApiKey','required')" class="form-validate-err">
+          This field is required.
+        </div>
+      </div>
+      <div class="form-group mb-0 text-end">
+        <button type="submit" class="common-btn">Add Now</button>
+      </div>
+    </form>
+  </div>
+</div>

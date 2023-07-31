@@ -1,0 +1,72 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">View SubCategory </h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-modal-form" [formGroup]="subCategoryMasterForm">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="subCategoryId">ID</label>
+            <input type="text" class="form-control" id="subCategoryId" name="subCategoryId"
+              formControlName="subCategoryId" placeholder="ID">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="subCategoryName"> Sub Category</label>
+            <input type="text" class="form-control" id="subCategoryName" name="subCategoryName"
+              formControlName="subCategoryName" placeholder="Sub Category Name">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="categoryId">Category</label>
+            <select class="form-select" id="categoryId" formControlName="categoryId">
+              <option value="">Select</option>
+              <option *ngFor="let i of data" [value]="i.categoryId">{{i.categoryName}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="createdDate">created Date</label>
+            <input type="text" class="form-control" id="createdDate" name="createdDate" formControlName="createdDate"
+              placeholder="createdDate">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="createdBy">Created By</label>
+            <input type="text" class="form-control" id="createdBy" formControlName="createdBy" placeholder="createdBy">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="updatedBy">Updated By</label>
+            <input type="text" class="form-control" id="updatedBy" formControlName="updatedBy" placeholder="Updated By">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="updatedDate">Updated Date</label>
+            <input type="text" class="form-control" id="updatedDate" formControlName="updatedDate"
+              placeholder="updatedDate">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-select" id="status" formControlName="status">
+              <option value="">Select</option>
+              <option value="true">Active</option>
+              <option value="false">Deactive</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

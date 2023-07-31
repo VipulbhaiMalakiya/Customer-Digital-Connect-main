@@ -1,0 +1,198 @@
+<ng-container *ngIf="istable">
+  <div class="top-noti-user">
+    <div class="workflow-btn" (click)="onTable()"><a class="common-btn">Table Reservation</a></div>
+  </div>
+  <div class="page-title">
+    <h1>Products</h1>
+  </div>
+</ng-container>
+
+
+<app-loading-spin *ngIf="isProceess"></app-loading-spin>
+
+<div class="inner-middle-content">
+  <div class="product-tblslist" *ngIf="istable">
+    <div class="row">
+      <div class="col-md-6 col-sm-12" *ngFor="let i of boxes" (click)="tableSelect(i)">
+        <div class="inner-prodtcol pointer"><a >
+          <div class="rtable-pic"><img src="../assets/images/reserve-table-1.jpg" alt=""></div>
+          <div class="rtable-texts">
+             <p>Table No: <strong>{{i.id}}</strong></p>
+             <p>Name: <strong>{{i.name}}</strong></p>
+             <p>Date: <strong>{{i.Date}}</strong></p>
+             <p>No. of Person: <strong>{{i.Person}}</strong></p>
+             <p>Session: <strong>{{i.Session}}</strong></p>
+             <p>Available Time Slots: <strong>{{i.TimeSlots}}</strong></p>
+             <p>Phone No.: <strong>+91 {{i.Phone}}</strong></p>
+             <p class="red" *ngIf="i.Status === 'book'">Status: <strong>&bull; {{i.Status}}</strong></p>
+             <p class="green" *ngIf="i.Status === 'Open'">Status: <strong>&bull; {{i.Status}}</strong></p>
+          </div>
+          </a><div class="rdedit"><a ><i class="las la-pen"></i></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="productdt-wrapper-sec" *ngIf="!istable">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="site-breadcrum">
+          <div class="container">
+            <div class="breadcrum">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a (click)="onReset()"><i class="las la-home"></i></a>
+                </li>
+                <li class="breadcrumb-item">
+                  <a class="pointer" (click)="Getcategory()">orders</a>
+                </li>
+                <li *ngIf="categroyName" class="breadcrumb-item active" aria-current="page">
+                  {{ categroyName }}
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+        <div class="products-listgrd">
+          <div class="row g-0">
+            <ng-container *ngIf="!isprodact">
+              <div class="col-sm-4 col-lg-3" *ngFor="let i of prodactCategory">
+                <div class="disac-col" (click)="GetProdact(i)">
+                  <div class="d-flex justify-content-center" *ngIf="isLoading">
+                    <div class="spinner-border">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                  <a class="pointer"><img [src]="i.fileUrl" alt="File not Found" (load)="onImageLoad()" />
+                    <div class="disac-text">{{ i.productCategoryName }}</div>
+                  </a>
+                </div>
+                <div *ngIf="prodactCategory.length === 0" class="text-center">
+                  <Strong class="text-danger">No records found</Strong>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="isprodact">
+              <div class="col-sm-4 col-lg-3" *ngFor="let i of prodact">
+                <div class="disac-col" (click)="addToCart(i)">
+                  <div class="d-flex justify-content-center" *ngIf="isLoading">
+                    <div class="spinner-border">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                  </div>
+                  <a class="pointer"><img [src]="i.fileUrl" alt="File not Found" (load)="onImageLoad()" />
+                    <div class="disac-text">{{ i.productName }}</div>
+                  </a>
+                </div>
+              </div>
+              <div *ngIf="!prodact.length" class="text-center">
+                <Strong class="text-danger">No records found</Strong>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="tablecustomer-dt">
+          <p><i class="las la-utensils"></i> Table No: <strong># {{tableId}}</strong></p>
+          <p>
+            <i class="las la-user-tie"></i> Customer Phone No :
+            <strong>{{phoneNo}}</strong>
+          </p>
+        </div>
+
+
+        <div class="order-protbl">
+
+          <div class="dasboard-table">
+
+            <div class="table-responsive">
+
+              <table class="table table-bordered text-center">
+                <tbody>
+                  <tr *ngFor="let i of cartItems; let ind = index">
+                    <td>
+                      <div class="pro-tb-icopn">
+                        <h4>{{ i.productName }}</h4>
+                      </div>
+                    </td>
+                    <td>{{ i.price | number : "1.2-2" }}</td>
+                    <td>
+                      <div class="product-single-qty">
+                        {{ i.quantity }} ({{ i.unitofmeasure }})
+                      </div>
+                    </td>
+                    <td>{{ i.price * i.quantity | number : "1.2-2" }}</td>
+                    <td>
+                      <a (click)="onDelete(ind)"><i class="las la-times-circle"></i></a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <div *ngIf="cartItems.length === 0" class="text-center">
+                <Strong class="text-danger">No records found</Strong>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <div class="order-price-col" *ngIf="cartItems.length > 0">
+          <dl class="commerce-list order-dsgd">
+            <dt></dt>
+            <dd class="text-right">
+              <span class="dst">Discount</span>
+              <input type="text" [maxLength]="2" class="cus-text" (keydown)="onKeyDown($event)" [(ngModel)]="discount"
+                placeholder="Enter discount %">
+            </dd>
+          </dl>
+
+
+          <div class="accordion" id="flowresponse">
+            <div class="accordion-item">
+
+              <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#collapseresp" aria-expanded="false" aria-controls="flush-collapseOne">
+                <h5>Order Summary</h5>
+              </div>
+
+              <div id="collapseresp" class="accordion-collapse collapse" aria-labelledby="flowresponse"
+                data-bs-parent="#accordionExample">
+
+                <dl class="commerce-list">
+                  <dt>Subtotal</dt>
+                  <dd class="text-right">{{ calculateGrandTotal() | number:'1.2-2'}}</dd>
+                  <dt>CGST (1%)</dt>
+                  <dd class="text-right">{{ getCGST() | number:'1.2-2'}}</dd>
+                  <dt>SGST (1%)</dt>
+                  <dd class="text-right">{{ getSGST() | number:'1.2-2' }}</dd>
+                  <dt>Service Tax (1%)</dt>
+                  <dd class="text-right">{{ getservice() | number:'1.2-2' }}</dd>
+                  <dt>Total Tax Amount</dt>
+                  <dd class="text-right">{{ getTotalTaxAmount() | number:'1.2-2'}}</dd>
+                  <dt>Discount ({{discount}}%)</dt>
+                  <dd class="text-right">{{ getDiscount() | number:'1.2-2'}}</dd>
+                </dl>
+
+              </div>
+
+            </div>
+          </div>
+
+          <dl class="commerce-list mt-2">
+            <dt class="big2x">Grand Total</dt>
+            <dd class="big2x text-right"><strong>{{ getGrandTotal() | number:'1.2-2' }}</strong></dd>
+          </dl>
+
+
+          <div class="order-btns-col">
+            <a (click)="onReset()" class="common-btn common-btn2">Cancel</a>
+            <a (click)="onAdd()" class="common-btn">Proceed</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

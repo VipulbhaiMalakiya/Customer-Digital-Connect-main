@@ -1,0 +1,81 @@
+<div class="common-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="viewrecord-modalLabel">View department record</h1>
+      <button type="button" (click)="onCancel()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+      <form class="common-modal-form" [formGroup]="departmentMasterForm" >
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="departmentId">Id</label>
+              <input type="text" class="form-control" id="departmentId" name="departmentId" formControlName="departmentId"
+                placeholder="ID">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="departmentName">Name</label>
+              <input type="text" class="form-control" id="departmentName" name="departmentName" formControlName="departmentName"
+                placeholder="Department Name">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="departmentCode">Code</label>
+              <input type="text" class="form-control" id="departmentCode" name="departmentCode" formControlName="departmentCode"
+                placeholder="Department Code">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="departmentHead">Head</label>
+              <input type="text" class="form-control" id="departmentHead" name="departmentHead" formControlName="departmentHead"
+                placeholder="Department Head">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="status">Status</label>
+              <input type="text" class="form-control" id="status" name="status" formControlName="status" placeholder="status">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="createdDate">Created Date</label>
+              <input type="text" class="form-control" id="createdDate" name="createdDate" formControlName="createdDate">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="createdBy">Created By</label>
+              <input type="text" class="form-control" id="createdBy" name="createdBy" formControlName="createdBy">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="updatedDate">Updated Date</label>
+              <input type="text" class="form-control" id="updatedDate" name="updatedDate" formControlName="updatedDate">
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="updatedBy">Updated By</label>
+              <input type="text" placeholder="Updated By" class="form-control" id="updatedBy" name="updatedBy" formControlName="updatedBy">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="description">Description</label>
+              <textarea cols="0" rows="3"  id="description" name="description" formControlName="description"
+              placeholder="Description" class="form-control"
+             readonly></textarea>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

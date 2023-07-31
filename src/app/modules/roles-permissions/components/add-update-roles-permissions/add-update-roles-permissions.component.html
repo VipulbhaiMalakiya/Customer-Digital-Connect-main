@@ -1,0 +1,57 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">{{ title }}</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-modal-form" [formGroup]="rolesPermissionsMasterForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="roleName">Name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="roleName" name="roleName" formControlName="roleName"
+          placeholder="Role Name">
+        <div *ngIf="shouldShowError('roleName','required')" class="form-validate-err">
+          Please Enter Role Name.
+        </div>
+        <div *ngIf="shouldShowError('roleName','minlength')" class="form-validate-err">
+          Role Name requied atleast 3 characters.
+        </div>
+        <div *ngIf="shouldShowError('roleName','maxlength')" class="form-validate-err">
+          Role Name requied only 30 characters.
+        </div>
+        <div *ngIf="shouldShowError('roleName','pattern')" class="form-validate-err">
+          Only characters are allowed.
+        </div>
+        <div *ngIf="shouldShowError('roleName','capitalLetter')" class="form-validate-err">
+          Start with a capital letter.
+        </div>
+        <div *ngIf="shouldShowError('roleName','noEmptySpaces')" class="form-validate-err">
+          Role name should not contain empty spaces at the beginning or end.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select class="form-select" id="status" formControlName="status">
+          <option value="true">Active</option>
+          <option value="false">Deactive</option>
+        </select>
+        <div *ngIf="shouldShowError('status','required')" class="text-danger">This field is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="roleDescription">Descirption <span class="text-danger">*</span></label>
+        <textarea cols="0" rows="3" name="roleDescription" id="roleDescription" formControlName="roleDescription"
+          class="form-control" placeholder="Description"></textarea>
+        <div *ngIf="shouldShowError('roleDescription','required')" class="form-validate-err">
+          This field is required.
+        </div>
+        <div *ngIf="shouldShowError('roleDescription','noEmptySpaces')" class="form-validate-err">
+          Description should not contain empty spaces at the beginning or end.
+        </div>
+      </div>
+      <div class="form-group mb-0 text-end">
+        <button type="submit" class="common-btn">{{this.data ?'Update Now' : 'Add New'}}</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,225 @@
+<app-loading-spin *ngIf="isProceess"></app-loading-spin>
+
+<div class="page-title">
+  <h1>My Profile</h1>
+</div>
+<div class="inner-middle-content">
+  <div class="profile-page">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="profile-card">
+          <div class="bluecard-header">Your details</div>
+          <div class="inner-card-body">
+            <form class="profile-form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="firstName" class="form-label">First Name</label>
+                    <input type="text" formControlName="firstName" id="firstName" class="form-control">
+                    <div *ngIf="shouldShowError('firstName','required')" class="form-validate-err">
+                      Please Enter First Name
+                    </div>
+                    <div *ngIf="shouldShowError('firstName','minlength')" class="form-validate-err">
+                      First Name requied atleast 3 characters.
+                    </div>
+                    <div *ngIf="shouldShowError('firstName','maxlength')" class="form-validate-err">
+                      First Name requied only 30 characters.
+                    </div>
+                    <div *ngIf="shouldShowError('firstName','pattern')" class="form-validate-err">
+                      Only characters are allowed.
+                    </div>
+                    <div *ngIf="shouldShowError('firstName','capitalLetter')" class="form-validate-err">
+                      Start with a capital letter.
+                    </div>
+                    <div *ngIf="shouldShowError('firstName','noEmptySpaces')" class="form-validate-err">
+                      Should not contain empty spaces at the beginning or end.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="form-label" for="lastName">Last Name</label>
+                    <input type="text" id="lastName" formControlName="lastName" class="form-control">
+                    <div *ngIf="shouldShowError('lastName','required')" class="form-validate-err">
+                      Please Enter Last Name.
+                    </div>
+                    <div *ngIf="shouldShowError('lastName','minlength')" class="form-validate-err">
+                      Last Name requied atleast 3 characters.
+                    </div>
+                    <div *ngIf="shouldShowError('lastName','maxlength')" class="form-validate-err">
+                      Last Name requied only 30 characters.
+                    </div>
+                    <div *ngIf="shouldShowError('lastName','pattern')" class="form-validate-err">
+                      Only characters are allowed.
+                    </div>
+                    <div *ngIf="shouldShowError('lastName','capitalLetter')" class="form-validate-err">
+                      Start with a capital letter.
+                    </div>
+                    <div *ngIf="shouldShowError('lastName','noEmptySpaces')" class="form-validate-err">
+                      Should not contain empty spaces at the beginning or end.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="form-label" for="username">User Name</label>
+                    <input type="text" id="username" formControlName="username" class="form-control">
+                    <div *ngIf="shouldShowError('username','required')" class="form-validate-err">
+                      Please Enter User Name
+                    </div>
+                    <div *ngIf="shouldShowError('username','noEmptySpaces')" class="form-validate-err">
+                      Should not contain empty spaces at the beginning or end.
+                    </div>
+
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="form-label" for="email">Email</label>
+                    <input type="text" id="email" formControlName="email" class="form-control">
+                    <div *ngIf="shouldShowError('email','required')" class="form-validate-err">
+                      Please Enter Email.
+                    </div>
+                    <div *ngIf="shouldShowError('email','minlength')" class="form-validate-err">
+                      The email requied atleast 5 characters.
+                    </div>
+                    <div *ngIf="shouldShowError('email','maxlength')" class="form-validate-err">
+                      The email requied only 80 characters.
+                    </div>
+                    <div *ngIf="shouldShowError('email','email')" class="form-validate-err">
+                      Invalid email format
+                    </div>
+                    <div *ngIf="shouldShowError('email','pattern')" class="form-validate-err">
+                      Invalid email format.
+                    </div>
+
+                    <div *ngIf="shouldShowError('email','noEmptySpaces')" class="form-validate-err">
+                      Should not contain empty spaces at the beginning or end.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="form-label" for="contact">Contact</label>
+                    <input type="text" id="contact" (keydown)="onKeyDown($event)" formControlName="contact"
+                      class="form-control">
+                    <div *ngIf="shouldShowError('contact','required')" class="form-validate-err">
+                      Please Enter Phone Number.
+                    </div>
+                    <div *ngIf="shouldShowError('contact','minlength')" class="form-validate-err">
+                      Phone Number requied atleast 12 characters.
+                    </div>
+                    <div *ngIf="shouldShowError('contact','maxlength')" class="form-validate-err">
+                      Phone Number requied only 12 characters.
+                    </div>
+                    <div *ngIf="shouldShowError('contact','pattern')" class="form-validate-err">
+                      Only Numbers are allowed.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="form-label" for="postcode">Post Code</label>
+                    <input type="text" (keydown)="onKeyDown($event)" id="postcode" formControlName="postcode"
+                      class="form-control">
+                    <div *ngIf="shouldShowError('postcode','required')" class="form-validate-err">
+                      Please Enter PinCode.
+                    </div>
+                    <div *ngIf="shouldShowError('postcode','minlength')" class="form-validate-err">
+                      PinCode requied atleast 6 characters.
+                    </div>
+                    <div *ngIf="shouldShowError('postcode','maxlength')" class="form-validate-err">
+                      PinCode requied only 8 characters.
+                    </div>
+                    <div *ngIf="shouldShowError('postcode','pattern')" class="form-validate-err">
+                      Only alph-numerics are allowed.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="form-label" for="city">City</label>
+                    <input type="text" id="city" formControlName="city" class="form-control">
+                    <div *ngIf="shouldShowError('city','required')" class="form-validate-err">
+                      Please Enter City Name
+                    </div>
+                    <div *ngIf="shouldShowError('city','minlength')" class="form-validate-err">
+                      City Name requied atleast 3 characters.
+                    </div>
+                    <div *ngIf="shouldShowError('city','maxlength')" class="form-validate-err">
+                      City Name requied only 30 characters.
+                    </div>
+                    <div *ngIf="shouldShowError('city','pattern')" class="form-validate-err">
+                      Only characters are allowed.
+                    </div>
+                    <div *ngIf="shouldShowError('city','capitalLetter')" class="form-validate-err">
+                      Start with a capital letter.
+                    </div>
+                    <div *ngIf="shouldShowError('city','noEmptySpaces')" class="form-validate-err">
+                      Should not contain empty spaces at the beginning or end.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="form-label" for="state">State</label>
+                    <input type="text" id="state" formControlName="state" class="form-control">
+                    <div *ngIf="shouldShowError('state','required')" class="form-validate-err">
+                      Please Enter State Name
+                    </div>
+                    <div *ngIf="shouldShowError('state','minlength')" class="form-validate-err">
+                      State Name requied atleast 3 characters.
+                    </div>
+                    <div *ngIf="shouldShowError('state','maxlength')" class="form-validate-err">
+                      State Name requied only 30 characters.
+                    </div>
+                    <div *ngIf="shouldShowError('state','pattern')" class="form-validate-err">
+                      Only characters are allowed.
+                    </div>
+                    <div *ngIf="shouldShowError('state','capitalLetter')" class="form-validate-err">
+                      Start with a capital letter.
+                    </div>
+                    <div *ngIf="shouldShowError('state','noEmptySpaces')" class="form-validate-err">
+                      Should not contain empty spaces at the beginning or end.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="form-label" for="roleId">Role</label>
+                    <input type="text" id="roleId" formControlName="roleId" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label class="form-label" for="deptId">Dept</label>
+                    <input type="text" formControlName="deptId" id="deptId" class="form-control">
+                  </div>
+                </div>
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <label class="form-label" for="address">Address</label>
+                    <input type="text" formControlName="address" id="address" class="form-control">
+                    <div *ngIf="shouldShowError('address','required')" class="form-validate-err">
+                      This field is required.
+                    </div>
+                    <div *ngIf="shouldShowError('address','noEmptySpaces')" class="form-validate-err">
+                      Should not contain empty spaces at the beginning or end.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-12 mt-1">
+                  <div class="form-group mb-1">
+                    <input type="submit" name="submit" class="common-btn" id="profile-submit" value="Update">
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,45 @@
+<!-- <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="15">
+  <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+</agm-map> -->
+
+<div class="modal-content">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">Current Location</h1>
+  </div>
+  <div class="modal-custom-close" (click)="onCancel()">
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-modal-form" [formGroup]="customersMasterForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="latitude">Latitude <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="latitude" name="latitude" formControlName="latitude"
+          placeholder={{this.latitude}} readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="longitude">Longitude <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="longitude" name="longitude" formControlName="longitude"
+          placeholder={{this.longitude}} readonly>
+      </div>
+
+      <!-- <div class="form-group">
+        <label for="address">Address <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="address" name="address" formControlName="address"
+          placeholder="{{address}}" readonly>
+      </div>
+
+      <div class="form-group">
+        <label for="locationName">Location Name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="locationName" name="locationName" formControlName="locationName"
+          placeholder="{{locationName}}" readonly>
+      </div> -->
+
+      <div class="form-group mb-0 text-end">
+        <button type="submit" class="common-btn">Send</button>
+      </div>
+    </form>
+  </div>
+</div>

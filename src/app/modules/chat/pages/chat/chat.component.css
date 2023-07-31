@@ -1,0 +1,61 @@
+.inboxouter100{
+  margin: -15px -30px -30px -30px !important
+}
+
+.invalid{
+  background: #eee;
+  color: #000;
+}
+.cursur {
+   cursor: pointer;
+}
+
+.alert-secondary {
+  color: #383d41;
+  background-color: #e2e3e5;
+  border-color: #d6d8db;
+}
+
+
+.alert-secondary p i {
+  color: #383d41;
+}
+
+.alert-danger {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+.alert-danger p i {
+  color: #721c24;
+}
+
+.alert-primary {
+  color: #004085;
+  background-color: #cce5ff;
+  border-color: #b8daff;
+}
+
+.alert-primary p i {
+  color: #004085;
+}
+
+.selected .dropdown-item {
+  background-color: #00abc5;
+  color: #fff !important;
+}
+
+.one-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 180px;
+}
+
+
+:host ::ng-deep .emoji-mart-scroll {
+  height: 150px;
+}
+
+

@@ -1,0 +1,23 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">Conform Order</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-form" [formGroup]="customersMasterForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="Payment">Payment</label>
+        <select class="form-select" id="Payment" formControlName="Payment">
+          <option value="CreditCard">Debit</option>
+        </select>
+        <div *ngIf="shouldShowError('Payment','required')" class="text-danger">This field is required
+        </div>
+      </div>
+      <div class="order-btns-col">
+        <button type="submit" class="pay-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

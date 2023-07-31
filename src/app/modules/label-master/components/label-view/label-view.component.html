@@ -1,0 +1,50 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">View Labels</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-modal-form" [formGroup]="issueForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="labelName">Label name <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="labelName" name="labelName" formControlName="labelName"
+              placeholder="Label name">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="createdDate">Created Date</label>
+            <input type="text" class="form-control" id="createdDate" name="createdDate" formControlName="createdDate" >
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="createdBy">Created By</label>
+            <input type="text" class="form-control" id="createdBy" name="createdBy" formControlName="createdBy" >
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="updatedDate">Updated Date</label>
+            <input type="text" class="form-control" id="updatedDate" name="updatedDate" formControlName="updatedDate" >
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="updatedBy">Updated By</label>
+            <input type="text" class="form-control" placeholder="Updated By" id="updatedBy" name="updatedBy" formControlName="updatedBy" >
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="status">Status</label>
+            <input type="text" class="form-control" id="status" name="status" formControlName="status" placeholder="status">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

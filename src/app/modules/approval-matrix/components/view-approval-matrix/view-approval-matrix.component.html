@@ -1,0 +1,38 @@
+<div class="common-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="viewrecord-modalLabel">View approval matrix record</h1>
+      <button type="button" (click)="onCancel()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+      <form class="common-modal-form" name="cform" method="post">
+        <div class="row">
+          <div class="form-group col-md-4">
+            <label>ID</label>
+            <input type="text" class="form-control" name="" id="" value="#1cwg-er3f" disabled readonly>
+          </div>
+
+          <div class="form-group col-md-8">
+            <label>Name</label>
+            <input type="text" class="form-control" name="" id="" value="CS Tamanna Chugh" disabled readonly>
+          </div>
+
+        </div>
+
+        <div class="form-group">
+          <label>Description</label>
+          <textarea cols="0" rows="3" name="" class="form-control" disabled
+            readonly>Lorem Ipsum is simply dummy text of the printing and typesetting industry when an unknown printer took a galley.</textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Api Key</label>
+          <input type="text" class="form-control" name="" id="" value="10671204-740b-4943-aec4" disabled readonly>
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>

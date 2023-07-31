@@ -1,0 +1,95 @@
+<div class="modal-content">
+  <div class="modal-custom-close" (click)="onCancel()">
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <div class="pro-detail-wrapper">
+      <div class="row">
+        <div class="col-md-5">
+          <app-loading-spin-popup *ngIf="!imageLoaded"></app-loading-spin-popup>
+          <div class="products-big-pic" *ngIf="!previewUrl">
+            <img [src]="imageURL" class="img-responsive" alt=""  (load)="imageLoaded = true">
+          </div>
+          <div class="products-big-pic" *ngIf="previewUrl">
+            <img [src]="previewUrl" alt="Image Preview" class="img-responsive"  (load)="imageLoaded = true">
+          </div>
+        </div>
+        <div class="col-md-7">
+          <div class="pro-details-content">
+            <div class="products-namedt">
+              <h1 class="procat-title">{{title}}</h1>
+            </div>
+            <form class="common-modal-form" [formGroup]="customersMasterForm" (ngSubmit)="onSubmit()">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="CategoryName">Category Name <span class="text-danger">*</span></label>
+                    <input type="text" id="CategoryName" formControlName="productCategoryName" class="form-control"
+                      placeholder="Category Name">
+                    <div *ngIf="shouldShowError('productCategoryName','required')" class="form-validate-err">
+                      Please Enter Category Name.
+                    </div>
+                    <div *ngIf="shouldShowError('productCategoryName','minlength')" class="form-validate-err">
+                      Category Name requied atleast 2 characters.
+                    </div>
+                    <div *ngIf="shouldShowError('productCategoryName','maxlength')" class="form-validate-err">
+                      Category Name requied only 30 characters.
+                    </div>
+                    <div *ngIf="shouldShowError('productCategoryName','pattern')" class="form-validate-err">
+                      Only characters are allowed.
+                    </div>
+                    <div *ngIf="shouldShowError('productCategoryName','noEmptySpaces')" class="form-validate-err">
+                      Should not contain empty spaces at the beginning or end.
+                    </div>
+                    <div *ngIf="shouldShowError('productCategoryName','capitalLetter')" class="form-validate-err">
+                      The category name must start with a capital letter.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="categoryDescription">Category Description <span class="text-danger">*</span></label>
+                    <textarea class="form-control" formControlName="productCategoryDescription"
+                      placeholder="Category Description" id="categoryDescription" rows="2"></textarea>
+                    <div *ngIf="shouldShowError('productCategoryDescription','required')" class="text-danger">
+                      Description is required.
+                    </div>
+                    <div *ngIf="shouldShowError('productCategoryDescription','noEmptySpaces')" class="text-danger">
+                      Description should not contain empty spaces at the beginning or end.
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="inputGroupFile02">Category Image</label>
+                    <div class="input-group">
+                      <input type="file" class="form-control" id="inputGroupFile02" (change)="onFileChange($event)"
+                        name="file" accept=".jpg, .jpeg, .png, .gif">
+                      <label class="input-group-text" for="inputGroupFile02">Upload</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="status">Status</label>
+                    <select class="form-select" id="status" formControlName="status">
+                      <option value="">Select</option>
+                      <option value="true">Active</option>
+                      <option value="false">Deactive</option>
+                    </select>
+                    <div *ngIf="shouldShowError('status','required')" class="text-danger">This field is required
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group mb-0 text-end">
+                <button type="submit" class="common-btn">{{this.check ?'Update Now' : 'Add New'}}</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

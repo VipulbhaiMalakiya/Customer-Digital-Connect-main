@@ -1,0 +1,71 @@
+<div class="common-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="viewrecord-modalLabel">View role & permission record</h1>
+      <button type="button" (click)="onCancel()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+      <form class="common-modal-form" [formGroup]="rolesPermissionsMasterForm">
+        <div class="row">
+          <!-- <div class="col-md-4">
+            <div class="form-group">
+              <label for="roleId">Id</label>
+              <input type="text" class="form-control" id="roleId" name="roleId" formControlName="roleId" placeholder="Id">
+            </div>
+          </div> -->
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="roleName">Name</label>
+                <input type="text" class="form-control" id="roleName" name="roleName" formControlName="roleName" placeholder="Role Name">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="status">Status</label>
+                <select class="form-select" id="status" formControlName="status">
+                  <option value="">Select</option>
+                  <option value="true">Active</option>
+                  <option value="false">Deactive</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="createdDate">Created Date</label>
+                <input type="text" class="form-control" id="createdDate" name="createdDate" formControlName="createdDate" >
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="createdBy">Created By</label>
+                <input type="text" class="form-control" id="createdBy" name="createdBy" formControlName="createdBy" >
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="updatedDate">Updated Date</label>
+                <input type="text" class="form-control" id="updatedDate" name="updatedDate" formControlName="updatedDate" >
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="updatedBy">Updated By</label>
+                <input type="text" placeholder="Updated By" class="form-control" id="updatedBy" name="updatedBy" formControlName="updatedBy" >
+              </div>
+            </div>
+
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="roleDescription">Descirption</label>
+                <textarea cols="0" rows="3" id="roleDescription" name="roleDescription" formControlName="roleDescription" class="form-control"
+                  placeholder="Description"></textarea>
+              </div>
+            </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

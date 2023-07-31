@@ -1,0 +1,10 @@
+.ctm-icone1 {
+  /* float: right; */
+  margin-top: -5px;
+  cursor: pointer;
+}
+
+.cts-pointer img{
+  max-height: 25px;
+  cursor: pointer;
+}

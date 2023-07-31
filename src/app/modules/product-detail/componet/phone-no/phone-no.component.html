@@ -1,0 +1,32 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">Table</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-form" [formGroup]="customersMasterForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="contact">Contact <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" (keydown)="onKeyDown($event)" id="contact" name="contact"
+          formControlName="contact" placeholder="Contact">
+        <div *ngIf="shouldShowError('contact','required')" class="form-validate-err">
+          Please Enter Phone Number.
+        </div>
+        <div *ngIf="shouldShowError('contact','minlength')" class="form-validate-err">
+          Phone Number requied atleast 12 characters.
+        </div>
+        <div *ngIf="shouldShowError('contact','maxlength')" class="form-validate-err">
+          Phone Number requied only 12 characters.
+        </div>
+        <div *ngIf="shouldShowError('contact','pattern')" class="form-validate-err">
+          Only Numbers are allowed.
+        </div>
+      </div>
+
+      <div class="order-btns-col">
+        <button type="submit" class="pay-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

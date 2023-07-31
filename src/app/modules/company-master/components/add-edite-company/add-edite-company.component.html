@@ -1,0 +1,75 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">{{ title }}</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-modal-form" [formGroup]="companyMasterForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="companyName">Company <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="companyName" name="companyName" formControlName="companyName"
+              placeholder="Name">
+            <div *ngIf="shouldShowError('companyName','required')" class="form-validate-err">
+              Please Enter Company Name.
+            </div>
+            <div *ngIf="shouldShowError('companyName','minlength')" class="form-validate-err">
+              Company Name requied atleast 2 characters.
+            </div>
+            <div *ngIf="shouldShowError('companyName','maxlength')" class="form-validate-err">
+              Company Name requied only 30 characters.
+            </div>
+            <div *ngIf="shouldShowError('companyName','pattern')" class="form-validate-err">
+              Only characters are allowed.
+            </div>
+            <div *ngIf="shouldShowError('companyName','capitalLetter')" class="form-validate-err">
+              The company name must start with a capital letter.
+            </div>
+            <div *ngIf="shouldShowError('companyName','noEmptySpaces')" class="form-validate-err">
+              Should not contain empty spaces at the beginning or end.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="apiKey">Api Key <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="apiKey" name="apiKey" formControlName="apiKey"
+              placeholder="Api Key">
+            <div *ngIf="shouldShowError('apiKey','required')" class="form-validate-err">
+              This field is required.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-select" id="status" formControlName="status">
+              <option value="true">Active</option>
+              <option value="false">Deactive</option>
+            </select>
+            <div *ngIf="shouldShowError('status','required')" class="text-danger">This field is required
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="companyDescription">Description <span class="text-danger">*</span></label>
+            <textarea cols="0" rows="3" id="companyDescription" name="companyDescription"
+              formControlName="companyDescription" class="form-control" placeholder="Description"></textarea>
+            <div *ngIf="shouldShowError('companyDescription','required')" class="form-validate-err">
+              Description is required.
+            </div>
+            <div *ngIf="shouldShowError('companyDescription','noEmptySpaces')" class="form-validate-err">
+              Description should not contain empty spaces at the beginning or end.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group mb-0 text-end">
+        <button type="submit" class="common-btn">{{this.data ?'Update Now' : 'Add New'}}</button>
+      </div>
+    </form>
+  </div>
+</div>

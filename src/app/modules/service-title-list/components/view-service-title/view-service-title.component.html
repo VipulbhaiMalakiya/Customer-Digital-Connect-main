@@ -1,0 +1,76 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">View Service Title</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-modal-form" [formGroup]="serviceTitleMasterForm">
+      <div class="row">
+        <!-- <div class="col-md-4">
+          <div class="form-group">
+            <label for="serviceId">ID</label>
+            <input type="text" class="form-control" id="serviceId" name="serviceId" formControlName="serviceId">
+          </div>
+        </div> -->
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="subCategoryId">Sub Category</label>
+            <input type="text" class="form-control" id="subCategoryId" name="subCategoryId"
+              formControlName="subCategoryId">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="category">Category</label>
+            <input type="text" class="form-control" id="category" name="category" formControlName="category">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="serviceName">Service Title</label>
+            <input type="text" class="form-control" id="serviceName" name="serviceName" formControlName="serviceName"
+              placeholder="Service Title">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="defaultPriority">Priority</label>
+            <input type="text" class="form-control" id="defaultPriority" name="defaultPriority"
+              formControlName="defaultPriority">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="status">status</label>
+            <input type="text" class="form-control" id="status" name="status" formControlName="status">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="createdDate">Created Date</label>
+            <input type="text" class="form-control" id="createdDate" name="createdDate" formControlName="createdDate">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="createdBy">Created By</label>
+            <input type="text" class="form-control" id="createdBy" name="createdBy" formControlName="createdBy">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="updatedDate">Updated Date</label>
+            <input type="text" class="form-control" id="updatedDate" name="updatedDate" formControlName="updatedDate">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="updatedBy">Updated By</label>
+            <input type="text" class="form-control" placeholder="Updated By" id="updatedBy" name="updatedBy" formControlName="updatedBy">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,182 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">View Prodact</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <div class="inner-middle-content">
+      <form class="common-modal-form" [formGroup]="customersMasterForm" >
+        <div class="row">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="CategoryName">Category Name <span class="text-danger">*</span></label>
+              <select name="sub_category" id="CategoryName" class="form-select" formControlName="CategoryName">
+                <option value="">Select</option>
+                <option *ngFor="let i of prodactCategory" value="{{i.productCategoryId}}">{{i.productCategoryName}}
+                </option>
+              </select>
+              <div *ngIf="shouldShowError('CategoryName','required')" class="form-validate-err">
+                Please Enter Category Name.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="ProductName">Product Name <span class="text-danger">*</span></label>
+              <input type="text" id="ProductName" class="form-control" name="ProductName" formControlName="ProductName"
+                placeholder="Product Name">
+              <div *ngIf="shouldShowError('ProductName','required')" class="form-validate-err">
+                Please Enter Product Name.
+              </div>
+              <div *ngIf="shouldShowError('ProductName','minlength')" class="form-validate-err">
+                Product Name requied atleast 3 characters.
+              </div>
+              <div *ngIf="shouldShowError('ProductName','maxlength')" class="form-validate-err">
+                Product Name requied only 30 characters.
+              </div>
+              <div *ngIf="shouldShowError('ProductName','pattern')" class="form-validate-err">
+                Only characters are allowed.
+              </div>
+              <div *ngIf="shouldShowError('ProductName','noEmptySpaces')" class="form-validate-err">
+                Should not contain empty spaces at the beginning or end.
+              </div>
+              <div *ngIf="shouldShowError('ProductName','capitalLetter')" class="form-validate-err">
+                Name should start with a capital letter.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="ProductSerialNo">Product Serial No. <span class="text-danger">*</span></label>
+              <input type="text" id="ProductSerialNo" (keydown)="onKeyDown($event)" class="form-control"
+                formControlName="ProductSerialNo" name="ProductSerialNo" placeholder="Product Serial No">
+              <div *ngIf="shouldShowError('ProductSerialNo','required')" class="form-validate-err">
+                Please Enter Product Name.
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select class="form-select" id="status" name="status" formControlName="status">
+                <option value="true">Active</option>
+                <option value="false">Deactive</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <span style="font-weight: 500; margin-right: 10px;">Options</span>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="inlineRadio1" formControlName="radioOption"
+                  value="PIECE" checked>
+                <label class="form-check-label" for="inlineRadio1">Piece</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="inlineRadio2" formControlName="radioOption" value="GM">
+                <label class="form-check-label" for="inlineRadio2">GM</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" id="inlineRadio3" formControlName="radioOption"
+                  value="LITRE">
+                <label class="form-check-label" for="inlineRadio3">Litter</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <table width="100%" *ngIf="customersMasterForm.get('radioOption').value === 'PIECE'">
+                <tbody>
+                  <tr>
+                    <td align="left" width="2%">
+                      <input type="checkbox" name="checkboxPiece" formControlName="checkboxPiece"
+                        (change)="handleCheckboxChange($event)">
+                    </td>
+                    <td align="left" width="10%"> Piece </td>
+                    <td align="left" width="20%"><label>Price : </label>
+                      <input type="text" class="form-control" (keydown)="onKeyDown($event)" formControlName="PiecePrice"
+                        name="PiecePrice" [readonly]="!customersMasterForm.get('checkboxPiece').value">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table width="100%" *ngIf="customersMasterForm.get('radioOption').value === 'GM'">
+                <tbody>
+                  <tr>
+                    <td align="left" width="2%">
+                      <input type="checkbox" formControlName="checkbox250GM"  (change)="handleCheckboxChange250GM($event)">
+                    </td>
+                    <td align="left" width="10%"> 250 GM </td>
+                    <td align="left" width="20%"><label>Price : </label>
+                      <input type="text" formControlName="GM250Price" (keydown)="onKeyDown($event)"
+                        class="form-control mb-2" [readonly]="!customersMasterForm.get('checkbox250GM').value">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left" width="2%">
+                      <input type="checkbox" formControlName="checkbox500GM"
+                        (change)="handleCheckboxChange500GM($event)">
+                    </td>
+                    <td align="left" width="10%"> 500 GM </td>
+                    <td align="left" width="20%"><label>Price : </label>
+                      <input type="text" formControlName="GM500Price" (keydown)="onKeyDown($event)"
+                        class="form-control mb-2" [readonly]="!customersMasterForm.get('checkbox500GM').value">
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left" width="2%">
+                      <input type="checkbox" formControlName="checkbox1KG" (change)="handleCheckboxChange1KG($event)">
+                    </td>
+                    <td align="left" width="10%"> 1 KG </td>
+                    <td align="left" width="20%"><label>Price : </label>
+                      <input type="text" formControlName="KG1Price" (keydown)="onKeyDown($event)"
+                        class="form-control mb-2" [readonly]="!customersMasterForm.get('checkbox1KG').value">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <table width="100%" *ngIf="customersMasterForm.get('radioOption').value === 'LITRE'">
+                <tbody>
+                  <tr>
+                    <td align="left" width="2%">
+                      <input type="checkbox" formControlName="checkbox1LT" (change)="handleCheckboxChange1LT($event)">
+                    </td>
+                    <td align="left" width="10%"> 1LT </td>
+                    <td align="left" width="20%"><label>Price : </label>
+                      <input type="text" [readonly]="!customersMasterForm.get('checkbox1LT').value"
+                        formControlName="LT1Price" (keydown)="onKeyDown($event)" class="form-control">
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="col-md-8">
+            <div class="prod-aaupld">
+              <div class="form-group">
+                <label for="ProductDescription">Product Description <span class="text-danger">*</span></label>
+                <textarea class="form-control" formControlName="ProductDescription" placeholder="Product Description"
+                  id="ProductDescription" rows="2"></textarea>
+                <div *ngIf="shouldShowError('ProductDescription','required')" class="form-validate-err">
+                  Please Enter Description.
+                </div>
+                <div *ngIf="shouldShowError('ProductDescription','noEmptySpaces')" class="form-validate-err">
+                  Should not contain empty spaces at the beginning or end.
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Product Image</label>
+
+                <div class="default-uppic" *ngIf="!previewUrl">
+                  <img id="blah" [src]="imageURL" alt="" />
+                </div>
+                <div class="default-uppic" *ngIf="previewUrl">
+                  <img id="blah" [src]="previewUrl" alt="Image Preview" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

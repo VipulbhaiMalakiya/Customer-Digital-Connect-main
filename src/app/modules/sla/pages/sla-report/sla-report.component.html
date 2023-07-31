@@ -1,0 +1,93 @@
+<app-header></app-header>
+<app-loading-spin *ngIf="isProceess"></app-loading-spin>
+<div class="page-title">
+  <h1>Over The SLA Reports</h1>
+</div>
+
+<div class="page-btns-col">
+  <div class="dt-buttons">
+    <button class="gray-btns"  *ngIf="data.length > 0" (click)="onDownload()" type="button"><i class="las la-file-excel"></i> Excel</button>
+    <div class="table-search" *ngIf="data.length > 0"><input type="text" class="form-control"
+      name="name" id="name" [(ngModel)]="term"
+      autocomplete="off" placeholder="Search..." required=""></div>
+  </div>
+</div>
+<div class="inner-middle-content" >
+  <div class="dasboard-table dasboard-scroll">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Ticket No</th>
+            <th>Email</th>
+            <th>Category</th>
+            <th>Sub Category</th>
+            <th>Service Title</th>
+            <th>Department</th>
+            <th>Contact</th>
+            <th>Priority</th>
+            <th>Issue</th>
+            <th>Assigned To</th>
+            <th>Created By</th>
+            <th>Created Date</th>
+            <th>Updated By</th>
+            <th>Updated Date</th>
+            <th>ResolveBy</th>
+            <th>Create For User</th>
+            <th>Create For Customer</th>
+            <th>Updated By Customer</th>
+            <th>Mode</th>
+            <th>Resolve TimeStamp</th>
+            <th>sla</th>
+            <th>Status</th>
+            <th>Ticket Status</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let i of data  | customFilter: term | paginate
+        : {
+            itemsPerPage: tableSize,
+            currentPage: page,
+            totalItems: count
+          };let ind = index">
+          <tr>
+            <td>{{i.ticketId}}</td>
+            <td>{{i.ticketNo}}</td>
+            <td>{{i.emailId}}</td>
+            <td>{{i.category?.categoryName}}</td>
+            <td>{{i.subCategory?.subCategoryName}} </td>
+            <td>{{i.serviceTitle?.serviceName}}</td>
+            <td>{{i.department?.departmentName}}</td>
+            <td>{{i.alternativeContactNo}}</td>
+            <td>{{i.priority?.priorityName}}</td>
+            <td>{{i.issue?.issueName}}</td>
+            <td>{{i.assignedTo?.firstName}} {{i.assignedTo?.lastName}}</td>
+            <td>{{i.createdBy?.firstName}} {{i.createdBy?.lastName}}</td>
+            <td>{{i.createdDate | date :'medium'}}</td>
+            <td>{{i.updatedBy?.firstName}} {{i.updatedBy?.lastName}}</td>
+            <td>{{i.updatedDate | date :'medium'}}</td>
+            <td>{{i.resolveBy?.firstName}} {{i.resolveBy?.lastName}}</td>
+            <td>{{i.createForUser?.firstName}} {{i.createForUser?.lastName}}</td>
+            <td>{{i.createForCustomer?.firstName}} {{i.createForCustomer?.lastName}}</td>
+            <td>{{i.updatedByCustomer?.firstName}} {{i.updatedByCustomer?.lastName}}</td>
+            <td>{{i.mode}}</td>
+            <td>{{i.resolveTimeStamp}}</td>
+            <td>{{i.sla}}</td>
+            <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
+            <td>{{i.ticketStatus}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="data.length === 0" class="text-center">
+        <Strong class="text-danger">No records found</Strong>
+     </div>
+    </div>
+    <div class="clearfix" *ngIf="!isProceess && data.length > 0">
+      <ul class="pagination">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </ul>
+    </div>
+  </div>
+</div>
+

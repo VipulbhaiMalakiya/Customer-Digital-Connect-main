@@ -1,0 +1,112 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">View Order</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <!-- <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup> -->
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="dasboard-table">
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>SR.No</th>
+                  <th>Product</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let i of orderDetails; let ind = index">
+                  <td>
+                    {{ind + 1}}
+                  </td>
+                  <td>
+                    <div class="pro-tb-icopn">
+                      <h4>{{i.productName}}</h4>
+                    </div>
+                  </td>
+                  <td>₹ {{i.price | number:'1.2-2'}}</td>
+                  <td>
+                    <div class="product-single-qty">
+                      {{i.quantity}} ({{i.unitofmeasure}})
+                    </div>
+                  </td>
+                  <td>₹ {{getSubtotal() | number:'1.2-2'}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div *ngIf="orderDetails.length === 0" class="text-center">
+              <Strong class="text-danger">No records found</Strong>
+            </div>
+          </div>
+        </div>
+        <div class="order-price-col" *ngIf="orderDetails.length > 0">
+          <h5>Order Summary</h5>
+          <dl class="commerce-list">
+            <dt>Subtotal</dt>
+            <dd class="text-right">₹ {{ calculateGrandTotal() | number:'1.2-2'}}</dd>
+            <dt>CGST (1%)</dt>
+            <dd class="text-right">₹ {{ getCGST() | number:'1.2-2'}}</dd>
+            <dt>SGST (1%)</dt>
+            <dd class="text-right">₹ {{ getSGST() | number:'1.2-2' }}</dd>
+            <dt>Service Tax (1%)</dt>
+            <dd class="text-right">₹ {{ getservice() | number:'1.2-2' }}</dd>
+            <dt>Total Tax Amount</dt>
+            <dd class="text-right">₹ {{ getTotalTaxAmount() | number:'1.2-2'}}</dd>
+            <dt>Discount ({{discount}}%)</dt>
+            <dd class="text-right">₹ {{ getDiscount() | number:'1.2-2'}}</dd>
+            <dt class="big2x">Grand Total</dt>
+            <dd class="big2x text-right"><strong>₹ {{ getGrandTotal() | number:'1.2-2' }}</strong></dd>
+          </dl>
+        </div>
+      </div>
+      <div class="col-lg-3" *ngIf="orderDetails.length > 0">
+        <div class="order-dsgd">
+          <label>Discount</label>
+          <input type="text" disabled="" [maxLength]="2" class="form-control" (keydown)="onKeyDown($event)" [(ngModel)]="discount"
+            placeholder="Enter discount %">
+        </div>
+        <div class="cart-ct-select">
+
+          <form class="common-form" [formGroup]="customersMasterForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="contact">Contact <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" (keydown)="onKeyDown($event)" id="contact" name="contact"
+                formControlName="contact" placeholder="Contact">
+              <div *ngIf="shouldShowError('contact','required')" class="form-validate-err">
+                Please Enter Phone Number.
+              </div>
+              <div *ngIf="shouldShowError('contact','minlength')" class="form-validate-err">
+                Phone Number requied atleast 12 characters.
+              </div>
+              <div *ngIf="shouldShowError('contact','maxlength')" class="form-validate-err">
+                Phone Number requied only 12 characters.
+              </div>
+              <div *ngIf="shouldShowError('contact','pattern')" class="form-validate-err">
+                Only Numbers are allowed.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="Payment">Payment</label>
+              <select class="form-select" id="Payment" formControlName="Payment">
+                <option value="CreditCard">Debit</option>
+              </select>
+              <div *ngIf="shouldShowError('Payment','required')" class="text-danger">This field is required
+              </div>
+            </div>
+
+            <div class="order-btns-col">
+              <button (click)="onCancel()" class="cancel-btn">Cancel</button>
+              <!-- <button type="submit" class="pay-btn">Submit</button> -->
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

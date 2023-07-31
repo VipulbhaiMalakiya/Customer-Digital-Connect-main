@@ -1,0 +1,10 @@
+<div class="main-outer-wrapper" [class.left-colapse]="classToggled">
+  <div class="menu-tgl" (click)="openMenu()"><i class="bi bi-chevron-left"></i></div>
+  <div class="leftouter30" [class.custom-colapse]="classToggled">
+    <div class="main-logo"><a routerLink="dashboard/v1"><img src="../assets/images/logo.png" alt=""></a></div>
+    <app-left-mainmenu></app-left-mainmenu>
+  </div>
+  <div class="rightouter70" >
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -1,0 +1,152 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">Filter Tickets</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-modal-form" [formGroup]="ticketMasterForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="category">Category</label>
+            <select class="form-select" id="category" #sel (change)="changed(sel.value)" formControlName="category">
+              <option value="">Select</option>
+              <option *ngFor="let i of data" [value]="i.categoryId">{{i.categoryName}}</option>
+            </select>
+
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="subCategory">Sub Category</label>
+            <select class="form-select" #sel1 (change)="selectCategory(sel1.value)" id="subCategory"
+              formControlName="subCategory">
+              <option value="">Select</option>
+              <option *ngFor="let i of sdata" [value]="i.subCategoryId">{{i.subCategoryName}}</option>
+            </select>
+
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="serviceTitle">Service Title</label>
+            <select class="form-select" #sel89 (change)="selectserviceTitle(sel89.value)" id="serviceTitle"
+              formControlName="serviceTitle">
+              <option value="">Select</option>
+              <option *ngFor="let i of data1" [value]="i.serviceId">{{i.serviceName}}</option>
+            </select>
+
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="priority"> Priority</label>
+            <select class="form-select" id="priority" formControlName="priority">
+              <option value="">Select</option>
+              <option *ngFor="let i of slaData" [value]="i.defaultPriority.id">{{i.defaultPriority.priorityName}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="issue"> Issue</label>
+            <select class="form-select" id="issue" formControlName="issue">
+              <option value="">Select</option>
+              <option *ngFor="let i of issueData" [value]="i.issueId">{{i.issueName}}</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="department">Department</label>
+            <select class="form-select" #sel3 (change)="selectDepartment(sel3.value)" id="department"
+              formControlName="department">
+              <option value="">Select</option>
+              <ng-container *ngFor="let i of dept">
+                <option [value]="i.departmentId" *ngIf="i.departmentId === this.userData.department.departmentId">
+                  {{i.departmentName}}</option>
+              </ng-container>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <div class="form-Department">
+              <label for="assignedTo">Assigned To</label>
+              <select class="form-select" id="assignedTo" formControlName="assignedTo">
+                <option value="">Select</option>
+                <ng-container *ngFor="let i of duser">
+                  <option *ngIf="i.role?.roleName === 'Resolver' && this.userData.userId  !== i.userId"
+                    [value]="i.userId">{{i.firstName}} {{i.lastName}}
+                  </option>
+                </ng-container>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <div class="form-Department">
+              <label for="createForUser">Create by user</label>
+              <select class="form-select" id="createForUser" formControlName="createForUser"
+                [value]='this.userData.userId'>
+                <option value="">Select</option>
+                <ng-container *ngFor="let i of aciveUser">
+                  <option *ngIf="i.role?.roleName !== 'Admin'" [value]="i.userId">{{i.firstName}} {{i.lastName}}
+                  </option>
+                </ng-container>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="ticketStatus">Status</label>
+            <select class="form-select" id="ticketStatus" formControlName="ticketStatus">
+              <option value="">Select</option>
+              <option value="New">New</option>
+              <option value="In_Progress">In-Progress</option>
+              <option value="Pending_Client">Pending Client</option>
+              <option value="Resolved">Resolved</option>
+              <option value="Closed">Closed</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <div class="form-Department">
+              <label for="Resolved">Resolved By</label>
+              <select class="form-select" id="Resolved" formControlName="resolvedBy">
+                <option value="">Select</option>
+                <ng-container *ngFor="let i of duser">
+                  <option *ngIf="i.role?.roleName === 'Resolver' && this.userData.userId  !== i.userId"
+                    [value]="i.userId">{{i.firstName}} {{i.lastName}}
+                  </option>
+                </ng-container>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="startingDate" >Starting Date</label>
+              <input type="date"  id="startingDate" class="form-control" formControlName="startingDate">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="endingDate">Ending Date</label>
+            <input type="date" id="endingDate" class="form-control" formControlName="endingDate">
+          </div>
+        </div>
+      </div>
+      <div class="form-group mb-0 text-end">
+        <button type="submit" class="common-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

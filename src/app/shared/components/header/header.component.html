@@ -1,0 +1,57 @@
+<div class="top-noti-user">
+  <div class="top-notify" (click)="toggleField()"><img src="../assets/images/bell-icon.png" alt=""><span>0</span></div>
+  <div class="top-user-profile">
+    <a class="dropdown-toggle"   data-bs-toggle="dropdown"><img src="../assets/images/user.jpg" alt="">
+    </a>
+
+    <ul class="dropdown-menu">
+      <li><a><i class="bi bi-person"></i>{{this.userData?.firstName | uppercase}} {{this.userData?.lastName
+          |uppercase}}</a></li>
+      <li *ngIf="isUser || isResolver"><a [routerLink]="['/profile']"><i class="bi bi-person"></i> My Profile</a></li>
+      <li *ngIf="isAdmin"><a [routerLink]="['/admin/profile']"><i class="bi bi-person"></i> My Profile</a></li>
+      <li><a><i class="bi bi-gear"></i> Settings</a></li>
+      <li><a routerLink="/" (click)="logout()"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+    </ul>
+  </div>
+</div>
+
+<div class="notification-wrapper"   >
+  <div id="notification" class="notification-bar" [class.toggled]="classToggled">
+    <div class="noti-head">
+      <h3>Notifications</h3> <a >Mark All As Read</a>
+    </div>
+
+    <div class="inner-noti-sec">
+
+      <div class="noti-col"><a >
+          <div class="noti-ico"><i class="las la-check"></i></div>
+          <p>You have <b>1</b> campaigns at the moment <small>Just Now</small></p>
+        </a>
+      </div>
+
+      <div class="noti-col">
+        <div class="noti-ico"><i class="las la-file-alt"></i></div>
+        <p>Vipul has assigned new task to you <small>10 hours</small></p>
+      </div>
+
+      <div class="noti-col">
+        <div class="noti-ico"><i class="las la-thumbs-up"></i></div>
+        <p>Your Order will be delivered today! <small>Yesterday</small></p>
+      </div>
+
+      <div class="noti-col"><a >
+          <div class="noti-ico"><i class="las la-check"></i></div>
+          <p>You have <b>1</b> campaigns at the moment <small>11/07/2023</small></p>
+        </a>
+      </div>
+
+      <div class="noti-col"><a >
+          <div class="noti-ico"><i class="las la-check"></i></div>
+          <p>You have <b>1</b> campaigns at the moment <small>5/07/2023</small></p>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</div><!--notification-wrapper-->

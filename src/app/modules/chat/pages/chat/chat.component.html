@@ -1,0 +1,763 @@
+<app-loading-spin *ngIf="isProceess"></app-loading-spin>
+<div class="inboxouter100">
+  <div class="inbox30">
+    <div class="chats-leftbox">
+      <div class="topchat-filserch">
+        <div class="topchat-icons">
+          <div class="top-search">
+            <form class="main-search-form">
+              <div class="form-group">
+                <input type="text" class="form-control" [(ngModel)]="term" class="form-control" name="name" id="name"
+                  placeholder="Search" required="">
+              </div>
+              <button type="submit" class="search-ico"><i class="la la-search"></i></button>
+            </form>
+          </div>
+          <div class="topchat-filter-icon"><i class="las la-filter"></i></div>
+          <div class="topchat-checklist-icon"><i class="las la-list-alt"></i></div>
+        </div>
+        <!-- The above code is incomplete and cannot be accurately described without additional
+        information. It appears to be a HTML code snippet that starts with a div element with a
+        class of "filters-popup", but there is no content or closing tag provided. -->
+        <div class="filters-popup">
+          <div class="chakra-popover">
+            <h2 class="chakra-heading">Filter</h2>
+            <button type="button" class="chakra-button">Reset</button>
+          </div>
+
+          <div class="filters-rdbtns">
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+              <label class="form-check-label" for="flexRadioDefault1">
+                Open Chats
+              </label>
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+              <label class="form-check-label" for="flexRadioDefault2">
+                Resolved Chats
+              </label>
+            </div>
+
+          </div>
+
+          <div class="filters-ckbtns">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                Unread Chats
+              </label>
+            </div>
+          </div>
+          <div class="filters-tags">
+            <p class="chakra-text"><i class="las la-tag"></i> Tags</p>
+            <select id="select-tags" class="form-select">
+              <option value="">All</option>
+              <option value="tgnoo">No Label Attached</option>
+              <option value="tg501">501</option>
+              <option value="chkin">Checked in</option>
+              <option value="chkout">Checked out</option>
+              <option value="tgnew">New</option>
+            </select>
+          </div>
+          <div class="filters-tags">
+            <p class="chakra-text"><i class="las la-user-friends"></i> Assignee</p>
+            <div class="dropdown">
+              <button class="form-control dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                All
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <ng-container *ngFor="let i of aciveUser let ind=index;">
+                  <li *ngIf="i.userId === userData.userId">
+                    <a class="dropdown-item cursur">
+                      <span class="sc-bxgxFH"><i class="las la-user-tie"></i></span>
+                      <span>Yourself</span></a>
+                  </li>
+                  <li *ngIf="i.userId !== userData.userId">
+                    <a class="dropdown-item cursur">
+                      <span class="sc-bxgxFH" [ngClass]="getColorClass(ind)">{{getShortName(i.firstName)}} </span>
+                      <span>{{i.firstName}} {{i.lastName}}</span></a>
+                  </li>
+                </ng-container>
+
+              </ul>
+            </div>
+          </div>
+          <div class="filters-tags">
+            <p class="chakra-text"><i class="las la-sort"></i> Sort</p>
+            <select class="form-select">
+              <option selected>Newest</option>
+              <option value="1">Oldest</option>
+            </select>
+          </div>
+          <button type="button" class="common-btn mt-3">Submit</button>
+        </div><!--filters-popup-->
+      </div>
+      <div class="leftusers-list">
+        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+          <div class="inbox-alldp">
+            <div class="select-dropdown">
+              <button role="button" data-value="" class="select-dropdown__button dropdown-toggle"><span>All
+                </span></button>
+              <ul class="select-dropdown__list">
+                <li data-value="1" class="select-dropdown__list-item">All <span class="dcheck-icon"><i
+                      class="las la-check"></i></span></li>
+                <li data-value="2" class="select-dropdown__list-item">You</li>
+                <li data-value="3" class="select-dropdown__list-item">Unassigned</li>
+                <li data-value="4" class="select-dropdown__list-item">Spam</li>
+              </ul>
+            </div>
+          </div><!--inbox-alldp-->
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
+              type="button" role="tab" aria-controls="pills-home" aria-selected="true">Open <span
+                class="supnos">{{this.openCount}}</span></button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
+              type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Closed <span
+                class="supnos">{{closedCount}}</span></button>
+          </li>
+        </ul>
+        <!-- open tab-pane-->
+        <div class="tab-content" id="pills-tabContent">
+          <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <div class="nocon-txt" *ngIf="!open.length">
+              <div class="nochat-vector"><img src="../assets/images/nochat-vector.png" alt=""></div>
+            </div>
+            <ul class="active-chat-list pe-3 my-custom-scrollbar my-custom-scrollbar-primary" *ngIf="open.length > 0">
+              <li *ngFor="let i of open  | customFilter: term ; let ind=index; let isFirst = first"
+                [ngClass]="{ 'new-message': isFirst }" (click)="onViewContact(i ,getColorClass(ind))">
+                <div class="avata">
+                  <span class="chatpro-nmg" [ngClass]="getColorClass(ind)" *ngIf="i.fullName !== null">
+                    {{getShortName(i.fullName)}} </span>
+                  <span class="chatpro-nmg" [ngClass]="getColorClass(ind)" *ngIf="i.fullName === null">
+                    {{getShortName(i.phoneNo)}} </span>
+                  <span class="user-platfrm" *ngIf="i.messagetype === 'text'"><i class="lab la-whatsapp"></i></span>
+                  <span class="user-platfrm" *ngIf="i.messagetype === 'notes'"><i class="las la-pen"></i></span>
+                </div>
+                <div class="chat-info py-1">
+                  <span class="d-block" *ngIf="i.fullName !== null"> {{i.fullName}}
+                    <!-- <span class="user-status">•</span> -->
+                  </span>
+                  <span class="d-block" *ngIf="i.fullName === null "> {{i.phoneNo}}
+                    <!-- <span class="user-status">•</span> -->
+                  </span>
+                  <div class="last-msg font-small one-line">
+                    <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                        class="las la-check-double"></i></span>
+                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                        class="las la-check"></i></span>
+                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                        class="las la-check-double"></i></span>
+                    {{i.lastMsg }}
+                  </div>
+                  <div class="cht-tg" *ngIf="i.customerLabel"><i class="las la-tag"></i> {{i.customerLabel}}</div>
+                </div>
+                <div class="chat-time ms-auto text-end">
+                  <div class="mb-1"> {{i.time | dateAgo}}</div>
+                  <!-- <div class="un-read">{{i.count}}</div> -->
+                </div>
+              </li>
+            </ul>
+
+          </div>
+          <!-- Colsed tab-pane-->
+          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <ul class="active-chat-list pe-3">
+              <div class="nocon-txt" *ngIf="!closed.length">
+                <div class="nochat-vector"><img src="../assets/images/nochat-vector.png" alt=""></div>
+                <p>No conversations here...</p>
+              </div>
+
+              <li *ngFor="let i of closed  |  customFilter: term  ; let isFirst = first ; let ind=index;"
+                [ngClass]="{ 'new-message': isFirst }" (click)="onViewContact(i,getColorClass(ind))">
+                <div class="avata">
+                  <span class="chatpro-nmg" [ngClass]="getColorClass(ind)" *ngIf="i.fullName !== null">
+                    {{getShortName(i.fullName)}} </span>
+                  <span class="chatpro-nmg" [ngClass]="getColorClass(ind)" *ngIf="i.fullName === null">
+                    {{getShortName(i.phoneNo)}} </span>
+                  <span class="user-platfrm"><i class="lab la-whatsapp"></i></span>
+                </div>
+                <div class="chat-info py-1">
+                  <span class="d-block" *ngIf="i.fullName !== null"> {{i.fullName}}
+                    <!-- <span class="user-status">•</span> -->
+                  </span>
+                  <span class="d-block" *ngIf="i.fullName === null "> {{i.phoneNo}}
+                    <!-- <span class="user-status">•</span> -->
+                  </span>
+
+                  <div class="last-msg font-small one-line">
+                    <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                        class="las la-check-double"></i></span>
+                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                        class="las la-check"></i></span>
+                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                        class="las la-check-double"></i></span>
+                    {{i.lastMsg}}
+                  </div>
+                  <div class="last-msg font-small one-line">{{i.customerLabel}}</div>
+
+                </div>
+                <div class="chat-time ms-auto text-end">
+                  <div class="mb-1"> {{i.time | dateAgo}}</div>
+                  <!-- <div class="un-read">{{i.count}}</div> -->
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="inbox70" *ngIf="show">
+    <div class="topright-chat">
+      <div class="openchat-top">
+        <!-- Chat Header Left -->
+        <div class="mainuser-pictxt">
+          <div class="mainuser-text">
+            <ng-container *ngIf="!chatname">
+              <h2 *ngIf="data.firstName !== null && data.lastName !== null ">
+                {{data.firstName}} {{data.lastName}}
+              </h2>
+            </ng-container>
+            <ng-container *ngIf="chatname">
+              <h2 *ngIf="chatname !==null ">{{chatname}}</h2>
+              <h2 *ngIf="chatname ==null">{{contact}}</h2>
+            </ng-container>
+            <div class="main-caticon-social">
+              <span class="main-sociicon" *ngIf="label"><i class="lab la-whatsapp"></i></span>
+              <span class="main-socitxt" *ngIf="label">{{label}}</span>
+              <span *ngIf="label" (click)="onlabelRemove(label)" class="main-addtg dropdown-toggle"><strong><i
+                    class="las la-minus"></i></strong> Remove Tages</span>
+              <span *ngIf="!label" class="main-addtg dropdown-toggle" id="dropdownMenuButton3" data-bs-toggle="dropdown"
+                aria-expanded="false"><strong><i class="las la-plus"></i></strong> Add Tags</span>
+              <ul class="tag-dropdown dropdown-menu" aria-labelledby="dropdownMenuButton3">
+                <li *ngFor="let i of dataLabel ; let ind=index;" (click)="onlabel(i)">
+                  <a class="cursur">
+                    <span class="tag1" [ngClass]="getColorClass(ind)"><i class="las la-tag"></i></span>
+                    <span>{{i.name}}</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- chat header right -->
+        <div class="mainuser-right">
+          <div class="mainuser-dropdown">
+            <div class="dropdown">
+              <button class="form-control dropdown-toggle" type="button" id="dropdownMenuButton2"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <span class="top-right-catico"><i class="las la-user-tie"></i></span>
+                <span *ngIf="nrSelect !== userData.userId">{{DefoluteSelect}}</span>
+                <span *ngIf="nrSelect === userData.userId">Yourself</span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                <ng-container *ngFor="let i of aciveUser let ind=index;">
+                  <li *ngIf="i.userId === userData.userId" [class.selected]="i.userId === nrSelect"
+                    (click)="selectDepartment(i.userId)">
+                    <a class="dropdown-item cursur">
+                      <span class="sc-bxgxFH"><i class="las la-user-tie"></i></span>
+                      <span>Yourself</span></a>
+                  </li>
+                  <li *ngIf="i.userId !== userData.userId" [class.selected]="i.userId === nrSelect">
+                    <a class="dropdown-item cursur" (click)="selectDepartment(i.userId)">
+                      <span class="sc-bxgxFH" [ngClass]="getColorClass(ind)">{{getShortName(i.firstName)}} </span>
+                      <span>{{i.firstName}} {{i.lastName}}</span></a>
+                  </li>
+                </ng-container>
+              </ul>
+            </div>
+          </div>
+          <div class="clschat-btn" *ngIf='Userinfo?.isopen'><a (click)="onClose(contactinfo)">Close
+              <i class="las la-check"></i> </a></div>
+        </div>
+      </div>
+      <div class="chatarea-sec">
+        <div class="chat-body">
+          <ul class="msg-history" #chatContainer>
+            <ng-container *ngFor="let data of receivedData ">
+              <!-- <div class="ondtcss-chx" ><span class="dtcss-fm">Today</span></div> -->
+              <li class="msg-replayer"
+                *ngIf="data.type === 'Sender' && data.messagetype === 'text' || data.messagetype === 'Text'">
+                <ng-container>
+                  <div class="avata">
+                    <span *ngIf="data.name === null">Y</span>
+                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                  </div>
+                  <div class="chat-info">
+                    <div class="last-msg p-3 rounded bg-cyan">{{data.message}}
+                    </div>
+                    <div class="suserchat-info pt-2">
+                      <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                      <span class="suserchat-name" *ngIf="data.name !== null">{{data.name || ''}}</span>
+                      {{data.time |dateAgo}}
+                      <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                          class="las la-check-double"></i></span>
+                      <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                          class="las la-check"></i></span>
+                      <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                          class="las la-check-double"></i></span>
+                    </div>
+                  </div>
+                </ng-container>
+              </li>
+              <!-- test Code Start -->
+              <!-- document -->
+              <li class="msg-replayer" *ngIf="data.type === 'Sender' && data.messagetype === 'document' ">
+                <div class="avata">
+                  <span *ngIf="data.name === null">Y</span>
+                  <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                </div>
+                <div class="chat-info">
+                  <div class="last-msg p-2 pb-1 rounded">
+                    <object data="../assets/images/example.pdf" type="application/pdf" width="100%" height="200px">
+                    </object>
+                    <div class="pdf-nameic cursur" (click)="downloadFile(data)"><span class="pdf-icon"><img
+                          src="../assets/images/document-icon.png" alt="">
+                        {{data.filename}}</span> <span class="pdf-downicon"><i
+                          class="las la-arrow-circle-down"></i></span></div>
+                  </div>
+                  <div class="suserchat-info pt-2">
+                    <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                    <span class="suserchat-name" *ngIf="data.name !== null">{{data.name || ''}}</span>
+                    {{data.time |dateAgo}}
+                    <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                        class="las la-check-double"></i></span>
+                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                        class="las la-check"></i></span>
+                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                        class="las la-check-double"></i></span>
+                  </div>
+                </div>
+              </li>
+              <li class="msg-sender" *ngIf="data.type === 'Receiver' && data.messagetype === 'document' ">
+                <div class="avata">
+                  <span *ngIf="data.name === null">Y</span>
+                  <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                </div>
+                <div class="chat-info">
+                  <div class="last-msg p-2 pb-1 rounded">
+                    <object data="../assets/images/example.pdf" type="application/pdf" width="100%" height="200px">
+                    </object>
+                    <div class="pdf-nameic cursur" (click)="downloadFile(data)"><span class="pdf-icon"><img
+                          src="../assets/images/document-icon.png" alt="">
+                        {{data.filename}}</span> <span class="pdf-downicon"><i
+                          class="las la-arrow-circle-down"></i></span></div>
+                  </div>
+                  <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
+                    ||'Reception'}}</span>
+                  <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
+                  {{data.time |dateAgo}}
+
+                </div>
+              </li>
+              <!-- audio -->
+              <li class="msg-replayer" *ngIf="data.type === 'Sender' && data.messagetype === 'audio' ">
+                <div class="avata">
+                  <span *ngIf="data.name === null">Y</span>
+                  <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                </div>
+                <div class="chat-info">
+                  <div class="last-msg p-2 pb-1 rounded">
+                    <audio controls="">
+                      <source [src]=data.fileUrl type="audio/mpeg">
+                      Your browser does not support the audio element.
+                    </audio>
+                  </div>
+                  <div class="suserchat-info pt-2">
+                    <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                    <span class="suserchat-name" *ngIf="data.name !== null">{{data.name || ''}}</span>
+                    {{data.time |dateAgo}}
+                    <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                        class="las la-check-double"></i></span>
+                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                        class="las la-check"></i></span>
+                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                        class="las la-check-double"></i></span>
+                  </div>
+                </div>
+              </li>
+              <li class="msg-sender" *ngIf="data.type === 'Receiver' && data.messagetype === 'audio' ">
+                <div class="avata">
+                  <span *ngIf="data.name === null">Y</span>
+                  <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                </div>
+                <div class="chat-info">
+                  <div class="last-msg p-2 pb-1 rounded">
+                    <audio controls="">
+                      <source [src]=data.fileUrl type="audio/mpeg">
+                      Your browser does not support the audio element.
+                    </audio>
+                  </div>
+                  <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
+                    ||'Reception'}}</span>
+                  <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
+                  {{data.time |dateAgo}}
+
+                </div>
+              </li>
+
+              <!-- video -->
+              <li class="msg-replayer" *ngIf="data.type === 'Sender' && data.messagetype === 'video' ">
+                <div class="avata">
+                  <span *ngIf="data.name === null">Y</span>
+                  <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                </div>
+                <div class="chat-info">
+                  <div class="last-msg p-2 pb-1 rounded">
+                    <video width="320" height="240" controls="">
+                      <source [src]=data.fileUrl type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                  <div class="suserchat-info pt-2">
+                    <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                    <span class="suserchat-name" *ngIf="data.name !== null">{{data.name || ''}}</span>
+                    {{data.time |dateAgo}}
+                    <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                        class="las la-check-double"></i></span>
+                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                        class="las la-check"></i></span>
+                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                        class="las la-check-double"></i></span>
+                  </div>
+                </div>
+              </li>
+              <li class="msg-sender" *ngIf="data.type === 'Receiver' && data.messagetype === 'video' ">
+                <div class="avata">
+                  <span *ngIf="data.name === null">Y</span>
+                  <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                </div>
+                <div class="chat-info">
+                  <div class="last-msg p-2 pb-1 rounded">
+                    <video width="320" height="240" controls="">
+                      <source [src]=data.fileUrl type="video/mp4">
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                  <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
+                    ||'Reception'}}</span>
+                  <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
+                  {{data.time |dateAgo}}
+
+                </div>
+              </li>
+              <!-- image -->
+              <li class="msg-replayer" *ngIf="data.type === 'Sender' && data.messagetype === 'image' ">
+                <div class="avata">
+                  <span *ngIf="data.name === null">Y</span>
+                  <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                </div>
+                <div class="chat-info">
+                  <div class="last-msg p-2 rounded bg-light"><img [src]=data.fileUrl alt=""></div>
+                  <div class="suserchat-info pt-2">
+                    <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                    <span class="suserchat-name" *ngIf="data.name !== null">{{data.name || ''}}</span>
+                    {{data.time |dateAgo}}
+                    <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                        class="las la-check-double"></i></span>
+                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                        class="las la-check"></i></span>
+                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                        class="las la-check-double"></i></span>
+                  </div>
+                </div>
+              </li>
+
+
+              <li class="msg-sender" *ngIf="data.type === 'Receiver' && data.messagetype === 'image' ">
+                <div class="avata">
+                  <span *ngIf="data.name === null">Y</span>
+                  <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                </div>
+                <div class="chat-info">
+                  <div class="last-msg p-2 rounded bg-light"><img [src]=data.fileUrl alt=""></div>
+                  <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
+                    ||'Reception'}}</span>
+                  <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
+                  {{data.time |dateAgo}}
+
+                </div>
+              </li>
+              <!-- test Code End -->
+              <!-- Map -->
+              <li class="msg-replayer" *ngIf="data.type === 'Sender' && data.messagetype === 'location' ">
+                <div class="avata">
+                  <span *ngIf="data.name === null">Y</span>
+                  <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                </div>
+                <div class="chat-info">
+                  <div class="last-msg p-2 pb-1 rounded">
+
+                    <div
+                      data-plain-text="https://maps.google.com/maps/search/Samsara%20Resorts%20-%20Delhi%20office/@28.650000585182685,77.15672581570189,17z?hl=en">
+
+                      <a rel="noopener noreferrer"
+                        href="https://maps.google.com/maps/search/Samsara%20Resorts%20-%20Delhi%20office/@28.650000585182685,77.15672581570189,17z?hl=en"
+                        target="_blank" aria-label="Open map location">
+
+                        <img crossorigin="anonymous"
+                          src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&amp;size=270x200&amp;scale=1&amp;language=en&amp;client=gme-whatsappinc&amp;markers=color%3Ared%7C28.650000585182685%2C+77.15672581570189&amp;signature=vJaz4QTIGR6coC2LQwv6e4LBh60"
+                          alt="" class="jnl3jror tvf2evcx oq44ahr5 lb5m6g5c o9wlm8ph _11JPr" tabindex="-1"
+                          style="pointer-events: none; width: 270px; visibility: visible;">
+                      </a>
+                    </div>
+
+                    <div class="maplocaname"><a href="https://goo.gl/maps/7hXYYTpGctEjdKhg6" target="_blank"
+                        title="Samsara Resorts - Delhi office">Avataara Resort & Spa</a></div>
+
+                  </div>
+                  <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
+                    ||'Reception'}}</span>
+                  <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
+                  {{data.time |dateAgo}}
+
+                  <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                      class="las la-check-double"></i></span>
+                  <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                      class="las la-check"></i></span>
+                  <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                      class="las la-check-double"></i></span>
+
+                </div>
+              </li>
+              <li class="msg-sender" *ngIf="data.type === 'Receiver' && data.messagetype === 'location' ">
+                <div class="avata">
+                  <span *ngIf="data.name === null">Y</span>
+                  <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                </div>
+                <div class="chat-info">
+                  <div class="last-msg p-2 pb-1 rounded">
+
+                    <div
+                      data-plain-text="https://maps.google.com/maps/search/Samsara%20Resorts%20-%20Delhi%20office/@28.650000585182685,77.15672581570189,17z?hl=en">
+
+                      <a rel="noopener noreferrer"
+                        href="https://maps.google.com/maps/search/Samsara%20Resorts%20-%20Delhi%20office/@28.650000585182685,77.15672581570189,17z?hl=en"
+                        target="_blank" aria-label="Open map location">
+
+                        <img crossorigin="anonymous"
+                          src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&amp;size=270x200&amp;scale=1&amp;language=en&amp;client=gme-whatsappinc&amp;markers=color%3Ared%7C28.650000585182685%2C+77.15672581570189&amp;signature=vJaz4QTIGR6coC2LQwv6e4LBh60"
+                          alt="" class="jnl3jror tvf2evcx oq44ahr5 lb5m6g5c o9wlm8ph _11JPr" tabindex="-1"
+                          style="pointer-events: none; width: 270px; visibility: visible;">
+                      </a>
+                    </div>
+
+                    <div class="maplocaname"><a href="https://goo.gl/maps/7hXYYTpGctEjdKhg6" target="_blank"
+                        title="Samsara Resorts - Delhi office">Avataara Resort & Spa</a></div>
+
+                  </div>
+                  <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
+                    ||'Reception'}}</span>
+                  <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
+                  {{data.time |dateAgo}}
+
+                </div>
+              </li>
+              <div class="conassign-chatcol" *ngIf="data.messagetype === 'incomingopen'">
+                <p><i class="las la-lock-open"></i> {{data.message}} </p>
+                <small> {{data.time |dateAgo}}</small>
+              </div>
+              <div class="conassign-chatcol" *ngIf="data.messagetype === 'open'">
+                <p><i class="las la-lock-open"></i> {{data.message}} </p>
+                <small> {{data.time |dateAgo}}</small>
+              </div>
+              <li class="msg-replayer note-msg-replayer" *ngIf="data.messagetype === 'notes'">
+                <ng-container>
+                  <div class="avata">
+                    <span *ngIf="data.name === null">Y</span>
+                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                  </div>
+                  <div class="chat-info">
+                    <div class="last-msg p-3 rounded bg-cyan">
+                      {{data.message}}
+                    </div>
+                    <div class="suserchat-info pt-2">
+                      <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                      <span class="suserchat-name" *ngIf="data.name !== null">{{data.name || ''}}</span>
+                      {{data.time |dateAgo}}
+                    </div>
+                  </div>
+                </ng-container>
+              </li>
+              <div class="conassign-chatcol alert-secondary" *ngIf="data.messagetype === 'assigned'">
+                <p><i class="las la-share"></i> {{data.message}}</p>
+                <small> {{data.time |dateAgo}}</small>
+              </div>
+              <div class="conassign-chatcol alert-danger" *ngIf="data.messagetype === 'closed'">
+                <p><i class="las la-lock"></i> {{data.message}}
+                </p>
+                <small> {{data.time |dateAgo}}</small>
+              </div>
+              <div class="conassign-chatcol alert-primary" *ngIf="data.messagetype === 'template'">
+                <p><i class="las la-file-alt"></i> {{data.message}}
+                </p>
+                <small> {{data.time |dateAgo}}</small>
+              </div>
+              <li class="msg-sender"
+                *ngIf="data.type === 'Receiver' && data.messagetype === 'text' || data.messagetype === 'Text'">
+                <div class="avata">
+                  <span [ngClass]="bgclass" *ngIf="data.name !== null">{{getShortName(contactinfo.fullName||
+                    'R')}}</span>
+                  <span [ngClass]="bgclass" *ngIf="data.name == null ">R</span>
+                </div>
+                <div class="chat-info">
+                  <div class="suserchat-info">
+                    <div class="last-msg p-3 rounded bg-light">{{data.message}}</div>
+                    <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
+                      ||'Reception'}}</span>
+                    <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
+                    {{data.time |dateAgo}}
+
+                  </div>
+                </div>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+        <ng-container (appOutsideClick)="onOutsideClick()">
+
+        </ng-container>
+        <div class="chat-write-box">
+          <div class="chatwrite-top">
+            <div class="inner-chatwrite-top">
+              <ul class="nav nav-pills">
+                <li class="nav-item">
+                  <a class="nav-link active" data-bs-toggle="pill" href="#reply">Reply</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-bs-toggle="pill" href="#notes">Notes</a>
+                </li>
+              </ul>
+              <div class="chatwrite-emojisico">
+                <div class="chat-emoji-ico" (click)="toggleEmojiPicker()"><i class="las la-smile"></i></div>
+                <div class="chat-attach-ico" (click)="toggleupload()"><i class="las la-paperclip"></i></div>
+                <div class="chat-template-ico">
+                  <svg fill="#000000" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <defs>
+                        <style>
+                          .cls-1 {
+                            fill: none;
+                          }
+                        </style>
+                      </defs>
+                      <title>template</title>
+                      <path d="M26,6v4H6V6H26m0-2H6A2,2,0,0,0,4,6v4a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V6a2,2,0,0,0-2-2Z">
+                      </path>
+                      <path d="M10,16V26H6V16h4m0-2H6a2,2,0,0,0-2,2V26a2,2,0,0,0,2,2h4a2,2,0,0,0,2-2V16a2,2,0,0,0-2-2Z">
+                      </path>
+                      <path
+                        d="M26,16V26H16V16H26m0-2H16a2,2,0,0,0-2,2V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V16a2,2,0,0,0-2-2Z">
+                      </path>
+                      <rect class="cls-1" width="32" height="32"></rect>
+                    </g>
+                  </svg>
+                </div>
+                <div class="chat-cart-ico"><i class="las la-shopping-cart"></i></div>
+              </div>
+              <div class="attach-opentray" *ngIf="showupload">
+                <div class="inner-attachicons">
+                  <div class="row">
+
+                    <div class="col-sm-4">
+                      <div class="atthico cursur" (click)="onaudioAdd()"><a><img src="../assets/images/atticon-1.jpg"
+                            alt="">
+                          <p>Audio</p>
+                        </a></div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="atthico cursur" (click)="onvideoAdd()"><a><img src="../assets/images/atticon-2.jpg"
+                            alt="">
+                          <p>Video</p>
+                        </a></div>
+                    </div>
+
+                    <div class="col-sm-4">
+                      <div class="atthico cursur" (click)="onimageAdd()"><a><img src="../assets/images/atticon-3.jpg"
+                            alt="">
+                          <p>Image</p>
+                        </a></div>
+                    </div>
+                    <div class="col-sm-4">
+                      <div class="atthico cursur" (click)="ondocumentAdd()"><a><img src="../assets/images/atticon-6.jpg"
+                            alt="">
+                          <p>Documation</p>
+                        </a></div>
+                    </div>
+                    <!--
+                    <div class="col-sm-4">
+                      <div class="atthico cursur"><a><img src="../assets/images/atticon-4.jpg" alt="">
+                          <p>Contact</p>
+                        </a></div>
+                    </div> -->
+
+                    <div class="col-sm-4" (click)="onLocationAdd()">
+                      <div class="atthico cursur"><a><img src="../assets/images/atticon-5.jpg" alt="">
+                          <p>Location</p>
+                        </a></div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
+              <emoji-mart class="emoji-mart " *ngIf="showEmojiPicker" (emojiSelect)="addEmoji($event)"
+                title="Pick your emoji…"
+                [i18n]="{ search: 'Search', categories: { search: 'Résultats de recherche', recent: 'Récents' } }"
+                [style]="{ position: 'absolute', bottom: '160px', left:'20%',border:'radius 10px' }">
+              </emoji-mart>
+            </div>
+            <div class="tab-content">
+              <div class="tab-pane active" id="reply">
+                <form class="writechat-boder" #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
+                  <textarea class="form-control h-auto" id="chat" [(ngModel)]="message" required name="chat"
+                    placeholder="Type a message...." rows="1">
+                </textarea>
+                  <ng-container>
+                    <button class="chatsubmit-btn invalid" type="submit" *ngIf="loginForm.invalid"
+                      [disabled]="loginForm.invalid"><i class="lab la-telegram-plane"></i></button>
+                    <button class="chatsubmit-btn valid" type="submit" *ngIf="loginForm.valid"
+                      [disabled]="loginForm.invalid"><i class="lab la-telegram-plane"></i></button>
+                  </ng-container>
+                </form>
+              </div>
+              <div class="tab-pane" id="notes">
+                <form class="writechat-boder" #ngNotesForm="ngForm" (ngSubmit)="submitNoteForm(ngNotesForm)">
+                  <textarea class="form-control h-auto" id="note" [(ngModel)]="message" required name="note"
+                    placeholder="Type a note...." rows="1"></textarea>
+                  <ng-container>
+                    <button class="chatsubmit-btn invalid" type="submit" *ngIf="ngNotesForm.invalid"
+                      [disabled]="ngNotesForm.invalid"><i class="lab la-telegram-plane"></i></button>
+                    <button class="chatsubmit-btn valid" type="submit" *ngIf="ngNotesForm.valid"
+                      [disabled]="ngNotesForm.invalid"><i class="lab la-telegram-plane"></i></button>
+                  </ng-container>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="inbox70" *ngIf="!show">
+    <div class="topright-chat">
+      <div class="noconversation-main">
+        <div class="inner-conv-col">
+          <div class="noconves-con"><img src="../assets/images/no-conversation.svg" alt=""></div>
+          <h3>Select Conversation</h3>
+          <p>Select any conversation to view all the messages.</p>
+          <!-- <div class="convs-btn"><a class="common-btn">Initiate new conversation</a></div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

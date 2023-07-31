@@ -1,0 +1,291 @@
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { DefoultComponent } from './_layouts/defoult/defoult.component';
+import { LoginComponent } from './_layouts/login/login.component';
+import { ForgotPasswordComponent } from './_layouts/forgot-password/forgot-password.component';
+import { SignUpComponent } from './_layouts/sign-up/sign-up.component';
+import { AuthGaurdGuard } from './_helpers/auth-gaurd.guard';
+import { ChatComponent } from './modules/chat/pages/chat/chat.component';
+import { ResetPasswordComponent } from './_layouts/reset-password/reset-password.component';
+import { NotFoundComponent } from './_layouts/not-found/not-found.component';
+import { CreateWorkflowComponent } from './modules/workflow/components/create-workflow/create-workflow.component';
+import { InboxLayoutComponent } from './_layouts/inbox-layout/inbox-layout.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: InboxLayoutComponent,
+    canActivate: [AuthGaurdGuard],
+    children: [
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('./modules/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
+      },
+      {
+        path: 'orders',
+        loadChildren: () =>
+          import('./modules/product-detail/product-detail.module').then(
+            (m) => m.ProductDetailModule
+          ),
+      },
+      {
+        path: 'ordersList',
+        loadChildren: () =>
+          import('./modules/orders/orders.module').then((m) => m.OrdersModule),
+      },
+      {
+        path: 'orders/:phone',
+        loadChildren: () =>
+          import('./modules/orders-phone/orders-phone.module').then(
+            (m) => m.OrdersPhoneModule
+          ),
+      },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('./modules/profile/profile.module').then(
+            (m) => m.ProfileModule
+          ),
+      },
+      {
+        path: 'ticket',
+        loadChildren: () =>
+          import('./modules/ticket/ticket.module').then((m) => m.TicketModule),
+      },
+      {
+        path: 'assigned-ticket-list',
+        loadChildren: () =>
+          import('./modules/assigne-ticket/assigne-ticket.module').then(
+            (m) => m.AssigneTicketModule
+          ),
+      },
+      {
+        path: 'department-tickets',
+        loadChildren: () =>
+          import('./modules/depatment-ticket/depatment-ticket.module').then(
+            (m) => m.DepatmentTicketModule
+          ),
+      },
+      {
+        path: 'inbox',
+        loadChildren: () =>
+          import('./modules/chat/chat.module').then((m) => m.ChatModule),
+      },
+      // { path: 'products', loadChildren: () => import('./modules/product-detail/product-detail.module').then(m => m.ProductDetailModule) },
+    ],
+  },
+  {
+    path: 'admin',
+    component: InboxLayoutComponent,
+    canActivate: [AuthGaurdGuard],
+    children: [
+      {
+        path: 'master',
+        children: [
+          {
+            path: 'company',
+            loadChildren: () =>
+              import('./modules/company-master/company-master.module').then(
+                (m) => m.CompanyMasterModule
+              ),
+          },
+          {
+            path: 'department',
+            loadChildren: () =>
+              import(
+                './modules/department-master/department-master.module'
+              ).then((m) => m.DepartmentMasterModule),
+          },
+          {
+            path: 'user',
+            loadChildren: () =>
+              import('./modules/user-master/user-master.module').then(
+                (m) => m.UserMasterModule
+              ),
+          },
+          {
+            path: 'roles-permissions',
+            loadChildren: () =>
+              import(
+                './modules/roles-permissions/roles-permissions.module'
+              ).then((m) => m.RolesPermissionsModule),
+          },
+          {
+            path: 'approval-matrix',
+            loadChildren: () =>
+              import('./modules/approval-matrix/approval-matrix.module').then(
+                (m) => m.ApprovalMatrixModule
+              ),
+          },
+          {
+            path: 'customers',
+            loadChildren: () =>
+              import('./modules/customers/customers.module').then(
+                (m) => m.CustomersModule
+              ),
+          },
+          {
+            path: 'category-list',
+            loadChildren: () =>
+              import('./modules/category-list/category-list.module').then(
+                (m) => m.CategoryListModule
+              ),
+          },
+          {
+            path: 'service-title-list',
+            loadChildren: () =>
+              import(
+                './modules/service-title-list/service-title-list.module'
+              ).then((m) => m.ServiceTitleListModule),
+          },
+          {
+            path: 'subcategory-list',
+            loadChildren: () =>
+              import('./modules/subcategory-list/subcategory-list.module').then(
+                (m) => m.SubcategoryListModule
+              ),
+          },
+          {
+            path: 'issue',
+            loadChildren: () =>
+              import('./modules/issue/issue.module').then((m) => m.IssueModule),
+          },
+          {
+            path: 'SLA-Timelines',
+            loadChildren: () =>
+              import('./modules/slatimelines/slatimelines.module').then(
+                (m) => m.SLATimelinesModule
+              ),
+          },
+          {
+            path: 'product-category',
+            loadChildren: () =>
+              import('./modules/product-category/product-category.module').then(
+                (m) => m.ProductCategoryModule
+              ),
+          },
+          {
+            path: 'products',
+            loadChildren: () =>
+              import('./modules/product/product.module').then(
+                (m) => m.ProductModule
+              ),
+          },
+          {
+            path: 'labels',
+            loadChildren: () =>
+              import('./modules/label-master/label-master.module').then(
+                (m) => m.LabelMasterModule
+              ),
+          },
+          {
+            path: 'tables',
+            loadChildren: () =>
+              import('./modules/tables/tables.module').then(
+                (m) => m.TablesModule
+              ),
+          },
+          {
+            path: 'templates',
+            loadChildren: () =>
+              import('./modules/templates/templates.module').then(
+                (m) => m.TemplatesModule
+              ),
+          },
+        ],
+      },
+      {
+        path: 'profile',
+        loadChildren: () =>
+          import('./modules/profile/profile.module').then(
+            (m) => m.ProfileModule
+          ),
+      },
+      {
+        path: 'inbox',
+
+        loadChildren: () =>
+          import('./modules/chat/chat.module').then((m) => m.ChatModule),
+      },
+      {
+        path: 'ticket',
+        loadChildren: () =>
+          import('./modules/ticket/ticket.module').then((m) => m.TicketModule),
+      },
+      {
+        path: 'orders',
+        loadChildren: () =>
+          import('./modules/product-detail/product-detail.module').then(
+            (m) => m.ProductDetailModule
+          ),
+      },
+      {
+        path: 'ordersList',
+        loadChildren: () =>
+          import('./modules/orders/orders.module').then((m) => m.OrdersModule),
+      },
+      {
+        path: 'orders/:phone',
+        loadChildren: () =>
+          import('./modules/orders-phone/orders-phone.module').then(
+            (m) => m.OrdersPhoneModule
+          ),
+      },
+      {
+        path: 'sla-reports',
+        loadChildren: () =>
+          import('./modules/sla/sla.module').then((m) => m.SLAModule),
+      },
+      {
+        path: 'workflow',
+        loadChildren: () =>
+          import('./modules/workflow/workflow.module').then(
+            (m) => m.WorkflowModule
+          ),
+      },
+      {
+        path: 'reservation-table',
+        loadChildren: () =>
+          import('./modules/reservation-table/reservation-table.module').then(
+            (m) => m.ReservationTableModule
+          ),
+      },
+
+      {
+        path: 'workflow/create-workflow',
+        component: CreateWorkflowComponent,
+      },
+
+      {
+        path: 'inbox/:id',
+        component: ChatComponent,
+      },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      {
+        path: 'dashboard',
+        loadChildren: () =>
+          import('./modules/dashboard/dashboard.module').then(
+            (m) => m.DashboardModule
+          ),
+      },
+    ],
+  },
+  { path: 'login', component: LoginComponent },
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'sign-up', component: SignUpComponent },
+  { path: 'reset-password/:token', component: ResetPasswordComponent },
+  { path: '**', component: NotFoundComponent },
+];
+@NgModule({
+  imports: [
+    RouterModule.forRoot(routes, {
+      useHash: true,
+    }),
+  ],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}

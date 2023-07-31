@@ -1,0 +1,71 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">View SLA Timelines</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-modal-form" [formGroup]="SLATimelinesMasterForm">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="id">Id</label>
+            <input type="text" class="form-control" id="id" name="id" formControlName="id" placeholder="id">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="priorityName">Priority Name</label>
+            <input type="text" class="form-control" id="priorityName" name="priorityName" formControlName="priorityName"
+              placeholder="Priority name">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="slaTimeInHours">SLA Time in hours</label>
+            <input type="number" class="form-control" id="slaTimeInHours" name="slaTimeInHours" formControlName="slaTimeInHours"
+              placeholder="SLA Time in hours">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-select" id="status" formControlName="status">
+              <option value="">Select</option>
+              <option value="true">Active</option>
+              <option value="false">Deactive</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="createdDate">Created Date</label>
+            <input type="text" class="form-control" id="createdDate" name="createdDate" formControlName="createdDate" >
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="createdBy">Created By</label>
+            <input type="text" class="form-control" id="createdBy" name="createdBy" formControlName="createdBy" >
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="updatedBy">Updated By</label>
+            <input type="text" class="form-control" placeholder="Update By" id="updatedBy" name="updatedBy" formControlName="updatedBy" >
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="updatedDate">Updated Date</label>
+            <input type="text" class="form-control" id="updatedDate" name="updatedDate" formControlName="updatedDate" >
+          </div>
+        </div>
+
+      </div>
+      <div class="form-group mb-0 text-end">
+        <button type="submit" class="common-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

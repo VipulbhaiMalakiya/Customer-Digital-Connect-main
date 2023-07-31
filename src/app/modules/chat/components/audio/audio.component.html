@@ -1,0 +1,31 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">Audio Upload</h1>
+  </div>
+  <div class="modal-custom-close" (click)="onCancel()">
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <div class="pro-detail-wrapper">
+      <form class="common-modal-form" [formGroup]="customersMasterForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="inputGroupFile02">Audio</label>
+          <div class="input-group">
+            <input type="file" class="form-control" id="inputGroupFile02" (change)="onFileChange($event)" name="file"
+            accept="audio/*">
+            <label class="input-group-text" for="inputGroupFile02">Upload</label>
+          </div>
+        </div>
+        <audio controls="" *ngIf="previewUrl">
+          <source [src]="previewUrl" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+
+        <div class="form-group mb-0 text-end">
+          <button type="submit" class="common-btn">Upload</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

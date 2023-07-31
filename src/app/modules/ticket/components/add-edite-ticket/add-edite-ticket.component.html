@@ -1,0 +1,203 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">{{ title }}</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-modal-form" [formGroup]="ticketMasterForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="category">Category <span class="text-danger">*</span></label>
+            <select class="form-select" id="category" #sel (change)="changed(sel.value)" formControlName="category">
+              <option value="">Select</option>
+              <option *ngFor="let i of data" [value]="i.categoryId">{{i.categoryName}}</option>
+            </select>
+            <div *ngIf="shouldShowError('category','required')" class="text-danger">This field is required
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="subCategory">Sub Category <span class="text-danger">*</span></label>
+            <select class="form-select" #sel1 (change)="selectCategory(sel1.value)" id="subCategory"
+              formControlName="subCategory">
+              <option value="">Select</option>
+              <option *ngFor="let i of sdata" [value]="i.subCategoryId">{{i.subCategoryName}}</option>
+            </select>
+            <div *ngIf="shouldShowError('subCategory','required')" class="text-danger">This field is required
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="serviceTitle">Service Title <span class="text-danger">*</span></label>
+            <select class="form-select" #sel89 (change)="selectserviceTitle(sel89.value)" id="serviceTitle"
+              formControlName="serviceTitle">
+              <option value="">Select</option>
+              <option *ngFor="let i of data1" [value]="i.serviceId">{{i.serviceName}}</option>
+            </select>
+            <div *ngIf="shouldShowError('serviceTitle','required')" class="text-danger">This field is required
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="contact">Alternative Contact No <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="contact" name="contact" formControlName="alternativeContactNo"
+              placeholder="Contact">
+            <div *ngIf="shouldShowError('alternativeContactNo','required')" class="form-validate-err">
+              Please Enter Phone Number.
+            </div>
+            <div *ngIf="shouldShowError('alternativeContactNo','minlength')" class="form-validate-err">
+              Phone Number requied atleast 10 characters.
+            </div>
+            <div *ngIf="shouldShowError('alternativeContactNo','maxlength')" class="form-validate-err">
+              Phone Number requied only 12 characters.
+            </div>
+            <div *ngIf="shouldShowError('alternativeContactNo','pattern')" class="form-validate-err">
+              Only Numbers are allowed.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="priority"> Priority <span class="text-danger">*</span></label>
+            <select class="form-select" id="priority" formControlName="priority">
+              <option value="">Select</option>
+              <option *ngFor="let i of slaData" [value]="i.defaultPriority.id">{{i.defaultPriority.priorityName}}
+              </option>
+            </select>
+            <div *ngIf="shouldShowError('priority','required')" class="text-danger">This field is required
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="issue"> Issue <span class="text-danger">*</span></label>
+            <select class="form-select" id="issue" formControlName="issue">
+              <option value="">Select</option>
+              <option *ngFor="let i of issueData" [value]="i.issueId">{{i.issueName}}</option>
+            </select>
+            <div *ngIf="shouldShowError('issue','required')" class="text-danger">This field is required
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <div class="form-Department">
+              <label for="department">Department <span class="text-danger">*</span></label>
+              <select class="form-select" #sel3 (change)="selectDepartment(sel3.value)" id="department"
+                formControlName="department">
+                <option value="">Select</option>
+                <ng-container *ngFor="let i of dept">
+                  <option [value]="i.departmentId" *ngIf="i.departmentId === this.userData.department.departmentId">
+                    {{i.departmentName}}</option>
+                </ng-container>
+              </select>
+              <div *ngIf="shouldShowError('department','required')" class="text-danger">This field is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <div class="form-Department">
+              <label for="assignedTo">Assigned To <span class="text-danger">*</span></label>
+              <select class="form-select" id="assignedTo" formControlName="assignedTo">
+                <option value="">Select</option>
+                <ng-container *ngFor="let i of duser">
+                  <option *ngIf="i.role?.roleName === 'Resolver' && this.userData.userId  !== i.userId"
+                    [value]="i.userId">{{i.firstName}} {{i.lastName}}
+                  </option>
+                </ng-container>
+              </select>
+              <div *ngIf="shouldShowError('assignedTo','required')" class="text-danger">This field is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <div class="form-Department">
+              <label for="createForUser">Create by user <span class="text-danger">*</span></label>
+              <select [(ngModel)]='nrSelect' class="form-select" id="createForUser" formControlName="createForUser"
+                [value]='this.userData.userId'>
+                <!-- <option value="">Select</option> -->
+                <ng-container *ngFor="let i of aciveUser">
+                  <option *ngIf="i.userId === this.userData.userId" [value]="i.userId">{{i.firstName}} {{i.lastName}}
+                  </option>
+                </ng-container>
+              </select>
+              <div *ngIf="shouldShowError('createForUser','required')" class="text-danger">This field is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-select" id="status" formControlName="status">
+              <option value="">Select</option>
+              <option value="true">Active</option>
+              <option value="false">Deactive</option>
+            </select>
+            <div *ngIf="shouldShowError('status','required')" class="text-danger">This field is required
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="shortNotes">Short Notes <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="shortNotes" name="shortNotes" formControlName="shortNotes"
+              placeholder="short Notes">
+            <div *ngIf="shouldShowError('shortNotes','required')" class="form-validate-err">
+              Please Enter Short Notes.
+            </div>
+            <div *ngIf="shouldShowError('shortNotes','minlength')" class="form-validate-err">
+              Short Notes requied atleast 2 characters.
+            </div>
+            <div *ngIf="shouldShowError('shortNotes','maxlength')" class="form-validate-err">
+              Short Notes requied only 30 characters.
+            </div>
+            <div *ngIf="shouldShowError('shortNotes','pattern')" class="form-validate-err">
+              Only characters are allowed.
+            </div>
+
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="custom-file">
+            <label for="custom-file-input">Attachment</label>
+            <input type="file" class="form-control" id="custom-file-input" (change)="onFileChange($event)" name="file"
+              accept="image/*" formControlName="file" #fileInput >
+            <div *ngIf="shouldShowError('file','required')" class="text-danger">This field is required
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" *ngIf="imagePath">
+          <label for="custom-fil">Attachment</label>
+          <div class="input-group mb-3">
+            <input type="text" id="custom-fil" disabled class="form-control " value="{{this.imagePath}}">
+            <div class="input-group-append" (click)="attachmentDownload()">
+              <span class="cst-icone"><i class="las la-download"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="additionalComments">Additional Comments <span class="text-danger">*</span></label>
+            <textarea cols="0" rows="3" id="additionalComments" name="additionalComments"
+              formControlName="additionalComments" class="form-control" placeholder="Additional Comments"></textarea>
+            <div *ngIf="shouldShowError('additionalComments','required')" class="text-danger">This field is required
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group mb-0 text-end">
+        <button type="submit" class="common-btn">{{this.chek ?'Update Now' : 'Add New'}}</button>
+      </div>
+    </form>
+  </div>
+</div>

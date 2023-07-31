@@ -1,0 +1,26 @@
+export class slaMasterModel {
+  alternativeContactNo?:any;
+  assignedTo?:any;
+  category?:any;
+  createForCustomer?:any;
+  createForUser?:any;
+  createdBy?:any;
+  createdDate?:any;
+  department?:any;
+  emailId?:any;
+  issue?:any;
+  mode?:any;
+  priority?:any;
+  resolveBy?:any;
+  resolveTimeStamp?:any;
+  serviceTitle?:any;
+  sla?:any;
+  status?:any;
+  subCategory?:any;
+  ticketId?:any;
+  ticketNo?:any;
+  ticketStatus?:any;
+  updatedBy?:any;
+  updatedByCustomer?:any;
+  updatedDate?:any;
+}

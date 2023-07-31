@@ -1,0 +1,52 @@
+<div class="common-modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h1 class="modal-title fs-5" id="viewrecord-modalLabel">View company record</h1>
+      <button type="button" (click)="onCancel()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+      <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+      <form class="common-modal-form" name="cform" [formGroup]="companyMasterForm">
+        <div class="row">
+          <!-- <div class="form-group col-md-2">
+            <label for="companyId">ID</label>
+            <input type="text" class="form-control" name="companyId" id="companyId" formControlName="companyId"
+              readonly>
+          </div> -->
+          <div class="form-group col-md-4">
+            <label for="companyName">Name</label>
+            <input type="text" class="form-control" name="companyName" id="companyName" formControlName="companyName"
+              readonly>
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="apiKey">Api Key</label>
+            <input type="text" class="form-control" name="apiKey" id="apiKey" formControlName="apiKey" readonly>
+          </div>
+          <div class="form-group col-md-4">
+            <label for="createdDate">Created Date</label>
+            <input type="text" class="form-control" id="createdDate" name="createdDate" formControlName="createdDate">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="createdBy">Created By</label>
+            <input type="text" class="form-control" id="createdBy" name="createdBy" formControlName="createdBy">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="updatedDate">Updated Date</label>
+            <input type="text" class="form-control" id="updatedDate" name="updatedDate" formControlName="updatedDate">
+          </div>
+          <div class="form-group col-md-4">
+            <label for="updatedBy">Updated By</label>
+            <input type="text" class="form-control" id="updatedBy" placeholder="Updated By" name="updatedBy" formControlName="updatedBy">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="companyDescription">Description</label>
+          <textarea cols="0" rows="3" name="companyDescription" id="companyDescription" class="form-control"
+            formControlName="companyDescription" readonly></textarea>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>

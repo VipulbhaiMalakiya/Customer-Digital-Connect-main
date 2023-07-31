@@ -1,0 +1,72 @@
+<app-header></app-header>
+<app-loading-spin *ngIf="isProceess"></app-loading-spin>
+<div class="page-title">
+  <h1>Customers</h1>
+</div>
+<div class="page-btns-col">
+  <div class="dt-buttons">
+    <button class="gray-btns"  *ngIf="data.length > 0" (click)="onDownload()" type="button"><i class="las la-file-excel"></i> Excel</button>
+    <div class="table-search" *ngIf="data.length > 0"><input type="text" class="form-control" name="name"
+      id="name" [(ngModel)]="term"
+        autocomplete="off" placeholder="Search..." required=""></div>
+  </div>
+  <div class="btn-group">
+    <button type="button" class="add-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      Add New
+    </button>
+    <ul class="dropdown-menu">
+      <li (click)="onAdd()"><a class="dropdown-item"><i class="las la-plus"></i> Create new customer</a></li>
+      <!-- <li><a class="dropdown-item" href="#"><i class="las la-layer-group"></i> Bulk Upload</a></li> -->
+    </ul>
+  </div>
+</div>
+<div class="inner-middle-content">
+  <div class="dasboard-table dasboard-scroll">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>User Name</th>
+            <th>Email Id</th>
+            <th>Contact</th>
+            <th>City</th>
+            <th>Status</th>
+            <th class="action-cl">Action</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let i of data | customFilter: term | paginate
+        : {
+            itemsPerPage: tableSize,
+            currentPage: page,
+            totalItems: count
+          };let ind = index">
+          <tr>
+            <!-- <td>{{ind + 1}}</td> -->
+            <td>{{i.customerId}}</td>
+            <td>{{i.firstName}} {{i.lastName}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.contact}}<span class="ctm-icone" *ngIf="i.status && i.firstName"> <i class="lab la-whatsapp"
+                  (click)="sendMessage(i)"></i></span></td>
+            <td>{{i.city}}</td>
+            <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
+            <td>
+              <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
+              <a class="btnClick"  (click)="onEdit(i)"><i class="las la-edit"></i></a>
+              <a class="btnClick" *ngIf="i.status" (click)="onDelete(i)"><i class="las la-trash-alt"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="data.length === 0" class="text-center">
+        <Strong class="text-danger">No records found</Strong>
+     </div>
+    </div>
+    <div class="clearfix" *ngIf="!isProceess && data.length > 0">
+      <ul class="pagination">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+select.form-select.cst-margin {
+  margin-right: 20px;
+}
+
+td.tblLink {
+  cursor: pointer;
+  color: #00abc5;
+}

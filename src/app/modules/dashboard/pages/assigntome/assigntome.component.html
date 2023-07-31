@@ -1,0 +1,100 @@
+<app-loading-spin *ngIf="isProceess"></app-loading-spin>
+<div class="page-title">
+  <div class="page-title">
+    <div class="d-flex align-items-center">
+      <h1 class="mb-0 me-3">Assign To Me Ticket Dashboard</h1>
+      <div class="btn-group" *ngIf="this.userData?.role?.roleName === 'Resolver'">
+        <button type="button" class="add-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Assign To Me
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" routerLink="/dashboard/v1"><i class="las la-tachometer-alt"></i>Dashboard</a></li>
+          <li><a class="dropdown-item" routerLink="/dashboard/myTcket"><i class="las la-plus"></i>My Ticket</a></li>
+          <li><a class="dropdown-item" routerLink="/dashboard/Assign-to-me"><i class="las la-layer-group"></i> Assign to
+              me</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="inner-middle-content">
+  <div class="data-tabs">
+
+    <div class="main-user-dash-right" *ngIf="resolverData && this.userData?.role?.roleName === 'Resolver'&& !isProceess ">
+      <div class="dash-blck-title">Assign to me</div>
+      <div class="user-dash-right-card">
+        <ul>
+          <a routerLink="/assigned-ticket-list">
+            <li>
+              <div class="u-dashbidcol blue-border">
+                <h3>{{resolverData[0].name}}</h3>
+                <div class="big-text">{{resolverData[0].total}}</div>
+              </div>
+            </li>
+          </a>
+
+
+          <a routerLink="/assigned-ticket-list">
+            <li>
+              <div class="u-dashbidcol red-border">
+                <h3>{{resolverData[1].name}}</h3>
+                <div class="big-text">{{resolverData[1].total}}</div>
+              </div>
+            </li>
+          </a>
+
+          <a routerLink="/assigned-ticket-list">
+            <li>
+              <div class="u-dashbidcol yellow-border">
+                <h3>{{resolverData[2].name}}</h3>
+                <div class="big-text">{{resolverData[2].total}}</div>
+              </div>
+            </li>
+          </a>
+
+          <a routerLink="/assigned-ticket-list">
+            <li>
+              <div class="u-dashbidcol green-border1">
+                <h3>{{resolverData[3].name}}</h3>
+                <div class="big-text">{{resolverData[3].total}}</div>
+              </div>
+            </li>
+          </a>
+          <a routerLink="/assigned-ticket-list">
+            <li>
+              <div class="u-dashbidcol green-border">
+                <h3>{{resolverData[4].name}}</h3>
+                <div class="big-text">{{resolverData[4].total}}</div>
+              </div>
+            </li>
+          </a>
+
+          <a routerLink="/assigned-ticket-list">
+            <li>
+              <div class="u-dashbidcol orange-border">
+                <h3>{{resolverData[5].name}}</h3>
+                <div class="big-text">{{resolverData[5].total}}</div>
+              </div>
+            </li>
+          </a>
+
+        </ul>
+      </div>
+    </div>
+
+  </div><!--data-tabs-->
+
+  <div class="row align-items-center justify-content-center" *ngIf="data1 && !isProceess">
+    <div class="col-md-6">
+      <google-chart [title]="title"  [columns]="columnNames" [type]="ColumnChart" [options]="options" [data]="data1" [width]="width"
+      [height]="height">
+    </google-chart>
+    </div>
+    <div class="col-md-6">
+      <google-chart [title]="title" [type]="pieChart" [options]="options" [data]="data1" [width]="width"
+        [height]="height">
+      </google-chart>
+    </div>
+  </div>
+</div>

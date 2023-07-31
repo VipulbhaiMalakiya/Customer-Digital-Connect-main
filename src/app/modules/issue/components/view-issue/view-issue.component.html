@@ -1,0 +1,75 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">View Issue</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-modal-form" [formGroup]="issueForm">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="issueId">ID</label>
+            <input type="text" class="form-control" id="issueId" name="issueId" formControlName="issueId"
+              placeholder="Issue name">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="issueName">Issue name</label>
+            <input type="text" class="form-control" id="issueName" name="issueName" formControlName="issueName"
+              placeholder="Issue name">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="calculationSLA">Calculation SLA</label>
+            <select class="form-select" id="calculationSLA" formControlName="calculationSLA">
+              <option value="">Select</option>
+              <option value="No">NO</option>
+              <option value="Yes">Yes</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="createdDate">Created Date</label>
+            <input type="text" class="form-control" id="createdDate" name="createdDate" formControlName="createdDate"
+              placeholder="Category Name">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="createdBy">Created By</label>
+            <input type="text" class="form-control" id="createdBy" name="createdBy" formControlName="createdBy"
+              placeholder="Category Name">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="updatedDate">Updated Date</label>
+            <input type="text" class="form-control" id="updatedDate" name="updatedDate" formControlName="updatedDate"
+              placeholder="Category Name">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="updatedBy">Updated By</label>
+            <input type="text" class="form-control" id="updatedBy" name="updatedBy" formControlName="updatedBy"
+              placeholder="Updated By">
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-select" id="status" formControlName="status">
+              <option value="">Select</option>
+              <option value="true">Active</option>
+              <option value="false">Deactive</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

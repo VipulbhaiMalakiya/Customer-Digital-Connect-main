@@ -1,0 +1,73 @@
+<app-header></app-header>
+<app-loading-spin *ngIf="isProceess"></app-loading-spin>
+<div class="page-title">
+  <h1>Orders</h1>
+</div>
+<div class="page-btns-col">
+  <div class="dt-buttons">
+    <div class="table-search" *ngIf="data.length > 0"><input type="text" class="form-control"
+      name="name" id="name" [(ngModel)]="term"
+      autocomplete="off" placeholder="Search..." required=""></div>
+  </div>
+  <div class="btn-group">
+    <button type="button"  class="add-btn"  routerLink="/admin/orders">
+      Add New
+    </button>
+  </div>
+</div>
+<div class="inner-middle-content">
+  <div class="dasboard-table dasboard-scroll">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Party Name</th>
+            <th>Cash / Debit</th>
+            <th>Order Date</th>
+            <th>Grand Total</th>
+            <th>table</th>
+            <th>Invoice</th>
+            <th>Created By</th>
+            <th>Status</th>
+            <th class="action-cl">Action</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="!isProceess">
+
+          <tr *ngFor="let i of data  | customFilter: term | paginate
+          : {
+              itemsPerPage: tableSize,
+              currentPage: page,
+              totalItems: count
+            };let ind = index">
+            <td>{{i.orderId}}</td>
+            <td>{{i.customer.firstName}} {{i.customer.lastName}}</td>
+            <td>{{i.paymentType}}</td>
+            <td>{{i.createdDate | date :'medium'}}</td>
+            <td>{{i.grand | number:'1.2-2'}}</td>
+            <td>{{i.tableId}}</td>
+            <td class="cts-pointer"  (click)="downloadInvoice(i)"> <img src="../assets//images/pdf-icon.png" alt=""> </td>
+            <td>{{i.createdBy?.firstName || ''}} {{i.createdBy?.lastName || ''}} </td>
+
+            <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
+            <td>
+              <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
+              <a class="btnClick" (click)="onEdit(i)"><i class="las la-edit"></i></a>
+              <a class="btnClick" *ngIf="i.status" (click)="onDelete(i)"><i class="las la-trash-alt"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="data.length === 0" class="text-center">
+        <Strong class="text-danger">No records found</Strong>
+     </div>
+    </div>
+    <div class="clearfix" *ngIf="!isProceess && data.length > 0">
+      <ul class="pagination">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </ul>
+    </div>
+  </div>
+</div>

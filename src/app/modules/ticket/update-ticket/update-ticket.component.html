@@ -1,0 +1,215 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">Update Ticket</h1>
+    <button type="button" (click)="onCancel()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <div class="ticket-page-tabs">
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home"
+            type="button" role="tab" aria-controls="nav-home" aria-selected="true">Action</button>
+          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button"
+            role="tab" aria-controls="nav-profile" aria-selected="false">Previous Additional Comments</button>
+          <button class="nav-link" *ngIf="this.userData?.role?.roleName !== 'User'" id="nav-contact-tab"
+            data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact"
+            aria-selected="false">Previous Work Notes</button>
+        </div>
+      </nav>
+
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <div class="ticketno-title">
+            <h3>Ticket Number: <span>{{tNo}}</span></h3>
+          </div>
+          <div class="ticketsub">
+            <h5>Subject: <span>{{this.subject}}</span></h5>
+          </div>
+          <form class="common-form" [formGroup]="ticketMasterForm" (ngSubmit)="onSubmit()">
+            <fieldset>
+              <div class="row">
+
+                <div class="col-12 col-sm-6 col-md-3">
+                  <div class="form-group">
+                    <label for="subCategory">Sub Category <span class="text-danger">*</span></label>
+                    <select class="form-select" #sel1 (change)="selectCategory(sel1.value)" id="subCategory"
+                      formControlName="subCategory">
+                      <option value="">Select</option>
+                      <option *ngFor="let i of sdata" [value]="i.subCategoryId">{{i.subCategoryName}}</option>
+                    </select>
+                    <div *ngIf="shouldShowError('subCategory','required')" class="text-danger">This field is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-3">
+                  <div class="form-group">
+                    <label for="serviceTitle">Service Title <span class="text-danger">*</span></label>
+                    <select class="form-select" id="serviceTitle" formControlName="serviceTitle">
+                      <option value="">Select</option>
+                      <option *ngFor="let i of data1" [value]="i.serviceId" >{{i.serviceName}}</option>
+                    </select>
+                    <div *ngIf="shouldShowError('serviceTitle','required')" class="text-danger">This field is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-sm-6 col-md-3">
+                  <div class="form-group">
+                    <label for="Status">Status <span class="text-danger">*</span></label>
+                    <select class="form-select" id="Status" formControlName="ticketStatus">
+                      <option value="">Select Status</option>
+                      <option value="New">New</option>
+                      <option value="In_Progress">In-Progress</option>
+                      <option value="Pending_Client">Pending Client</option>
+                      <option value="Resolved">Resolved</option>
+                      <option value="Closed">Closed</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                  <div class="form-group">
+                    <div class="form-group">
+                      <div class="form-Department">
+                        <label for="assignedTo">Assigned To <span class="text-danger">*</span></label>
+                        <select class="form-select" id="assignedTo" formControlName="assignedTo">
+                          <ng-container *ngFor="let i of duser">
+                            <option *ngIf="i.role?.roleName === 'Resolver' &&  userData.userId !== i.userId"
+                              [value]="i.userId">{{i.firstName}} {{i.lastName}}
+                            </option>
+                            <option *ngIf="i.role?.roleName === 'Admin'" [value]="i.userId">{{i.firstName}}
+                              {{i.lastName}}
+                            </option>
+                          </ng-container>
+                        </select>
+                        <div *ngIf="shouldShowError('assignedTo','required')" class="text-danger">This field is required
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6">
+                  <div class="form-group">
+                    <label for="additionalComments">Additional Comments <span class="text-danger">*</span></label>
+                    <textarea class="form-control" id="additionalComments" placeholder="Enter Additional Comments"
+                      formControlName="additionalComments" rows="2"></textarea>
+                    <div *ngIf="shouldShowError('additionalComments','required')" class="text-danger">This field is
+                      required
+                    </div>
+                  </div>
+                </div>
+                <div class="col-6" *ngIf="this.userData?.role?.roleName !== 'User'">
+                  <div class="form-group">
+                    <label for="workNotes">Work Notes</label>
+                    <textarea id="workNotes" class="form-control" placeholder="Enter Work Notes"
+                      formControlName="workNotes" rows="2"></textarea>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Attach Files</label>
+                    <div class="input-group mb-3">
+                      <input type="file" class="form-control" id="custom-file-input" (change)="onFileChange($event)"
+                        name="file" accept="image/*" formControlName="file" #fileInput>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="mt-1 mb-2 text-right">
+                <button type="submit" class="common-btn">Submit</button>
+              </div>
+            </fieldset>
+          </form>
+
+        </div><!--tab-pane-->
+
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+          <div class="card">
+            <div class="card-header">
+              <span class="">Ticket Number: <span>{{tNo}}</span></span>
+            </div>
+            <div class="card-body">
+              <div class="dasboard-table">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Id</th>
+                        <th>Attachment</th>
+                        <th>Additional Comments</th>
+                        <th>Time</th>
+                        <th>Updated By</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <ng-container *ngFor="let i of Comments; let ind = index">
+                      <tr>
+                        <td>{{i.commentsId}}</td>
+                        <td>{{i.filename || ''}} <span *ngIf="i.filename !== null "> <i class="las la-download"
+                              (click)="attachmentDownload()"></i></span></td>
+                        <td>{{i.additionalMessage}}</td>
+                        <td>{{i.createdDate |date :'medium'}}</td>
+                        <td>
+                            {{results[ind]?.firstName}} {{results[ind]?.lastName}}
+                        </td>
+                      </tr>
+                      </ng-container>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <!-- <div class="card-txt">Testing Purpose</div>
+              <div class="card-stat">
+                <small><span class="">Status : <b>New</b></span></small> /
+                <small><span class="">Time : <b>2023-05-09 17:09:02</b></span></small>
+              </div> -->
+            </div>
+          </div>
+
+        </div><!--tab-pane-->
+
+        <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+
+          <div class="card">
+            <div class="card-header">
+              <span class="">Ticket Number: <span>{{tNo}}</span></span>
+            </div>
+            <div class="card-body">
+              <div class="dasboard-table">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th>Attachment</th>
+                        <th>Work Notes</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Resolve By</th>
+                      </tr>
+                    </thead>
+                    <tbody *ngIf="!isProceess">
+                      <tr>
+                        <!-- <td>{{updatedData.filename}} <span><i class="las la-download"
+                          (click)="attachmentDownload()"></i></span></td>
+                        <td>Testing Purpose</td>
+                        <td>{{updatedData.updatedDate |date :'medium'}}</td>
+                        <td>{{updatedData.ticketStatus}}</td>
+                        <td> {{updatedData.resolveBy.firstName}}  {{updatedData.resolveBy.lastName}} </td> -->
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div><!--tab-pane-->
+      </div>
+
+    </div>
+  </div>
+</div>

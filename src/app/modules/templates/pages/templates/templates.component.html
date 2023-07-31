@@ -1,0 +1,60 @@
+<app-header></app-header>
+<app-loading-spin *ngIf="isProceess"></app-loading-spin>
+<div class="page-title">
+  <h1>Templates</h1>
+</div>
+
+<div class="page-btns-col">
+  <div class="dt-buttons">
+    <button class="gray-btns" type="button"><i class="las la-file-excel"></i> Excel</button>
+    <div class="table-search"><input type="text" class="form-control" name="name" id="name" autocomplete="off"
+        placeholder="Search..." required=""></div>
+  </div>
+  <div class="btn-group">
+    <button type="button" class="add-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      Add New
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" (click)="onAdd()"><i class="las la-plus"></i> Create new table</a></li>
+      <!-- <li><a class="dropdown-item" (click)="onbulkUpload()"><i class="las la-layer-group"></i> Bulk Upload</a></li> -->
+    </ul>
+  </div>
+</div>
+<div class="inner-middle-content">
+  <div class="dasboard-table dasboard-scroll">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Table</th>
+            <!-- <th>Created Date</th>
+            <th>Created By</th>
+            <th>Updated Date</th>
+            <th>Updated By</th>
+            <th>Status</th> -->
+            <th class="action-cl">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+
+          <tr>
+            <td>
+              1
+            </td>
+
+            <td>Table 1</td>
+
+            <td>
+              <a class="btnClick"><i class="las la-eye"></i></a>
+              <a class="btnClick"><i class="las la-edit"></i></a>
+              <a class="btnClick"><i class="las la-trash-alt"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+
+  </div>
+</div>

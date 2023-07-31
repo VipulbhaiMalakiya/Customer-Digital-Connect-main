@@ -1,0 +1,101 @@
+<app-loading-spin *ngIf="isProceess"></app-loading-spin>
+<div class="page-title">
+  <div class="page-title">
+    <div class="d-flex align-items-center">
+      <h1 class="mb-0 me-3">My Tickets Dashboard</h1>
+      <div class="btn-group" *ngIf="this.userData?.role?.roleName === 'Resolver'">
+        <button type="button" class="add-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          My Ticket
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" routerLink="/dashboard/v1"><i class="las la-tachometer-alt"></i>Dashboard</a></li>
+          <li><a class="dropdown-item" routerLink="/dashboard/myTcket"><i class="las la-plus"></i>My Ticket</a></li>
+          <li><a class="dropdown-item" routerLink="/dashboard/Assign-to-me"><i class="las la-layer-group"></i> Assign to
+              me</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="inner-middle-content">
+  <div class="data-tabs">
+
+    <div class="main-user-dash-left" *ngIf="data && this.userData?.role?.roleName !== 'Admin' && !isProceess ">
+      <div class="dash-blck-title">My Tickets </div>
+      <div class="user-dash-left-card">
+        <ul>
+          <a routerLink="/ticket">
+            <li>
+              <div class="u-dashbidcol">
+                <h3>{{data[0].name}}</h3>
+                <div class="big-text">{{data[0].total}} </div>
+              </div>
+            </li>
+          </a>
+
+          <a routerLink="/ticket">
+            <li>
+              <div class="u-dashbidcol u-dashbidcol2">
+                <h3>{{data[1].name}}</h3>
+                <div class="big-text">{{data[1].total}} </div>
+              </div>
+            </li>
+          </a>
+
+          <a routerLink="/ticket">
+            <li>
+              <div class="u-dashbidcol u-dashbidcol3">
+                <h3>{{data[2].name}}</h3>
+                <div class="big-text">{{data[2].total}} </div>
+              </div>
+            </li>
+          </a>
+
+          <a routerLink="/ticket">
+            <li>
+              <div class="u-dashbidcol u-dashbidcol6">
+                <h3>{{data[3].name}}</h3>
+                <div class="big-text">{{data[3].total}} </div>
+              </div>
+            </li>
+          </a>
+
+          <a routerLink="/ticket">
+            <li>
+              <div class="u-dashbidcol u-dashbidcol4">
+                <h3>{{data[4].name}}</h3>
+                <div class="big-text">{{data[4].total}} </div>
+              </div>
+            </li>
+          </a>
+
+          <a routerLink="/ticket">
+            <li>
+              <div class="u-dashbidcol u-dashbidcol5">
+                <h3>{{data[5].name}}</h3>
+                <div class="big-text">{{data[5].total}} </div>
+              </div>
+            </li>
+          </a>
+
+        </ul>
+      </div>
+    </div>
+
+  </div><!--data-tabs-->
+
+  <div class="row align-items-center justify-content-center" *ngIf="data1 && !isProceess">
+    <div class="col-md-6">
+      <google-chart [title]="title"  [columns]="columnNames" [type]="ColumnChart" [options]="options" [data]="data1" [width]="width"
+        [height]="height">
+      </google-chart>
+    </div>
+    <div class="col-md-6">
+      <google-chart [title]="title" [type]="pieChart" [options]="options" [data]="data1" [width]="width"
+        [height]="height">
+      </google-chart>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,223 @@
+<div class="inner-middle-content">
+  <table class="w-100" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #ccc;">
+    <tbody>
+      <tr>
+        <td>
+          <table class="w-100" border="0" cellspacing="0" bgcolor="#ffffff">
+            <tbody>
+              <tr>
+                <td style="border-collapse:collapse;padding:0 40px 40px 40px">
+                  <table border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF"
+                    style="border-collapse:collapse;width:100%!important">
+                    <tbody>
+                      <tr>
+                        <td align="center" style="border-collapse:collapse;padding:32px">
+                          <img src="../assets/images/logo.png" alt="Logo" border="0" class="CToWUd">
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table border="0" cellspacing="0" style="width:100%!important">
+                    <tbody>
+                      <tr>
+                        <td align="left" style="border-collapse:collapse;font-size:14px;color:#4a4a4a">
+                          <font face="'HelveticaNeue', Arial, sans-serif">
+                            <span>Hi {{data.customer?.firstName}} {{data.customer?.lastName}},</span>
+                            <br>
+                            <br>
+                            <span>Thanks for using Team Computers! Your order is being processed and will reach you
+                              shortly. Looking forward to serve you.</span>
+                          </font>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table border="0" cellspacing="0" cellpadding="0" style="width:100%!important">
+                    <tbody>
+                      <tr>
+                        <td height="50" style="border-collapse:collapse"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <table border="0" cellspacing="0" style="width:100%!important;font-size:14px;color:#4a4a4a">
+                    <tbody>
+                      <tr>
+                        <td style="border-collapse:collapse">
+                          <font face="'HelveticaNeue', Arial, sans-serif">
+                            <div style="margin-bottom:5px">Order Number</div>
+                            <span style="color:#00abc5"><strong>{{data.orderId}}</strong></span><br>
+                          </font>
+                        </td>
+                        <td style="border-collapse:collapse">
+                          <font face="'HelveticaNeue', Arial, sans-serif">
+                            <div style="margin-bottom:5px">Estimated Delivery Time</div>
+                            <span style="color:#00abc5"><strong> {{date}}</strong></span><br>
+                          </font>
+                        </td>
+                        <td style="border-collapse:collapse">
+                          <font face="'HelveticaNeue', Arial, sans-serif">
+                            <div style="margin-bottom:5px">Payment Status</div>
+                            <span style="color:#00abc5"><strong>{{data.paymentType}}</strong></span><br>
+                          </font>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h3 style="margin-top:30px;">Order Details</h3>
+                  <table border="0" cellspacing="0" style="width:100%!important; border:1px solid #ccc;">
+                    <tbody>
+                      <tr bgcolor="#e8e8e8" style="font-size:14px;color:#333; font-weight:bold;">
+                        <td align="left" style="border-collapse:collapse;padding:12px">
+                          <font face="'HelveticaNeue', Arial, sans-serif">
+                            Product
+                          </font>
+                        </td>
+                        <td align="center" style="border-collapse:collapse;padding:12px">
+                          <font face="'HelveticaNeue', Arial, sans-serif">
+                            Quantity
+                          </font>
+                        </td>
+                        <td align="center" style="border-collapse:collapse;padding:12px">
+                          <font face="'HelveticaNeue', Arial, sans-serif">
+                            Price
+                          </font>
+                        </td>
+                      </tr>
+                    </tbody>
+
+                    <tbody >
+                      <tr style="font-size:14px;color:#4a4a4a">
+                        <td align="left" style="border-collapse:collapse;padding:15px;">
+                          <font face="'HelveticaNeue', Arial, sans-serif">
+                            Kadai Paneer
+                          </font>
+                        </td>
+                        <td align="center" style="border-collapse:collapse;padding:15px">
+                          <font face="'HelveticaNeue', Arial, sans-serif">
+                            <strong>1</strong>
+                          </font>
+                        </td>
+                        <td align="center" style="border-collapse:collapse;padding:15px">
+                          <font face="'HelveticaNeue', Arial, sans-serif">
+                            <strong>150.0</strong>
+                          </font>
+                        </td>
+                      </tr>
+                    </tbody>
+
+
+
+
+                    <tr>
+                      <td colspan="3" style="border-collapse:collapse">
+                        <hr style="margin:0;border:0;border-bottom:1px solid #e4e5e8">
+                      </td>
+                    </tr>
+                    <tr>
+                      <td colspan="3" height="17" style="border-collapse:collapse"></td>
+                    </tr>
+                    <tr style="font-size:14px;color:#4a4a4a">
+                      <td align="left" style="border-collapse:collapse"></td>
+                      <td align="right" style="border-collapse:collapse;padding:0 0 5px 0">
+                        <font face="'HelveticaNeue', Arial, sans-serif">
+                          <strong>Subtotal</strong>
+                        </font>
+                      </td>
+                      <td align="center" style="border-collapse:collapse;padding:0 0 5px 20px">
+                        <font face="'HelveticaNeue', Arial, sans-serif">
+                          <strong>150.0</strong>
+                        </font>
+                      </td>
+                    </tr>
+                    <tr style="font-size:14px;color:#4a4a4a">
+                      <td align="left" style="border-collapse:collapse"></td>
+                      <td align="right" style="border-collapse:collapse;padding:5px 0">
+                        <font face="'HelveticaNeue', Arial, sans-serif">
+                          <strong>Discount</strong>
+                        </font>
+                      </td>
+                      <td align="center" style="border-collapse:collapse;padding:5px 0 5px 20px">
+                        <font face="'HelveticaNeue', Arial, sans-serif">
+                          <strong>10.0</strong>
+                        </font>
+                      </td>
+                    </tr>
+                    <tr style="font-size:14px;color:#4a4a4a">
+                      <td align="left" style="border-collapse:collapse"></td>
+                      <td align="right" style="border-collapse:collapse;padding:5px 0">
+                        <font face="'HelveticaNeue', Arial, sans-serif">
+                          <span style="color:#00abc5">
+                            <strong>Grand Total</strong>
+                          </span>
+                        </font>
+                      </td>
+                      <td align="center" style="border-collapse:collapse;padding:5px 0 0 20px">
+                        <font face="'HelveticaNeue', Arial, sans-serif">
+                          <span style="color:#00abc5">
+                            <strong>140.0</strong>
+                          </span>
+                        </font>
+                      </td>
+                    </tr>
+                    <tr style="font-size:14px;color:#4a4a4a">
+                      <td align="left" style="border-collapse:collapse"></td>
+                      <td align="right" style="border-collapse:collapse;padding:5px 0">
+
+                      </td>
+                      <td align="left" style="border-collapse:collapse;padding:5px 0 0 20px">
+
+                      </td>
+                    </tr>
+
+                  </table>
+                  <table border="0" cellspacing="0" cellpadding="0" style="width:100%!important">
+                    <tbody>
+                      <tr>
+                        <td height="50" style="border-collapse:collapse"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table border="0" cellspacing="0" cellpadding="0" style="width:100%!important">
+                    <tbody>
+                      <tr>
+                        <td align="left" style="border-collapse:collapse;font-size:13px">
+                          <font face="'Helvetica Neue', Arial, sans-serif">
+                            <span style="color:#4a4a4a">Delivery Address:</span><br><br>
+                            <span style="color:rgb(152,153,158); line-height: 20px;">
+                              Amit Kumar<br>
+                              Team computers , a-Square Building, Plot n. 278, Udyog Vihar, Phase 2, ,<br>
+                              Udyog Vihar II Road, Udyog Vihar Phase 1, Sector 20, Gurgaon Gurgaon, Haryana 122021
+                            </span>
+                          </font>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table border="0" cellspacing="0" cellpadding="0" style="width:100%!important">
+                    <tbody>
+                      <tr>
+                        <td height="40" style="border-collapse:collapse"></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <table border="0" cellspacing="0" cellpadding="0" style="width:100%!important">
+                    <tbody>
+                      <tr>
+                        <td align="center" style="border-collapse:collapse;font-size:14px;color:#93999e;font-size:12px">
+                          <font face="'Helvetica Neue', Arial, sans-serif">Thank You!</font>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,113 @@
+<section class="login-wrapper">
+  <div class="login-logo" routerLink="/login"><a><img src="../assets/images/logo.png" alt=""></a></div>
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <app-login-leftside></app-login-leftside>
+      </div>
+      <div class="col-lg-6">
+        <div class="login-form-col">
+          <div class="login-headcontet">
+            <h1>Sign Up.</h1>
+          </div>
+          <form class="login-form" name="cform" [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="firstname">First name</label>
+                  <input type="text" class="form-control" formControlName="firstname" name="firstname" id="firstname">
+                  <div class="login-user-ico">
+                    <i class="las la-user"></i>
+                  </div>
+                  <div *ngIf="shouldShowError('firstname','required')" class="form-validate-err">
+                    This field is required.
+                  </div>
+                  <div *ngIf="shouldShowError('firstname','minlength')" class="form-validate-err">
+                    Name must be 3 to 60 alphabets.
+                  </div>
+                  <div *ngIf="shouldShowError('firstname','pattern')" class="form-validate-err">
+                    Please enter valid name.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="lastename">Last name</label>
+                  <input type="text" class="form-control" name="lastename" id="lastename" formControlName="lastename">
+                  <div class="login-user-ico">
+                    <i class="las la-user"></i>
+                  </div>
+                  <div *ngIf="shouldShowError('lastename','required')" class="form-validate-err">
+                    This field is required
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email ID</label>
+              <input type="email" class="form-control" name="email" id="email" formControlName="email">
+              <div class="login-user-ico">
+                <i class="lar la-envelope"></i>
+              </div>
+              <div *ngIf="shouldShowError('email','required')" class="form-validate-err">
+                This field is required
+              </div>
+              <div *ngIf="shouldShowError('email','email')" class="form-validate-err">
+                Enter valid email
+              </div>
+            </div>
+            <div class="row mb-2">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Password</label>
+                  <input [type]="showPassword ? 'text' : 'password'" class="form-control" formControlName="password"
+                    name="password" id="password">
+                  <div class="login-user-ico">
+                    <i class="lar" [ngClass]="{'la-eye-slash': !showPassword,'la-eye': showPassword}"
+                      (click)="toggleFieldTextType()"></i>
+                  </div>
+                  <div *ngIf="shouldShowError('password','required')" class="form-validate-err">
+                    This field is required
+                  </div>
+                  <div *ngIf="shouldShowError('password','passwordStrength')" class="form-validate-err">
+                    {{signupForm.get('password').errors['passwordStrength']}}
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Confirm Password</label>
+                  <input [type]="confirmshowPassword ? 'text' : 'password'" class="form-control"
+                    formControlName="confirmPasswod" name="confirmPasswod" id="confirmPasswod">
+                  <div class="login-user-ico">
+                    <i class="lar" [ngClass]="{'la-eye-slash': !confirmshowPassword,'la-eye': confirmshowPassword}"
+                      (click)="confirmFieldTextType()"></i>
+                  </div>
+                  <div *ngIf="shouldShowError('confirmPasswod','required')" class="form-validate-err">
+                    This field is required
+                  </div>
+                  <div *ngIf="shouldShowError('confirmPasswod','confirmedValidator')" class="form-validate-err">
+                    Password and Confirm Password must be match
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <button type="submit" [disabled]="loading" class="common-btn login-btn">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                Register Now
+              </button>
+            </div>
+            <div class="regist-term">By clicking on “Register with team” you agree to our
+              <a>terms and services</a> and <a>privacy policy</a>
+            </div>
+            <div class="formor">or</div>
+            <div class="google-account"><a><img src="../assets/images/g.png" alt=""> Sign up with Google</a></div>
+          </form>
+          <div class="gosignup-link text-center">Already a User? <a routerLink="/login">Log In</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

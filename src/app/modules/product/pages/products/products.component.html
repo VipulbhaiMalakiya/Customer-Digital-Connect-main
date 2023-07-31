@@ -1,0 +1,87 @@
+<app-header></app-header>
+<app-loading-spin *ngIf="isProceess"></app-loading-spin>
+<div class="page-title">
+  <h1>Products</h1>
+</div>
+
+<div class="page-btns-col">
+  <div class="dt-buttons">
+    <button class="gray-btns" *ngIf="data.length > 0" type="button" (click)="onDownload()"><i
+        class="las la-file-excel"></i> Excel</button>
+    <div class="table-search" *ngIf="data.length > 0"><input type="text" class="form-control" name="name" id="name"
+        [(ngModel)]="term" autocomplete="off" placeholder="Search..." required=""></div>
+  </div>
+  <div class="btn-group">
+    <button type="button" class="add-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+      Add New
+    </button>
+    <ul class="dropdown-menu">
+      <li (click)="onAdd()"><a class="dropdown-item"><i class="las la-plus"></i> Create new Prodact</a></li>
+    </ul>
+  </div>
+</div>
+<div class="inner-middle-content">
+  <div class="dasboard-table dasboard-scroll">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Product Image</th>
+            <th>Category</th>
+            <th>Product Name</th>
+            <th>Product Serial No</th>
+            <th>Created Date</th>
+            <th>Created By</th>
+            <th>Status</th>
+            <th class="action-cl">Action</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="!isProceess">
+          <tr *ngFor="let i of data |customFilter: term| paginate
+          : {
+              itemsPerPage: tableSize,
+              currentPage: page,
+              totalItems: count
+            };let ind = index">
+            <!-- <td>{{ind + 1}}</td> -->
+            <td>{{i.productId}}</td>
+            <td>
+              <div class="d-flex justify-content-center" *ngIf="isLoading">
+                <div class="spinner-border">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+              <div *ngIf="i.fileUrl === null" class="cat-pros-pic">
+                <img src="./assets/images/default-nopic.jpg" alt="" (load)="onImageLoad()">
+              </div>
+              <div *ngIf="i.fileUrl !== null" class="cat-pros-pic">
+                <img [src]=i.fileUrl alt="File Not Found" (load)="onImageLoad()">
+              </div>
+            </td>
+            <td>{{i.productCategory?.productCategoryName}}</td>
+            <td>{{i.productName}}</td>
+            <td>{{i.serialNo}}</td>
+            <td>{{i.createdDate | date :'medium' || ''}}</td>
+            <td>{{i.createdBy?.firstName || ''}} {{i.createdBy?.lastName || ''}} </td>
+            <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
+            <td>
+              <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
+              <a class="btnClick" (click)="onEdit(i)"><i class="las la-edit"></i></a>
+              <a class="btnClick" *ngIf="i.status" (click)="onDelete(i)"><i class="las la-trash-alt"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="data.length === 0" class="text-center">
+        <Strong class="text-danger">No records found</Strong>
+      </div>
+    </div>
+    <div class="clearfix" *ngIf="!isProceess && data.length > 0">
+      <ul class="pagination">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </ul>
+    </div>
+  </div>
+</div>

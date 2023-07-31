@@ -1,0 +1,17 @@
+<div class="common-modal deleteModel">
+  <div class="modal-content">
+    <div class="centermodal-col">
+      <div class="text-end"><button type="button" (click)="onCancel()"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="icon-box"><i class="las la-times"></i></div>
+        <h3>Are you sure ?</h3>
+        <p>{{ message }}</p>
+        <div class="twocol-btns">
+          <button type="button" (click)="onCancel()" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" (click)="onConfirm()" class="btn btn-danger">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
