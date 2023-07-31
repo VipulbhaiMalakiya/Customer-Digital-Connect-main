@@ -77,7 +77,6 @@ export class ProductsComponent implements OnInit {
     this.masterName = '/reservation';
     this.apiService.getAll(this.masterName).subscribe((data) => {
       this.reservationData = data.data;
-      console.log(this.reservationData);
       this.isProceess = false;
       this.cd.detectChanges();
     });
@@ -264,29 +263,54 @@ export class ProductsComponent implements OnInit {
   }
 
   tableSelect(i: any) {
-    console.log(i);
-
     this.tableId = i.resiorvationId;
     this.mobileno = i.phoneNumber
     this.istable = false;
-    // this.isProceess = true;
-    // const modalRef = this.modalService.open(PhoneNoComponent, { size: 'md' });
-    // if (modalRef) {
-    //   this.isProceess = false;
-    // } else {
-    //   this.isProceess = false;
-    // }
 
-    // modalRef.result
-    //   .then((data: any) => {
-    //     if (data) {
-    //       this.mobileno = data.contact;
-    //       this.istable = false;
-    //       localStorage.removeItem('cartItems');
-    //     }
-    //   })
-    //   .catch(() => {});
   }
+
+  tableedite(i: any){
+    this.isProceess = true;
+    const modalRef = this.modalService.open(PhoneNoComponent, { size: 'md' });
+    if (modalRef) {
+      this.isProceess = false;
+    } else {
+      this.isProceess = false;
+    }
+    var componentInstance = modalRef.componentInstance as PhoneNoComponent;
+    componentInstance.customersMaster = i;
+    modalRef.result
+      .then((data: any) => {
+        if (data) {
+          let model: any = {
+            reservationId:i?.resiorvationId,
+            slotDate:data.Date,
+            slotTime:data.TimeSlots,
+            session:data.Session,
+            numberOfGuests:data.Person,
+            status:data.status
+
+          };
+          this.masterName = `/reservation/rescheduleReservation`;
+          let updateData: any = {
+            url: this.masterName,
+            model: model,
+          };
+          this.isProceess = true;
+          this.isProceess = true;
+           this.apiService.update(updateData).pipe(take(1)).subscribe(res => {
+            this.toastr.success(res.message);
+            this.isProceess = false;
+            this.getreservation();
+          }, error => {
+            this.toastr.error(error.error.message);
+            this.isProceess = false;
+          });
+        }
+      })
+      .catch(() => {});
+  }
+
 
   onAdd() {
     this.isProceess = true;
