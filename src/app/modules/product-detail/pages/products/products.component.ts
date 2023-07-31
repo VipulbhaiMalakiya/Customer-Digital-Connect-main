@@ -25,6 +25,7 @@ export class ProductsComponent implements OnInit {
   cartItems?: any = [];
   prodactCategory: any = [];
   customersMasterForm: any;
+  phoneNumber?:any = [];
   prodact: prodactMasterModel[] = [];
   userData: any;
   categroyName?: any = '';
@@ -263,24 +264,28 @@ export class ProductsComponent implements OnInit {
   }
 
   tableSelect(i: any) {
-    this.tableId = i.id;
-    this.isProceess = true;
-    const modalRef = this.modalService.open(PhoneNoComponent, { size: 'md' });
-    if (modalRef) {
-      this.isProceess = false;
-    } else {
-      this.isProceess = false;
-    }
+    console.log(i);
 
-    modalRef.result
-      .then((data: any) => {
-        if (data) {
-          this.mobileno = data.contact;
-          this.istable = false;
-          localStorage.removeItem('cartItems');
-        }
-      })
-      .catch(() => {});
+    this.tableId = i.resiorvationId;
+    this.mobileno = i.phoneNumber
+    this.istable = false;
+    // this.isProceess = true;
+    // const modalRef = this.modalService.open(PhoneNoComponent, { size: 'md' });
+    // if (modalRef) {
+    //   this.isProceess = false;
+    // } else {
+    //   this.isProceess = false;
+    // }
+
+    // modalRef.result
+    //   .then((data: any) => {
+    //     if (data) {
+    //       this.mobileno = data.contact;
+    //       this.istable = false;
+    //       localStorage.removeItem('cartItems');
+    //     }
+    //   })
+    //   .catch(() => {});
   }
 
   onAdd() {
