@@ -163,7 +163,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         const audio = new Audio(
           '../assets/sound/Google Chat - Notification Tone.mp3'
         );
-        // audio.play();
+        audio.play();
       });
     }
   }
