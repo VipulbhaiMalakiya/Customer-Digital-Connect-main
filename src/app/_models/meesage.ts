@@ -12,4 +12,5 @@ export interface MessageData {
   filename?:any;
   fileUrl?:any;
   messageStatus?:any;
+  messageId?:any
 }
