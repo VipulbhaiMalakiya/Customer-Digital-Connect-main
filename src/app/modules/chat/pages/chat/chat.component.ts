@@ -59,6 +59,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   term: any;
   contactId?: any;
   contactinfo?: any;
+  messagestates?:any = '';
   masterName?: any;
   nrSelect?: any;
   subscription?: Subscription;
@@ -156,6 +157,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     if (!this.socket$ || this.socket$.closed) {
       this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
       this.socket$.subscribe((data: MessageData) => {
+        this.messagestates = data.messageStatus;
         this.receivedData.push(data);
         this.getContactList();
         const audio = new Audio(
