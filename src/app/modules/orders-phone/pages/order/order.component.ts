@@ -12,6 +12,7 @@ import { ConfirmationDialogModalComponent } from 'src/app/modules/shared/compone
 import { Title } from '@angular/platform-browser';
 import { TickitService } from 'src/app/_api/masters/tickit.service';
 import { ConformRoderComponent } from '../../componets/conform-roder/conform-roder.component';
+import { PhoneNoComponent } from 'src/app/modules/product-detail/componet/phone-no/phone-no.component';
 
 @Component({
   selector: 'app-order',
@@ -33,31 +34,9 @@ export class OrderComponent implements OnInit {
   tableId:number = 0;
   phoneNo:any;
   isprodact: boolean = false;
+  reservationData?:any = [];
 
-  boxes: any[] = [
-    {
-      id:1,
-      name:"Ms. Kiran",
-      Date:"27-07-2023",
-      Person:10,
-      Session:"Lunch",
-      TimeSlots:"12:00 PM",
-      Phone:9409474826,
-      Status:"book",
-    },
-    {
 
-      id:2,
-      name:"Ms. Vipul malakiya",
-      Date:"27-07-2023",
-      Person:10,
-      Session:"Lunch",
-      TimeSlots:"12:00 PM",
-      Phone:919409474826,
-      Status:"Open",
-    }
-
-  ];
   constructor(
     private activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
@@ -83,9 +62,20 @@ export class OrderComponent implements OnInit {
     this.getCategory();
     this.isprodact = false;
     this.getCartItems();
+    this.getreservation()
+  }
+
+  getreservation() {
+    this.isProceess = true;
+    this.masterName = '/reservation';
+    this.apiService.getAll(this.masterName).subscribe((data) => {
+      this.reservationData = data.data;
+      this.isProceess = false;
+      this.cd.detectChanges();
+    });
   }
   tableSelect(i:any){
-    this.tableId = i.id;
+    this.tableId = i?.resiorvationId;
     this.istable = false;
   }
   onImageLoad() {
@@ -105,6 +95,48 @@ export class OrderComponent implements OnInit {
       subtotal += item.price * item.quantity;
     }
     return subtotal;
+  }
+
+  tableedite(i: any){
+    this.isProceess = true;
+    const modalRef = this.modalService.open(PhoneNoComponent, { size: 'md' });
+    if (modalRef) {
+      this.isProceess = false;
+    } else {
+      this.isProceess = false;
+    }
+    var componentInstance = modalRef.componentInstance as PhoneNoComponent;
+    componentInstance.customersMaster = i;
+    modalRef.result
+      .then((data: any) => {
+        if (data) {
+          let model: any = {
+            reservationId:i?.resiorvationId,
+            slotDate:data.Date,
+            slotTime:data.TimeSlots,
+            session:data.Session,
+            numberOfGuests:data.Person,
+            status:data.status
+
+          };
+          this.masterName = `/reservation/rescheduleReservation`;
+          let updateData: any = {
+            url: this.masterName,
+            model: model,
+          };
+          this.isProceess = true;
+          this.isProceess = true;
+           this.apiService.update(updateData).pipe(take(1)).subscribe(res => {
+            this.toastr.success(res.message);
+            this.isProceess = false;
+            this.getreservation();
+          }, error => {
+            this.toastr.error(error.error.message);
+            this.isProceess = false;
+          });
+        }
+      })
+      .catch(() => {});
   }
 
   getCGST(): number {
