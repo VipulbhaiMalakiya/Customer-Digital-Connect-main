@@ -147,11 +147,11 @@
                     <!-- <span class="user-status">•</span> -->
                   </span>
                   <div class="last-msg font-small one-line">
-                    <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                    <span class="last-msg-checkic text-success" *ngIf="i.messageStatus == 'read'"><i
                         class="las la-check-double"></i></span>
-                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                    <span class="last-msg-checkic" *ngIf="i.messageStatus == 'sent'"><i
                         class="las la-check"></i></span>
-                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                    <span class="last-msg-checkic" *ngIf="i.messageStatus == 'delivered'"><i
                         class="las la-check-double"></i></span>
                     {{i.lastMsg }}
                   </div>
@@ -191,11 +191,11 @@
                   </span>
 
                   <div class="last-msg font-small one-line">
-                    <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                    <span class="last-msg-checkic text-success" *ngIf="i.messageStatus == 'read'"><i
                         class="las la-check-double"></i></span>
-                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                    <span class="last-msg-checkic" *ngIf="i.messageStatus == 'sent'"><i
                         class="las la-check"></i></span>
-                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                    <span class="last-msg-checkic" *ngIf="i.messageStatus == 'delivered'"><i
                         class="las la-check-double"></i></span>
                     {{i.lastMsg}}
                   </div>

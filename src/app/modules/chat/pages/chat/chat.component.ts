@@ -65,6 +65,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   showHead: boolean = false;
   private socket?: WebSocket;
   contactList: any;
+  meesagestatus?:any = [];
   isempty: boolean = true;
   reloadFlag = true;
   openCount: any;
