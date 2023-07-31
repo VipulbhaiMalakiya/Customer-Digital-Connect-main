@@ -34,32 +34,7 @@ export class ProductsComponent implements OnInit {
   isprodact: boolean = false;
   mobileno: number = 0;
   istable: boolean = true;
-
-  boxes: any[] = [
-    {
-      id:1,
-      name:"Ms. Kiran",
-      Date:"27-07-2023",
-      Person:10,
-      Session:"Lunch",
-      TimeSlots:"12:00 PM",
-      Phone:9409474826,
-      Status:"book",
-    },
-    {
-
-      id:2,
-      name:"Ms. Vipul malakiya",
-      Date:"27-07-2023",
-      Person:10,
-      Session:"Lunch",
-      TimeSlots:"12:00 PM",
-      Phone:919409474826,
-      Status:"Open",
-    }
-
-  ];
-
+  reservationData?:any = [];
   constructor(
     private titleService: Title,
     private activeModal: NgbActiveModal,
@@ -92,6 +67,19 @@ export class ProductsComponent implements OnInit {
     this.getCategory();
     this.isprodact = false;
     this.getCartItems();
+    this.getreservation();
+  }
+
+
+  getreservation() {
+    this.isProceess = true;
+    this.masterName = '/reservation';
+    this.apiService.getAll(this.masterName).subscribe((data) => {
+      this.reservationData = data.data;
+      console.log(this.reservationData);
+      this.isProceess = false;
+      this.cd.detectChanges();
+    });
   }
 
   onTable() {
