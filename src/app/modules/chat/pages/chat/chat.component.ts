@@ -59,14 +59,14 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   term: any;
   contactId?: any;
   contactinfo?: any;
-  messagestates?:any = '';
+  messagestates?: any = '';
   masterName?: any;
   nrSelect?: any;
   subscription?: Subscription;
   showHead: boolean = false;
   private socket?: WebSocket;
   contactList: any;
-  meesagestatus?:any = [];
+  meesagestatus?: any = [];
   isempty: boolean = true;
   reloadFlag = true;
   openCount: any;
@@ -160,10 +160,18 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         this.messagestates = data.messageStatus;
         this.receivedData.push(data);
         this.getContactList();
-        const audio = new Audio(
-          '../assets/sound/Google Chat - Notification Tone.mp3'
-        );
-        audio.play();
+        if (
+          this.messagestates == 'sent' ||
+          this.messagestates == 'delivered' ||
+          this.messagestates == 'read' ||
+          this.messagestates == ' '
+        ) {
+        } else {
+          const audio = new Audio(
+            '../assets/sound/Google Chat - Notification Tone.mp3'
+          );
+          audio.play();
+        }
       });
     }
   }
@@ -247,9 +255,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     try {
       // this.chatContainer.nativeElement.scrollTop =
       //   this.chatContainer.nativeElement.scrollHeight;
-        const chatContainerEl = this.chatContainer.nativeElement;
-        chatContainerEl.scrollTop = chatContainerEl.scrollHeight;
-
+      const chatContainerEl = this.chatContainer.nativeElement;
+      chatContainerEl.scrollTop = chatContainerEl.scrollHeight;
     } catch (err) {}
   }
 
@@ -433,9 +440,9 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       );
   }
 
-  onlabelRemove(e: any){
+  onlabelRemove(e: any) {
     console.log(e);
-    this.label = "";
+    this.label = '';
   }
   submitNoteForm(form: any) {
     if (form.valid) {
