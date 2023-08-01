@@ -3772,6 +3772,8 @@ label.form-label {
 
 /*-----reserve-table---------*/
 
+/*-----reserve-table---------*/
+
 .inner-homeblock {
   background: #f5f5f5;
   border-radius: 10px;
@@ -3829,3 +3831,5 @@ color:#db6c6c;
   margin-right: 2px;
 margin-left: -2px;
 }
+
+.maplocaname a{ padding:10px; color:#1d7583;  }
