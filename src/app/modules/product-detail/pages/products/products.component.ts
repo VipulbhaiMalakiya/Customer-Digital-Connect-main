@@ -35,7 +35,7 @@ export class ProductsComponent implements OnInit {
   isprodact: boolean = false;
   mobileno: number = 0;
   istable: boolean = true;
-  reservationData?:any = [];
+  reservationData?:any= [];
   constructor(
     private titleService: Title,
     private activeModal: NgbActiveModal,
@@ -68,9 +68,12 @@ export class ProductsComponent implements OnInit {
     this.getCategory();
     this.isprodact = false;
     this.getCartItems();
-    this.getreservation();
+
   }
 
+  onReservationList(){
+    this.getreservation();
+  }
 
   getreservation() {
     this.isProceess = true;

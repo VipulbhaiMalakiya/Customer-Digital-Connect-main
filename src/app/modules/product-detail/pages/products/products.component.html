@@ -1,6 +1,9 @@
 <ng-container *ngIf="istable">
   <div class="top-noti-user">
-    <div class="workflow-btn" (click)="onTable()"><a class="common-btn">Table Reservation</a></div>
+    <div class="workflow-btn">
+      <a class="common-btn" (click)="onTable()"> Table Reservation</a>
+      <a class="common-btn list" (click)="onReservationList()"> Table List</a>
+    </div>
   </div>
   <div class="page-title">
     <h1>Products</h1>
@@ -9,7 +12,7 @@
 
 <app-loading-spin *ngIf="isProceess"></app-loading-spin>
 <div class="inner-middle-content scroll pt-1">
-  <div class="product-tblslist" *ngIf="istable">
+  <div class="product-tblslist" *ngIf="istable && reservationData.length > 0">
     <div class="row">
       <div class="col-md-6 col-sm-12" *ngFor="let i of reservationData">
         <div class="inner-prodtcol pointer"><a>
@@ -33,9 +36,58 @@
       </div>
     </div>
   </div>
-  <div *ngIf="reservationData.length === 0" class="d-flex align-items-center justify-content-center" style="height: 80vh;">
-    <h1 class="text-danger">No records found !</h1>
+
+  <div class="product-tblslist" *ngIf="reservationData.length === 0">
+    <div class="row">
+
+      <div class="col-md-6 col-sm-12">
+        <div class="inner-prodtcol"><a>
+            <div class="rtable-pic"><img src="../assets/images/reserve-table-1.jpg" alt=""></div>
+            <div class="rtable-texts">
+              <p>Table No: <strong>01</strong></p>
+              <p>Date: <strong>27-07-2023</strong></p>
+              <p>Total Capacity: <strong>10</strong></p>
+              <p>Session: <strong>Lunch</strong></p>
+              <p>Available Time Slots:</p>
+              <p><input type="checkbox"> 12:00 PM <input type="checkbox"> 1:00 PM
+                <input type="checkbox"> 2:00 PM <input type="checkbox"> 3:00 PM
+                <input type="checkbox"> 4:00 PM
+              </p>
+
+              <p>Session: <strong>Diner</strong></p>
+              <p>Available Time Slots:</p>
+              <p><input type="checkbox"> 7:00 PM <input type="checkbox"> 8:00 PM
+                <input type="checkbox"> 9:00 PM <input type="checkbox"> 10:00 PM
+                <input type="checkbox">11:00 PM
+              </p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-12">
+        <div class="inner-prodtcol"><a>
+            <div class="rtable-pic"><img src="../assets/images/reserve-table-1.jpg" alt=""></div>
+            <div class="rtable-texts">
+              <p>Table No: <strong>01</strong></p>
+              <p>Date: <strong>27-07-2023</strong></p>
+              <p>Total Capacity: <strong>10</strong></p>
+              <p>Session: <strong>Lunch</strong></p>
+              <p>Available Time Slots: <strong>12:00 PM</strong></p>
+              <p class="green">Status: <strong>&bull; Open</strong></p>
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+
+
+    </div>
+
   </div>
+
+
 
   <div class="productdt-wrapper-sec" *ngIf="!istable">
     <div class="row">
