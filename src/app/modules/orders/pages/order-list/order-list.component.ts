@@ -110,7 +110,7 @@ export class OrderListComponent implements OnInit {
                   this.toastr.success(res.message);
                   this.isProceess = false;
                   this.fatchData();
-                  this.masterAPI.downloadInvoice(res.data.orderId);
+                  this.masterAPI.downloadInvoice(res.data?.orderId);
                 }
               },
               (error) => {
