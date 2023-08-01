@@ -9,7 +9,6 @@
     <h1>Products</h1>
   </div>
 </ng-container>
-
 <app-loading-spin *ngIf="isProceess"></app-loading-spin>
 <div class="inner-middle-content scroll pt-1">
   <div class="product-tblslist" *ngIf="istable && reservationData.length > 0">
@@ -36,10 +35,8 @@
       </div>
     </div>
   </div>
-
   <div class="product-tblslist" *ngIf="reservationData.length === 0">
     <div class="row">
-
       <div class="col-md-6 col-sm-12">
         <div class="inner-prodtcol"><a>
             <div class="rtable-pic"><img src="../assets/images/reserve-table-1.jpg" alt=""></div>
@@ -53,7 +50,6 @@
                 <input type="checkbox"> 2:00 PM <input type="checkbox"> 3:00 PM
                 <input type="checkbox"> 4:00 PM
               </p>
-
               <p>Session: <strong>Diner</strong></p>
               <p>Available Time Slots:</p>
               <p><input type="checkbox"> 7:00 PM <input type="checkbox"> 8:00 PM
@@ -64,7 +60,6 @@
           </a>
         </div>
       </div>
-
       <div class="col-md-6 col-sm-12">
         <div class="inner-prodtcol"><a>
             <div class="rtable-pic"><img src="../assets/images/reserve-table-1.jpg" alt=""></div>
@@ -77,18 +72,10 @@
               <p class="green">Status: <strong>&bull; Open</strong></p>
             </div>
           </a>
-
         </div>
       </div>
-
-
-
     </div>
-
   </div>
-
-
-
   <div class="productdt-wrapper-sec" *ngIf="!istable">
     <div class="row">
       <div class="col-md-8">
@@ -148,7 +135,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-md-4">
         <div class="tablecustomer-dt">
           <p><i class="las la-utensils"></i> Table No: <strong># {{tableId}}</strong></p>
@@ -157,13 +143,9 @@
             <strong>{{mobileno}}</strong>
           </p>
         </div>
-
         <div class="order-protbl">
-
           <div class="dasboard-table">
-
             <div class="table-responsive">
-
               <table class="table table-bordered text-center">
                 <tbody>
                   <tr *ngFor="let i of cartItems; let ind = index">
@@ -189,9 +171,7 @@
                 <Strong class="text-danger">No records found</Strong>
               </div>
             </div>
-
           </div>
-
         </div>
         <div class="order-price-col" *ngIf="cartItems.length > 0">
           <dl class="commerce-list order-dsgd">
@@ -202,19 +182,14 @@
                 placeholder="Enter discount %">
             </dd>
           </dl>
-
-
           <div class="accordion" id="flowresponse">
             <div class="accordion-item">
-
               <div class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                 data-bs-target="#collapseresp" aria-expanded="false" aria-controls="flush-collapseOne">
                 <h5>Order Summary</h5>
               </div>
-
               <div id="collapseresp" class="accordion-collapse collapse" aria-labelledby="flowresponse"
                 data-bs-parent="#accordionExample">
-
                 <dl class="commerce-list">
                   <dt>Subtotal</dt>
                   <dd class="text-right"> {{ calculateGrandTotal() | number:'1.2-2'}}</dd>
@@ -229,18 +204,13 @@
                   <dt>Discount ({{discount}}%)</dt>
                   <dd class="text-right"> {{ getDiscount() | number:'1.2-2'}}</dd>
                 </dl>
-
               </div>
-
             </div>
           </div>
-
           <dl class="commerce-list mt-2">
             <dt class="big2x">Grand Total</dt>
             <dd class="big2x text-right"><strong> {{ getGrandTotal() | number:'1.2-2' }}</strong></dd>
           </dl>
-
-
           <div class="order-btns-col">
             <a (click)="onReset()" class="common-btn common-btn2">Cancel</a>
             <a (click)="onAdd()" class="common-btn">Proceed</a>

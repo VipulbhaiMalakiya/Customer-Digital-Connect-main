@@ -1,15 +1,12 @@
 <ng-container *ngIf="istable">
   <div class="top-noti-user">
-    <div class="workflow-btn" (click)="onTable()"><a class="common-btn">Table Reservation</a></div>
+    <!-- <div class="workflow-btn" (click)="onTable()"><a class="common-btn">Table Reservation</a></div> -->
   </div>
   <div class="page-title">
     <h1>Products</h1>
   </div>
 </ng-container>
-
-
 <app-loading-spin *ngIf="isProceess"></app-loading-spin>
-
 <div class="inner-middle-content">
   <div class="product-tblslist" *ngIf="istable">
     <div class="row">
@@ -33,7 +30,7 @@
       </div>
     </div>
   </div>
-  <div *ngIf="reservationData.length === 0" class="d-flex align-items-center justify-content-center" style="height: 80vh;">
+  <div *ngIf="reservationData.length === 0 && !isProceess" class="d-flex align-items-center justify-content-center" style="height: 80vh;">
     <h1 class="text-danger">No records found !</h1>
   </div>
 
