@@ -11,29 +11,31 @@
 <div class="inner-middle-content scroll pt-1">
   <div class="product-tblslist" *ngIf="istable">
     <div class="row">
-    <div class="col-md-6 col-sm-12" *ngFor="let i of reservationData" >
-      <div class="inner-prodtcol pointer"><a >
-        <div class="rtable-pic" (click)="tableSelect(i)"><img src="../assets/images/reserve-table-1.jpg" alt=""></div>
-        <div class="rtable-texts" (click)="tableSelect(i)">
-           <p>Table No: <strong>{{i.resiorvationId}}</strong></p>
-           <p>Name: <strong>{{i.customerName}}</strong></p>
-           <p>Date: <strong>{{i.slotDate}}</strong></p>
-           <p>No. of Person: <strong>{{i.numberOfPersons}}</strong></p>
-           <p>Session: <strong>{{i.session}}</strong></p>
-           <p>Time Slots: <strong>{{i.availableSlotTime}}</strong></p>
-           <p>Phone No.: <strong>+{{i.phoneNumber}}</strong></p>
-           <p class="red" *ngIf="i.status === 'booked'">Status: <strong>&bull; {{i.status}}</strong></p>
-           <p class="green" *ngIf="i.status === 'open'">Status: <strong>&bull; {{i.status}}</strong></p>
-           <p class="text-warning" *ngIf="i.status === 'canceled'">Status: <strong>&bull; {{i.status}}</strong></p>
+      <div class="col-md-6 col-sm-12" *ngFor="let i of reservationData">
+        <div class="inner-prodtcol pointer"><a>
+            <div class="rtable-pic" (click)="tableSelect(i)"><img src="../assets/images/reserve-table-1.jpg" alt="">
+            </div>
+            <div class="rtable-texts" (click)="tableSelect(i)">
+              <p>Table No: <strong>{{i.resiorvationId}}</strong></p>
+              <p>Name: <strong>{{i.customerName}}</strong></p>
+              <p>Date: <strong>{{i.slotDate}}</strong></p>
+              <p>No. of Person: <strong>{{i.numberOfPersons}}</strong></p>
+              <p>Session: <strong>{{i.session}}</strong></p>
+              <p>Time Slots: <strong>{{i.availableSlotTime}}</strong></p>
+              <p>Phone No.: <strong>+{{i.phoneNumber}}</strong></p>
+              <p class="red" *ngIf="i.status === 'booked'">Status: <strong>&bull; {{i.status}}</strong></p>
+              <p class="green" *ngIf="i.status === 'open'">Status: <strong>&bull; {{i.status}}</strong></p>
+              <p class="text-warning" *ngIf="i.status === 'canceled'">Status: <strong>&bull; {{i.status}}</strong></p>
+            </div>
+          </a>
+          <div class="rdedit" (click)="tableedite(i)"><a><i class="las la-pen"></i></a></div>
         </div>
-        </a><div class="rdedit" (click)="tableedite(i)"><a ><i class="las la-pen"></i></a></div>
       </div>
     </div>
-   </div>
-
   </div>
-
-
+  <div *ngIf="reservationData.length === 0" class="d-flex align-items-center justify-content-center" style="height: 80vh;">
+    <h1 class="text-danger">No records found !</h1>
+  </div>
 
   <div class="productdt-wrapper-sec" *ngIf="!istable">
     <div class="row">
