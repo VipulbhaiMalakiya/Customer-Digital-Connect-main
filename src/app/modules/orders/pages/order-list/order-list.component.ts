@@ -110,7 +110,7 @@ export class OrderListComponent implements OnInit {
                   this.toastr.success(res.message);
                   this.isProceess = false;
                   this.fatchData();
-                  this.masterAPI.downloadInvoice(res.data?.orderId);
+                  // this.masterAPI.downloadInvoice(res.data?.orderId);
                 }
               },
               (error) => {
@@ -150,8 +150,11 @@ export class OrderListComponent implements OnInit {
   // }
 
   downloadInvoice(dataItem: orderMasterModel): void {
-    // const invoiceId = 'your-invoice-id';
-    this.masterAPI.downloadInvoice(dataItem.orderId);
+    const invoiceUrl = dataItem.fileUrl;
+    if(invoiceUrl){
+      window.open(invoiceUrl);
+    }
+
   }
 
   onDelete(dataItem: orderMasterModel) {

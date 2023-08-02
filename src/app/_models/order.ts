@@ -18,6 +18,7 @@ export interface orderMasterModel{
   status?:any;
   orderId?:any;
   customer?:any;
+  fileUrl?:any;
 }
 
 
