@@ -157,8 +157,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     if (!this.socket$ || this.socket$.closed) {
       this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
       this.socket$.subscribe((data: MessageData) => {
+        this.messagestates = data.messageStatus;
         if(data.mobileNo === this.contact){
-          this.messagestates = data.messageStatus;
           this.receivedData.push(data);
         }
         else if (data.mobileNo !== this.contact){
@@ -524,7 +524,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       };
       let formData = new FormData();
       formData.append('messageEntry', JSON.stringify(request));
-      this.isProceess = true;
+      // this.isProceess = true;
       this.subscription = this.whatsappService
         .sendWhatsAppMessage(formData)
         .pipe(take(1))
