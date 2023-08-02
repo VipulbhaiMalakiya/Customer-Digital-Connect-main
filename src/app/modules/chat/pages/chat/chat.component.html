@@ -157,12 +157,11 @@
                   <div class="cht-tg" *ngIf="i.customerLabel"><i class="las la-tag"></i> {{i.customerLabel}}</div>
                 </div>
                 <div class="chat-time ms-auto text-end">
-                  <div class="mb-1"> {{i.time | dateAgo}}</div>
-                  <!-- <div class="un-read">{{i.count}}</div> -->
+                  <div class="mb-1"><span class="user-status"></span>{{i.time | dateAgo}}</div>
+                  <div class="un-read" *ngIf="i.messageStatus !== 'read'">5</div>
                 </div>
               </li>
             </ul>
-
           </div>
           <!-- Colsed tab-pane-->
           <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
