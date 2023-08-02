@@ -426,7 +426,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     let updateData: any = {
       url: this.masterName,
     };
-    this.isProceess = true;
+    // this.isProceess = true;
     this.subscription = this.apiService
       .update(updateData)
       .pipe(take(1))
@@ -458,7 +458,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     modalRef.result.then((canDelete: boolean) => {
       if (canDelete) {
         this.masterName = `/customer/label-remove/${this.contact}`;
-        this.isProceess = true;
+        // this.isProceess = true;
         this.subscription = this.apiService.deleteID(this.masterName).pipe(take(1)).subscribe(res => {
           this.isProceess = false;
           this.toastr.success(res.message);
