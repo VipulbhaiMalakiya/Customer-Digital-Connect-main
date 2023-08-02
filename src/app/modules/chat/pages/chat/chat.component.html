@@ -293,6 +293,7 @@
                       <span class="suserchat-name" *ngIf="data.name == null">You</span>
                       <span class="suserchat-name" *ngIf="data.name !== null">{{data.name || ''}}</span>
                       {{data.time |dateAgo}}
+
                       <ng-container *ngIf="!data.messageId">
                         <span class="last-msg-checkic text-success"
                         *ngIf="data.messageStatus == 'read'"><i
