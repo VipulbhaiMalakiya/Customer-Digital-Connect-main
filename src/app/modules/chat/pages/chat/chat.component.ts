@@ -157,9 +157,13 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     if (!this.socket$ || this.socket$.closed) {
       this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
       this.socket$.subscribe((data: MessageData) => {
-        this.messagestates = data.messageStatus;
-        this.receivedData.push(data);
-        this.getContactList();
+        if(data.mobileNo === this.contact){
+          this.messagestates = data.messageStatus;
+          this.receivedData.push(data);
+        }
+        else if (data.mobileNo !== this.contact){
+          this.getContactList();
+        }
         if (
           this.messagestates == 'sent' ||
           this.messagestates == 'delivered' ||
@@ -305,7 +309,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   getContactList() {
-    this.isProceess = true;
+    // this.isProceess = true;
     if (this.userData?.role?.roleName === 'Admin') {
       this.subscription = this.whatsappService
         .getContactList()
