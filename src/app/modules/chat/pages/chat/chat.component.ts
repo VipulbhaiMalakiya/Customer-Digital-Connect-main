@@ -445,8 +445,32 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   onlabelRemove(e: any) {
-    console.log(e);
     this.label = '';
+    this.isProceess = true;
+    const modalRef = this.modalService.open(ConfirmationDialogModalComponent, { size: "sm", centered: true, backdrop: "static" });
+    if (modalRef) {
+      this.isProceess = false;
+    } else {
+      this.isProceess = false;
+    }
+    var componentInstance = modalRef.componentInstance as ConfirmationDialogModalComponent;
+    componentInstance.message = "Are you sure you want to remove tegs?";
+    modalRef.result.then((canDelete: boolean) => {
+      if (canDelete) {
+        this.masterName = `/customer/label-remove/${this.contact}`;
+        this.isProceess = true;
+        this.subscription = this.apiService.deleteID(this.masterName).pipe(take(1)).subscribe(res => {
+          this.isProceess = false;
+          this.toastr.success(res.message);
+          this.getContactList();
+        }, error => {
+          this.isProceess = false;
+          this.toastr.error(error.message);
+        });
+      }
+    }).catch(() => {
+
+    });
   }
   submitNoteForm(form: any) {
     if (form.valid) {
