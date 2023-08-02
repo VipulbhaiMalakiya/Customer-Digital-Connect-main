@@ -136,18 +136,7 @@ export class OrderListComponent implements OnInit {
     var componentInstance = modalRef.componentInstance as ViewComponent;
     componentInstance.editeData = dataItem;
   }
-  // onInvoice(dataItem: orderMasterModel){
-  //   this.isProceess = true;
-  //   const modalRef = this.modalService.open(InvoiceComponent, { size: "xl" });
-  //   if (modalRef) {
-  //     this.isProceess = false;
-  //   }
-  //   else {
-  //     this.isProceess = false;
-  //   }
-  //   var componentInstance = modalRef.componentInstance as InvoiceComponent;
-  //   componentInstance.invoiceDownload = dataItem;
-  // }
+
 
   downloadInvoice(dataItem: orderMasterModel): void {
     const invoiceUrl = dataItem.fileUrl;
@@ -155,36 +144,5 @@ export class OrderListComponent implements OnInit {
       window.open(invoiceUrl);
     }
 
-  }
-
-  onDelete(dataItem: orderMasterModel) {
-    this.isProceess = true;
-    const modalRef = this.modalService.open(ConfirmationDialogModalComponent, {
-      size: 'sm',
-      centered: true,
-      backdrop: 'static',
-    });
-    if (modalRef) {
-      this.isProceess = false;
-    } else {
-      this.isProceess = false;
-    }
-    var componentInstance =
-      modalRef.componentInstance as ConfirmationDialogModalComponent;
-    componentInstance.message = 'Are you sure you want to delete this order?';
-    // modalRef.result.then((canDelete: boolean) => {
-    //   if (canDelete) {
-    //     this.masterName = `/issue/${dataItem?.issueId}`;
-    //     this.isProceess = true;
-    //     this.subscription = this.apiService.deleteID(this.masterName).pipe(take(1)).subscribe(data => {
-    //       this.isProceess = false;
-    //       this.toastr.success(data.message);
-    //       this.fatchData();
-    //     }, error => {
-    //       this.isProceess = false;
-    //       this.toastr.error(error.message);
-    //     });
-    //   }
-    // }).catch(() => { });
   }
 }

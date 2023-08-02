@@ -47,14 +47,13 @@
             <td>{{i.createdDate | date :'medium'}}</td>
             <td>{{i.grand | number:'1.2-2'}}</td>
             <td>{{i.tableId}}</td>
-            <td class="cts-pointer"  (click)="downloadInvoice(i)"> <img src="../assets//images/pdf-icon.png" alt=""> </td>
+            <td class="cts-pointer"  (click)="downloadInvoice(i)"> <img *ngIf="i.fileUrl"src="../assets//images/pdf-icon.png" alt=""> </td>
             <td>{{i.createdBy?.firstName || ''}} {{i.createdBy?.lastName || ''}} </td>
 
             <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
             <td>
               <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
               <a class="btnClick" (click)="onEdit(i)"><i class="las la-edit"></i></a>
-              <a class="btnClick" *ngIf="i.status" (click)="onDelete(i)"><i class="las la-trash-alt"></i></a>
             </td>
           </tr>
         </tbody>
