@@ -138,6 +138,10 @@
                     {{getShortName(i.phoneNo)}} </span>
                   <span class="user-platfrm" *ngIf="i.messagetype === 'text'"><i class="lab la-whatsapp"></i></span>
                   <span class="user-platfrm" *ngIf="i.messagetype === 'notes'"><i class="las la-pen"></i></span>
+                  <span class="user-platfrm" *ngIf="i.messagetype === 'audio'"><i class="las la-music"></i></span>
+                  <span class="user-platfrm" *ngIf="i.messagetype === 'video'"><i class="las la-play"></i></span>
+                  <span class="user-platfrm" *ngIf="i.messagetype === 'location'"><i
+                      class="las la-map-marked"></i></span>
                 </div>
                 <div class="chat-info py-1">
                   <span class="d-block" *ngIf="i.fullName !== null"> {{i.fullName}}
@@ -178,7 +182,12 @@
                     {{getShortName(i.fullName)}} </span>
                   <span class="chatpro-nmg" [ngClass]="getColorClass(ind)" *ngIf="i.fullName === null">
                     {{getShortName(i.phoneNo)}} </span>
-                  <span class="user-platfrm"><i class="lab la-whatsapp"></i></span>
+                  <span class="user-platfrm" *ngIf="i.messagetype === 'text'"><i class="lab la-whatsapp"></i></span>
+                  <span class="user-platfrm" *ngIf="i.messagetype === 'notes'"><i class="las la-pen"></i></span>
+                  <span class="user-platfrm" *ngIf="i.messagetype === 'audio'"><i class="las la-music"></i></span>
+                  <span class="user-platfrm" *ngIf="i.messagetype === 'video'"><i class="las la-play"></i></span>
+                  <span class="user-platfrm" *ngIf="i.messagetype === 'location'"><i
+                      class="las la-map-marked"></i></span>
                 </div>
                 <div class="chat-info py-1">
                   <span class="d-block" *ngIf="i.fullName !== null"> {{i.fullName}}
@@ -295,25 +304,21 @@
                       {{data.time |dateAgo}}
 
                       <ng-container *ngIf="!data.messageId">
-                        <span class="last-msg-checkic text-success"
-                        *ngIf="data.messageStatus == 'read'"><i
-                          class="las la-check-double"></i></span>
-                      <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
-                          class="las la-check"></i></span>
-                      <span class="last-msg-checkic"
-                        *ngIf="data.messageStatus == 'delivered'"><i
-                          class="las la-check-double"></i></span>
+                        <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                            class="las la-check-double"></i></span>
+                        <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                            class="las la-check"></i></span>
+                        <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                            class="las la-check-double"></i></span>
                       </ng-container>
 
                       <ng-container *ngIf="data.messageId">
-                        <span class="last-msg-checkic text-success"
-                        *ngIf="messagestates == 'read'"><i
-                          class="las la-check-double"></i></span>
-                      <span class="last-msg-checkic" *ngIf="messagestates == 'sent'"><i
-                          class="las la-check"></i></span>
-                      <span class="last-msg-checkic"
-                        *ngIf="messagestates== 'delivered'"><i
-                          class="las la-check-double"></i></span>
+                        <span class="last-msg-checkic text-success" *ngIf="messagestates == 'read'"><i
+                            class="las la-check-double"></i></span>
+                        <span class="last-msg-checkic" *ngIf="messagestates == 'sent'"><i
+                            class="las la-check"></i></span>
+                        <span class="last-msg-checkic" *ngIf="messagestates== 'delivered'"><i
+                            class="las la-check-double"></i></span>
                       </ng-container>
                     </div>
                   </div>
@@ -340,25 +345,20 @@
                     <span class="suserchat-name" *ngIf="data.name !== null">{{data.name || ''}}</span>
                     {{data.time |dateAgo}}
                     <ng-container *ngIf="!data.messageId">
-                      <span class="last-msg-checkic text-success"
-                      *ngIf="data.messageStatus == 'read'"><i
-                        class="las la-check-double"></i></span>
-                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
-                        class="las la-check"></i></span>
-                    <span class="last-msg-checkic"
-                      *ngIf="data.messageStatus == 'delivered'"><i
-                        class="las la-check-double"></i></span>
+                      <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                          class="las la-check-double"></i></span>
+                      <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                          class="las la-check"></i></span>
+                      <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                          class="las la-check-double"></i></span>
                     </ng-container>
 
                     <ng-container *ngIf="data.messageId">
-                      <span class="last-msg-checkic text-success"
-                      *ngIf="messagestates == 'read'"><i
-                        class="las la-check-double"></i></span>
-                    <span class="last-msg-checkic" *ngIf="messagestates == 'sent'"><i
-                        class="las la-check"></i></span>
-                    <span class="last-msg-checkic"
-                      *ngIf="messagestates== 'delivered'"><i
-                        class="las la-check-double"></i></span>
+                      <span class="last-msg-checkic text-success" *ngIf="messagestates == 'read'"><i
+                          class="las la-check-double"></i></span>
+                      <span class="last-msg-checkic" *ngIf="messagestates == 'sent'"><i class="las la-check"></i></span>
+                      <span class="last-msg-checkic" *ngIf="messagestates== 'delivered'"><i
+                          class="las la-check-double"></i></span>
                     </ng-container>
                   </div>
                 </div>
@@ -402,25 +402,20 @@
                     <span class="suserchat-name" *ngIf="data.name !== null">{{data.name || ''}}</span>
                     {{data.time |dateAgo}}
                     <ng-container *ngIf="!data.messageId">
-                      <span class="last-msg-checkic text-success"
-                      *ngIf="data.messageStatus == 'read'"><i
-                        class="las la-check-double"></i></span>
-                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
-                        class="las la-check"></i></span>
-                    <span class="last-msg-checkic"
-                      *ngIf="data.messageStatus == 'delivered'"><i
-                        class="las la-check-double"></i></span>
+                      <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                          class="las la-check-double"></i></span>
+                      <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                          class="las la-check"></i></span>
+                      <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                          class="las la-check-double"></i></span>
                     </ng-container>
 
                     <ng-container *ngIf="data.messageId">
-                      <span class="last-msg-checkic text-success"
-                      *ngIf="messagestates == 'read'"><i
-                        class="las la-check-double"></i></span>
-                    <span class="last-msg-checkic" *ngIf="messagestates == 'sent'"><i
-                        class="las la-check"></i></span>
-                    <span class="last-msg-checkic"
-                      *ngIf="messagestates== 'delivered'"><i
-                        class="las la-check-double"></i></span>
+                      <span class="last-msg-checkic text-success" *ngIf="messagestates == 'read'"><i
+                          class="las la-check-double"></i></span>
+                      <span class="last-msg-checkic" *ngIf="messagestates == 'sent'"><i class="las la-check"></i></span>
+                      <span class="last-msg-checkic" *ngIf="messagestates== 'delivered'"><i
+                          class="las la-check-double"></i></span>
                     </ng-container>
                   </div>
                 </div>
@@ -463,25 +458,20 @@
                     <span class="suserchat-name" *ngIf="data.name !== null">{{data.name || ''}}</span>
                     {{data.time |dateAgo}}
                     <ng-container *ngIf="!data.messageId">
-                      <span class="last-msg-checkic text-success"
-                      *ngIf="data.messageStatus == 'read'"><i
-                        class="las la-check-double"></i></span>
-                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
-                        class="las la-check"></i></span>
-                    <span class="last-msg-checkic"
-                      *ngIf="data.messageStatus == 'delivered'"><i
-                        class="las la-check-double"></i></span>
+                      <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                          class="las la-check-double"></i></span>
+                      <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                          class="las la-check"></i></span>
+                      <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                          class="las la-check-double"></i></span>
                     </ng-container>
 
                     <ng-container *ngIf="data.messageId">
-                      <span class="last-msg-checkic text-success"
-                      *ngIf="messagestates == 'read'"><i
-                        class="las la-check-double"></i></span>
-                    <span class="last-msg-checkic" *ngIf="messagestates == 'sent'"><i
-                        class="las la-check"></i></span>
-                    <span class="last-msg-checkic"
-                      *ngIf="messagestates== 'delivered'"><i
-                        class="las la-check-double"></i></span>
+                      <span class="last-msg-checkic text-success" *ngIf="messagestates == 'read'"><i
+                          class="las la-check-double"></i></span>
+                      <span class="last-msg-checkic" *ngIf="messagestates == 'sent'"><i class="las la-check"></i></span>
+                      <span class="last-msg-checkic" *ngIf="messagestates== 'delivered'"><i
+                          class="las la-check-double"></i></span>
                     </ng-container>
                   </div>
                 </div>
@@ -518,25 +508,20 @@
                     <span class="suserchat-name" *ngIf="data.name !== null">{{data.name || ''}}</span>
                     {{data.time |dateAgo}}
                     <ng-container *ngIf="!data.messageId">
-                      <span class="last-msg-checkic text-success"
-                      *ngIf="data.messageStatus == 'read'"><i
-                        class="las la-check-double"></i></span>
-                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
-                        class="las la-check"></i></span>
-                    <span class="last-msg-checkic"
-                      *ngIf="data.messageStatus == 'delivered'"><i
-                        class="las la-check-double"></i></span>
+                      <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                          class="las la-check-double"></i></span>
+                      <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                          class="las la-check"></i></span>
+                      <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                          class="las la-check-double"></i></span>
                     </ng-container>
 
                     <ng-container *ngIf="data.messageId">
-                      <span class="last-msg-checkic text-success"
-                      *ngIf="messagestates == 'read'"><i
-                        class="las la-check-double"></i></span>
-                    <span class="last-msg-checkic" *ngIf="messagestates == 'sent'"><i
-                        class="las la-check"></i></span>
-                    <span class="last-msg-checkic"
-                      *ngIf="messagestates== 'delivered'"><i
-                        class="las la-check-double"></i></span>
+                      <span class="last-msg-checkic text-success" *ngIf="messagestates == 'read'"><i
+                          class="las la-check-double"></i></span>
+                      <span class="last-msg-checkic" *ngIf="messagestates == 'sent'"><i class="las la-check"></i></span>
+                      <span class="last-msg-checkic" *ngIf="messagestates== 'delivered'"><i
+                          class="las la-check-double"></i></span>
                     </ng-container>
                   </div>
                 </div>
@@ -590,25 +575,20 @@
                   <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
                   {{data.time |dateAgo}}
                   <ng-container *ngIf="!data.messageId">
-                    <span class="last-msg-checkic text-success"
-                    *ngIf="data.messageStatus == 'read'"><i
-                      class="las la-check-double"></i></span>
-                  <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
-                      class="las la-check"></i></span>
-                  <span class="last-msg-checkic"
-                    *ngIf="data.messageStatus == 'delivered'"><i
-                      class="las la-check-double"></i></span>
+                    <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                        class="las la-check-double"></i></span>
+                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                        class="las la-check"></i></span>
+                    <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                        class="las la-check-double"></i></span>
                   </ng-container>
 
                   <ng-container *ngIf="data.messageId">
-                    <span class="last-msg-checkic text-success"
-                    *ngIf="messagestates == 'read'"><i
-                      class="las la-check-double"></i></span>
-                  <span class="last-msg-checkic" *ngIf="messagestates == 'sent'"><i
-                      class="las la-check"></i></span>
-                  <span class="last-msg-checkic"
-                    *ngIf="messagestates== 'delivered'"><i
-                      class="las la-check-double"></i></span>
+                    <span class="last-msg-checkic text-success" *ngIf="messagestates == 'read'"><i
+                        class="las la-check-double"></i></span>
+                    <span class="last-msg-checkic" *ngIf="messagestates == 'sent'"><i class="las la-check"></i></span>
+                    <span class="last-msg-checkic" *ngIf="messagestates== 'delivered'"><i
+                        class="las la-check-double"></i></span>
                   </ng-container>
 
                 </div>
