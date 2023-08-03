@@ -345,7 +345,7 @@ export class OrderComponent implements OnInit {
       if (data) {
         let model: any = {
           customerMob: this.phoneNo,
-          tableId:this.tableId,
+          reservationId:this.tableId,
           createdBy: this.userData.userId,
           discount: this.discount,
           subtotal: this.calculateGrandTotal(),

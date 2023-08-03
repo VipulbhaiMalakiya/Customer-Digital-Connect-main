@@ -317,6 +317,7 @@ export class ProductsComponent implements OnInit {
             this.toastr.success(res.message);
             this.isProceess = false;
             this.getreservation();
+            this.getTable();
           }, error => {
             this.toastr.error(error.error.message);
             this.isProceess = false;
@@ -348,6 +349,7 @@ export class ProductsComponent implements OnInit {
           this.toastr.success(res.message);
           this.isProceess = false;
           this.getreservation();
+          this.getTable();
         }, error => {
           this.toastr.error(error.message);
           this.isProceess = false;
@@ -373,7 +375,7 @@ export class ProductsComponent implements OnInit {
         if (data) {
           let model: any = {
             customerMob: this.mobileno,
-            tableId: this.tableId,
+            reservationId: this.tableId,
             createdBy: this.userData.userId,
             discount: this.discount,
             subtotal: this.calculateGrandTotal(),
