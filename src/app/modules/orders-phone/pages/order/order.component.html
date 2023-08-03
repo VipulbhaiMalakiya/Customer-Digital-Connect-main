@@ -15,10 +15,10 @@
           <div class="rtable-pic" (click)="tableSelect(i)"><img src="../assets/images/reserve-table-1.jpg" alt=""></div>
           <div class="rtable-texts" (click)="tableSelect(i)">
              <p>Table No: <strong>{{i.resiorvationId}}</strong></p>
-             <p>Name: <strong>{{i.customerName}}</strong></p>
+             <p>Name: <strong>{{i.customerName | titlecase}}</strong></p>
              <p>Date: <strong>{{i.slotDate}}</strong></p>
              <p>No. of Person: <strong>{{i.numberOfPersons}}</strong></p>
-             <p>Session: <strong>{{i.session}}</strong></p>
+             <p>Session: <strong>{{i.session | titlecase}}</strong></p>
              <p>Time Slots: <strong>{{i.availableSlotTime}}</strong></p>
              <p>Phone No.: <strong>+{{i.phoneNumber}}</strong></p>
              <p class="red" *ngIf="i.status === 'booked'">Status: <strong>&bull; {{i.status}}</strong></p>
@@ -49,7 +49,7 @@
                   <a class="pointer" (click)="Getcategory()">orders</a>
                 </li>
                 <li *ngIf="categroyName" class="breadcrumb-item active" aria-current="page">
-                  {{ categroyName }}
+                  {{ categroyName | titlecase }}
                 </li>
               </ol>
             </div>
@@ -66,7 +66,7 @@
                     </div>
                   </div>
                   <a class="pointer"><img [src]="i.fileUrl" alt="File not Found" (load)="onImageLoad()" />
-                    <div class="disac-text">{{ i.productCategoryName }}</div>
+                    <div class="disac-text">{{ i.productCategoryName | titlecase }}</div>
                   </a>
                 </div>
                 <div *ngIf="prodactCategory.length === 0" class="text-center">
@@ -83,7 +83,7 @@
                     </div>
                   </div>
                   <a class="pointer"><img [src]="i.fileUrl" alt="File not Found" (load)="onImageLoad()" />
-                    <div class="disac-text">{{ i.productName }}</div>
+                    <div class="disac-text">{{ i.productName | titlecase}}</div>
                   </a>
                 </div>
               </div>
@@ -116,7 +116,7 @@
                   <tr *ngFor="let i of cartItems; let ind = index">
                     <td>
                       <div class="pro-tb-icopn">
-                        <h4>{{ i.productName }}</h4>
+                        <h4>{{ i.productName | titlecase }}</h4>
                       </div>
                     </td>
                     <td>{{ i.price | number : "1.2-2" }}</td>
