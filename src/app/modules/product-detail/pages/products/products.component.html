@@ -18,13 +18,22 @@
             <div class="rtable-pic" (click)="tableSelect(i)"><img src="../assets/images/reserve-table-1.jpg" alt="">
             </div>
             <div class="rtable-texts" (click)="tableSelect(i)">
-              <p>Table No: <strong>{{i.resiorvationId}}</strong></p>
+              <p>Table No: <strong>{{i.tableNumber}}</strong></p>
               <p>Name: <strong>{{i.customerName | titlecase}}</strong></p>
               <p>Date: <strong>{{i.slotDate | date:'mediumDate' }}</strong></p>
               <p>No. of Person: <strong>{{i.numberOfPersons}}</strong></p>
               <p>Session: <strong>{{i.session | titlecase }}</strong></p>
               <p>Time Slots:
-                <strong>{{i.availableSlotTime}}</strong>
+                <strong *ngIf="i.availableSlotTime === 'TIME_12_00_PM'">12:00 PM</strong>
+                <strong *ngIf="i.availableSlotTime === 'TIME_01_00_PM'">1:00 PM</strong>
+                <strong *ngIf="i.availableSlotTime === 'TIME_02_00_PM'">2:00 PM</strong>
+                <strong *ngIf="i.availableSlotTime === 'TIME_03_00_PM'">3:00 PM</strong>
+                <strong *ngIf="i.availableSlotTime === 'TIME_04_00_PM'">4:00 PM</strong>
+                <strong *ngIf="i.availableSlotTime === 'TIME_07_00_PM'">07:00 PM</strong>
+                <strong *ngIf="i.availableSlotTime === 'TIME_08_00_PM'">08:00 PM</strong>
+                <strong *ngIf="i.availableSlotTime === 'TIME_09_00_PM'">09:00 PM</strong>
+                <strong *ngIf="i.availableSlotTime === 'TIME_10_00_PM'">10:00 PM</strong>
+                <strong *ngIf="i.availableSlotTime === 'TIME_11_00_PM'">11:00 PM</strong>
               </p>
               <p>Phone No.: <strong>+{{i.phoneNumber}}</strong></p>
               <p class="red" *ngIf="i.status === 'booked'">Status: <strong>&bull; {{i.status}}</strong></p>
@@ -32,72 +41,64 @@
               <p class="text-warning" *ngIf="i.status === 'canceled'">Status: <strong>&bull; {{i.status}}</strong></p>
             </div>
           </a>
-          <div class="rdedit" (click)="tableedite(i)"><a><i class="las la-pen"></i></a></div>
+          <div class="rdedit">
+            <a (click)="tableedite(i)"><i class="las la-pen"></i></a>
+            <a (click)="tabledelete(i)"><i class="las la-trash-alt"></i></a>
+          </div>
+
         </div>
       </div>
     </div>
   </div>
   <div class="product-tblslist" *ngIf="reservationData.length === 0">
     <div class="row">
-      <div class="col-md-6 col-sm-12">
+      <div class="col-md-6 col-sm-12" *ngFor="let i of tdata">
         <div class="inner-prodtcol d-flex">
           <div class="rtable-pic"><img src="../assets/images/reserve-table-1.jpg" alt="">
             <div class="text-center">
-            <p>Table No: <strong>01</strong></p>
-             <p>Date: <strong>1-08-2023</strong></p>
-             <p>Capacity: <strong>10</strong></p>
-              </div>
+              <p>Table No: <strong>{{i.tableNumber}}</strong></p>
+              <p>Date: <strong>{{i.date | date:'mediumDate'}}</strong></p>
+              <p>Capacity: <strong>{{i.capacity}}</strong></p>
+            </div>
           </div>
           <div class="rtable-texts">
-             <p>Session: <strong>Lunch</strong></p>
-             <p>Available Time Slots:</p>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1" checked>
-              <label class="form-check-label" for="inlineCheckbox1">12:00 PM</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2" checked>
-              <label class="form-check-label" for="inlineCheckbox2">01:00 PM</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-              <label class="form-check-label" for="inlineCheckbox3">02:00 PM</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option4">
-              <label class="form-check-label" for="inlineCheckbox4">03:00 PM</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option5">
-              <label class="form-check-label" for="inlineCheckbox5">04:00 PM</label>
+            <p>Session: <strong>{{i.lunchSession | titlecase}}</strong></p>
+            <p>Available Time Slots:</p>
+            <div class="form-check form-check-inline" *ngFor="let item of i.lunchSlots">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1"
+                [checked]="item.booked ? true : false" disabled>
+              <label class="form-check-label" for="inlineCheckbox1" *ngIf="item.slotTime === 'TIME_12_00_PM' ">12:00
+                PM</label>
+              <label class="form-check-label" for="inlineCheckbox1" *ngIf="item.slotTime === 'TIME_01_00_PM' ">1:00
+                PM</label>
+              <label class="form-check-label" for="inlineCheckbox1" *ngIf="item.slotTime === 'TIME_02_00_PM' ">2:00
+                PM</label>
+              <label class="form-check-label" for="inlineCheckbox1" *ngIf="item.slotTime === 'TIME_03_00_PM' ">3:00
+                PM</label>
+              <label class="form-check-label" for="inlineCheckbox1" *ngIf="item.slotTime === 'TIME_04_00_PM' ">4:00
+                PM</label>
             </div>
             <hr>
-            <p>Session: <strong>Dinner</strong></p>
+            <p>Session: <strong>{{i.dinnerSession | titlecase}}</strong></p>
             <p>Available Time Slots:</p>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6">
-              <label class="form-check-label" for="inlineCheckbox6">07:00 PM</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option7">
-              <label class="form-check-label" for="inlineCheckbox7">08:00 PM</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox8" value="option8" checked>
-              <label class="form-check-label" for="inlineCheckbox8">09:00 PM</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox9" value="option9">
-              <label class="form-check-label" for="inlineCheckbox9">10:00 PM</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" type="checkbox" id="inlineCheckbox10" value="option10">
-              <label class="form-check-label" for="inlineCheckbox10">11:00 PM</label>
+            <div class="form-check form-check-inline" *ngFor="let item of i.dinnerSlots">
+              <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option6"
+                [checked]="item.booked ? true : false" disabled>
+              <label class="form-check-label" for="inlineCheckbox6" *ngIf="item.slotTime === 'TIME_07_00_PM' ">07:00
+                PM</label>
+              <label class="form-check-label" for="inlineCheckbox6" *ngIf="item.slotTime === 'TIME_08_00_PM' ">08:00
+                PM</label>
+              <label class="form-check-label" for="inlineCheckbox6" *ngIf="item.slotTime === 'TIME_09_00_PM' ">09:00
+                PM</label>
+              <label class="form-check-label" for="inlineCheckbox6" *ngIf="item.slotTime === 'TIME_10_00_PM' ">10:00
+                PM</label>
+              <label class="form-check-label" for="inlineCheckbox6" *ngIf="item.slotTime === 'TIME_11_00_PM' ">11:00
+                PM</label>
             </div>
           </div>
         </div>
       </div>
-     </div>
+    </div>
   </div>
   <div class="productdt-wrapper-sec" *ngIf="!istable">
     <div class="row">
@@ -130,7 +131,7 @@
                     </div>
                   </div>
                   <a class="pointer"><img [src]="i.fileUrl" alt="File not Found" (load)="onImageLoad()" />
-                    <div class="disac-text">{{ i.productCategoryName  | titlecase}}</div>
+                    <div class="disac-text">{{ i.productCategoryName | titlecase}}</div>
                   </a>
                 </div>
                 <div *ngIf="prodactCategory.length === 0" class="text-center">
@@ -160,7 +161,7 @@
       </div>
       <div class="col-md-4">
         <div class="tablecustomer-dt">
-          <p><i class="las la-utensils"></i> Table No: <strong># {{tableId}}</strong></p>
+          <p><i class="las la-utensils"></i> Table No: <strong># {{tblno}}</strong></p>
           <p>
             <i class="las la-user-tie"></i> Customer Phone No :
             <strong>{{mobileno}}</strong>

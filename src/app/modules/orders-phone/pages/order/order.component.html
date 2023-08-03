@@ -7,27 +7,44 @@
   </div>
 </ng-container>
 <app-loading-spin *ngIf="isProceess"></app-loading-spin>
-<div class="inner-middle-content">
+<div class="inner-middle-content scroll pt-1">
   <div class="product-tblslist" *ngIf="istable">
     <div class="row">
-      <div class="col-md-6 col-sm-12" *ngFor="let i of reservationData" >
-        <div class="inner-prodtcol pointer"><a >
-          <div class="rtable-pic" (click)="tableSelect(i)"><img src="../assets/images/reserve-table-1.jpg" alt=""></div>
-          <div class="rtable-texts" (click)="tableSelect(i)">
-             <p>Table No: <strong>{{i.resiorvationId}}</strong></p>
-             <p>Name: <strong>{{i.customerName | titlecase}}</strong></p>
-             <p>Date: <strong>{{i.slotDate}}</strong></p>
-             <p>No. of Person: <strong>{{i.numberOfPersons}}</strong></p>
-             <p>Session: <strong>{{i.session | titlecase}}</strong></p>
-             <p>Time Slots: <strong>{{i.availableSlotTime}}</strong></p>
-             <p>Phone No.: <strong>+{{i.phoneNumber}}</strong></p>
-             <p class="red" *ngIf="i.status === 'booked'">Status: <strong>&bull; {{i.status}}</strong></p>
-             <p class="green" *ngIf="i.status === 'open'">Status: <strong>&bull; {{i.status}}</strong></p>
-             <p class="text-warning" *ngIf="i.status === 'canceled'">Status: <strong>&bull; {{i.status}}</strong></p>
+        <div class="col-md-6 col-sm-12" *ngFor="let i of reservationData">
+          <div class="inner-prodtcol pointer"><a>
+              <div class="rtable-pic" (click)="tableSelect(i)"><img src="../assets/images/reserve-table-1.jpg" alt="">
+              </div>
+              <div class="rtable-texts" (click)="tableSelect(i)">
+                <p>Table No: <strong>{{i.tableNumber}}</strong></p>
+                <p>Name: <strong>{{i.customerName | titlecase}}</strong></p>
+                <p>Date: <strong>{{i.slotDate | date:'mediumDate' }}</strong></p>
+                <p>No. of Person: <strong>{{i.numberOfPersons}}</strong></p>
+                <p>Session: <strong>{{i.session | titlecase }}</strong></p>
+                <p>Time Slots:
+                  <strong *ngIf="i.availableSlotTime === 'TIME_12_00_PM'">12:00 PM</strong>
+                  <strong *ngIf="i.availableSlotTime === 'TIME_01_00_PM'">1:00 PM</strong>
+                  <strong *ngIf="i.availableSlotTime === 'TIME_02_00_PM'">2:00 PM</strong>
+                  <strong *ngIf="i.availableSlotTime === 'TIME_03_00_PM'">3:00 PM</strong>
+                  <strong *ngIf="i.availableSlotTime === 'TIME_04_00_PM'">4:00 PM</strong>
+                  <strong *ngIf="i.availableSlotTime === 'TIME_07_00_PM'">07:00 PM</strong>
+                  <strong *ngIf="i.availableSlotTime === 'TIME_08_00_PM'">08:00 PM</strong>
+                  <strong *ngIf="i.availableSlotTime === 'TIME_09_00_PM'">09:00 PM</strong>
+                  <strong *ngIf="i.availableSlotTime === 'TIME_10_00_PM'">10:00 PM</strong>
+                  <strong *ngIf="i.availableSlotTime === 'TIME_11_00_PM'">11:00 PM</strong>
+                </p>
+                <p>Phone No.: <strong>+{{i.phoneNumber}}</strong></p>
+                <p class="red" *ngIf="i.status === 'booked'">Status: <strong>&bull; {{i.status}}</strong></p>
+                <p class="green" *ngIf="i.status === 'open'">Status: <strong>&bull; {{i.status}}</strong></p>
+                <p class="text-warning" *ngIf="i.status === 'canceled'">Status: <strong>&bull; {{i.status}}</strong></p>
+              </div>
+            </a>
+            <div class="rdedit">
+              <a (click)="tableedite(i)"><i class="las la-pen"></i></a>
+              <a (click)="tabledelete(i)"><i class="las la-trash-alt"></i></a>
+            </div>
+
           </div>
-          </a><div class="rdedit" (click)="tableedite(i)"><a ><i class="las la-pen"></i></a></div>
         </div>
-      </div>
     </div>
   </div>
   <div *ngIf="reservationData.length === 0 && !isProceess" class="d-flex align-items-center justify-content-center" style="height: 80vh;">
@@ -49,7 +66,7 @@
                   <a class="pointer" (click)="Getcategory()">orders</a>
                 </li>
                 <li *ngIf="categroyName" class="breadcrumb-item active" aria-current="page">
-                  {{ categroyName | titlecase }}
+                  {{ categroyName }}
                 </li>
               </ol>
             </div>
@@ -66,7 +83,7 @@
                     </div>
                   </div>
                   <a class="pointer"><img [src]="i.fileUrl" alt="File not Found" (load)="onImageLoad()" />
-                    <div class="disac-text">{{ i.productCategoryName | titlecase }}</div>
+                    <div class="disac-text">{{ i.productCategoryName }}</div>
                   </a>
                 </div>
                 <div *ngIf="prodactCategory.length === 0" class="text-center">
@@ -83,7 +100,7 @@
                     </div>
                   </div>
                   <a class="pointer"><img [src]="i.fileUrl" alt="File not Found" (load)="onImageLoad()" />
-                    <div class="disac-text">{{ i.productName | titlecase}}</div>
+                    <div class="disac-text">{{ i.productName }}</div>
                   </a>
                 </div>
               </div>
@@ -116,7 +133,7 @@
                   <tr *ngFor="let i of cartItems; let ind = index">
                     <td>
                       <div class="pro-tb-icopn">
-                        <h4>{{ i.productName | titlecase }}</h4>
+                        <h4>{{ i.productName }}</h4>
                       </div>
                     </td>
                     <td>{{ i.price | number : "1.2-2" }}</td>

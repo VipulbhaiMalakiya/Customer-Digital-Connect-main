@@ -32,8 +32,12 @@ export class ProductsComponent implements OnInit {
   public isLoading = true;
   discount: number = 0;
   tableId: number = 0;
+  tblno : number = 0
   isprodact: boolean = false;
   mobileno: number = 0;
+  tdata:any = [];
+  lsolt:any = [];
+  dslot:any = [];
   istable: boolean = true;
   reservationData?:any= [];
   constructor(
@@ -68,13 +72,20 @@ export class ProductsComponent implements OnInit {
     this.getCategory();
     this.isprodact = false;
     this.getCartItems();
-
+    this.getTable();
   }
-
   onReservationList(){
     this.getreservation();
   }
-
+  getTable(){
+    this.isProceess = true;
+    this.masterName = '/restaurent-table/table/slot';
+    this.apiService.getAll(this.masterName).subscribe((data) => {
+      this.tdata = data.data;
+      this.isProceess = false;
+      this.cd.detectChanges();
+    });
+  }
   getreservation() {
     this.isProceess = true;
     this.masterName = '/reservation';
@@ -267,6 +278,7 @@ export class ProductsComponent implements OnInit {
 
   tableSelect(i: any) {
     this.tableId = i.resiorvationId;
+    this.tblno = i.tableNumber;
     this.mobileno = i.phoneNumber
     this.istable = false;
 
@@ -314,6 +326,36 @@ export class ProductsComponent implements OnInit {
       .catch(() => {});
   }
 
+  tabledelete(i:any){
+    this.isProceess = true;
+    const modalRef = this.modalService.open(ConfirmationDialogModalComponent, { size: "sm", centered: true, backdrop: "static" });
+    if (modalRef) {
+      this.isProceess = false;
+    }
+    else {
+      this.isProceess = false;
+    }
+    var componentInstance = modalRef.componentInstance as ConfirmationDialogModalComponent;
+    componentInstance.message = "Are you sure you want to reservation cancel?";
+    modalRef.result.then((canDelete: boolean) => {
+      if (canDelete) {
+        this.masterName = `/reservation/cancelReservation/resiorvationId/${i?.resiorvationId}`;
+        let updateData: any = {
+          url: this.masterName
+        }
+        this.isProceess = true;
+        this.apiService.update(updateData).pipe(take(1)).subscribe(res => {
+          this.toastr.success(res.message);
+          this.isProceess = false;
+          this.getreservation();
+        }, error => {
+          this.toastr.error(error.message);
+          this.isProceess = false;
+        });
+
+      }
+    }).catch(() => { });
+  }
 
   onAdd() {
     this.isProceess = true;

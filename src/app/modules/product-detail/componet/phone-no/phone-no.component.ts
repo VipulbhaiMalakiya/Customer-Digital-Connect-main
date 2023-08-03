@@ -32,7 +32,7 @@ export class PhoneNoComponent  implements OnInit {
         Person: this._customersMaster.numberOfPersons,
         Session: this._customersMaster.session,
         TimeSlots: this._customersMaster.availableSlotTime,
-        status:this._customersMaster.status
+        // status:this._customersMaster.status
       });
     }
   }
@@ -64,7 +64,7 @@ export class PhoneNoComponent  implements OnInit {
       Session: [, [Validators.required]],
       TimeSlots: ['', [Validators.required]],
       id:[''],
-      status:['', [Validators.required]]
+      // status:['', [Validators.required]]
     });
   }
 

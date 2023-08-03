@@ -483,30 +483,41 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         phone = this.contact;
       }
       var request = {
-        recipient_whatsapp: phone,
-        message_type: 'notes',
-        content: form.value.note,
-        formId: this.userData?.userId,
+        messaging_product: 'whatsapp',
+        recipient_type: 'individual',
+        to: this.contactinfo?.phoneNo,
+        type: 'notes',
+        fromId: this.userData?.userId,
+        assignedto: this.userData?.userId,
+        names: this.contactinfo?.fullName || null,
+        text: {
+          preview_url: false,
+          body: form.value.note,
+        },
       };
-      this.isProceess = true;
+      let formData = new FormData();
+      formData.append('messageEntry', JSON.stringify(request));
+      // this.isProceess = true;
       this.subscription = this.whatsappService
-        .sendnotesMessage(request)
+        .sendWhatsAppMessage(formData)
         .pipe(take(1))
         .subscribe(
           (response) => {
-            this.toastr.success('Notes sent successfully!');
+            let data: any = response;
+            this.toastr.success(data.message);
             this.isProceess = false;
             this.showEmojiPicker = false;
             form.reset();
             this.scrollToBottom();
           },
           (error) => {
-            this.toastr.error('Error sending Notes!');
+            this.toastr.error(error.error.message);
             this.isProceess = false;
             form.reset();
           }
         );
     }
+
   }
 
   submitForm(form: any) {

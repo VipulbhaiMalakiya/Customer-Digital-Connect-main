@@ -67,13 +67,49 @@ export class OrderComponent implements OnInit {
 
   getreservation() {
     this.isProceess = true;
-    this.masterName = '/reservation';
+    // this.masterName = '/reservation';
+    this.masterName = `/reservation/byMobileNumber?mobileNumber=${this.phoneNo}`;
     this.apiService.getAll(this.masterName).subscribe((data) => {
       this.reservationData = data.data;
       this.isProceess = false;
       this.cd.detectChanges();
-    });
+    }, error => {
+      this.toastr.error(error.error.message);
+      this.isProceess = false;
+    });;
   }
+
+  tabledelete(i:any){
+    this.isProceess = true;
+    const modalRef = this.modalService.open(ConfirmationDialogModalComponent, { size: "sm", centered: true, backdrop: "static" });
+    if (modalRef) {
+      this.isProceess = false;
+    }
+    else {
+      this.isProceess = false;
+    }
+    var componentInstance = modalRef.componentInstance as ConfirmationDialogModalComponent;
+    componentInstance.message = "Are you sure you want to reservation cancel?";
+    modalRef.result.then((canDelete: boolean) => {
+      if (canDelete) {
+        this.masterName = `/reservation/cancelReservation/resiorvationId/${i?.resiorvationId}`;
+        let updateData: any = {
+          url: this.masterName
+        }
+        this.isProceess = true;
+        this.apiService.update(updateData).pipe(take(1)).subscribe(res => {
+          this.toastr.success(res.message);
+          this.isProceess = false;
+          this.getreservation();
+        }, error => {
+          this.toastr.error(error.message);
+          this.isProceess = false;
+        });
+
+      }
+    }).catch(() => { });
+  }
+
   tableSelect(i:any){
     this.tableId = i?.resiorvationId;
     this.istable = false;
