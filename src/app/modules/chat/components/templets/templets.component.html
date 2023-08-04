@@ -1,0 +1,145 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5" id="inboxtemplateLabel">Select Template</h1>
+    <button type="button" (click)="onCancel()"  class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body p-0">
+    <div class="modaltemplate-body">
+      <div class="row">
+        <div class="col-md-3 pr-0">
+
+          <div class="tempsearch">
+            <form class="tempsearch-form" name="cform" method="post">
+              <div class="form-group">
+                <input type="text" class="form-control" name="name" id="" placeholder="Search" required="">
+              </div>
+              <button type="submit" class="search-ico"><i class="la la-search"></i></button>
+            </form>
+          </div>
+
+          <div class="templateleft-tbs">
+
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+
+              <div class="temp-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home"
+                role="tab" aria-controls="v-pills-home" aria-selected="true">Acknowledgment <br> (English)</div>
+
+              <div class="temp-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile"
+                role="tab" aria-controls="v-pills-profile" aria-selected="false">Training Campaign <br> (English (US))
+              </div>
+
+              <div class="temp-link" id="v-pills-messages-tab" data-bs-toggle="pill" data-bs-target="#v-pills-messages"
+                role="tab" aria-controls="v-pills-messages" aria-selected="false">Welcome_Message_2_3t <br> (English)
+              </div>
+
+              <div class="temp-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings"
+                role="tab" aria-controls="v-pills-settings" aria-selected="false">Massage_2 (English)</div>
+
+              <div class="temp-link" id="v-pills-temp5-tab" data-bs-toggle="pill" data-bs-target="#v-pills-temp5"
+                role="tab" aria-controls="v-pills-temp5" aria-selected="true">Acknowledgment <br> (English)</div>
+
+              <div class="temp-link" id="v-pills-temp6-tab" data-bs-toggle="pill" data-bs-target="#v-pills-temp6"
+                role="tab" aria-controls="v-pills-temp6" aria-selected="false">Training Campaign <br> (English (US))
+              </div>
+
+              <div class="temp-link" id="v-pills-temp7-tab" data-bs-toggle="pill" data-bs-target="#v-pills-temp7"
+                role="tab" aria-controls="v-pills-temp7" aria-selected="false">Welcome_Message_2_3t <br> (English)</div>
+
+              <div class="temp-link" id="v-pills-temp8-tab" data-bs-toggle="pill" data-bs-target="#v-pills-temp8"
+                role="tab" aria-controls="v-pills-temp8" aria-selected="false">Massage_2 (English)</div>
+
+
+
+
+            </div>
+
+          </div>
+
+        </div><!--col-md-3-->
+
+        <div class="col-md-9">
+          <div class="templateright-col">
+
+            <h3 class="modalpg-title">Message</h3>
+
+            <div class="tab-content" id="v-pills-tabContent">
+
+              <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
+                aria-labelledby="v-pills-home-tab">
+                <div class="template-card">
+                  <div class="templ-col">
+                    <p><strong>Header :</strong></p>
+                    <p>Thanks for sharing your feedback.</p>
+                  </div>
+
+                  <div class="templ-col">
+                    <p><strong>Body :</strong></p>
+                    <p>This has been received by CEO Desk and we are looking into this.</p>
+                  </div>
+                </div>
+
+                <div class="template-card2">
+                  <div class="sub3">Header</div>
+
+                  <div class="inner-template-card2">
+                    <div class="row">
+
+                      <div class="col-sm-6 col-md-4">
+                        <div class="tempuploaded-pic">
+                          <a href="../assets/images/ceo-template.jpeg" target="_blank"><img src="../assets/images/ceo-template.jpeg"
+                              alt=""></a>
+                          <p><a href="#">Remove Image</a></p>
+                        </div>
+                      </div>
+
+                      <div class="col-sm-6 col-md-8">
+
+                        <div class="tempupl-text">
+                          <div class="sc-eqUAAy">
+                            <label>Upload another Image</label>
+                            <input class="form-control form-control-sm h-auto" id="formFileSm" type="file">
+                            <p>(or)</p>
+                            <label>Add media URL</label>
+                            <input type="text" value="" class="form-control h-auto">
+                            <p>(send personalized media)</p>
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+                </div>
+
+              </div><!--tab-pane-->
+
+              <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+                <div class="template-card">
+                  <div class="templ-col">
+                    <p><strong>Header :</strong></p>
+                    <p>Thanks for sharing your feedback.</p>
+                  </div>
+
+                  <div class="templ-col">
+                    <p><strong>Body :</strong></p>
+                    <p>This has been received by CEO Desk and we are looking into this.</p>
+                  </div>
+                </div>
+              </div><!--tab-pane-->
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+
+    </div><!--modaltemplate-body-->
+
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="common-btn">See Preview and Send</button>
+  </div>
+</div>

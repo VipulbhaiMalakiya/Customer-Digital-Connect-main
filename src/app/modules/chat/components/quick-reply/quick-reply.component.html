@@ -7,7 +7,7 @@
     <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
   </div>
   <div class="modal-body p-0">
-
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
     <div class="quick-box-body">
       <ng-container *ngFor="let i of quickReplydata">
         <div class="quick-header-text">/{{i.name}}</div>
@@ -15,7 +15,9 @@
           <p>{{i.description}}</p>
         </div>
       </ng-container>
-
+      <div *ngIf="quickReplydata.length === 0" class="text-center">
+        <Strong class="text-danger">No records found</Strong>
+      </div>
     </div>
 
   </div>

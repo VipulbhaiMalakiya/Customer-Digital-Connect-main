@@ -30,6 +30,7 @@ import { DocumentComponent } from '../../components/document/document.component'
 import { VideoComponent } from '../../components/video/video.component';
 import { LocationDetailsComponent } from '../../components/location-details/location-details.component';
 import { QuickReplyComponent } from '../../components/quick-reply/quick-reply.component';
+import { TempletsComponent } from '../../components/templets/templets.component';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -1000,5 +1001,20 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         }
       })
       .catch(() => {});
+  }
+  getTemplates(){
+    this.isProceess = true;
+    this.showupload = false;
+    this.showEmojiPicker = false;
+    const modalRef = this.modalService.open(TempletsComponent, {
+      size: 'lg',
+      centered: true,
+      backdrop: 'static',
+    });
+    if (modalRef) {
+      this.isProceess = false;
+    } else {
+      this.isProceess = false;
+    }
   }
 }

@@ -13,7 +13,7 @@ import { AddEditeQuickReplayComponent } from 'src/app/modules/quick-replay/compo
   styleUrls: ['./quick-reply.component.css']
 })
 export class QuickReplyComponent {
-  isProceess: boolean = false;
+  isProceess: boolean = true;
   masterName?: any;
   quickReplydata:any = [];
   constructor(
@@ -23,10 +23,7 @@ export class QuickReplyComponent {
     private cd: ChangeDetectorRef,
     private router: Router,
     private apiService: ApiService,) {
-    this.isProceess = false;
-
     this.fatchData();
-
   }
 
   fatchData(){

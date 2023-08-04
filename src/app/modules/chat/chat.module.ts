@@ -14,6 +14,7 @@ import { DocumentComponent } from './components/document/document.component';
 import { VideoComponent } from './components/video/video.component';
 import { LocationDetailsComponent } from './components/location-details/location-details.component';
 import { QuickReplyComponent } from './components/quick-reply/quick-reply.component';
+import { TempletsComponent } from './components/templets/templets.component';
 
 @NgModule({
     declarations: [
@@ -27,6 +28,7 @@ import { QuickReplyComponent } from './components/quick-reply/quick-reply.compon
         VideoComponent,
         LocationDetailsComponent,
         QuickReplyComponent,
+        TempletsComponent,
 
     ],
     imports: [
