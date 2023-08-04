@@ -13,6 +13,7 @@ import { AudioComponent } from './components/audio/audio.component';
 import { DocumentComponent } from './components/document/document.component';
 import { VideoComponent } from './components/video/video.component';
 import { LocationDetailsComponent } from './components/location-details/location-details.component';
+import { QuickReplyComponent } from './components/quick-reply/quick-reply.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import { LocationDetailsComponent } from './components/location-details/location
         DocumentComponent,
         VideoComponent,
         LocationDetailsComponent,
+        QuickReplyComponent,
 
     ],
     imports: [

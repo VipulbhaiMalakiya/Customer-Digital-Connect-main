@@ -162,7 +162,7 @@
                 </div>
                 <div class="chat-time ms-auto text-end">
                   <div class="mb-1">{{i.time | dateAgo}}</div>
-                  <div class="un-read" *ngIf="i.messageStatus !== 'read'">5</div>
+                  <div class="un-read" *ngIf="i.messageStatus !== 'read' && i.type === 'Receiver' ">5</div>
                 </div>
               </li>
             </ul>
@@ -206,11 +206,10 @@
                     {{i.lastMsg}}
                   </div>
                   <div class="last-msg font-small one-line">{{i.customerLabel}}</div>
-
                 </div>
                 <div class="chat-time ms-auto text-end">
                   <div class="mb-1"> {{i.time | dateAgo}}</div>
-                  <!-- <div class="un-read">{{i.count}}</div> -->
+                  <div class="un-read" *ngIf="i.messageStatus !== 'read' && i.type === 'Receiver' ">5</div>
                 </div>
               </li>
             </ul>
@@ -687,9 +686,6 @@
             </ng-container>
           </ul>
         </div>
-        <ng-container (appOutsideClick)="onOutsideClick()">
-
-        </ng-container>
         <div class="chat-write-box">
           <div class="chatwrite-top">
             <div class="inner-chatwrite-top">
@@ -704,31 +700,11 @@
               <div class="chatwrite-emojisico">
                 <div class="chat-emoji-ico" (click)="toggleEmojiPicker()"><i class="las la-smile"></i></div>
                 <div class="chat-attach-ico" (click)="toggleupload()"><i class="las la-paperclip"></i></div>
-                <div class="chat-cart-ico" (click)=" quickReply()"><i class="las la-sms"></i></div>
-                <div class="chat-template-ico">
-                  <svg fill="#000000" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                      <defs>
-                        <style>
-                          .cls-1 {
-                            fill: none;
-                          }
-                        </style>
-                      </defs>
-                      <title>template</title>
-                      <path d="M26,6v4H6V6H26m0-2H6A2,2,0,0,0,4,6v4a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V6a2,2,0,0,0-2-2Z">
-                      </path>
-                      <path d="M10,16V26H6V16h4m0-2H6a2,2,0,0,0-2,2V26a2,2,0,0,0,2,2h4a2,2,0,0,0,2-2V16a2,2,0,0,0-2-2Z">
-                      </path>
-                      <path
-                        d="M26,16V26H16V16H26m0-2H16a2,2,0,0,0-2,2V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V16a2,2,0,0,0-2-2Z">
-                      </path>
-                      <rect class="cls-1" width="32" height="32"></rect>
-                    </g>
-                  </svg>
-                </div>
+                <div class="chat-quickrply-ico" title="Quick Reply" (click)=" quickReply()" ><img src="../assets/images/quick-reply-icon.png" alt=""></div>
+
+                <div class="chat-template-ico" title="Templates" data-bs-toggle="modal" data-bs-target="#inboxtemplate">
+                  <svg fill="#000000" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.cls-1{fill:none;}</style></defs><title>template</title><path d="M26,6v4H6V6H26m0-2H6A2,2,0,0,0,4,6v4a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V6a2,2,0,0,0-2-2Z"></path><path d="M10,16V26H6V16h4m0-2H6a2,2,0,0,0-2,2V26a2,2,0,0,0,2,2h4a2,2,0,0,0,2-2V16a2,2,0,0,0-2-2Z"></path><path d="M26,16V26H16V16H26m0-2H16a2,2,0,0,0-2,2V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V16a2,2,0,0,0-2-2Z"></path><rect class="cls-1" width="32" height="32"></rect></g></svg>
+                  </div>
                 <div class="chat-cart-ico"><i class="las la-shopping-cart"></i></div>
               </div>
               <div class="attach-opentray" *ngIf="showupload">

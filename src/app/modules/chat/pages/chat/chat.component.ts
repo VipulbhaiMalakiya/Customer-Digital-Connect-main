@@ -29,6 +29,7 @@ import { AudioComponent } from '../../components/audio/audio.component';
 import { DocumentComponent } from '../../components/document/document.component';
 import { VideoComponent } from '../../components/video/video.component';
 import { LocationDetailsComponent } from '../../components/location-details/location-details.component';
+import { QuickReplyComponent } from '../../components/quick-reply/quick-reply.component';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -46,7 +47,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   chatname: any;
   label: any;
   Userinfo?: any;
-  quickReplydata:any = [];
+  quickReplydata: any = [];
   closedCount?: any;
   messageList: string[] = [];
   private socket$!: WebSocketSubject<any>;
@@ -529,26 +530,22 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   quickReply() {
-    this.message = " ";
-    this.isProceess = false;
+    this.isProceess = true;
     this.showupload = false;
-    this.masterName = '/quickreplies';
-    this.subscription = this.apiService
-      .getAll(this.masterName)
-      .pipe(take(1))
-      .subscribe(
-        (data) => {
-          if (data) {
-            this.quickReplydata = data.data;
-            this.message = this.quickReplydata[0].description;
-            this.isProceess = false;
-            this.cd.detectChanges();
-          }
-        },
-        (error) => {
-          this.isProceess = false;
-        }
-      );
+    this.showEmojiPicker = false;
+    const modalRef = this.modalService.open(QuickReplyComponent, {
+      size: 'md',
+      centered: true,
+      backdrop: 'static',
+    });
+    if (modalRef) {
+      this.isProceess = false;
+    } else {
+      this.isProceess = false;
+    }
+    modalRef.result.then((data: any) => {
+      this.message = data;
+    }).catch(() => {});
   }
   submitForm(form: any) {
     if (form.valid) {
