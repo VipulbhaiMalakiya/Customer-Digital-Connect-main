@@ -1,10 +1,75 @@
-import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { capitalLetterValidator } from 'src/app/shared/directives/startsWithCapital';
+import { labelMasterModel } from './../../../../_models/labels';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import { quickrepliesModel } from 'src/app/_models/quickreplies';
 
 @Component({
   selector: 'app-add-edite-quick-replay',
   templateUrl: './add-edite-quick-replay.component.html',
-  styleUrls: ['./add-edite-quick-replay.component.css']
+  styleUrls: ['./add-edite-quick-replay.component.css'],
 })
 export class AddEditeQuickReplayComponent {
+  private _labelsMaster: quickrepliesModel | undefined;
+  isProceess: boolean = false;
+  data: any;
+  issueForm: any;
 
+  get title(): string {
+    return this._labelsMaster ? 'Edit Quick Replay' : ' Add Quick Replay';
+  }
+
+  set issuesMaster(value: labelMasterModel) {
+    this._labelsMaster = value;
+    this.data = value;
+    if (this._labelsMaster) {
+      this.issueForm.patchValue({
+        name: this._labelsMaster.name,
+        description: this._labelsMaster.description,
+      });
+    }
+  }
+
+  constructor(
+    private activeModal: NgbActiveModal,
+    private formBuilder: FormBuilder,
+    private cd: ChangeDetectorRef
+  ) {
+    this.issueForm = this.formBuilder.group({
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(30),
+          noEmptySpaces,
+          capitalLetterValidator(),
+          Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$'),
+        ],
+      ],
+      description: ['', [Validators.required, noEmptySpaces]],
+    });
+  }
+
+  onCancel() {
+    this.activeModal.dismiss();
+  }
+
+  onSubmit() {
+    if (this.issueForm.valid) {
+      this.activeModal.close(this.issueForm.value);
+    } else {
+      this.issueForm.controls['name'].markAsTouched();
+      this.issueForm.controls['description'].markAsTouched();
+    }
+  }
+
+  shouldShowError(controlName: string, errorName: string) {
+    return (
+      this.issueForm.controls[controlName].touched &&
+      this.issueForm.controls[controlName].hasError(errorName)
+    );
+  }
 }
