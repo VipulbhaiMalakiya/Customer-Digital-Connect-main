@@ -176,7 +176,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           const audio = new Audio(
             '../assets/sound/Google Chat - Notification Tone.mp3'
           );
-          audio.play();
+          // audio.play();
         }
       });
     }
@@ -529,7 +529,9 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   quickReply() {
-    this.isProceess = true;
+    this.message = " ";
+    this.isProceess = false;
+    this.showupload = false;
     this.masterName = '/quickreplies';
     this.subscription = this.apiService
       .getAll(this.masterName)
@@ -538,8 +540,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         (data) => {
           if (data) {
             this.quickReplydata = data.data;
-            console.log(this.quickReplydata);
-
+            this.message = this.quickReplydata[0].description;
             this.isProceess = false;
             this.cd.detectChanges();
           }
