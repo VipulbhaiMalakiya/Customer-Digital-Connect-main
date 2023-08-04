@@ -18,7 +18,7 @@ import { ViewQuickReplayComponent } from '../../components/view-quick-replay/vie
 @Component({
   selector: 'app-quick-replay',
   templateUrl: './quick-replay.component.html',
-  styleUrls: ['./quick-replay.component.css']
+  styleUrls: ['./quick-replay.component.css'],
 })
 export class QuickReplayComponent implements OnInit, OnDestroy {
   isProceess: boolean = true;
@@ -184,7 +184,8 @@ export class QuickReplayComponent implements OnInit, OnDestroy {
     } else {
       this.isProceess = false;
     }
-    var componentInstance = modalRef.componentInstance as ViewQuickReplayComponent;
+    var componentInstance =
+      modalRef.componentInstance as ViewQuickReplayComponent;
     componentInstance.issuesMaster = dataItem;
   }
 
@@ -193,14 +194,10 @@ export class QuickReplayComponent implements OnInit, OnDestroy {
       return {
         Id: x.id || '',
         Name: x.name || '',
-        Description:x.description || ''
+        Description: x.description || '',
       };
     });
-    const headers = [
-      'Id',
-      'Name',
-      'Description'
-    ];
+    const headers = ['Id', 'Name', 'Description'];
     this.appService.exportAsExcelFile(exportData, 'quick-replay', headers);
   }
 
@@ -218,8 +215,7 @@ export class QuickReplayComponent implements OnInit, OnDestroy {
     }
     var componentInstance =
       modalRef.componentInstance as ConfirmationDialogModalComponent;
-    componentInstance.message =
-      'Are you sure you want to delete this message?';
+    componentInstance.message = 'Are you sure you want to delete this message?';
     modalRef.result
       .then((canDelete: boolean) => {
         if (canDelete) {

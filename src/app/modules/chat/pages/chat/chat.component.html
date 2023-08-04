@@ -704,6 +704,7 @@
               <div class="chatwrite-emojisico">
                 <div class="chat-emoji-ico" (click)="toggleEmojiPicker()"><i class="las la-smile"></i></div>
                 <div class="chat-attach-ico" (click)="toggleupload()"><i class="las la-paperclip"></i></div>
+                <div class="chat-cart-ico" (click)=" quickReply()"><i class="las la-sms"></i></div>
                 <div class="chat-template-ico">
                   <svg fill="#000000" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -760,18 +761,19 @@
                           <p>Documation</p>
                         </a></div>
                     </div>
-                    <!--
-                    <div class="col-sm-4">
-                      <div class="atthico cursur"><a><img src="../assets/images/atticon-4.jpg" alt="">
-                          <p>Contact</p>
-                        </a></div>
-                    </div> -->
+
 
                     <div class="col-sm-4" (click)="onLocationAdd()">
                       <div class="atthico cursur"><a><img src="../assets/images/atticon-5.jpg" alt="">
                           <p>Location</p>
                         </a></div>
                     </div>
+
+                    <!-- <div class="col-sm-4">
+                      <div class="atthico cursur"><a><img src="../assets/images/atticon-4.jpg" alt="">
+                          <p>Quick Replay</p>
+                        </a></div>
+                    </div> -->
 
                   </div>
 

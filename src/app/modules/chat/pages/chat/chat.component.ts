@@ -46,6 +46,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   chatname: any;
   label: any;
   Userinfo?: any;
+  quickReplydata:any = [];
   closedCount?: any;
   messageList: string[] = [];
   private socket$!: WebSocketSubject<any>;
@@ -159,10 +160,9 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.socket$.subscribe((data: MessageData) => {
         this.messagestates = data.messageStatus;
 
-        if(data.mobileNo === this.contact){
+        if (data.mobileNo === this.contact) {
           this.receivedData.push(data);
-        }
-        else if (data.mobileNo !== this.contact){
+        } else if (data.mobileNo !== this.contact) {
           this.getContactList();
         }
 
@@ -259,8 +259,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   scrollToBottom(): void {
     try {
-      // this.chatContainer.nativeElement.scrollTop =
-      //   this.chatContainer.nativeElement.scrollHeight;
       const chatContainerEl = this.chatContainer.nativeElement;
       chatContainerEl.scrollTop = chatContainerEl.scrollHeight;
     } catch (err) {}
@@ -449,30 +447,41 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   onlabelRemove(e: any) {
     this.label = '';
     this.isProceess = true;
-    const modalRef = this.modalService.open(ConfirmationDialogModalComponent, { size: "sm", centered: true, backdrop: "static" });
+    const modalRef = this.modalService.open(ConfirmationDialogModalComponent, {
+      size: 'sm',
+      centered: true,
+      backdrop: 'static',
+    });
     if (modalRef) {
       this.isProceess = false;
     } else {
       this.isProceess = false;
     }
-    var componentInstance = modalRef.componentInstance as ConfirmationDialogModalComponent;
-    componentInstance.message = "Are you sure you want to remove tegs?";
-    modalRef.result.then((canDelete: boolean) => {
-      if (canDelete) {
-        this.masterName = `/customer/label-remove/${this.contact}`;
-        // this.isProceess = true;
-        this.subscription = this.apiService.deleteID(this.masterName).pipe(take(1)).subscribe(res => {
-          this.isProceess = false;
-          this.toastr.success(res.message);
-          this.getContactList();
-        }, error => {
-          this.isProceess = false;
-          this.toastr.error(error.message);
-        });
-      }
-    }).catch(() => {
-
-    });
+    var componentInstance =
+      modalRef.componentInstance as ConfirmationDialogModalComponent;
+    componentInstance.message = 'Are you sure you want to remove tegs?';
+    modalRef.result
+      .then((canDelete: boolean) => {
+        if (canDelete) {
+          this.masterName = `/customer/label-remove/${this.contact}`;
+          // this.isProceess = true;
+          this.subscription = this.apiService
+            .deleteID(this.masterName)
+            .pipe(take(1))
+            .subscribe(
+              (res) => {
+                this.isProceess = false;
+                this.toastr.success(res.message);
+                this.getContactList();
+              },
+              (error) => {
+                this.isProceess = false;
+                this.toastr.error(error.message);
+              }
+            );
+        }
+      })
+      .catch(() => {});
   }
   submitNoteForm(form: any) {
     if (form.valid) {
@@ -517,9 +526,29 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           }
         );
     }
-
   }
 
+  quickReply() {
+    this.isProceess = true;
+    this.masterName = '/quickreplies';
+    this.subscription = this.apiService
+      .getAll(this.masterName)
+      .pipe(take(1))
+      .subscribe(
+        (data) => {
+          if (data) {
+            this.quickReplydata = data.data;
+            console.log(this.quickReplydata);
+
+            this.isProceess = false;
+            this.cd.detectChanges();
+          }
+        },
+        (error) => {
+          this.isProceess = false;
+        }
+      );
+  }
   submitForm(form: any) {
     if (form.valid) {
       var request = {
