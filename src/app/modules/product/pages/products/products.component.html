@@ -59,8 +59,8 @@
                 <img [src]=i.fileUrl alt="File Not Found" (load)="onImageLoad()">
               </div>
             </td>
-            <td>{{i.productCategory?.productCategoryName}}</td>
-            <td>{{i.productName}}</td>
+            <td>{{i.productCategory?.productCategoryName |titlecase}}</td>
+            <td>{{i.productName |titlecase}}</td>
             <td>{{i.serialNo}}</td>
             <td>{{i.createdDate | date :'medium' || ''}}</td>
             <td>{{i.createdBy?.firstName || ''}} {{i.createdBy?.lastName || ''}} </td>

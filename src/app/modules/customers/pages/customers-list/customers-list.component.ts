@@ -241,7 +241,7 @@ export class CustomersListComponent implements OnInit, OnDestroy {
 
   sendMessage(dataItem: Customers) {
     this.router.navigate([`/admin/inbox/${dataItem.customerId}`]);
-    window.location.href = `/admin/inbox/${dataItem.customerId}`
+    // window.location.href = `/admin/inbox/${dataItem.customerId}`
   }
 
   ngOnDestroy(): void {

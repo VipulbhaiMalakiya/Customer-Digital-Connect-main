@@ -66,7 +66,7 @@
                   <a class="pointer" (click)="Getcategory()">orders</a>
                 </li>
                 <li *ngIf="categroyName" class="breadcrumb-item active" aria-current="page">
-                  {{ categroyName }}
+                  {{ categroyName |titlecase }}
                 </li>
               </ol>
             </div>
@@ -83,7 +83,7 @@
                     </div>
                   </div>
                   <a class="pointer"><img [src]="i.fileUrl" alt="File not Found" (load)="onImageLoad()" />
-                    <div class="disac-text">{{ i.productCategoryName }}</div>
+                    <div class="disac-text">{{ i.productCategoryName |titlecase}}</div>
                   </a>
                 </div>
                 <div *ngIf="prodactCategory.length === 0" class="text-center">
@@ -100,7 +100,7 @@
                     </div>
                   </div>
                   <a class="pointer"><img [src]="i.fileUrl" alt="File not Found" (load)="onImageLoad()" />
-                    <div class="disac-text">{{ i.productName }}</div>
+                    <div class="disac-text">{{ i.productName  |titlecase}}</div>
                   </a>
                 </div>
               </div>
@@ -133,7 +133,7 @@
                   <tr *ngFor="let i of cartItems; let ind = index">
                     <td>
                       <div class="pro-tb-icopn">
-                        <h4>{{ i.productName }}</h4>
+                        <h4>{{ i.productName |titlecase}}</h4>
                       </div>
                     </td>
                     <td>{{ i.price | number : "1.2-2" }}</td>

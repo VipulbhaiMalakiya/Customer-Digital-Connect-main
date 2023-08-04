@@ -32,7 +32,11 @@ export class InboxLayoutComponent {
         } else if (event['url'] === '/inbox') {
           this.classToggled = true;
           this.cd.detectChanges();
-        } else {
+        }
+        else if (event['url'] === '/admin/inbox/:id') {
+          this.classToggled = true;
+          this.cd.detectChanges();
+        }  else {
           this.cd.detectChanges();
           this.classToggled = false;
         }

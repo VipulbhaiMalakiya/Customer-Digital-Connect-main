@@ -27,7 +27,7 @@
           <tr>
             <th>Id</th>
             <th>Category Image</th>
-            <th>Category Name</th>
+            <th>Category Name |titlecase</th>
             <th>Created Date</th>
             <th>Created By</th>
             <th>Updated Date</th>
@@ -58,7 +58,7 @@
                 <img [src]=i.fileUrl (load)="onImageLoad()" alt="File Not Found">
               </div>
             </td>
-            <td>{{i.productCategoryName}}</td>
+            <td>{{i.productCategoryName |titlecase}}</td>
             <td>{{i.createdDate | date :'medium' || ''}}</td>
             <td>{{i.createdBy?.firstName || ''}} {{i.createdBy?.lastName || ''}} </td>
             <td>{{i.updatedDate | date :'medium' || ''}}</td>
