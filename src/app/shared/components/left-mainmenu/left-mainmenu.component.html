@@ -107,6 +107,11 @@
                 [routerLinkActiveOptions]="{ exact: true }">labels</a>
             </li>
 
+            <li routerLinkActive="active">
+              <a [routerLink]="['/admin/master/quick-replay']" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">Quick Replay</a>
+            </li>
+
             <!-- <li routerLinkActive="active">
               <a [routerLink]="['/admin/master/templates']" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }">Templates</a>
@@ -127,9 +132,8 @@
         class="menu-list-title"><img src="../assets/images/menu-icon-15.png" alt="" /> Ticket</a>
     </li>
     <li *ngIf="isAdmin" routerLinkActive="active" (click)="refresh1()">
-      <a routerLink="/admin/reservation-table" routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title"><img src="../assets/images/menu-icon-5.png"
-          alt="" />Table Reservation</a>
+      <a routerLink="/admin/reservation-table" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+        class="menu-list-title"><img src="../assets/images/menu-icon-5.png" alt="" />Table Reservation</a>
     </li>
     <li *ngIf="isAdmin" routerLinkActive="active">
       <a routerLink="/admin/orders" routerLinkActive="active" (click)="refresh()"
@@ -151,10 +155,10 @@
         class="menu-list-title"><img src="../assets/images/menu-icon-8.png" alt="" /> SLA Reports</a>
     </li>
 
-    <li  >
+    <li>
       <div class="accordion" id="menu-accordion">
-        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSettings" aria-expanded="true"
-          aria-controls="collapseSettings">
+        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSettings"
+          aria-expanded="true" aria-controls="collapseSettings">
           <img src="../assets/images/menu-icon-11.png" alt="" /> Settings
         </div>
 
@@ -162,18 +166,15 @@
           data-bs-parent="#menu-accordion">
           <ul class="inner-acc-menu">
             <li *ngIf="isAdmin">
-              <a routerLink="/admin/profile"
-                 class="menu-list-title">
-                 My Profile</a>
+              <a routerLink="/admin/profile" class="menu-list-title">
+                My Profile</a>
             </li>
             <li *ngIf="isUser || isResolver">
-              <a routerLink="/profile"
-                 class="menu-list-title">
-                 My Profile</a>
+              <a routerLink="/profile" class="menu-list-title">
+                My Profile</a>
             </li>
-            <li >
-              <a routerLink="/" (click)="logout()"
-                 class="menu-list-title">
+            <li>
+              <a routerLink="/" (click)="logout()" class="menu-list-title">
                 Logout</a>
             </li>
           </ul>

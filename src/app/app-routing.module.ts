@@ -196,6 +196,13 @@ const routes: Routes = [
                 (m) => m.TemplatesModule
               ),
           },
+          {
+            path: 'quick-replay',
+            loadChildren: () =>
+              import('./modules/quick-replay/quick-replay.module').then(
+                (m) => m.QuickReplayModule
+              ),
+          },
         ],
       },
       {
