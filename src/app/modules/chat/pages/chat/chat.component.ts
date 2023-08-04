@@ -161,13 +161,11 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
       this.socket$.subscribe((data: MessageData) => {
         this.messagestates = data.messageStatus;
-
         if (data.mobileNo === this.contact) {
           this.receivedData.push(data);
         } else if (data.mobileNo !== this.contact) {
           this.getContactList();
         }
-
         if (
           this.messagestates == 'sent' ||
           this.messagestates == 'delivered' ||
@@ -178,7 +176,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           const audio = new Audio(
             '../assets/sound/Google Chat - Notification Tone.mp3'
           );
-          // audio.play();
+          audio.play();
         }
       });
     }
