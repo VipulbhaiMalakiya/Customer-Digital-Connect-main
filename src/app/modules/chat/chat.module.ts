@@ -15,6 +15,7 @@ import { VideoComponent } from './components/video/video.component';
 import { LocationDetailsComponent } from './components/location-details/location-details.component';
 import { QuickReplyComponent } from './components/quick-reply/quick-reply.component';
 import { TempletsComponent } from './components/templets/templets.component';
+import { TempletilterPipe } from 'src/app/_helpers/templet-filter';
 
 @NgModule({
     declarations: [
@@ -29,6 +30,7 @@ import { TempletsComponent } from './components/templets/templets.component';
         LocationDetailsComponent,
         QuickReplyComponent,
         TempletsComponent,
+        TempletilterPipe
 
     ],
     imports: [

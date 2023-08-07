@@ -130,7 +130,7 @@
             </div>
             <ul class="active-chat-list pe-3 my-custom-scrollbar my-custom-scrollbar-primary" *ngIf="open.length > 0">
               <li *ngFor="let i of open  | customFilter: term ; let ind=index; let isFirst = first"
-                [ngClass]="{ 'new-message': isFirst }" (click)="onViewContact(i ,getColorClass(ind))">
+                [ngClass]="{ 'new-message': i.phoneNo === contact }" (click)="onViewContact(i ,getColorClass(ind))">
                 <div class="avata">
                   <span class="chatpro-nmg" [ngClass]="getColorClass(ind)" *ngIf="i.fullName !== null">
                     {{getShortName(i.fullName)}} </span>
