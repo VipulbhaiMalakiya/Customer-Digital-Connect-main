@@ -1,6 +1,7 @@
-<div class="modal-content green-modal">
+<div class="modal-content green-modal" id="inboxtemplate">
   <div class="modal-header">
     <h1 class="modal-title fs-5" id="inboxtemplateLabel">Select Template</h1>
+    <div class="addmodal-btn"><a class="common-btn"> Create template</a></div>
     <button type="button" (click)="onCancel()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
   </div>
   <div class="modal-body p-0">
@@ -9,9 +10,10 @@
       <div class="row">
         <div class="col-md-3 pr-0">
           <div class="tempsearch">
-            <form class="tempsearch-form" name="cform" >
+            <form class="tempsearch-form" name="cform">
               <div class="form-group">
-                <input type="text" class="form-control" name="name" id="name" [(ngModel)]="term" autocomplete="off" placeholder="Search..." required="">
+                <input type="text" class="form-control" name="name" id="name" [(ngModel)]="term" autocomplete="off"
+                  placeholder="Search..." required="">
               </div>
               <button type="submit" class="search-ico"><i class="la la-search"></i></button>
             </form>
@@ -19,7 +21,8 @@
           <div class="templateleft-tbs">
             <div class="nav flex-column nav-pills" aria-orientation="vertical"
               *ngFor="let i of templetsdata  | customFilter: term " (click)="onView(i)">
-              <div class="temp-link" [ngClass]="{ 'active': i.id === templet.id }">{{i.templateName}} <br> ({{i.language}})</div>
+              <div class="temp-link" [ngClass]="{ 'active': i.id === templet.id }">{{i.templateName}} <br>
+                ({{i.language}})</div>
             </div>
           </div>
         </div><!--col-md-3-->
@@ -29,23 +32,73 @@
             <div class="tab-content">
               <div class="tab-pane fade show active">
                 <div class="template-card">
-                  <div class="templ-col" *ngIf="templet?.header?.header !== null || templet?.header?.headerFileType !== null || templet?.header?.file !== null ">
+                  <div class="templ-col"
+                    *ngIf="templet?.header?.header !== null || templet?.header?.headerFileType !== null || templet?.header?.file !== null ">
                     <p><strong>Header :</strong></p>
-                    <p>Thanks for sharing your feedback.</p>
+                    <p *ngIf="templet?.header?.headerFileType === 'document'">
+                      {{fileurl}}
+                    </p>
+                    <!-- <p>Thanks for sharing your feedback.</p> -->
                   </div>
                   <div class="templ-col">
                     <p><strong>Body :</strong></p>
                     <p>{{templet.templatePreview}}</p>
                   </div>
+                  <div class="templ-col"
+                    *ngIf="templet?.button1 !== null || templet?.button3 !== null || templet?.button3 !== null">
+                    <p><strong>Buttons :</strong></p>
+                    <p><b><i class="las la-comment-alt" *ngIf="templet?.button1 !== null"></i> {{templet.button1}}</b>
+                    </p>
+                    <p><b><i class="las la-comment-alt" *ngIf="templet?.button2 !== null"></i> {{templet.button2}}</b>
+                    </p>
+                    <p><b><i class="las la-comment-alt" *ngIf="templet?.button3 !== null"></i> {{templet.button3}}</b>
+                    </p>
+                  </div>
                 </div>
-                <div class="template-card2" *ngIf="templet?.header?.header !== null || templet?.header?.headerFileType !== null || templet?.header?.file !== null ">
-                  <div class="sub3" >Header</div>
-                  <div class="inner-template-card2">
+                <div class="template-card2" *ngIf="templet?.body?.body !== null">
+                  <div class="sub3">{{templet?.body?.body}}</div>
+                  <div class="inner-templateform-card2">
+                    <div class="tempgrid1">
+                      <p>Variable</p>
+                      <input *ngIf="templet?.body?.bodyattribute[0]" type="text" class="form-control" name="name" id="" value="{{1}}">
+                      <input *ngIf="templet?.body?.bodyattribute[1]" type="text" class="form-control" name="name" id="" value="{{2}}">
+                      <input *ngIf="templet?.body?.bodyattribute[2]" type="text" class="form-control" name="name" id="" value="{{3}}">
+                    </div>
+
+                    <div class="tempgrid2">
+                      <p>Value</p>
+                      <input *ngIf="templet?.body?.bodyattribute[0]" type="text" class="form-control" name="name" id="" value=""
+                        placeholder="Choose dynamic/constant value">
+                      <input *ngIf="templet?.body?.bodyattribute[1]" type="text" class="form-control" name="name" id="" value=""
+                        placeholder="Choose dynamic/constant value">
+                      <input *ngIf="templet?.body?.bodyattribute[2]" type="text" class="form-control" name="name" id="" value=""
+                        placeholder="Choose dynamic/constant value">
+                    </div>
+
+                    <div class="tempgrid3">
+                      <p>Fallback/Constant Value</p>
+                      <input *ngIf="templet?.body?.bodyattribute[0]" type="text" class="form-control" name="name" id="" value="" placeholder="Fallback Value">
+                      <input  *ngIf="templet?.body?.bodyattribute[1]" type="text" class="form-control" name="name" id="" value="" placeholder="Fallback Value">
+                      <input *ngIf="templet?.body?.bodyattribute[2]" type="text" class="form-control" name="name" id="" value="" placeholder="Fallback Value">
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="template-card2"
+                  *ngIf="templet?.header?.header !== null || templet?.header?.headerFileType !== null || templet?.header?.file !== null ">
+                  <div class="sub3">Header</div>
+                  <div class="inner-template-card2" *ngIf="templet?.header?.headerFileType =='document'" >
                     <div class="row">
                       <div class="col-sm-6 col-md-4">
-                        <div class="tempuploaded-pic">
-                          <a href="../assets/images/ceo-template.jpeg" target="_blank"><img
-                              src="../assets/images/ceo-template.jpeg" alt=""></a>
+                        <div class="tempuploaded-pic" *ngIf="!previewUrl">
+                          <a [href]="imageURL" target="_blank"><img
+                            [src]="imageURL" alt=""></a>
+                          <p><a>Remove Image</a></p>
+                        </div>
+                        <div class="tempuploaded-pic" *ngIf="previewUrl">
+                          <a [href]="previewUrl"  target="_blank"><img
+                            [src]="previewUrl" alt=""></a>
                           <p><a>Remove Image</a></p>
                         </div>
                       </div>
@@ -53,16 +106,17 @@
                         <div class="tempupl-text">
                           <div class="sc-eqUAAy">
                             <label>Upload another Image</label>
-                            <input class="form-control form-control-sm h-auto" id="formFileSm" type="file">
-                            <p>(or)</p>
+                            <input class="form-control form-control-sm h-auto" id="formFileSm" type="file" (change)="onFileChange($event)" accept="image/*">
+                            <!-- <p>(or)</p>
                             <label>Add media URL</label>
                             <input type="text" value="" class="form-control h-auto">
                             <p>(send personalized media)</p>
-                          </div>
+                          </div> -->
                         </div>
                       </div>
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>
