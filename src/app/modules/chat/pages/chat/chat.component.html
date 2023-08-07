@@ -162,7 +162,7 @@
                 </div>
                 <div class="chat-time ms-auto text-end">
                   <div class="mb-1">{{i.time | dateAgo}}</div>
-                  <div class="un-read" *ngIf="i.messageStatus !== 'read' && i.type === 'Receiver' ">5</div>
+                  <div class="un-read" *ngIf="i.messageStatus !== 'read' && i.type == 'Receiver'">5</div>
                 </div>
               </li>
             </ul>
