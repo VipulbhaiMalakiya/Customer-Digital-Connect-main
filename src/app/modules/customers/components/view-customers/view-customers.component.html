@@ -1,105 +1,111 @@
-<div class="common-modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h1 class="modal-title fs-5" id="viewrecord-modalLabel">View customer record</h1>
-      <button type="button" (click)="onCancel()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-    </div>
-    <div class="modal-body">
-      <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
-      <form class="common-modal-form" [formGroup]="customersMasterForm">
-        <div class="row">
-          <!-- <div class="col-md-3">
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5" id="viewrecord-modalLabel">View customer record</h1>
+    <button type="button" (click)="onCancel()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-modal-form" [formGroup]="customersMasterForm">
+      <div class="row">
+        <!-- <div class="col-md-3">
             <div class="form-group">
               <label for="customerId">ID</label>
               <input type="text" class="form-control" id="customerId" name="customerId" formControlName="customerId"
                 placeholder="customer Id">
             </div>
           </div> -->
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="firstName">First Name</label>
-              <input type="text" class="form-control" id="firstName" name="firstName" formControlName="firstName"
-                placeholder="First Name">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="lastName">Last Name</label>
-              <input type="text" class="form-control" id="lastName" name="lastName" formControlName="lastName" placeholder="Last Name">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" class="form-control" id="email" name="email" formControlName="email" placeholder="Email">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="contact">Contact</label>
-              <input type="text" class="form-control" id="contact" name="contact" formControlName="contact" placeholder="Contact">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="postcode">Pincode</label>
-              <input type="text" class="form-control" id="postcode" name="postcode" formControlName="postcode" placeholder="Post Code">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="city">City</label>
-              <input type="text" class="form-control" id="city" name="city" formControlName="city" placeholder="City">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="state">State</label>
-              <input type="text" class="form-control" id="state" name="state" formControlName="state" placeholder="State">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="createdDate">created Date</label>
-              <input type="text" class="form-control" id="createdDate" name="createdDate" formControlName="createdDate" placeholder="createdDate">
-            </div>
-          </div>
-
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="createdBy">Created By</label>
-              <input type="text" class="form-control" id="createdBy" name="createdBy" formControlName="createdBy" placeholder="createdBy">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="updatedBy">Updated By</label>
-              <input type="text" class="form-control" id="updatedBy" name="updatedBy" formControlName="updatedBy" placeholder="Updated By">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="updatedDate">Updated Date</label>
-              <input type="text" class="form-control" id="updatedDate" name="updatedDate" formControlName="updatedDate" placeholder="updatedDate">
-            </div>
-          </div>
-          <div class="col-md-3">
-            <div class="form-group">
-              <label for="status">Status</label>
-              <input type="text" class="form-control" id="status" name="status" formControlName="status" placeholder="status">
-            </div>
-          </div>
-          <div class="col-md-12">
-            <div class="form-group">
-              <label for="address">Address</label>
-              <textarea cols="0" rows="3"  id="address" name="address" formControlName="address" placeholder="Address" class="form-control"
-             readonly></textarea>
-
-            </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" class="form-control" id="firstName" name="firstName" formControlName="firstName"
+              placeholder="First Name">
           </div>
         </div>
-      </form>
-    </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="lastName">Last Name</label>
+            <input type="text" class="form-control" id="lastName" name="lastName" formControlName="lastName"
+              placeholder="Last Name">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" formControlName="email"
+              placeholder="Email">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="contact">Contact</label>
+            <input type="text" class="form-control" id="contact" name="contact" formControlName="contact"
+              placeholder="Contact">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="postcode">Pincode</label>
+            <input type="text" class="form-control" id="postcode" name="postcode" formControlName="postcode"
+              placeholder="Post Code">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" class="form-control" id="city" name="city" formControlName="city" placeholder="City">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="state">State</label>
+            <input type="text" class="form-control" id="state" name="state" formControlName="state" placeholder="State">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="createdDate">created Date</label>
+            <input type="text" class="form-control" id="createdDate" name="createdDate" formControlName="createdDate"
+              placeholder="createdDate">
+          </div>
+        </div>
 
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="createdBy">Created By</label>
+            <input type="text" class="form-control" id="createdBy" name="createdBy" formControlName="createdBy"
+              placeholder="createdBy">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="updatedBy">Updated By</label>
+            <input type="text" class="form-control" id="updatedBy" name="updatedBy" formControlName="updatedBy"
+              placeholder="Updated By">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="updatedDate">Updated Date</label>
+            <input type="text" class="form-control" id="updatedDate" name="updatedDate" formControlName="updatedDate"
+              placeholder="updatedDate">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="status">Status</label>
+            <input type="text" class="form-control" id="status" name="status" formControlName="status"
+              placeholder="status">
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="address">Address</label>
+            <textarea cols="0" rows="3" id="address" name="address" formControlName="address" placeholder="Address"
+              class="form-control" readonly></textarea>
+
+          </div>
+        </div>
+      </div>
+    </form>
   </div>
 </div>
