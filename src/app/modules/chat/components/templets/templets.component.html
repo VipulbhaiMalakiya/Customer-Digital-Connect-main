@@ -60,26 +60,32 @@
                   <div class="inner-templateform-card2">
                     <div class="tempgrid1">
                       <p>Variable</p>
-                      <input *ngIf="templet?.body?.bodyattribute[0]" type="text" class="form-control" name="name" id="" value="{{1}}">
-                      <input *ngIf="templet?.body?.bodyattribute[1]" type="text" class="form-control" name="name" id="" value="{{2}}">
-                      <input *ngIf="templet?.body?.bodyattribute[2]" type="text" class="form-control" name="name" id="" value="{{3}}">
+                      <input *ngIf="templet?.body?.bodyattribute[0]" type="text" class="form-control" name="name" id=""
+                        value="{{1}}" disabled>
+                      <input *ngIf="templet?.body?.bodyattribute[1]" type="text" class="form-control" name="name" id=""
+                        value="{{2}}" disabled>
+                      <input *ngIf="templet?.body?.bodyattribute[2]" type="text" class="form-control" name="name" id=""
+                        value="{{3}}" disabled>
                     </div>
 
                     <div class="tempgrid2">
                       <p>Value</p>
-                      <input *ngIf="templet?.body?.bodyattribute[0]" type="text" class="form-control" name="name" id="" value=""
-                        placeholder="Choose dynamic/constant value">
-                      <input *ngIf="templet?.body?.bodyattribute[1]" type="text" class="form-control" name="name" id="" value=""
-                        placeholder="Choose dynamic/constant value">
-                      <input *ngIf="templet?.body?.bodyattribute[2]" type="text" class="form-control" name="name" id="" value=""
-                        placeholder="Choose dynamic/constant value">
+                      <input *ngIf="templet?.body?.bodyattribute[0]" type="text" class="form-control" name="name" id=""
+                        value="" placeholder="Choose dynamic/constant value">
+                      <input *ngIf="templet?.body?.bodyattribute[1]" type="text" class="form-control" name="name" id=""
+                        value="" placeholder="Choose dynamic/constant value">
+                      <input *ngIf="templet?.body?.bodyattribute[2]" type="text" class="form-control" name="name" id=""
+                        value="" placeholder="Choose dynamic/constant value">
                     </div>
 
                     <div class="tempgrid3">
                       <p>Fallback/Constant Value</p>
-                      <input *ngIf="templet?.body?.bodyattribute[0]" type="text" class="form-control" name="name" id="" value="" placeholder="Fallback Value">
-                      <input  *ngIf="templet?.body?.bodyattribute[1]" type="text" class="form-control" name="name" id="" value="" placeholder="Fallback Value">
-                      <input *ngIf="templet?.body?.bodyattribute[2]" type="text" class="form-control" name="name" id="" value="" placeholder="Fallback Value">
+                      <input *ngIf="templet?.body?.bodyattribute[0]" type="text" class="form-control" name="name" id=""
+                        value="" placeholder="Fallback Value">
+                      <input *ngIf="templet?.body?.bodyattribute[1]" type="text" class="form-control" name="name" id=""
+                        value="" placeholder="Fallback Value">
+                      <input *ngIf="templet?.body?.bodyattribute[2]" type="text" class="form-control" name="name" id=""
+                        value="" placeholder="Fallback Value">
                     </div>
 
                   </div>
@@ -88,35 +94,42 @@
                 <div class="template-card2"
                   *ngIf="templet?.header?.header !== null || templet?.header?.headerFileType !== null || templet?.header?.file !== null ">
                   <div class="sub3">Header</div>
-                  <div class="inner-template-card2" *ngIf="templet?.header?.headerFileType =='document'" >
+                  <div class="inner-template-card2">
                     <div class="row">
                       <div class="col-sm-6 col-md-4">
                         <div class="tempuploaded-pic" *ngIf="!previewUrl">
-                          <a [href]="imageURL" target="_blank"><img
-                            [src]="imageURL" alt=""></a>
-                          <p><a>Remove Image</a></p>
+                          <a [href]="imageURL" target="_blank"><img [src]="imageURL" alt=""></a>
                         </div>
-                        <div class="tempuploaded-pic" *ngIf="previewUrl">
-                          <a [href]="previewUrl"  target="_blank"><img
-                            [src]="previewUrl" alt=""></a>
-                          <p><a>Remove Image</a></p>
-                        </div>
+                        <ng-container  *ngIf="templet?.header?.headerFileType !=='document' && previewUrl">
+                          <div class="tempuploaded-pic">
+                            <a [href]="previewUrl" target="_blank"><img [src]="previewUrl" alt=""></a>
+                          </div>
+                        </ng-container>
+                        <ng-container *ngIf="templet?.header?.headerFileType =='document' && previewUrl">
+                          <object data="../assets/images/example.pdf" type="application/pdf" width="100%"
+                            height="200px">
+                            <p>Unable to display PDF file. <a href="../assets/images/example.pdf">Download</a> instead.
+                            </p>
+                          </object>
+                        </ng-container>
                       </div>
                       <div class="col-sm-6 col-md-8">
                         <div class="tempupl-text">
                           <div class="sc-eqUAAy">
                             <label>Upload another Image</label>
-                            <input class="form-control form-control-sm h-auto" id="formFileSm" type="file" (change)="onFileChange($event)" accept="image/*">
+                            <input class="form-control form-control-sm h-auto" id="formFileSm" type="file"
+                              (change)="onFileChange($event)" accept=".pdf,.doc,.docx">
                             <!-- <p>(or)</p>
                             <label>Add media URL</label>
                             <input type="text" value="" class="form-control h-auto">
                             <p>(send personalized media)</p>
                           </div> -->
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
 
+                  </div>
                 </div>
               </div>
             </div>
@@ -124,8 +137,7 @@
         </div>
       </div>
     </div>
+    <div class="modal-footer">
+      <button type="button" class="common-btn">See Preview and Send</button>
+    </div>
   </div>
-  <div class="modal-footer">
-    <button type="button" class="common-btn">See Preview and Send</button>
-  </div>
-</div>
