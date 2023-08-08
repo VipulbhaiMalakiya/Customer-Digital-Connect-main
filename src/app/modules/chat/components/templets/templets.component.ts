@@ -54,6 +54,8 @@ export class TempletsComponent implements OnInit {
 
   onView(i: any) {
     this.templet = i;
+    console.log(this.templet);
+
   }
   onFileChange(event: any) {
     const file = event.target.files[0];
