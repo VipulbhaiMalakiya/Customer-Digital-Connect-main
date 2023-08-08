@@ -176,7 +176,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           const audio = new Audio(
             '../assets/sound/Google Chat - Notification Tone.mp3'
           );
-          // audio.play();
+          audio.play();
         }
       });
     }
@@ -1014,5 +1014,45 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     } else {
       this.isProceess = false;
     }
+
+    modalRef.result
+    .then((data: any) => {
+      if (data) {
+        var request = {
+          messaging_product: 'whatsapp',
+          recipient_type: 'individual',
+          to: this.contactinfo?.phoneNo,
+          type: 'template',
+          fromId: this.userData?.userId,
+          assignedto: this.userData?.userId,
+          fullname: this.contactinfo?.fullName || null,
+          templateName:data.templateName,
+          templateBody:data.templateBody,
+          templateHeader:data.templateHeader
+        };
+        let formData = new FormData();
+        formData.append('messageEntry', JSON.stringify(request));
+        formData.append('file', data.file);
+        this.isProceess = true;
+        this.subscription = this.whatsappService
+          .sendWhatsAppMessage(formData)
+          .pipe(take(1))
+          .subscribe(
+            (response) => {
+              let data: any = response;
+              this.toastr.success(data.message);
+              this.isProceess = false;
+              this.showEmojiPicker = false;
+              this.scrollToBottom();
+            },
+            (error) => {
+              this.toastr.error(error.error.message);
+              this.isProceess = false;
+            }
+          );
+      }
+    })
+    .catch(() => {});
+
   }
 }
