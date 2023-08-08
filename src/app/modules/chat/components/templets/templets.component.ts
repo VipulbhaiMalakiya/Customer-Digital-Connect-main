@@ -20,6 +20,10 @@ export class TempletsComponent implements OnInit {
   imageURL: any = '../../../../../assets/images/ceo-template.jpeg';
   previewUrl: any;
   uploadFile?: any;
+  username:any;
+  set issuesMaster(value: any) {
+    this.username = value;
+  }
   constructor(
     private activeModal: NgbActiveModal,
     private modalService: NgbModal,
@@ -85,7 +89,7 @@ export class TempletsComponent implements OnInit {
 
   submitForm(formData: any) {
     if (formData) {
-      let name = formData.value.input1;
+      let name = this.username;
       let email = formData.value.input2;
       let password = formData.value.input3
 

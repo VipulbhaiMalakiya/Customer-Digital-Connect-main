@@ -81,7 +81,7 @@
                       <div class="tempgrid3">
                         <p>Fallback/Constant Value</p>
                         <input *ngIf="templet?.body?.bodyattribute[0]" type="text" class="form-control" name="input1"
-                          id="input1" placeholder="Enter Name" ngModel>
+                          id="input1" placeholder={{username}} ngModel disabled>
                         <input *ngIf="templet?.body?.bodyattribute[1]" type="text" class="form-control" name="input2"
                           id="input2" placeholder="User Name" ngModel>
                         <input *ngIf="templet?.body?.bodyattribute[2]" type="password" class="form-control" name="input3"
