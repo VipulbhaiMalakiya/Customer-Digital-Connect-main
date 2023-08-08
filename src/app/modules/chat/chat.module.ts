@@ -16,6 +16,7 @@ import { LocationDetailsComponent } from './components/location-details/location
 import { QuickReplyComponent } from './components/quick-reply/quick-reply.component';
 import { TempletsComponent } from './components/templets/templets.component';
 import { TempletilterPipe } from 'src/app/_helpers/templet-filter';
+import { ShortenFileNamePipe } from 'src/app/_helpers/ShortenFileName';
 
 @NgModule({
     declarations: [
@@ -30,8 +31,8 @@ import { TempletilterPipe } from 'src/app/_helpers/templet-filter';
         LocationDetailsComponent,
         QuickReplyComponent,
         TempletsComponent,
-        TempletilterPipe
-
+        TempletilterPipe,
+        ShortenFileNamePipe
     ],
     imports: [
         CommonModule,

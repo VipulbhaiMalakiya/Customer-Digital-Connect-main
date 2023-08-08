@@ -136,6 +136,7 @@
                     {{getShortName(i.fullName)}} </span>
                   <span class="chatpro-nmg" [ngClass]="getColorClass(ind)" *ngIf="i.fullName === null">
                     {{getShortName(i.phoneNo)}} </span>
+                  <span class="user-platfrm" *ngIf="i.messagetype === 'image'"><i class="las la-image"></i></span>
                   <span class="user-platfrm" *ngIf="i.messagetype === 'text'"><i class="lab la-whatsapp"></i></span>
                   <span class="user-platfrm" *ngIf="i.messagetype === 'notes'"><i class="las la-pen"></i></span>
                   <span class="user-platfrm" *ngIf="i.messagetype === 'audio'"><i class="las la-music"></i></span>
@@ -182,6 +183,7 @@
                     {{getShortName(i.fullName)}} </span>
                   <span class="chatpro-nmg" [ngClass]="getColorClass(ind)" *ngIf="i.fullName === null">
                     {{getShortName(i.phoneNo)}} </span>
+                  <span class="user-platfrm" *ngIf="i.messagetype === 'image'"><i class="las la-image"></i></span>
                   <span class="user-platfrm" *ngIf="i.messagetype === 'text'"><i class="lab la-whatsapp"></i></span>
                   <span class="user-platfrm" *ngIf="i.messagetype === 'notes'"><i class="las la-pen"></i></span>
                   <span class="user-platfrm" *ngIf="i.messagetype === 'audio'"><i class="las la-music"></i></span>
@@ -336,7 +338,7 @@
                     </object>
                     <div class="pdf-nameic cursur" (click)="downloadFile(data)"><span class="pdf-icon"><img
                           src="../assets/images/document-icon.png" alt="">
-                        {{data.filename}}</span> <span class="pdf-downicon"><i
+                        {{data.filename | shortenFileName: 20}}</span> <span class="pdf-downicon"><i
                           class="las la-arrow-circle-down"></i></span></div>
                   </div>
                   <div class="suserchat-info pt-2">
@@ -700,11 +702,33 @@
               <div class="chatwrite-emojisico">
                 <div class="chat-emoji-ico" (click)="toggleEmojiPicker()"><i class="las la-smile"></i></div>
                 <div class="chat-attach-ico" (click)="toggleupload()"><i class="las la-paperclip"></i></div>
-                <div class="chat-quickrply-ico" title="Quick Reply" (click)=" quickReply()" ><img src="../assets/images/quick-reply-icon.png" alt=""></div>
+                <div class="chat-quickrply-ico" title="Quick Reply" (click)=" quickReply()"><img
+                    src="../assets/images/quick-reply-icon.png" alt=""></div>
 
                 <div class="chat-template-ico" title="Templates" (click)="getTemplates()">
-                  <svg fill="#000000" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><defs><style>.cls-1{fill:none;}</style></defs><title>template</title><path d="M26,6v4H6V6H26m0-2H6A2,2,0,0,0,4,6v4a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V6a2,2,0,0,0-2-2Z"></path><path d="M10,16V26H6V16h4m0-2H6a2,2,0,0,0-2,2V26a2,2,0,0,0,2,2h4a2,2,0,0,0,2-2V16a2,2,0,0,0-2-2Z"></path><path d="M26,16V26H16V16H26m0-2H16a2,2,0,0,0-2,2V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V16a2,2,0,0,0-2-2Z"></path><rect class="cls-1" width="32" height="32"></rect></g></svg>
-                  </div>
+                  <svg fill="#000000" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                      <defs>
+                        <style>
+                          .cls-1 {
+                            fill: none;
+                          }
+                        </style>
+                      </defs>
+                      <title>template</title>
+                      <path d="M26,6v4H6V6H26m0-2H6A2,2,0,0,0,4,6v4a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V6a2,2,0,0,0-2-2Z">
+                      </path>
+                      <path d="M10,16V26H6V16h4m0-2H6a2,2,0,0,0-2,2V26a2,2,0,0,0,2,2h4a2,2,0,0,0,2-2V16a2,2,0,0,0-2-2Z">
+                      </path>
+                      <path
+                        d="M26,16V26H16V16H26m0-2H16a2,2,0,0,0-2,2V26a2,2,0,0,0,2,2H26a2,2,0,0,0,2-2V16a2,2,0,0,0-2-2Z">
+                      </path>
+                      <rect class="cls-1" width="32" height="32"></rect>
+                    </g>
+                  </svg>
+                </div>
                 <div class="chat-cart-ico"><i class="las la-shopping-cart"></i></div>
               </div>
               <div class="attach-opentray" *ngIf="showupload">
