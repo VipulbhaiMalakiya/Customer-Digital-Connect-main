@@ -85,8 +85,29 @@ export class TempletsComponent implements OnInit{
 
   }
 
-
   onCancel() {
     this.activeModal.dismiss();
   }
+
+  submitForm(formData: any) {
+    if (formData) {
+      let data :any =  {
+        templateName : this.templet.templateName,
+        templateBody : {
+          body:this.templet?.body?.body,
+          bodyattribute:["Vipul Malakiya"]
+        },
+        templateHeader:{
+          header:this.templet?.header?.header,
+          headerFileType:this?.templet?.header?.headerFileType,
+          link:this.fileurl
+        }
+      }
+      this.activeModal.close(data)
+    } else {
+      console.log('Form is invalid.');
+    }
+  }
+
+
 }
