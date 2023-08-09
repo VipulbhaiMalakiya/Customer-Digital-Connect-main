@@ -12,6 +12,7 @@ import { AddEditeIssueComponent } from 'src/app/modules/issue/components/add-edi
 import { ViewIssueComponent } from 'src/app/modules/issue/components/view-issue/view-issue.component';
 import { BulkUploadComponent } from 'src/app/modules/shared/components/bulk-upload/bulk-upload.component';
 import { ConfirmationDialogModalComponent } from 'src/app/modules/shared/components/confirmation-dialog-modal/confirmation-dialog-modal.component';
+import { ViewSlaComponent } from '../../components/view-sla/view-sla.component';
 
 @Component({
   selector: 'app-sla-report',
@@ -161,5 +162,17 @@ export class SlaReportComponent {
 
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
+  }
+
+  onViewDetail(dataItem: slaMasterModel) {
+    this.isProceess = true;
+    const modalRef = this.modalService.open(ViewSlaComponent, { size: "xl", centered: true, backdrop: "static" });
+    if (modalRef) {
+      this.isProceess = false;
+    } else {
+      this.isProceess = false;
+    }
+    var componentInstance = modalRef.componentInstance as ViewSlaComponent;
+    componentInstance.serviceTitleMaster = dataItem;
   }
 }

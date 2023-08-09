@@ -1,0 +1,130 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">View Over The SLA Reports</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <form class="common-modal-form">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="ticketId">Ticket Id</label>
+            <input type="text" class="form-control" id="ticketId" name="ticketId" value="{{data?.ticketId}}" disabled>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="ticketNo">Ticket No	</label>
+            <input type="text" class="form-control" id="ticketNo" name="ticketNo" value="{{data?.ticketNo}}" disabled>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="emailId">Email	</label>
+            <input type="text" class="form-control" id="emailId" name="emailId" value="{{data?.emailId}}" disabled>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="category">Category</label>
+            <input type="text" class="form-control" id="category" name="category" value="{{data?.category?.categoryName}}" disabled>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="subCategory">Sub Category</label>
+            <input type="text" class="form-control" id="subCategory" name="subCategory" value="{{data?.subCategory?.subCategoryName}}" disabled>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="serviceTitle"> Service Title	</label>
+            <input type="text" class="form-control" id="serviceTitle" name="serviceTitle" value="{{data?.serviceTitle?.serviceName}}" disabled>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="department">Department</label>
+            <input type="text" class="form-control" id="department" name="department" value="{{data?.department?.departmentName}}" disabled>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="alternativeContactNo">Contact</label>
+            <input type="text" class="form-control" id="alternativeContactNo" name="alternativeContactNo" value="{{data?.alternativeContactNo}}" disabled>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="priority">Priority</label>
+            <input type="text" class="form-control" id="priority" name="priority" value="{{data?.priority?.priorityName}}" disabled>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="issue">Issue</label>
+            <input type="text" class="form-control" id="issue" name="issue" value="{{data?.issue?.issueName}}" disabled>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="assignedTo">Assigned To</label>
+            <input type="text" class="form-control" id="assignedTo" name="assignedTo" value="{{data?.assignedTo?.firstName}} {{data?.assignedTo?.lastName}}" disabled>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="createdBy">Created By</label>
+            <input type="text" class="form-control" id="createdBy" name="createdBy" value="{{data?.createdBy?.firstName}} {{data?.createdBy?.lastName}}" disabled>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="createdDate">Created Date</label>
+            <input type="text" class="form-control" id="createdDate" name="createdDate" value="{{data?.createdDate | date :'medium'}}" disabled>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="updatedBy">Updated By</label>
+            <input type="text" class="form-control" id="updatedBy" name="updatedBy" value="{{data?.updatedBy?.firstName}} {{data?.updatedBy?.lastName}}" disabled>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="updatedDate">Updated Date</label>
+            <input type="text" class="form-control" id="updatedDate" name="updatedDate" value="{{data?.updatedDate | date :'medium'}}" disabled>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="resolveBy">ResolveBy</label>
+            <input type="text" class="form-control" id="resolveBy" name="resolveBy" value="{{data?.resolveBy?.firstName}} {{data?.resolveBy?.lastName}}" disabled>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="createForUser">Create For User</label>
+            <input type="text" class="form-control" id="createForUser" name="createForUser" value="{{data?.createForUser?.firstName}} {{data?.createForUser?.lastName}}" disabled>
+          </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="createForCustomer">Create For Customer	</label>
+            <input type="text" class="form-control" id="createForCustomer" name="createForCustomer" value="{{data?.createForCustomer?.firstName}} {{data?.createForCustomer?.lastName}}" disabled>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="createForCustomer"> Updated By Customer	</label>
+            <input type="text" class="form-control" id="createForCustomer" name="createForCustomer" value="{{data?.updatedByCustomer?.firstName}} {{data?.updatedByCustomer?.lastName}}" disabled>
+          </div>
+        </div>
+
+
+      </div>
+    </form>
+  </div>
+</div>

@@ -20,28 +20,12 @@
           <tr>
             <th>ID</th>
             <th>Ticket No</th>
-            <th>Email</th>
-            <th>Category</th>
-            <th>Sub Category</th>
-            <th>Service Title</th>
-            <th>Department</th>
-            <th>Contact</th>
-            <th>Priority</th>
-            <th>Issue</th>
-            <th>Assigned To</th>
-            <th>Created By</th>
-            <th>Created Date</th>
-            <th>Updated By</th>
-            <th>Updated Date</th>
-            <th>ResolveBy</th>
-            <th>Create For User</th>
-            <th>Create For Customer</th>
-            <th>Updated By Customer</th>
             <th>Mode</th>
             <th>Resolve TimeStamp</th>
             <th>sla</th>
             <th>Status</th>
             <th>Ticket Status</th>
+            <th class="action-cl">Action</th>
           </tr>
         </thead>
         <tbody *ngFor="let i of data  | customFilter: term | paginate
@@ -53,28 +37,14 @@
           <tr>
             <td>{{i.ticketId}}</td>
             <td>{{i.ticketNo}}</td>
-            <td>{{i.emailId}}</td>
-            <td>{{i.category?.categoryName}}</td>
-            <td>{{i.subCategory?.subCategoryName}} </td>
-            <td>{{i.serviceTitle?.serviceName}}</td>
-            <td>{{i.department?.departmentName}}</td>
-            <td>{{i.alternativeContactNo}}</td>
-            <td>{{i.priority?.priorityName}}</td>
-            <td>{{i.issue?.issueName}}</td>
-            <td>{{i.assignedTo?.firstName}} {{i.assignedTo?.lastName}}</td>
-            <td>{{i.createdBy?.firstName}} {{i.createdBy?.lastName}}</td>
-            <td>{{i.createdDate | date :'medium'}}</td>
-            <td>{{i.updatedBy?.firstName}} {{i.updatedBy?.lastName}}</td>
-            <td>{{i.updatedDate | date :'medium'}}</td>
-            <td>{{i.resolveBy?.firstName}} {{i.resolveBy?.lastName}}</td>
-            <td>{{i.createForUser?.firstName}} {{i.createForUser?.lastName}}</td>
-            <td>{{i.createForCustomer?.firstName}} {{i.createForCustomer?.lastName}}</td>
-            <td>{{i.updatedByCustomer?.firstName}} {{i.updatedByCustomer?.lastName}}</td>
             <td>{{i.mode}}</td>
             <td>{{i.resolveTimeStamp}}</td>
             <td>{{i.sla}}</td>
             <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
             <td>{{i.ticketStatus}}</td>
+            <td>
+              <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
+            </td>
           </tr>
         </tbody>
       </table>

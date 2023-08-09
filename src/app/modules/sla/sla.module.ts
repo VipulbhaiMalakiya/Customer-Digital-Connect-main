@@ -7,12 +7,14 @@ import { SharedModule } from "../shared/shared.module";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SLAReportPipe } from 'src/app/_helpers/sla-report';
+import { ViewSlaComponent } from './components/view-sla/view-sla.component';
 
 
 @NgModule({
     declarations: [
         SlaReportComponent,
-        SLAReportPipe
+        SLAReportPipe,
+        ViewSlaComponent
     ],
     imports: [
         CommonModule,
