@@ -37,7 +37,7 @@ import { AgmCoreModule } from '@agm/core';
     InboxLayoutComponent,
     MainlayoutComponent,
     ResetPasswordComponent,
-    NotFoundComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

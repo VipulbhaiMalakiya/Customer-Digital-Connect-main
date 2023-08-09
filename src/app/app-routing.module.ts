@@ -262,6 +262,14 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'overview',
+        loadChildren: () =>
+          import('./modules/analytics/analytics.module').then(
+            (m) => m.AnalyticsModule
+          ),
+      },
+
+      {
         path: 'reservation-table',
         loadChildren: () =>
           import('./modules/reservation-table/reservation-table.module').then(

@@ -160,6 +160,10 @@
         class="menu-list-title"><img src="../assets/images/menu-icon-8.png" alt="" /> SLA Reports</a>
     </li>
 
+    <li *ngIf="isAdmin" routerLinkActive="active">
+      <a routerLink="/admin/overview" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+        class="menu-list-title"><img src="../assets/images/menu-icon-9.png" alt="" />Analytics</a>
+    </li>
     <li>
       <div class="accordion" id="menu-accordion">
         <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSettings"
