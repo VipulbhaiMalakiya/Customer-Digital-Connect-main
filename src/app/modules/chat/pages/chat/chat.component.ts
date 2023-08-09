@@ -163,6 +163,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         this.messagestates = data.messageStatus;
         if (data.mobileNo === this.contact) {
           this.receivedData.push(data);
+          this.getContactList();
         } else if (data.mobileNo !== this.contact) {
           this.getContactList();
         }

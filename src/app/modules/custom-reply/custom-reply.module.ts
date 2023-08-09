@@ -9,7 +9,6 @@ import { customReplyFilterPipe } from 'src/app/_helpers/custom-reply-filter';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { ShortenFileNamePipe } from 'src/app/_helpers/ShortenFileName';
 
 
 @NgModule({
@@ -18,7 +17,7 @@ import { ShortenFileNamePipe } from 'src/app/_helpers/ShortenFileName';
         AddEditeCustomReplyComponent,
         ViewCustomReplyComponent,
         customReplyFilterPipe,
-        ShortenFileNamePipe
+
     ],
     imports: [
         CommonModule,
