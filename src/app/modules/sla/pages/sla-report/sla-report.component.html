@@ -39,7 +39,7 @@
             <td>{{i.ticketNo}}</td>
             <td>{{i.mode}}</td>
             <td>{{i.resolveTimeStamp}}</td>
-            <td>{{i.sla}}</td>
+            <td > <span [ngClass]="{'active': i.sla === 'Under', 'inactive': i.sla === 'Over'}" >{{i.sla}}</span></td>
             <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
             <td>{{i.ticketStatus}}</td>
             <td>
