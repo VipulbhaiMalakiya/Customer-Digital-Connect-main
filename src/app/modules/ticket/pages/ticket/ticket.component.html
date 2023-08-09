@@ -46,7 +46,6 @@
             <th>Created Date</th>
             <th>Status</th>
             <th>Category</th>
-            <th>Sub Category</th>
             <th>Department</th>
             <th>Assigned To</th>
             <th>Status</th>
@@ -66,7 +65,6 @@
             <td>{{i.createdDate | date :'medium'}}</td>
             <td>{{i.ticketStatus}}</td>
             <td>{{i.category?.categoryName}}</td>
-            <td>{{i.subCategory?.subCategoryName}}</td>
             <td>{{i.department?.departmentName}}</td>
             <td>{{i.assignedTo?.firstName}} {{i.assignedTo?.lastName}}</td>
             <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
