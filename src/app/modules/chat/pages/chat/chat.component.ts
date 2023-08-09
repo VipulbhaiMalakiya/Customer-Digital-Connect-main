@@ -176,7 +176,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           const audio = new Audio(
             '../assets/sound/Google Chat - Notification Tone.mp3'
           );
-          // audio.play();
+          audio.play();
         }
       });
     }
@@ -792,6 +792,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
                 let data: any = response;
                 this.toastr.success(data.message);
                 this.isProceess = false;
+
                 this.showEmojiPicker = false;
                 this.scrollToBottom();
               },
@@ -1016,10 +1017,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     } else {
       this.isProceess = false;
     }
-
     var componentInstance = modalRef.componentInstance as TempletsComponent;
     componentInstance.issuesMaster = e;
-
 
     modalRef.result
       .then((data: any) => {
