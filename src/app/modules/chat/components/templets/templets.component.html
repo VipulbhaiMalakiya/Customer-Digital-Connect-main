@@ -5,7 +5,7 @@
     <button type="button" (click)="onCancel()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
   </div>
   <div class="modal-body p-0">
-    <form #myForm="ngForm" (ngSubmit)="submitForm(myForm)">
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
       <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
       <div class="modaltemplate-body">
         <div class="row">
@@ -82,10 +82,10 @@
                         <p>Fallback/Constant Value</p>
                         <input *ngIf="templet?.body?.bodyattribute[0]" type="text" class="form-control" name="input1"
                           id="input1" placeholder={{username}} ngModel disabled>
-                        <input *ngIf="templet?.body?.bodyattribute[1]" type="text" class="form-control" name="input2"
-                          id="input2" placeholder="User Name" ngModel>
-                        <input *ngIf="templet?.body?.bodyattribute[2]" type="password" class="form-control" name="input3"
-                          id="input3" placeholder="Enter password " ngModel>
+                        <input *ngIf="templet?.body?.bodyattribute[1]" type="text" class="form-control"
+                           placeholder="User Name" name="input2" ngModel #input2="ngModel" [ngClass]="{ 'is-invalid': f.submitted && input2.invalid }" required>
+                        <input *ngIf="templet?.body?.bodyattribute[2]" type="password"
+                          placeholder="Enter password"  name="input3" ngModel #input3="ngModel" class="form-control" [ngClass]="{ 'is-invalid': f.submitted && input3.invalid }" required>
                       </div>
                     </div>
                   </div>

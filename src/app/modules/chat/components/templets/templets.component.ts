@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
@@ -20,7 +21,7 @@ export class TempletsComponent implements OnInit {
   imageURL: any = '../../../../../assets/images/ceo-template.jpeg';
   previewUrl: any;
   uploadFile?: any;
-  username:any;
+  username: any;
   set issuesMaster(value: any) {
     this.username = value;
   }
@@ -59,7 +60,6 @@ export class TempletsComponent implements OnInit {
   onView(i: any) {
     this.templet = i;
     console.log(this.templet);
-
   }
   onFileChange(event: any) {
     const file = event.target.files[0];
@@ -80,29 +80,28 @@ export class TempletsComponent implements OnInit {
       data = 'null';
     }
     this.uploadFile = data;
-
   }
 
   onCancel() {
     this.activeModal.dismiss();
   }
 
-  submitForm(formData: any) {
-    if (formData) {
+  onSubmit(f: NgForm) {
+    if (f.invalid) {
+      return;
+    }
+    {
       let name = this.username;
-      let email = formData.value.input2;
-      let password = formData.value.input3
-
+      let email = f.value.input2;
+      let password = f.value.input3;
 
       if (name && email && password) {
         const newData = [name, email, password];
         this.dataArray.push(newData);
-      }
-      else if(name && email){
+      } else if (name && email) {
         const newData = [name, email];
         this.dataArray.push(newData);
-      }
-      else if(name){
+      } else if (name) {
         const newData = [name];
         this.dataArray.push(newData);
       }
@@ -121,8 +120,6 @@ export class TempletsComponent implements OnInit {
         },
       };
       this.activeModal.close(data);
-    } else {
-      console.log('Form is invalid.');
     }
   }
 }
