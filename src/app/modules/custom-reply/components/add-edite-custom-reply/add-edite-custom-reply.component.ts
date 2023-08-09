@@ -14,6 +14,7 @@ export class AddEditeCustomReplyComponent {
   private _categoryMaster: customReplyMaster | undefined;
   isProceess: boolean = false;
   data:any;
+  dataArray: any[] = [];
   CategoryMasterForm: any;
   get title(): string {
     return this._categoryMaster ? "Edit Custom Auto Reply" : " Add Custom Auto Reply";
@@ -26,6 +27,11 @@ export class AddEditeCustomReplyComponent {
       this.CategoryMasterForm.patchValue({
         input:this._categoryMaster.input,
         messageBody:this._categoryMaster.messageBody,
+        Inputvariation1:this._categoryMaster.inputVariations[0],
+        Inputvariation2:this._categoryMaster.inputVariations[1],
+        Inputvariation3:this._categoryMaster.inputVariations[2],
+        Inputvariation4:this._categoryMaster.inputVariations[3],
+        Inputvariation5:this._categoryMaster.inputVariations[4],
       });
       // this.rolesPermissionsMasterForm.controls["email"].disable();
       this.isProceess = false;
@@ -41,9 +47,12 @@ export class AddEditeCustomReplyComponent {
         Validators.minLength(2),
         capitalLetterValidator(),
         Validators.maxLength(30),
-        noEmptySpaces,
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
-        inputVariations:[''],
+        noEmptySpaces]],
+        Inputvariation1:[''],
+        Inputvariation2:[''],
+        Inputvariation3:[''],
+        Inputvariation4:[''],
+        Inputvariation5:[''],
         messageBody: ['', [Validators.required, noEmptySpaces]],
     });
   }
@@ -55,7 +64,24 @@ export class AddEditeCustomReplyComponent {
   }
   onSubmit() {
     if (this.CategoryMasterForm.valid) {
-      this.activeModal.close(this.CategoryMasterForm.value)
+
+      const newData = [
+        this.CategoryMasterForm.value.Inputvariation1,
+        this.CategoryMasterForm.value.Inputvariation2,
+        this.CategoryMasterForm.value.Inputvariation3,
+        this.CategoryMasterForm.value.Inputvariation4,
+        this.CategoryMasterForm.value.Inputvariation5,
+      ];
+        this.dataArray.push(newData);
+
+        this.dataArray = [].concat(...this.dataArray);
+
+      let data:any = {
+        input : this.CategoryMasterForm.value.input,
+        messageBody:this.CategoryMasterForm.value.messageBody,
+        inputVariations:this.dataArray
+      }
+      this.activeModal.close(data)
     } else {
       this.CategoryMasterForm.controls['input'].markAsTouched();
       this.CategoryMasterForm.controls['messageBody'].markAsTouched();

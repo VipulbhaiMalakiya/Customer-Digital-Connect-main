@@ -13,7 +13,7 @@
           <div class="col-md-6">
             <div class="cutomreply-frominn">
               <div class="form-group">
-                <label for="input">Input</label>
+                <label for="input">Input <span class="text-danger">*</span></label>
                 <input type="text" id="input" class="form-control" placeholder="Input" formControlName="input">
                 <div *ngIf="shouldShowError('input','required')" class="form-validate-err">
                   input name cannot be blank.
@@ -24,9 +24,6 @@
                 <div *ngIf="shouldShowError('input','maxlength')" class="form-validate-err">
                   input maximum only 30 characters allowed.
                 </div>
-                <div *ngIf="shouldShowError('input','pattern')" class="form-validate-err">
-                  Only characters are allowed.
-                </div>
                 <div *ngIf="shouldShowError('input','noEmptySpaces')" class="form-validate-err">
                   Should not contain empty spaces at the beginning or end.
                 </div>
@@ -36,7 +33,7 @@
               </div>
               <div class="form-group">
                 <label for="messageBody">Message body <span class="text-danger">*</span></label>
-                <textarea cols="0" rows="3" id="messageBody" name="messageBody" formControlName="messageBody"
+                <textarea cols="0" rows="9" id="messageBody" name="messageBody" formControlName="messageBody"
                   class="form-control" placeholder="Message"></textarea>
                 <div *ngIf="shouldShowError('messageBody','required')" class="form-validate-err">
                   Message is required.
@@ -52,24 +49,24 @@
             <div class="cutomreply-frominn">
 
               <div class="form-group">
-                <label>Input Variations</label>
-                <input type="text" id="" class="form-control" placeholder="Input variation 1">
+                <label for="Inputvariation1">Input Variations</label>
+                <input type="text" id="Inputvariation1" name="Inputvariation1" formControlName="Inputvariation1"  class="form-control" placeholder="Input variation 1">
               </div>
 
               <div class="form-group">
-                <input type="text" id="" class="form-control" placeholder="Input variation 2">
+                <input type="text" id="Inputvariation2" name="Inputvariation2" formControlName="Inputvariation2"  class="form-control" placeholder="Input variation 2">
               </div>
 
               <div class="form-group">
-                <input type="text" id="" class="form-control" placeholder="Input variation 3">
+                <input type="text" id="Inputvariation3" name="Inputvariation3" formControlName="Inputvariation3"  class="form-control" placeholder="Input variation 3">
               </div>
 
               <div class="form-group">
-                <input type="text" id="" class="form-control" placeholder="Input variation 4">
+                <input type="text" id="Inputvariation4" name="Inputvariation4" formControlName="Inputvariation4"  class="form-control" placeholder="Input variation 4">
               </div>
 
               <div class="form-group">
-                <input type="text" id="" class="form-control" placeholder="Input variation 5">
+                <input type="text" id="Inputvariation5" name="Inputvariation5" formControlName="Inputvariation5" class="form-control" placeholder="Input variation 5">
               </div>
             </div>
           </div>

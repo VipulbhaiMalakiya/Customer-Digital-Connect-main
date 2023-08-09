@@ -13,6 +13,7 @@ import { BulkUploadComponent } from 'src/app/modules/shared/components/bulk-uplo
 import { ConfirmationDialogModalComponent } from 'src/app/modules/shared/components/confirmation-dialog-modal/confirmation-dialog-modal.component';
 import { customReplyMaster } from 'src/app/_models/custom-reply';
 import { AddEditeCustomReplyComponent } from '../../components/add-edite-custom-reply/add-edite-custom-reply.component';
+import { ViewCustomReplyComponent } from '../../components/view-custom-reply/view-custom-reply.component';
 
 @Component({
   selector: 'app-custom-reply',
@@ -149,15 +150,15 @@ export class CustomReplyComponent implements OnInit, OnDestroy {
 
   onViewDetail(dataItem: customReplyMaster) {
 
-    const modalRef = this.modalService.open(ViewIssueComponent, { size: "lg", centered: true, backdrop: "static" });
+    const modalRef = this.modalService.open(ViewCustomReplyComponent, { size: "lg", centered: true, backdrop: "static" });
     if (modalRef) {
       this.isProceess = false;
     }
     else {
       this.isProceess = false;
     }
-    var componentInstance = modalRef.componentInstance as ViewIssueComponent;
-    componentInstance.issuesMaster = dataItem;
+    var componentInstance = modalRef.componentInstance as ViewCustomReplyComponent;
+    componentInstance.categoryMaster = dataItem;
   }
 
   onDownload() {
