@@ -74,7 +74,7 @@ export class CustomReplyComponent implements OnInit, OnDestroy {
 
   onAdd() {
     this.isProceess = true;
-    const modalRef = this.modalService.open(AddEditeCustomReplyComponent, { size: "xl" });
+    const modalRef = this.modalService.open(AddEditeCustomReplyComponent, { size: "lg" });
     if (modalRef) {
       this.isProceess = false;
     }
@@ -111,7 +111,7 @@ export class CustomReplyComponent implements OnInit, OnDestroy {
 
   onEdit(dataItem: customReplyMaster) {
     this.isProceess = true;
-    const modalRef = this.modalService.open(AddEditeCustomReplyComponent, { size: "sm" });
+    const modalRef = this.modalService.open(AddEditeCustomReplyComponent, { size: "lg" });
     if (modalRef) {
       this.isProceess = false;
     }

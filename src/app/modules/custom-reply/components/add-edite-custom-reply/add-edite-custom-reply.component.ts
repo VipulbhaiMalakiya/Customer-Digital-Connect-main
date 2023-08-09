@@ -43,8 +43,8 @@ export class AddEditeCustomReplyComponent {
         Validators.maxLength(30),
         noEmptySpaces,
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
-        messageBody: [true, [Validators.required]],
-        inputVariations:['']
+        inputVariations:[''],
+        messageBody: ['', [Validators.required, noEmptySpaces]],
     });
   }
 
