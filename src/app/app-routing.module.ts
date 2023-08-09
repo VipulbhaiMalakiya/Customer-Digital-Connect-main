@@ -203,6 +203,13 @@ const routes: Routes = [
                 (m) => m.QuickReplayModule
               ),
           },
+          {
+            path: 'custom-reply',
+            loadChildren: () =>
+              import('./modules/custom-reply/custom-reply.module').then(
+                (m) => m.CustomReplyModule
+              ),
+          },
         ],
       },
       {
@@ -285,6 +292,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'reset-password/:token', component: ResetPasswordComponent },
+
   { path: '**', component: NotFoundComponent },
 ];
 @NgModule({
