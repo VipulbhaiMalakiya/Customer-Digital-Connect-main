@@ -128,7 +128,7 @@ export class CustomReplyComponent implements OnInit, OnDestroy {
           inputVariations: data.inputVariations,
           messageBody:data.messageBody,
           updatedBy: this.userData.userId,
-          autoReplyid: dataItem.autoReplyid
+          autoReplyId : dataItem.autoReplyId
         }
         this.masterName = `/auto-reply`;
         let updateData: any = {
@@ -171,7 +171,7 @@ export class CustomReplyComponent implements OnInit, OnDestroy {
         updatedBy = ''
       }
       return {
-        "Id": x.autoReplyid || '',
+        "Id": x.autoReplyId || '',
         "Input": x.input || '',
         "Message": x.messageBody || '',
         "Created By": x.createdBy?.firstName + ' ' + x.createdBy?.lastName || '',
@@ -196,7 +196,7 @@ export class CustomReplyComponent implements OnInit, OnDestroy {
     componentInstance.message = "Are you sure you want to delete this custom auto reply?";
     modalRef.result.then((canDelete: boolean) => {
       if (canDelete) {
-        this.masterName = `/auto-reply/${dataItem?.autoReplyid}`;
+        this.masterName = `/auto-reply/${dataItem?.autoReplyId}`;
         this.isProceess = true;
         this.subscription = this.apiService.deleteID(this.masterName).pipe(take(1)).subscribe(data => {
           this.isProceess = false;

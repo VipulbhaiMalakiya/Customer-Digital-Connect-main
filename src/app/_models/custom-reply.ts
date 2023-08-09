@@ -6,5 +6,5 @@ export interface customReplyMaster {
   messageBody?:any;
   createdBy?:UserMaster;
   updatedBy?:UserMaster;
-  autoReplyid?:any;
+  autoReplyId?:any;
 }
