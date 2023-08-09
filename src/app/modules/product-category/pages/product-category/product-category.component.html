@@ -30,8 +30,6 @@
             <th>Category Name |titlecase</th>
             <th>Created Date</th>
             <th>Created By</th>
-            <th>Updated Date</th>
-            <th>Updated By</th>
             <th>Active</th>
             <th>Action</th>
           </tr>
@@ -61,8 +59,6 @@
             <td>{{i.productCategoryName |titlecase}}</td>
             <td>{{i.createdDate | date :'medium' || ''}}</td>
             <td>{{i.createdBy?.firstName || ''}} {{i.createdBy?.lastName || ''}} </td>
-            <td>{{i.updatedDate | date :'medium' || ''}}</td>
-            <td>{{i.updatedBy?.firstName || ''}} {{i.updatedBy?.lastName || ''}}</td>
             <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
             <td>
               <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>

@@ -30,7 +30,6 @@
             <th>Product Image</th>
             <th>Category</th>
             <th>Product Name</th>
-            <th>Product Serial No</th>
             <th>Created Date</th>
             <th>Created By</th>
             <th>Status</th>
@@ -61,7 +60,6 @@
             </td>
             <td>{{i.productCategory?.productCategoryName |titlecase}}</td>
             <td>{{i.productName |titlecase}}</td>
-            <td>{{i.serialNo}}</td>
             <td>{{i.createdDate | date :'medium' || ''}}</td>
             <td>{{i.createdBy?.firstName || ''}} {{i.createdBy?.lastName || ''}} </td>
             <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
