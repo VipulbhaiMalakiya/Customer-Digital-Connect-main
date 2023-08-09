@@ -12,6 +12,7 @@ select.ng-valid.ng-touched {
   border-color: green !important;
 }
 
+
 .btnClick {
   cursor: pointer;
 }
@@ -976,8 +977,10 @@ textarea.form-control {
 
 .dasboard-table thead th {
   vertical-align: top;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 600;
+  background: #00abc5;
+  color: #fff;
   padding: 0.8rem 0.5rem;
 }
 

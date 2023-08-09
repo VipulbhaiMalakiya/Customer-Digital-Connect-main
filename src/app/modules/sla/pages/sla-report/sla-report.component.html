@@ -34,12 +34,12 @@
             currentPage: page,
             totalItems: count
           };let ind = index">
-          <tr>
+          <tr [ngClass]="{'active': i.sla === 'Under', 'inactive': i.sla === 'Over', 'gray-bg':i.sla === null}" >
             <td>{{i.ticketId}}</td>
             <td>{{i.ticketNo}}</td>
             <td>{{i.mode}}</td>
             <td>{{i.resolveTimeStamp}}</td>
-            <td > <span [ngClass]="{'active': i.sla === 'Under', 'inactive': i.sla === 'Over'}" >{{i.sla}}</span></td>
+            <td > {{i.sla}}</td>
             <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
             <td>{{i.ticketStatus}}</td>
             <td>
