@@ -26,11 +26,10 @@
       <table class="table">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Input</th>
-            <th>Message</th>
-            <th>Created By</th>
-            <th>Updated By</th>
+            <th class="tcol1">ID</th>
+            <th class="tcol2">Input</th>
+            <th class="tcol3">Message</th>
+            <th class="tcol4">Created By</th>
             <th class="action-cl">Action</th>
           </tr>
         </thead>
@@ -46,8 +45,6 @@
             <td>{{i.input}}</td>
             <td>{{i.messageBody}}</td>
             <td>{{i.createdBy?.firstName || ''}} {{i.createdBy?.lastName || ''}} </td>
-            <td>{{i.updatedBy?.firstName || ''}} {{i.updatedBy?.lastName || ''}}</td>
-
             <td>
               <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
               <a class="btnClick" (click)="onEdit(i)"><i class="las la-edit"></i></a>
