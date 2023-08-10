@@ -26,6 +26,7 @@ import { ResetPasswordComponent } from './_layouts/reset-password/reset-password
 import { NotFoundComponent } from './_layouts/not-found/not-found.component';
 import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
 import { AgmCoreModule } from '@agm/core';
+import { AuthGaurdGuard } from './_helpers/auth-gaurd.guard';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { AgmCoreModule } from '@agm/core';
     HttpClient,
     DatePipe,
     NgbActiveModal,
+    AuthGaurdGuard,
     { provide: LocationStrategy, useClass: HashLocationStrategy }
 
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
