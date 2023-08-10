@@ -33,7 +33,7 @@
       <a routerLink="inbox" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         class="menu-list-title"><img src="../assets/images/menu-icon-2.png" alt="" /> Inbox</a>
     </li>
-    <li routerLinkActive="active" *ngIf="isAdmin">
+    <li  *ngIf="isAdmin">
       <div class="accordion" id="menu-accordion">
         <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
           aria-controls="collapseOne">
@@ -43,15 +43,12 @@
         <div id="collapseOne" class="card-body-collapse collapse" aria-labelledby="headingOne"
           data-bs-parent="#menu-accordion">
           <ul class="inner-acc-menu">
-            <!-- <li><a [routerLink]="['/admin/master/approval-matrix']" routerLinkActive="active"
-                [routerLinkActiveOptions]="{exact: true}">Approval
-                Matrix</a></li> -->
+
             <li routerLinkActive="active">
               <a routerLink="/admin/master/category-list" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
                 Category</a>
             </li>
-
             <li class="inner-acc-active" routerLinkActive="active">
               <a [routerLink]="['/admin/master/company']">Company</a>
             </li>
@@ -136,33 +133,63 @@
       <a routerLink="/admin/ticket" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         class="menu-list-title"><img src="../assets/images/menu-icon-15.png" alt="" /> Ticket</a>
     </li>
-    <li *ngIf="isAdmin" routerLinkActive="active" (click)="refresh1()">
-      <a routerLink="/admin/reservation-table" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-        class="menu-list-title"><img src="../assets/images/menu-icon-5.png" alt="" />Table Reservation</a>
+    <li>
+      <div class="accordion" id="menu-accordion">
+        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSettings5"
+          aria-expanded="true" aria-controls="collapseSettings5">
+          <img src="../assets/images/menu-icon-10.png" alt="" /> Restaurants
+        </div>
+
+        <div id="collapseSettings5" class="card-body-collapse collapse" aria-labelledby="headingOne"
+          data-bs-parent="#menu-accordion">
+          <ul class="inner-acc-menu">
+            <li routerLinkActive="active">
+              <a routerLink="/admin/reservation-table" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
+                Table Reservation</a>
+            </li>
+            <li routerLinkActive="active">
+              <a routerLink="/admin/orders" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
+                Orders</a>
+            </li>
+            <li routerLinkActive="active">
+              <a routerLink="/admin/ordersList" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
+                Orders</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </li>
-    <li *ngIf="isAdmin" routerLinkActive="active">
-      <a routerLink="/admin/orders" routerLinkActive="active" (click)="refresh()"
-        [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title"><img src="../assets/images/menu-icon-10.png"
-          alt="" /> Orders</a>
-    </li>
-    <li *ngIf="isAdmin" routerLinkActive="active">
-      <a routerLink="/admin/ordersList" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-        class="menu-list-title"><img src="../assets/images/menu-icon-6.png" alt="" /> Orders List</a>
-    </li>
+
     <li *ngIf="isAdmin" routerLinkActive="active">
       <a routerLink="/admin/workflow" routerLinkActive="active" (click)="refreshworkflow()"
         [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title"><img src="../assets/images/menu-icon-7.png"
           alt="" /> Automation</a>
     </li>
-
-    <li *ngIf="isAdmin" routerLinkActive="active">
-      <a routerLink="/admin/sla-reports" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-        class="menu-list-title"><img src="../assets/images/menu-icon-8.png" alt="" /> SLA Reports</a>
-    </li>
-
-    <li *ngIf="isAdmin" routerLinkActive="active">
-      <a routerLink="/admin/overview" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-        class="menu-list-title"><img src="../assets/images/menu-icon-9.png" alt="" />Analytics</a>
+    <li  *ngIf="isAdmin">
+      <div class="accordion" id="menu-accordion">
+        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne3" aria-expanded="true"
+          aria-controls="collapseOne3">
+          <img src="../assets/images/menu-icon-8.png" alt="" /> Reports
+        </div>
+        <div id="collapseOne3" class="card-body-collapse collapse" aria-labelledby="headingOne3"
+          data-bs-parent="#menu-accordion">
+          <ul class="inner-acc-menu">
+            <li routerLinkActive="active">
+              <a routerLink="/admin/sla-reports" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
+                SLA Reports</a>
+            </li>
+            <li routerLinkActive="active">
+              <a routerLink="/admin/overview" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
+                Analytics</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </li>
     <li>
       <div class="accordion" id="menu-accordion">
@@ -174,11 +201,11 @@
         <div id="collapseSettings" class="card-body-collapse collapse" aria-labelledby="headingOne"
           data-bs-parent="#menu-accordion">
           <ul class="inner-acc-menu">
-            <li *ngIf="isAdmin">
-              <a routerLink="/admin/profile" class="menu-list-title">
+            <li *ngIf="isAdmin" routerLinkActive="active">
+              <a routerLink="/admin/profile" class="menu-list-title" >
                 My Profile</a>
             </li>
-            <li *ngIf="isUser || isResolver">
+            <li *ngIf="isUser || isResolver"  routerLinkActive="active">
               <a routerLink="/profile" class="menu-list-title">
                 My Profile</a>
             </li>

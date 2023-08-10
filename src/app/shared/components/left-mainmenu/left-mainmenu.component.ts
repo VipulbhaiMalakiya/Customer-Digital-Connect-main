@@ -40,15 +40,7 @@ export class LeftMainmenuComponent implements OnInit {
     this.router.navigate(['/inbox/']);
   }
 
-  refresh() {
-    this.router.navigate(['/admin/orders']);
-    // window.location.href = `/admin/orders`;
-  }
 
-  refresh1(){
-    this.router.navigate(['/admin/reservation-table']);
-    // window.location.href = `/admin/orders`;
-  }
   refreshworkflow(){
     this.router.navigate(['/admin/workflow']);
     // window.location.href = `/admin/workflow`;

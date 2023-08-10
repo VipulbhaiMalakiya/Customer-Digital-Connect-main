@@ -17,16 +17,7 @@ export class InboxLayoutComponent {
         if (event['url'] === '/admin/inbox') {
           this.classToggled = true;
           this.cd.detectChanges();
-        } else if (event['url'] === '/admin/orders') {
-          this.classToggled = true;
-          this.cd.detectChanges();
         } else if (event['url'] === '/admin/workflow') {
-          this.classToggled = true;
-          this.cd.detectChanges();
-        } else if (event['url'] === 'admin/orders/:phone') {
-          this.classToggled = true;
-          this.cd.detectChanges();
-        } else if (event['url'] === '/admin/reservation-table') {
           this.classToggled = true;
           this.cd.detectChanges();
         } else if (event['url'] === '/inbox') {
