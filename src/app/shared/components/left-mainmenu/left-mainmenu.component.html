@@ -36,8 +36,9 @@
     </li>
     <li>
       <div class="accordion" id="menu-accordion">
-        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true"
-          aria-controls="collapseOne">
+
+        <div *ngIf="isAdmin" class="card-header  collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+          aria-expanded="true" aria-controls="collapseOne">
           <img class="MenuImage" src="../assets/images/menu-icon-10.png" alt="" /> Restaurants
         </div>
         <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#menu-accordion">
@@ -59,87 +60,89 @@
             </li>
           </ul>
         </div>
-        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
-          aria-controls="collapseTwo">
+
+        <div *ngIf="isAdmin" class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+          aria-expanded="true" aria-controls="collapseTwo">
           <img class="MenuImage" src="../assets/images/menu-icon-3.png" alt="" /> Master
-
-          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#menu-accordion">
-            <ul class="inner-acc-menu">
-              <li routerLinkActive="active">
-                <a routerLink="/admin/master/category-list" routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
-                  Category</a>
-              </li>
-              <li routerLinkActive="active">
-                <a routerLink="/admin/master/company" routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
-                  Company</a>
-              </li>
-
-              <li routerLinkActive="active">
-                <a [routerLink]="['/admin/master/customers']" routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }">Customers</a>
-              </li>
-
-              <li routerLinkActive="active">
-                <a [routerLink]="['/admin/master/department']" routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }">Department</a>
-              </li>
-              <li routerLinkActive="active">
-                <a [routerLink]="['/admin/master/issue']" routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }">Issues</a>
-              </li>
-              <li routerLinkActive="active">
-                <a [routerLink]="['/admin/master/roles-permissions']" routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }">Roles Permissions</a>
-              </li>
-              <li routerLinkActive="active">
-                <a routerLink="/admin/master/subcategory-list" routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
-                  Sub Category</a>
-              </li>
-              <li routerLinkActive="active">
-                <a routerLink="/admin/master/service-title-list" routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
-                  Service Title</a>
-              </li>
-              <li routerLinkActive="active">
-                <a routerLink="/admin/master/SLA-Timelines" routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
-                  SLA Timelines</a>
-              </li>
-              <li routerLinkActive="active">
-                <a [routerLink]="['/admin/master/user']" routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }">User</a>
-              </li>
-
-              <li routerLinkActive="active">
-                <a [routerLink]="['/admin/master/product-category']" routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }">Product Category</a>
-              </li>
-
-              <li routerLinkActive="active">
-                <a [routerLink]="['/admin/master/products']" routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }">Product</a>
-              </li>
-              <li routerLinkActive="active">
-                <a [routerLink]="['/admin/master/labels']" routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }">labels</a>
-              </li>
-
-              <li routerLinkActive="active">
-                <a [routerLink]="['/admin/master/quick-replay']" routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }">Quick Replay</a>
-              </li>
-
-              <li routerLinkActive="active">
-                <a [routerLink]="['/admin/master/custom-reply']" routerLinkActive="active"
-                  [routerLinkActiveOptions]="{ exact: true }">Custom reply</a>
-              </li>
-            </ul>
-
-          </div>
         </div>
+
+        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#menu-accordion">
+          <ul class="inner-acc-menu">
+            <li routerLinkActive="active">
+              <a routerLink="/admin/master/category-list" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
+                Category</a>
+            </li>
+            <li routerLinkActive="active">
+              <a routerLink="/admin/master/company" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
+                Company</a>
+            </li>
+
+            <li routerLinkActive="active">
+              <a [routerLink]="['/admin/master/customers']" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">Customers</a>
+            </li>
+
+            <li routerLinkActive="active">
+              <a [routerLink]="['/admin/master/department']" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">Department</a>
+            </li>
+            <li routerLinkActive="active">
+              <a [routerLink]="['/admin/master/issue']" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">Issues</a>
+            </li>
+            <li routerLinkActive="active">
+              <a [routerLink]="['/admin/master/roles-permissions']" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">Roles Permissions</a>
+            </li>
+            <li routerLinkActive="active">
+              <a routerLink="/admin/master/subcategory-list" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
+                Sub Category</a>
+            </li>
+            <li routerLinkActive="active">
+              <a routerLink="/admin/master/service-title-list" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
+                Service Title</a>
+            </li>
+            <li routerLinkActive="active">
+              <a routerLink="/admin/master/SLA-Timelines" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
+                SLA Timelines</a>
+            </li>
+            <li routerLinkActive="active">
+              <a [routerLink]="['/admin/master/user']" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">User</a>
+            </li>
+
+            <li routerLinkActive="active">
+              <a [routerLink]="['/admin/master/product-category']" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">Product Category</a>
+            </li>
+
+            <li routerLinkActive="active">
+              <a [routerLink]="['/admin/master/products']" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">Product</a>
+            </li>
+            <li routerLinkActive="active">
+              <a [routerLink]="['/admin/master/labels']" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">labels</a>
+            </li>
+
+            <li routerLinkActive="active">
+              <a [routerLink]="['/admin/master/quick-replay']" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">Quick Replay</a>
+            </li>
+
+            <li routerLinkActive="active">
+              <a [routerLink]="['/admin/master/custom-reply']" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">Custom reply</a>
+            </li>
+          </ul>
+
+        </div>
+
         <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree"
           aria-expanded="false" aria-controls="collapseThree">
           <img class="MenuImage" src="../assets/images/menu-icon-8.png" alt="" /> Reports
@@ -189,7 +192,3 @@
 
   </ul>
 </aside>
-
-<!-- font-size: 0px;
-    padding: 12px 0px;
-    text-align: center; -->
