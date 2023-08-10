@@ -99,6 +99,10 @@
         </div>
       </div>
     </div>
+
+    <div *ngIf="tdata.length === 0 && !isProceess" class="d-flex align-items-center justify-content-center" style="height: 80vh;">
+      <h1 class="text-danger">No records found !</h1>
+    </div>
   </div>
   <div class="productdt-wrapper-sec" *ngIf="!istable">
     <div class="row">
