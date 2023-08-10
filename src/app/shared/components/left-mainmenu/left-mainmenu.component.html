@@ -34,7 +34,7 @@
       <a routerLink="/admin/ticket" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         class="menu-list-title"><img src="../assets/images/menu-icon-15.png" alt="" /> Ticket</a>
     </li>
-    <li>
+    <li *ngIf="isAdmin">
       <div class="accordion" id="menu-accordion">
         <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSettings5"
           aria-expanded="true" aria-controls="collapseSettings5">
@@ -73,7 +73,6 @@
         <div id="collapseOne" class="card-body-collapse collapse" aria-labelledby="headingOne"
           data-bs-parent="#menu-accordion">
           <ul class="inner-acc-menu">
-
             <li routerLinkActive="active">
               <a routerLink="/admin/master/category-list" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
@@ -84,6 +83,7 @@
                 [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
                 Company</a>
             </li>
+
             <li routerLinkActive="active">
               <a [routerLink]="['/admin/master/customers']" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }">Customers</a>
@@ -162,11 +162,11 @@
 
     <li  *ngIf="isAdmin">
       <div class="accordion" id="menu-accordion">
-        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne3" aria-expanded="true"
-          aria-controls="collapseOne3">
+        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="true"
+          aria-controls="collapseTwo">
           <img src="../assets/images/menu-icon-8.png" alt="" /> Reports
         </div>
-        <div id="collapseOne3" class="card-body-collapse collapse" aria-labelledby="headingOne3"
+        <div id="collapseTwo" class="card-body-collapse collapse" aria-labelledby="headingTwo"
           data-bs-parent="#menu-accordion">
           <ul class="inner-acc-menu">
             <li routerLinkActive="active">

@@ -10,6 +10,7 @@ export class LeftMainmenuComponent implements OnInit {
   data: any;
   userData: any;
 
+
   constructor(private authenticationService: AuthenticationService,
     private router: Router) {
     this.data = localStorage.getItem("userData");
@@ -17,6 +18,7 @@ export class LeftMainmenuComponent implements OnInit {
 
   }
   ngOnInit(): void {}
+
 
   get isAdmin() {
     return this.userData?.role?.roleName == 'Admin';
@@ -31,17 +33,12 @@ export class LeftMainmenuComponent implements OnInit {
   }
 
   reloadCurrentPage() {
-    // window.location.href = '#/admin/inbox/';
     this.router.navigate(['/admin/inbox/']);
   }
 
   reloadCurrentPage1() {
-    // window.location.href = `/inbox/`;
     this.router.navigate(['/inbox/']);
   }
-
-
-
 
   logout() {
     this.authenticationService.logout();
