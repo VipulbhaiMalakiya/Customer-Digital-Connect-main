@@ -41,10 +41,7 @@ export class LeftMainmenuComponent implements OnInit {
   }
 
 
-  refreshworkflow(){
-    this.router.navigate(['/admin/workflow']);
-    // window.location.href = `/admin/workflow`;
-  }
+
 
   logout() {
     this.authenticationService.logout();

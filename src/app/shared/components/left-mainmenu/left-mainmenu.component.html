@@ -22,9 +22,6 @@
         class="menu-list-title"><img src="../assets/images/menu-icon-13.png" alt="" /> Department
         Tickets</a>
     </li>
-
-    <!-- <li><a href="inbox.html" class="menu-list-title"><img src="images/menu-icon-2.png" alt=""> Inbox</a></li>
-     -->
     <li *ngIf="isAdmin" routerLinkActive="active">
       <a routerLink="dashboard/v1" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         class="menu-list-title"><img src="../assets/images/menu-icon-1.png" alt="" /> Dashboard</a>
@@ -32,6 +29,39 @@
     <li *ngIf="isAdmin" routerLinkActive="active" (click)="reloadCurrentPage()">
       <a routerLink="inbox" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         class="menu-list-title"><img src="../assets/images/menu-icon-2.png" alt="" /> Inbox</a>
+    </li>
+    <li *ngIf="isAdmin" routerLinkActive="active">
+      <a routerLink="/admin/ticket" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+        class="menu-list-title"><img src="../assets/images/menu-icon-15.png" alt="" /> Ticket</a>
+    </li>
+    <li>
+      <div class="accordion" id="menu-accordion">
+        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSettings5"
+          aria-expanded="true" aria-controls="collapseSettings5">
+          <img src="../assets/images/menu-icon-10.png" alt="" /> Restaurants
+        </div>
+
+        <div id="collapseSettings5" class="card-body-collapse collapse" aria-labelledby="headingOne"
+          data-bs-parent="#menu-accordion">
+          <ul class="inner-acc-menu">
+            <li routerLinkActive="active">
+              <a routerLink="/admin/reservation-table" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
+                Table Reservation</a>
+            </li>
+            <li routerLinkActive="active">
+              <a routerLink="/admin/orders" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
+                Orders</a>
+            </li>
+            <li routerLinkActive="active">
+              <a routerLink="/admin/ordersList" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
+                Orders</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </li>
     <li  *ngIf="isAdmin">
       <div class="accordion" id="menu-accordion">
@@ -49,10 +79,11 @@
                 [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
                 Category</a>
             </li>
-            <li class="inner-acc-active" routerLinkActive="active">
-              <a [routerLink]="['/admin/master/company']">Company</a>
+            <li routerLinkActive="active">
+              <a routerLink="/admin/master/company" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
+                Company</a>
             </li>
-
             <li routerLinkActive="active">
               <a [routerLink]="['/admin/master/customers']" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }">Customers</a>
@@ -129,45 +160,6 @@
       </div>
     </li>
 
-    <li *ngIf="isAdmin" routerLinkActive="active">
-      <a routerLink="/admin/ticket" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
-        class="menu-list-title"><img src="../assets/images/menu-icon-15.png" alt="" /> Ticket</a>
-    </li>
-    <li>
-      <div class="accordion" id="menu-accordion">
-        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseSettings5"
-          aria-expanded="true" aria-controls="collapseSettings5">
-          <img src="../assets/images/menu-icon-10.png" alt="" /> Restaurants
-        </div>
-
-        <div id="collapseSettings5" class="card-body-collapse collapse" aria-labelledby="headingOne"
-          data-bs-parent="#menu-accordion">
-          <ul class="inner-acc-menu">
-            <li routerLinkActive="active">
-              <a routerLink="/admin/reservation-table" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
-                Table Reservation</a>
-            </li>
-            <li routerLinkActive="active">
-              <a routerLink="/admin/orders" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
-                Orders</a>
-            </li>
-            <li routerLinkActive="active">
-              <a routerLink="/admin/ordersList" routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
-                Orders</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </li>
-
-    <li *ngIf="isAdmin" routerLinkActive="active">
-      <a routerLink="/admin/workflow" routerLinkActive="active" (click)="refreshworkflow()"
-        [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title"><img src="../assets/images/menu-icon-7.png"
-          alt="" /> Automation</a>
-    </li>
     <li  *ngIf="isAdmin">
       <div class="accordion" id="menu-accordion">
         <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne3" aria-expanded="true"
@@ -186,6 +178,11 @@
               <a routerLink="/admin/overview" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
                 Analytics</a>
+            </li>
+            <li routerLinkActive="active">
+              <a routerLink="/admin/workflow" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }" class="menu-list-title">
+                Automation</a>
             </li>
           </ul>
         </div>

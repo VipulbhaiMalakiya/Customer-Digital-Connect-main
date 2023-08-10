@@ -17,10 +17,7 @@ export class InboxLayoutComponent {
         if (event['url'] === '/admin/inbox') {
           this.classToggled = true;
           this.cd.detectChanges();
-        } else if (event['url'] === '/admin/workflow') {
-          this.classToggled = true;
-          this.cd.detectChanges();
-        } else if (event['url'] === '/inbox') {
+        }  else if (event['url'] === '/inbox') {
           this.classToggled = true;
           this.cd.detectChanges();
         }
