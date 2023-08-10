@@ -18,17 +18,16 @@
 
     <div class="analdrop1">
       <select id="select-tags3" class="form-select">
-        <option value="">Tags</option>
-        <option value="tgnoo">Csv upload 16th Jun 12:57</option>
-        <option value="tg501">Csv upload 6th Jun 04:21</option>
-        <option value="chkin">Repeat Buyers</option>
-        <option value="chkout">Recovered</option>
-        <option value="chkout">Order Placed(Prepaid)</option>
+        <ng-container *ngFor="let i of data ; ">
+          <option value={{i.id}}>{{i.name}}</option>
+        </ng-container>
+
+
       </select>
     </div>
 
     <div class="analdrop1 analdrop2">
-      <select id="select-tags4" class="form-select">
+      <select id="select-tags4" class="form-select" >
         <option value="">Last 7 days</option>
         <option value="tgnoo">Today</option>
         <option value="tg501">Yesterday</option>
