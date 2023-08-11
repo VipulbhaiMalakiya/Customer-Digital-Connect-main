@@ -551,6 +551,14 @@ textarea.form-control {
   overflow: hidden;
 }
 
+.left-colapse .left-mainmenu .inner-acc-menu {
+  max-height: 0px;
+  overflow-y: hidden;
+  padding-bottom: 0px;
+}
+.left-colapse #menu-accordion.accordion .card-header::after {
+  font-size: 0px;
+}
 .rightouter70 {
   width: calc(100% - 230px);
   padding: 15px 30px;
