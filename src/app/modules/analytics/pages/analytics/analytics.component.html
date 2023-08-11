@@ -1,82 +1,73 @@
-<div class="main-analytics-right">
+<app-loading-spin *ngIf="isProceess"></app-loading-spin>
 
+<div class="main-analytics-right">
   <div class="page-title mt-0">
     <h1><i class="las la-chart-bar"></i> Conversation Analytics</h1>
     <p color="#737373" class="sc-gEvEer beJtS">Find out if your customers are getting timely responses &amp; getting
       their issues resolved quickly! </p>
   </div>
-
   <div class="analytics-dropcols">
-
     <div class="analdrop1 analdrop2">
       <label>Select Date</label>
-      <select id="select-tags4" class="form-control">
-        <option value="">Last 7 days</option>
-        <option value="tgnoo">Today</option>
-        <option value="tg501">Yesterday</option>
-        <option value="chkin">Last 7 days</option>
-        <option value="chkout">Last 30 days</option>
+      <select id="select-tags4" class="form-select"
+      [(ngModel)]="selectedValue"
+      (change)="onValueChange($event)">
+        <option value="Today">Today</option>
+        <option value="Yesterday">Yesterday</option>
+        <option value="7">Last 7 days</option>
+        <option value="30">Last 30 days</option>
       </select>
     </div>
 
     <div class="analdrop1">
       <div class="form-group">
-        <label>From</label>
-        <input class="form-control" name="name" value="dd-mm" type="date">
+        <label for="startDate">From</label>
+        <input class="form-control" type="date" id="startDate"
+         name="startDate" [(ngModel)]="startDate" [max]="endDate">
       </div>
     </div>
-
     <div class="analdrop1">
       <div class="form-group">
-        <label>To</label>
-        <input class="form-control" name="name" value="dd-mm" type="date">
+        <label for="endDate">To</label>
+        <input  class="form-control" type="date" id="endDate"
+         name="endDate" [(ngModel)]="endDate"
+         [max]="endDate">
+        <div *ngIf="dateRangeError" class="form-validate-err">
+          To Date must be after From Date
+        </div>
       </div>
     </div>
-
     <div class="analdrop1">
       <div class="form-group">
         <label>&nbsp;</label>
-        <button type="submit" class="btn common-btn">Submit</button>
+        <button  class="btn common-btn" (click)="submitDateRange()">Submit</button>
       </div>
     </div>
-
     <div class="analdrop1">
       <label>Export Data</label>
-      <button class="gray-btns" type="button"><i class="las la-file-export"></i> Download</button>
+      <button (click)="onDownload()" class="gray-btns" type="button"><i class="las la-file-export"></i> Download</button>
     </div>
-
-
   </div>
 
   <div class="below-anlytics-chart">
     <p>These stats are for all conversations which were initiated by customers in the selected period</p>
-
     <div class="row">
-
-      <div class="col-md-5 ol-sm-6">
-        <div class="analybidcol">
-          <div class="info-tblg" data-bs-toggle="tooltip" data-bs-placement="top"
-            title="Number of converstaions initiated by a customer message in the selected time period."><i
-              class="las la-info-circle"></i></div>
-          <h3>Total Conversations</h3>
-          <div class="anltbig-text">20</div>
+      <ng-container *ngFor="let i of data">
+        <div class="col-md-4 col-sm-12">
+          <div class="analybidcol">
+            <div class="info-tblg"  data-toggle="tooltip" data-placement="top"
+              title="Number of conversations initiated by a customer message in the selected time period."><i
+                class="las la-info-circle"></i></div>
+            <h3>{{i.name}}</h3>
+            <div class="anltbig-text">{{i.total}}</div>
+          </div>
         </div>
-      </div>
-
-
-      <div class="col-md-5 ol-sm-6">
-        <div class="analybidcol">
-          <div class="info-tblg"><i class="las la-info-circle"></i></div>
-          <h3>Resolved</h3>
-          <div class="anltbig-text">1 <span>5%</span></div>
-          <p><b>16</b> were closed without response</p>
-        </div>
-      </div>
-
+      </ng-container>
+      <div *ngIf="data.length === 0" class="text-center">
+        <Strong class="text-danger">No records found</Strong>
+     </div>
     </div>
-
     <div class="row">
-
       <div class="col-md-5 ol-sm-6">
         <div class="analybidcol analgrph">
           <div class="info-tblg"><i class="las la-info-circle"></i></div>
@@ -85,7 +76,6 @@
           <div class="anltb-graph"><img src="../assets/images/graph-not-available.svg" alt=""></div>
         </div>
       </div>
-
       <div class="col-md-5 ol-sm-6">
         <div class="analybidcol analgrph">
           <div class="info-tblg"><i class="las la-info-circle"></i></div>
@@ -94,11 +84,6 @@
           <div class="anltb-graph"><img src="../assets/images/graph-not-available.svg" alt=""></div>
         </div>
       </div>
-
-
     </div>
-
   </div>
-
-
 </div>

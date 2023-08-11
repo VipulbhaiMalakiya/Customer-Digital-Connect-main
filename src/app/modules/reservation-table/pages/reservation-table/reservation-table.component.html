@@ -112,7 +112,7 @@
                     <div class="form-group">
                       <label for="Date" class="form-label">Date</label>
                       <input type="date" class="form-control" name="Date" id="Date" placeholder="Date"
-                        formControlName="Date" [min]="currentDate" [max]="defaultDate ">
+                        formControlName="Date" [min]="currentDate" [max]="defaultDate">
                     </div>
                     <div *ngIf="shouldShowError('Date','required')" class="form-validate-err">
                       Please Enter Date

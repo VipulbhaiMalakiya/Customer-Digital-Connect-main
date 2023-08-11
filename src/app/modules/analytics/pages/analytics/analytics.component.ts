@@ -6,36 +6,48 @@ import { Subscription, take } from 'rxjs';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
 import { labelMasterModel } from 'src/app/_models/labels';
 import { AppService } from 'src/app/_services/app.service';
+import { DatePipe } from '@angular/common';
+import { analyticsMasterModel } from 'src/app/_models/analytics';
 
 @Component({
   selector: 'app-analytics',
   templateUrl: './analytics.component.html',
-  styleUrls: ['./analytics.component.css']
+  styleUrls: ['./analytics.component.css'],
 })
 export class AnalyticsComponent {
-
-
   isProceess: boolean = true;
-  term: any;
-  data: any[] = [];
+  data: analyticsMasterModel[] = [];
   subscription?: Subscription;
   userData: any;
   masterName?: any;
-  page: number = 1;
-  count: number = 0;
-  tableSize: number = 10;
-  tableSizes: any = [3, 6, 9, 12];
+  selectedValue?: any = 7;
+  startDate?: any;
+  endDate?: any;
+  dateRangeError: boolean = false;
+
   constructor(
     private cd: ChangeDetectorRef,
     private modalService: NgbModal,
     private toastr: ToastrService,
     private titleService: Title,
     private appService: AppService,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private datePipe: DatePipe
   ) {
     this.titleService.setTitle('CDC -Analytics');
     const d: any = localStorage.getItem('userData');
     this.userData = JSON.parse(d);
+
+    const oneWeekFromNow = new Date();
+    this.endDate = this.datePipe.transform(
+      oneWeekFromNow.toISOString().split('T')[0],
+      'yyyy-MM-dd'
+    );
+    oneWeekFromNow.setDate(oneWeekFromNow.getDate() - 7);
+    this.startDate = this.datePipe.transform(
+      oneWeekFromNow.toISOString().split('T')[0],
+      'yyyy-MM-dd'
+    );
   }
 
   ngOnInit(): void {
@@ -44,14 +56,14 @@ export class AnalyticsComponent {
 
   fatchData() {
     this.isProceess = true;
-    this.masterName ='/label/active'
+    this.masterName = `/analytics-report?form=${this.datePipe.transform(this.startDate, 'dd/MM/yyyy')}&to=${this.datePipe.transform(this.endDate, 'dd/MM/yyyy')}`;;
     this.subscription = this.apiService
       .getAll(this.masterName)
       .pipe(take(1))
       .subscribe(
         (data) => {
           if (data) {
-            this.data = data.data;
+            this.data = data;
             this.isProceess = false;
             this.cd.detectChanges();
           }
@@ -60,5 +72,79 @@ export class AnalyticsComponent {
           this.isProceess = false;
         }
       );
+  }
+
+  onDownload() {
+    const exportData = this.data.map(x => {
+      return {
+        "Name": x.name || '',
+        "Total": x.total || '',
+      }
+    });
+    const headers = ["Name", "Total"];
+    this.appService.exportAsExcelFile(exportData, "Conversation Analytics", headers);
+  }
+
+  onValueChange(event: Event) {
+    const target = event.target as HTMLSelectElement;
+    this.selectedValue = target.value;
+    const oneWeekFromNow = new Date();
+    if (this.selectedValue === 'Today') {
+      this.startDate = this.datePipe.transform(
+        oneWeekFromNow.toISOString().split('T')[0],
+        'yyyy-MM-dd'
+      );
+    } else if (this.selectedValue === 'Yesterday') {
+      oneWeekFromNow.setDate(oneWeekFromNow.getDate() - 1);
+      this.startDate = this.datePipe.transform(
+        oneWeekFromNow.toISOString().split('T')[0],
+        'yyyy-MM-dd'
+      );
+    } else if (this.selectedValue === '7') {
+      oneWeekFromNow.setDate(oneWeekFromNow.getDate() - 7);
+      this.startDate = this.datePipe.transform(
+        oneWeekFromNow.toISOString().split('T')[0],
+        'yyyy-MM-dd'
+      );
+    } else if (this.selectedValue === '30') {
+      oneWeekFromNow.setDate(oneWeekFromNow.getDate() - 30);
+      this.startDate = this.datePipe.transform(
+        oneWeekFromNow.toISOString().split('T')[0],
+        'yyyy-MM-dd'
+      );
+    }
+
+    console.log('Selected value:', this.selectedValue);
+  }
+
+  submitDateRange() {
+    const start = new Date(this.startDate);
+    const end = new Date(this.endDate);
+    if (start > end) {
+      this.dateRangeError = true;
+    } else {
+      this.dateRangeError = false;
+      var model: any = {
+        form: this.datePipe.transform(start, 'dd/MM/yyyy'),
+        to: this.datePipe.transform(end, 'dd/MM/yyyy'),
+      };
+      this.isProceess = true;
+      this.masterName = `/analytics-report?form=${model.form}&to=${model.to}`;
+      this.subscription = this.apiService
+        .getAll(this.masterName)
+        .pipe(take(1))
+        .subscribe(
+          (data) => {
+            if (data) {
+              this.data = data;
+              this.isProceess = false;
+              this.cd.detectChanges();
+            }
+          },
+          (error) => {
+            this.isProceess = false;
+          }
+        );
+    }
   }
 }
