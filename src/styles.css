@@ -554,7 +554,7 @@ textarea.form-control {
 .left-colapse .left-mainmenu .inner-acc-menu {
   max-height: 0px;
   overflow-y: hidden;
-  padding-bottom: 0px;
+  padding-bottom: 0px !important;
 }
 .left-colapse #menu-accordion.accordion .card-header::after {
   font-size: 0px;
