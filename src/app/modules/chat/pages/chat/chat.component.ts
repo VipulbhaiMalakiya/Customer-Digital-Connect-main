@@ -100,6 +100,24 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.showEmojiPicker = false;
   }
 
+  replaceAndBoldPlaceholder(data?: any): any {
+    const name = data.templateBodyAttributes[0];
+    const originalString = data.templatePreview;
+    const replacedString = originalString.replace('{{1}}', name);
+    return replacedString;
+  }
+
+  replaceAndBoldPlaceholder1(data?: any): any {
+    const name = data.templateBodyAttributes[0];
+    const un = data.templateBodyAttributes[1];
+    const pwd = data.templateBodyAttributes[2];
+    const originalString = data.templatePreview;
+    const replacedname = originalString.replace('{{1}}', name);
+    const replacedeml = replacedname.replace('{{2}}', un);
+    const replacedString = replacedeml.replace('{{3}}', pwd);
+    return replacedString;
+  }
+
   //Emoji Code End
   constructor(
     private _route: ActivatedRoute,
