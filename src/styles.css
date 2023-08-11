@@ -4061,7 +4061,6 @@ label.form-label {
 }
 
 /*------------new template---------*/
-
 .templateright-col {
   background:#fff;
   padding: 15px;
@@ -4261,6 +4260,7 @@ min-height: 44px;
   vertical-align: middle;
   margin-left: 10px;
 }
+
 /*----------analytics-overview---------*/
 
 .analytics-page {
@@ -4311,7 +4311,7 @@ height: 100%;
   margin-right: 5px;
 }
 
-.analytics-dropcols { display: flex; }
+.analytics-dropcols { display: flex; align-items: flex-start; }
 .analdrop1{ max-width:15%; flex: 0 0 15%; margin-right:10px; }
 .analdrop3 .gray-btns{ height:100%; font-weight: 500; border:1px solid #111; font-size: 13px; }
 .analdrop1 select.form-control{ font-weight: 500; border:1px solid #111; font-size: 13px; cursor: pointer; padding-right: 36px; }
@@ -4334,7 +4334,7 @@ height: 100%;
 .below-anlytics-chart{ margin-top: 30px; }
 
 
-.below-anlytics-chart .col-md-4.ol-sm-6{ margin:10px 0px; }
+.below-anlytics-chart .col-md-5.ol-sm-6{ margin:10px 0px; }
 
 .analgrph{ background: #fff; }
 .analgrph h3{ padding-right: 15px; }
@@ -4347,3 +4347,11 @@ height: 100%;
   max-width:900px;
   width: 100%;
 }
+
+.analdrop1 label{ width: 100%; margin-bottom: 5px; }
+.analdrop1 .gray-btns{ height: 40px; border:1px solid #111;  }
+.analdrop1 .form-control{ border:1px solid #111; }
+
+.analdrop1 .btn.common-btn{ width: 100%; height:40px; }
+.analdrop1 .btn.common-btn:focus{ background:#0094ab; color:#fff; }
+
