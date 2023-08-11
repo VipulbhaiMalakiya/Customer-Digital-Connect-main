@@ -91,7 +91,7 @@ export class TempletsComponent implements OnInit {
       return;
     }
     {
-      let name = this.username;
+      let name = f.value.input1;
       let email = f.value.input2;
       let password = f.value.input3;
 
@@ -106,7 +106,6 @@ export class TempletsComponent implements OnInit {
         this.dataArray.push(newData);
       }
       this.dataArray = [].concat(...this.dataArray);
-
       let data: any = {
         templateName: this.templet.templateName,
         templateBody: {
