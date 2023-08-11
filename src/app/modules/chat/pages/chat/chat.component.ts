@@ -96,12 +96,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   onFocus() {
-    // console.log('focus');
+
     this.showEmojiPicker = false;
   }
-  onBlur() {
-    // console.log('onblur');
-  }
+
   //Emoji Code End
   constructor(
     private _route: ActivatedRoute,
