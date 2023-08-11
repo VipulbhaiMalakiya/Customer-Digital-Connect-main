@@ -56,7 +56,10 @@ export class AnalyticsComponent {
 
   fatchData() {
     this.isProceess = true;
-    this.masterName = `/analytics-report?form=${this.datePipe.transform(this.startDate, 'dd/MM/yyyy')}&to=${this.datePipe.transform(this.endDate, 'dd/MM/yyyy')}`;;
+    this.masterName = `/analytics-report?form=${this.datePipe.transform(
+      this.startDate,
+      'dd/MM/yyyy'
+    )}&to=${this.datePipe.transform(this.endDate, 'dd/MM/yyyy')}`;
     this.subscription = this.apiService
       .getAll(this.masterName)
       .pipe(take(1))
@@ -75,14 +78,18 @@ export class AnalyticsComponent {
   }
 
   onDownload() {
-    const exportData = this.data.map(x => {
+    const exportData = this.data.map((x) => {
       return {
-        "Name": x.name || '',
-        "Total": x.total || '',
-      }
+        Name: x.name || '',
+        Total: x.total || '',
+      };
     });
-    const headers = ["Name", "Total"];
-    this.appService.exportAsExcelFile(exportData, "Conversation Analytics", headers);
+    const headers = ['Name', 'Total'];
+    this.appService.exportAsExcelFile(
+      exportData,
+      'Conversation Analytics',
+      headers
+    );
   }
 
   onValueChange(event: Event) {
@@ -114,7 +121,26 @@ export class AnalyticsComponent {
       );
     }
 
-    console.log('Selected value:', this.selectedValue);
+    this.isProceess = true;
+    this.masterName = `/analytics-report?form=${this.datePipe.transform(
+      this.startDate,
+      'dd/MM/yyyy'
+    )}&to=${this.datePipe.transform(this.endDate, 'dd/MM/yyyy')}`;
+    this.subscription = this.apiService
+      .getAll(this.masterName)
+      .pipe(take(1))
+      .subscribe(
+        (data) => {
+          if (data) {
+            this.data = data;
+            this.isProceess = false;
+            this.cd.detectChanges();
+          }
+        },
+        (error) => {
+          this.isProceess = false;
+        }
+      );
   }
 
   submitDateRange() {

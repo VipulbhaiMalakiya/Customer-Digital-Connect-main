@@ -53,7 +53,6 @@ export class ForgotPasswordComponent {
       formData.append("email", this.forgotPasswordForm.value.username);
       this.subscription = this.authenticationService.forgotpassword(formData).pipe(take(1)).subscribe(responseData => {
         this.loading = false;
-        console.log(responseData);
         if (responseData.code === 200) {
           this.toastr.success(responseData.message);
           this.forgotPasswordForm.reset();
