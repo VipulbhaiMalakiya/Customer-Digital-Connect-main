@@ -68,8 +68,6 @@ export class AnalyticsComponent {
           if (data) {
             this.data = data;
             this.totalRecord = this.data[0]?.total;
-            console.log(this.totalRecord);
-
             this.isProceess = false;
             this.cd.detectChanges();
           }
@@ -136,6 +134,7 @@ export class AnalyticsComponent {
         (data) => {
           if (data) {
             this.data = data;
+            this.totalRecord = this.data[0]?.total;
             this.isProceess = false;
             this.cd.detectChanges();
           }
@@ -166,6 +165,7 @@ export class AnalyticsComponent {
           (data) => {
             if (data) {
               this.data = data;
+              this.totalRecord = this.data[0]?.total;
               this.isProceess = false;
               this.cd.detectChanges();
             }
