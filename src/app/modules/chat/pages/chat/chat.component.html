@@ -669,7 +669,7 @@
                 </p>
                 <small> {{data.time |dateAgo}}</small>
               </div>
-
+              <!-- Templet Start -->
               <li class="msg-replayer" class="msg-replayer" *ngIf="data.messagetype === 'template' && data.templateBody == 'body'
               && data.templateButton1 !== null  && data.templateHeader == null ">
 
@@ -716,8 +716,6 @@
                 </div>
 
               </li>
-
-
               <li class="msg-replayer" class="msg-replayer" *ngIf="data.messagetype === 'template' && data.templateBody == null
               && data.templateButton1 == null  && data.templateHeader == 'header' ">
                 <div class="avata">
@@ -763,10 +761,8 @@
                 </div>
 
               </li>
-
               <li class="msg-replayer" class="msg-replayer" *ngIf="data.messagetype === 'template' && data.templateBody == 'body'
               && data.templateButton1 == null  && data.templateHeader == 'header' && data.templateBodyAttributes ">
-
                 <div class="avata">
                   <span *ngIf="data.name === null">Y</span>
                   <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
@@ -810,7 +806,6 @@
                 </div>
 
               </li>
-
               <li class="msg-replayer" *ngIf="data.messagetype === 'template' && data.templateBody == 'body'
                && data.templateButton1 == null && data.templateHeader == null
                && data.templateHeaderfileLink == null">
@@ -855,7 +850,6 @@
                   </div>
                 </div>
               </li>
-
               <li class="msg-replayer" *ngIf="data.messagetype === 'template' && data.templateBody == null
               && data.templateButton1 !== null ">
                 <div class="avata">
@@ -938,7 +932,7 @@
 
                 </div>
               </li>
-
+              <!-- Templet ENd -->
               <li class="msg-sender"
                 *ngIf="data.type === 'Receiver' && data.messagetype === 'text' || data.messagetype === 'Text'">
                 <div class="avata">
