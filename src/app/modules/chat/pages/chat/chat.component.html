@@ -725,7 +725,7 @@
                 <div class="chat-info">
                   <div class="last-msg p-3 rounded">
                     <div class="senttemp-2">
-                      <div class="senttemp-pic"><img src="../assets/images/ceo-template.jpeg" alt=""></div>
+                      <div class="senttemp-pic" *ngIf="data.templateHeaderfileLink"><img src="../assets/images/ceo-template.jpeg" alt=""></div>
                       {{replaceAndBoldPlaceholder(data)}}
                       <p class="mt-2"> <a class="temppay-btn text-left mb-2"
                           *ngIf="data.templateButton1">{{data.templateButton1}} <i class="las la-sign-in-alt"></i></a>
@@ -770,7 +770,7 @@
                 <div class="chat-info">
                   <div class="last-msg p-3 rounded">
                     <div class="senttemp-2">
-                      <div class="senttemp-pic"><img src="../assets/images/ceo-template.jpeg" alt=""></div>
+                      <div class="senttemp-pic" *ngIf="data.templateHeaderfileLink"><img src="../assets/images/ceo-template.jpeg" alt=""></div>
                       {{replaceAndBoldPlaceholder(data)}}
                       <p class="mt-2"> <a class="temppay-btn text-left mb-2"
                           *ngIf="data.templateButton1">{{data.templateButton1}} <i class="las la-sign-in-alt"></i></a>
