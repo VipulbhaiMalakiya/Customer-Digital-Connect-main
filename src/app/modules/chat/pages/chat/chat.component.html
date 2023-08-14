@@ -294,7 +294,7 @@
       <div class="chatarea-sec">
         <div class="chat-body">
           <ul class="msg-history" #chatContainer>
-            <ng-container *ngFor="let data of receivedData ">
+            <ng-container *ngFor="let data of receivedData">
               <!-- <div class="ondtcss-chx" ><span class="dtcss-fm">Today</span></div> -->
               <li class="msg-replayer"
                 *ngIf="data.type === 'Sender' && data.messagetype === 'text' || data.messagetype === 'Text'">

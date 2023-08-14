@@ -200,7 +200,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           const audio = new Audio(
             '../assets/sound/Google Chat - Notification Tone.mp3'
           );
-          // audio.play();
+          audio.play();
         }
       });
     }
@@ -289,12 +289,17 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     // return fullName?.split(' ').map((n: any[]) => n[0]).join('');
   }
 
+  ngAfterViewInit() {
+    this.scrollToBottom();
+  }
+
   scrollToBottom(): void {
     try {
-      const chatContainerEl = this.chatContainer.nativeElement;
-      chatContainerEl.scrollTop = chatContainerEl.scrollHeight;
+      this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
     } catch (err) {}
   }
+
+
 
   GetUser() {
     if (this._route.snapshot.paramMap.get('id') != null) {
