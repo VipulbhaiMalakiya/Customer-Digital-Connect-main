@@ -58,8 +58,8 @@ export class AnalyticsComponent {
     this.isProceess = true;
     this.masterName = `/analytics-report?form=${this.datePipe.transform(
       this.startDate,
-      'dd/MM/yyyy'
-    )}&to=${this.datePipe.transform(this.endDate, 'dd/MM/yyyy')}`;
+      'yyyy-MM-dd'
+    )}&to=${this.datePipe.transform(this.endDate, 'yyyy-MM-dd')}`;
     this.subscription = this.apiService
       .getAll(this.masterName)
       .pipe(take(1))
@@ -124,8 +124,8 @@ export class AnalyticsComponent {
     this.isProceess = true;
     this.masterName = `/analytics-report?form=${this.datePipe.transform(
       this.startDate,
-      'dd/MM/yyyy'
-    )}&to=${this.datePipe.transform(this.endDate, 'dd/MM/yyyy')}`;
+      'yyyy-MM-dd'
+    )}&to=${this.datePipe.transform(this.endDate, 'yyyy-MM-dd')}`;
     this.subscription = this.apiService
       .getAll(this.masterName)
       .pipe(take(1))
@@ -151,8 +151,8 @@ export class AnalyticsComponent {
     } else {
       this.dateRangeError = false;
       var model: any = {
-        form: this.datePipe.transform(start, 'dd/MM/yyyy'),
-        to: this.datePipe.transform(end, 'dd/MM/yyyy'),
+        form: this.datePipe.transform(start, 'yyyy-MM-dd'),
+        to: this.datePipe.transform(end, 'yyyy-MM-dd'),
       };
       this.isProceess = true;
       this.masterName = `/analytics-report?form=${model.form}&to=${model.to}`;
