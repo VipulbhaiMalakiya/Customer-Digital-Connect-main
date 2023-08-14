@@ -971,15 +971,15 @@
                 <li class="nav-item">
                   <a class="nav-link active" data-bs-toggle="pill" href="#reply">Reply</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" >
                   <a class="nav-link" data-bs-toggle="pill" href="#notes">Notes</a>
                 </li>
               </ul>
-              <div class="chatwrite-emojisico">
-                <div class="chat-emoji-ico" (click)="toggleEmojiPicker()"><i class="las la-smile"></i></div>
-                <div class="chat-attach-ico" (click)="toggleupload()"><i class="las la-paperclip"></i></div>
+              <div class="chatwrite-emojisico" >
+                <div class="chat-emoji-ico" (click)="toggleEmojiPicker()" *ngIf="chatVisible"><i class="las la-smile"></i></div>
+                <div class="chat-attach-ico" (click)="toggleupload()" *ngIf="chatVisible"><i class="las la-paperclip"></i></div>
                 <div class="chat-quickrply-ico" title="Quick Reply" (click)=" quickReply()"><img
-                    src="../assets/images/quick-reply-icon.png" alt=""></div>
+                    src="../assets/images/quick-reply-icon.png" alt="" *ngIf="chatVisible"></div>
 
                 <div class="chat-template-ico" title="Templates" (click)="getTemplates(chatname)">
                   <svg fill="#000000" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg">
@@ -1005,9 +1005,9 @@
                     </g>
                   </svg>
                 </div>
-                <div class="chat-cart-ico"><i class="las la-shopping-cart"></i></div>
-              </div>
-              <div class="attach-opentray" *ngIf="showupload">
+                <div class="chat-cart-ico"  *ngIf="chatVisible"><i class="las la-shopping-cart"></i></div>
+              </div> 
+              <div class="attach-opentray" *ngIf="showupload && chatVisible">
                 <div class="inner-attachicons">
                   <div class="row">
 
@@ -1075,7 +1075,7 @@
                   </ng-container>
                 </form>
               </div>
-              <div class="tab-pane" id="notes">
+              <div class="tab-pane" id="notes" >
                 <form class="writechat-boder" #ngNotesForm="ngForm" (ngSubmit)="submitNoteForm(ngNotesForm)">
                   <textarea class="form-control h-auto" id="note" [(ngModel)]="message" required name="note"
                     placeholder="Type a note...." rows="1"></textarea>
