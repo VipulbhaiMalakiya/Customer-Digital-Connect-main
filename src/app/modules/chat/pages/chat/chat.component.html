@@ -725,7 +725,12 @@
                 <div class="chat-info">
                   <div class="last-msg p-3 rounded">
                     <div class="senttemp-2">
-                      <div class="senttemp-pic" *ngIf="data.templateHeaderfileLink"><img src="../assets/images/ceo-template.jpeg" alt=""></div>
+                      <div class="pdf-nameic cursur"
+                        *ngIf="data.templateHeaderfileLink && data.templateHeaderFileType ==='document'"><span
+                          class="pdf-icon" (click)="downloadFile1(data)"><img src="../assets/images/pdf-icon.png"
+                            alt=""> {{data.templateName}}</span>
+                        <span class="pdf-downicon"><i class="las la-arrow-circle-down"></i></span>
+                      </div>
                       {{replaceAndBoldPlaceholder(data)}}
                       <p class="mt-2"> <a class="temppay-btn text-left mb-2"
                           *ngIf="data.templateButton1">{{data.templateButton1}} <i class="las la-sign-in-alt"></i></a>
@@ -770,7 +775,12 @@
                 <div class="chat-info">
                   <div class="last-msg p-3 rounded">
                     <div class="senttemp-2">
-                      <div class="senttemp-pic" *ngIf="data.templateHeaderfileLink"><img src="../assets/images/ceo-template.jpeg" alt=""></div>
+                      <div class="pdf-nameic cursur"
+                      *ngIf="data.templateHeaderfileLink && data.templateHeaderFileType ==='document'"><span
+                        class="pdf-icon" (click)="downloadFile1(data)"><img src="../assets/images/pdf-icon.png"
+                          alt=""> {{data.templateName}}</span>
+                      <span class="pdf-downicon"><i class="las la-arrow-circle-down"></i></span>
+                    </div>
                       {{replaceAndBoldPlaceholder(data)}}
                       <p class="mt-2"> <a class="temppay-btn text-left mb-2"
                           *ngIf="data.templateButton1">{{data.templateButton1}} <i class="las la-sign-in-alt"></i></a>
@@ -1054,7 +1064,7 @@
             <div class="tab-content">
               <div class="tab-pane active" id="reply">
                 <form class="writechat-boder" #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
-                  <textarea class="form-control h-auto" id="chat"  [(ngModel)]="message" required name="chat"
+                  <textarea class="form-control h-auto" id="chat" [(ngModel)]="message" required name="chat"
                     placeholder="Type a message...." rows="1">
                 </textarea>
                   <ng-container *ngIf="chatVisible">

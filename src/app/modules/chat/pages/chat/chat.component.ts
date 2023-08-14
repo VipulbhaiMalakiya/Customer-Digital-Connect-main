@@ -220,6 +220,14 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     link.click();
     document.body.removeChild(link);
   }
+  downloadFile1(e: any) {
+    const link = document.createElement('a');
+    link.setAttribute('href', e.templateHeaderfileLink);
+    link.setAttribute('download', e.templateName);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
   // Download code end
   ActiveLabels() {
     this.isProceess = true;
