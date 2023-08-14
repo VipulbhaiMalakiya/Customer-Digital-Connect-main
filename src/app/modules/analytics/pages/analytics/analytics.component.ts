@@ -24,7 +24,7 @@ export class AnalyticsComponent {
   startDate?: any;
   endDate?: any;
   dateRangeError: boolean = false;
-
+  totalRecord:any;
   constructor(
     private cd: ChangeDetectorRef,
     private modalService: NgbModal,
@@ -67,6 +67,9 @@ export class AnalyticsComponent {
         (data) => {
           if (data) {
             this.data = data;
+            this.totalRecord = this.data[0]?.total;
+            console.log(this.totalRecord);
+
             this.isProceess = false;
             this.cd.detectChanges();
           }

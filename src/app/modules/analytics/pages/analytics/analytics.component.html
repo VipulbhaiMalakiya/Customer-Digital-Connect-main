@@ -55,11 +55,10 @@
       <ng-container *ngFor="let i of data">
         <div class="col-md-4 col-sm-12">
           <div class="analybidcol">
-            <div class="info-tblg"  data-toggle="tooltip" data-placement="top"
-              title="Number of conversations initiated by a customer message in the selected time period."><i
+            <div class="info-tblg"  data-toggle="tooltip" data-placement="top"><i
                 class="las la-info-circle"></i></div>
             <h3>{{i.name}}</h3>
-            <div class="anltbig-text">{{i.total}}</div>
+            <div class="anltbig-text">{{i.total}}  <span *ngIf="i.total !== totalRecord && i.total  !== 0 ">{{ i.total / totalRecord  * 100 | number: '1.2-2'}} %</span></div>
           </div>
         </div>
       </ng-container>
