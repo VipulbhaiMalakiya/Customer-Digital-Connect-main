@@ -4250,7 +4250,7 @@ min-height: 44px;
 
 .senttemp-2{ max-width: 300px; width: 100%;  overflow: hidden; }
 .senttemp-2 p{ color:#fff; font-size: 14px; }
-.senttemp-2 p a{ color:#fff; text-decoration: underline !important; }
+.senttemp-2 p a{ color:#fff;}
 .senttemp-2 p:last-child{ margin-bottom:0px; }
 
 .temppay-btn{ background:#00abc5; font-weight: 600; color:#fff; padding:10px; width: 100%; text-align: center; border-radius:8px;    }
