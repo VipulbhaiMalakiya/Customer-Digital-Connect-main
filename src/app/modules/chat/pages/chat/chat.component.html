@@ -1054,10 +1054,10 @@
             <div class="tab-content">
               <div class="tab-pane active" id="reply">
                 <form class="writechat-boder" #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
-                  <textarea class="form-control h-auto" id="chat" [(ngModel)]="message" required name="chat"
+                  <textarea class="form-control h-auto" id="chat"  [(ngModel)]="message" required name="chat"
                     placeholder="Type a message...." rows="1">
                 </textarea>
-                  <ng-container>
+                  <ng-container *ngIf="chatVisible">
                     <button class="chatsubmit-btn invalid" type="submit" *ngIf="loginForm.invalid"
                       [disabled]="loginForm.invalid"><i class="lab la-telegram-plane"></i></button>
                     <button class="chatsubmit-btn valid" type="submit" *ngIf="loginForm.valid"
@@ -1069,7 +1069,7 @@
                 <form class="writechat-boder" #ngNotesForm="ngForm" (ngSubmit)="submitNoteForm(ngNotesForm)">
                   <textarea class="form-control h-auto" id="note" [(ngModel)]="message" required name="note"
                     placeholder="Type a note...." rows="1"></textarea>
-                  <ng-container>
+                  <ng-container *ngIf="chatVisible">
                     <button class="chatsubmit-btn invalid" type="submit" *ngIf="ngNotesForm.invalid"
                       [disabled]="ngNotesForm.invalid"><i class="lab la-telegram-plane"></i></button>
                     <button class="chatsubmit-btn valid" type="submit" *ngIf="ngNotesForm.valid"

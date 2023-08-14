@@ -20,7 +20,7 @@ import { UserMaster } from 'src/app/_models';
 import { MessageData } from 'src/app/_models/meesage';
 import { ConfirmationDialogModalComponent } from 'src/app/modules/shared/components/confirmation-dialog-modal/confirmation-dialog-modal.component';
 import { environment } from 'src/environments/environment';
-import { Location } from '@angular/common';
+import { DatePipe, Location } from '@angular/common';
 import * as $ from 'jquery';
 import { Title } from '@angular/platform-browser';
 import { labelMasterModel } from 'src/app/_models/labels';
@@ -40,6 +40,11 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   show: boolean = false;
   data: any = [];
   bgclass: any;
+  lastMessageTime?: number; // Timestamp of the last message
+  timeRemaining?: number;
+  targetFormat?: string = 'yyyy-MM-ddTHH:mm:ss';
+  lastItem?: any;
+  chatVisible: boolean = true;
   isProceess: boolean = true;
   firstname: any;
   lastname: any;
@@ -96,7 +101,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   onFocus() {
-
     this.showEmojiPicker = false;
   }
 
@@ -130,7 +134,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     private router: Router,
     private location: Location,
     private titleService: Title,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private datePipe: DatePipe
   ) {
     const d: any = localStorage.getItem('userData');
     this.userData = JSON.parse(d);
@@ -402,6 +407,13 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         (response) => {
           this.item = response;
           this.receivedData = this.item;
+          const lstRe = this.receivedData.slice(-1)[0];
+          this.lastItem = lstRe.time;
+          this.lastMessageTime = this.lastItem;
+          if(lstRe.mobileNo === e.phoneNo){
+            this.checkChatStatus();
+          }
+      
           this.isProceess = false;
           this.masterName = `/chat-activity/${e.phoneNo}`;
           this.subscription = this.apiService
@@ -436,6 +448,27 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           this.isProceess = false;
         }
       );
+  }
+
+  checkChatStatus() {
+    this.message = ''
+    this.chatVisible = true;
+    const currentTime = new Date();
+    const date: any =
+      this.datePipe.transform(this.lastMessageTime, this.targetFormat) || '';
+    const next24Hours = new Date(date);
+    next24Hours.setHours(next24Hours.getHours() + 24);
+    const timeDifference = next24Hours.getTime() - currentTime.getTime();
+    if (timeDifference <= 0) {
+      this.chatVisible = false;
+      this.message =
+        'Outgoing message not allowed. Latest message not within the last 24 hours.';
+    } else {
+      setTimeout(() => {
+        this.message = ''
+        this.checkChatStatus();
+      }, timeDifference);
+    }
   }
 
   onlabel(e: any) {
