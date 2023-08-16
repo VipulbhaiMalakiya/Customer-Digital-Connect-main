@@ -43,6 +43,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   lastMessageTime?: number; // Timestamp of the last message
   timeRemaining?: number;
   targetFormat?: string = 'yyyy-MM-ddTHH:mm:ss';
+  messageCount: number = 0;
   lastItem?: any;
   chatVisible: boolean = true;
   isProceess: boolean = true;
@@ -184,9 +185,21 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         this.messagestates = data.messageStatus;
         if (data.mobileNo === this.contact) {
           this.receivedData.push(data);
-          this.getContactList();
+          const foundItem = this.open.find(
+            (item: { phoneNo: any }) => item.phoneNo === data.mobileNo
+          );
+          // if (
+          //   this.messagestates !== 'read' &&
+          //   data.mobileNo === foundItem.phoneNo && data.mobileNo === this.contact
+          // ) {
+          //   this.messageCount++;
+          // }
         } else if (data.mobileNo !== this.contact) {
           this.getContactList();
+          // const foundItem = this.open.find((item: { phoneNo: any; }) => item.phoneNo === data.mobileNo);
+          // if(this.messagestates !== 'read' && data.mobileNo){
+          //   this.messageCount++;
+          // }
         }
         if (
           this.messagestates == 'sent' ||
@@ -476,7 +489,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     const timeDifference = next24Hours.getTime() - currentTime.getTime();
     if (timeDifference <= 0) {
       this.chatVisible = false;
-      this.message ='Outgoing message not allowed. Latest message not within the last 24 hours.';
+      this.message =
+        'Outgoing message not allowed. Latest message not within the last 24 hours.';
     } else {
       setTimeout(() => {
         this.message = '';

@@ -167,7 +167,7 @@
                 </div>
                 <div class="chat-time ms-auto text-end">
                   <div class="mb-1">{{i.time | dateAgo}}</div>
-                  <div class="un-read" *ngIf="i.messageStatus !== 'read' && i.type == 'Receiver'">5</div>
+                  <div class="un-read" *ngIf="i.messageStatus !== 'read' && messageCount > 0">{{messageCount}}</div>
                 </div>
               </li>
             </ul>
@@ -218,7 +218,7 @@
                 </div>
                 <div class="chat-time ms-auto text-end">
                   <div class="mb-1"> {{i.time | dateAgo}}</div>
-                  <div class="un-read" *ngIf="i.messageStatus !== 'read' && i.type === 'Receiver' ">5</div>
+                  <div class="un-read" *ngIf="i.messageStatus !== 'read' && messageCount > 0 ">messageCount</div>
                 </div>
               </li>
             </ul>
@@ -1006,7 +1006,7 @@
                   </svg>
                 </div>
                 <div class="chat-cart-ico"  *ngIf="chatVisible"><i class="las la-shopping-cart"></i></div>
-              </div> 
+              </div>
               <div class="attach-opentray" *ngIf="showupload && chatVisible">
                 <div class="inner-attachicons">
                   <div class="row">
