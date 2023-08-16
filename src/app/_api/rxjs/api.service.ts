@@ -15,6 +15,10 @@ export class ApiService {
     return this.httpService.get(_data).pipe(map(data => data as any));
   }
 
+  getA(_data: any): Observable<any> {
+    return this.httpService.get(_data).pipe(map(data => data as any));
+  }
+  
   deleteID(_data: any): Observable<any> {
     return this.httpService.deleteID(_data).pipe(map(data => data as any));
   }
@@ -26,4 +30,7 @@ export class ApiService {
   add(_data:any): Observable<any> {
     return this.httpService.Add(_data).pipe(map(data => data as any));
   }
+
+
+
 }

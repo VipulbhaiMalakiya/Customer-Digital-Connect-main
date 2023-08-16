@@ -12,7 +12,7 @@ import { performanceMasterModel } from 'src/app/_models/performance';
 @Component({
   selector: 'app-agent-performance',
   templateUrl: './agent-performance.component.html',
-  styleUrls: ['./agent-performance.component.css']
+  styleUrls: ['./agent-performance.component.css'],
 })
 export class AgentPerformanceComponent {
   isProceess: boolean = true;
@@ -24,7 +24,7 @@ export class AgentPerformanceComponent {
   startDate?: any;
   endDate?: any;
   dateRangeError: boolean = false;
-  totalRecord:any;
+  totalRecord: any;
   term: any;
   page: number = 1;
   count: number = 0;
@@ -61,18 +61,24 @@ export class AgentPerformanceComponent {
 
   fatchData() {
     this.isProceess = true;
-    this.masterName = `/analytics-report?form=${this.datePipe.transform(
-      this.startDate,
-      'yyyy-MM-dd'
-    )}&to=${this.datePipe.transform(this.endDate, 'yyyy-MM-dd')}`;
+    var model: any = {
+      startDate: this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),
+      endDate: this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),
+    };
+
+    this.masterName = 'agent-performance';
+    let addData: any = {
+      url: this.masterName,
+      model: model,
+    };
+
     this.subscription = this.apiService
-      .getAll(this.masterName)
+      .getAll(addData)
       .pipe(take(1))
       .subscribe(
         (data) => {
           if (data) {
-            this.data = data;
-            this.totalRecord = this.data[0]?.total;
+            this.data = data.data;
             this.isProceess = false;
             this.cd.detectChanges();
           }
@@ -95,16 +101,31 @@ export class AgentPerformanceComponent {
   onDownload() {
     const exportData = this.data.map((x) => {
       return {
-        Name: x.name || '',
-        Total: x.total || '',
+        'User Name': x.user?.username || '',
+        'Full Name': x.user?.firstName + ' ' + x.user?.lastName || '',
+        Assigned: x?.assigned || '',
+        Responded: x?.responded || '',
+        'Rotal Resolved': x?.totalResolved || '',
+        Reassigned: x?.reassigned || '',
+        Closed: x?.closed || '',
+        'First Response Time': x.firstResponseTime || '',
+        'Avg Response Time': x.avgResponseTime || '',
+        'Resolution Time': x.resolutionTime || '',
       };
     });
-    const headers = ['Name', 'Total'];
-    this.appService.exportAsExcelFile(
-      exportData,
-      'Agent Performance',
-      headers
-    );
+    const headers = [
+      'User Name',
+      'Full Name',
+      'Assigned',
+      'Responded',
+      'Rotal Resolved',
+      'Reassigned',
+      'Closed',
+      'First Response Time',
+      'Avg Response Time',
+      'Resolution Time',
+    ];
+    this.appService.exportAsExcelFile(exportData, 'Agent Performance', headers);
   }
 
   onValueChange(event: Event) {
@@ -148,7 +169,6 @@ export class AgentPerformanceComponent {
         (data) => {
           if (data) {
             this.data = data;
-            this.totalRecord = this.data[0]?.total;
             this.isProceess = false;
             this.cd.detectChanges();
           }
@@ -179,7 +199,6 @@ export class AgentPerformanceComponent {
           (data) => {
             if (data) {
               this.data = data;
-              this.totalRecord = this.data[0]?.total;
               this.isProceess = false;
               this.cd.detectChanges();
             }
