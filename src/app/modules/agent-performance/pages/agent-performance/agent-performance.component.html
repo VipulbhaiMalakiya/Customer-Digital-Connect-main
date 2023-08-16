@@ -1,10 +1,15 @@
+<app-header></app-header>
 <app-loading-spin *ngIf="isProceess"></app-loading-spin>
-
-<div class="main-analytics-right">
-  <div class="page-title mt-0">
-    <h1><i class="las la-chart-bar"></i>Agent Performance</h1>
-    <p color="#737373" class="sc-gEvEer beJtS">Find out if your customers are getting timely responses &amp; getting
-      their issues resolved quickly! </p>
+<div class="page-title">
+  <h1><i class="las la-chart-bar"></i> Agent Performance</h1>
+</div>
+<div class="page-btns-col" *ngIf="!isProceess && data.length > 0">
+  <div class="dt-buttons">
+    <button class="gray-btns" (click)="onDownload()" type="button"><i class="las la-file-excel"></i> Excel</button>
+    <div class="table-search">
+      <input type="text" class="form-control" name="name" id="name" [(ngModel)]="term" autocomplete="off"
+        placeholder="Search..." required="">
+    </div>
   </div>
   <div class="analytics-dropcols">
     <div class="analdrop1 analdrop2">
@@ -38,65 +43,56 @@
         <button class="btn common-btn" (click)="submitDateRange()">Submit</button>
       </div>
     </div>
-    <div class="analdrop1">
-      <label>Export Data</label>
-      <button (click)="onDownload()" class="gray-btns" type="button"><i class="las la-file-export"></i>
-        Download</button>
-    </div>
-  </div>
-
-  <div class="below-anlytics-chart">
-    <p>These stats are for all conversations which were initiated by customers in the selected period</p>
-   
   </div>
 </div>
- <div class="inner-middle-content">
-      <div class="dasboard-table dasboard-scroll">
-        <div class="table-responsive">
-          <table class="table" >
-            <thead>
-              <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Assigned</th>
-                <th>Responded</th>
-                <th>Total Resolved</th>
-                <th>Reassigned</th>
-                <th>Closed</th>
-                <th>1st Response Time</th>
-                <th>Avg Response Time</th>
-                <th>Resolution Time</th>
-              </tr>
-            </thead>
-            <tbody *ngFor="let i of data  | customFilter: term | paginate
+<div class="inner-middle-content">
+  <div class="dasboard-table dasboard-scroll">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Assigned</th>
+            <th>Responded</th>
+            <th>Total Resolved</th>
+            <th>Reassigned</th>
+            <th>Closed</th>
+            <th>1st Response Time</th>
+            <th>Avg Response Time</th>
+            <th>Resolution Time</th>
+          </tr>
+        </thead>
+        <tbody *ngFor="let i of data  | customFilter: term | paginate
             : {
                 itemsPerPage: tableSize,
                 currentPage: page,
                 totalItems: count
               };let ind = index">
-              <tr>
-                <td>{{i.name}}</td>
-                <td>{{i.total || ''}}</td>
-                <td>{{i.total || ''}}</td>
-                <td>{{i.total}}</td>
-                <td>{{i.total}}</td>
-                <td>{{i.name}}</td>
-                <td>{{i.total || ''}}</td>
-                <td>{{i.total || ''}}</td>
-                <td>{{i.total}}</td>
-                <td>{{i.total}}</td>
-              </tr>
-            </tbody>
-          </table>
-          <div *ngIf="data.length === 0" class="text-center">
-             <Strong class="text-danger">No records found</Strong>
-          </div>
-        </div>
-        <div class="clearfix" *ngIf="!isProceess && data.length > 0">
-          <ul class="pagination">
-            <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
-            </pagination-controls>
-          </ul>
-        </div>
+          <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.total || ''}}</td>
+            <td>{{i.total || ''}}</td>
+            <td>{{i.total}}</td>
+            <td>{{i.total}}</td>
+            <td>{{i.name}}</td>
+            <td>{{i.total || ''}}</td>
+            <td>{{i.total || ''}}</td>
+            <td>{{i.total}}</td>
+            <td>{{i.total}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="data.length === 0" class="text-center">
+        <Strong class="text-danger">No records found</Strong>
       </div>
     </div>
+    <div class="clearfix" *ngIf="!isProceess && data.length > 0">
+      <ul class="pagination">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </ul>
+    </div>
+  </div>
+</div> 
+

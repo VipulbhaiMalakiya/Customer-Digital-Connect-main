@@ -7,6 +7,7 @@ import { Subscription, take } from 'rxjs';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
 import { analyticsMasterModel } from 'src/app/_models/analytics';
 import { AppService } from 'src/app/_services/app.service';
+import { performanceMasterModel } from 'src/app/_models/performance';
 
 @Component({
   selector: 'app-agent-performance',
@@ -15,7 +16,7 @@ import { AppService } from 'src/app/_services/app.service';
 })
 export class AgentPerformanceComponent {
   isProceess: boolean = true;
-  data: analyticsMasterModel[] = [];
+  data: performanceMasterModel[] = [];
   subscription?: Subscription;
   userData: any;
   masterName?: any;
