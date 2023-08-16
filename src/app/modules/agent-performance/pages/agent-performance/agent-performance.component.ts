@@ -65,15 +65,9 @@ export class AgentPerformanceComponent {
       startDate: this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),
       endDate: this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),
     };
-
-    this.masterName = 'agent-performance';
-    let addData: any = {
-      url: this.masterName,
-      model: model,
-    };
-
+    this.masterName = `/agent-performance?startDate=${model.startDate}&endDate=${model.endDate}`;
     this.subscription = this.apiService
-      .getAll(addData)
+      .getAll(this.masterName)
       .pipe(take(1))
       .subscribe(
         (data) => {
@@ -158,10 +152,11 @@ export class AgentPerformanceComponent {
     }
 
     this.isProceess = true;
-    this.masterName = `/analytics-report?form=${this.datePipe.transform(
-      this.startDate,
-      'yyyy-MM-dd'
-    )}&to=${this.datePipe.transform(this.endDate, 'yyyy-MM-dd')}`;
+    var model: any = {
+      startDate: this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),
+      endDate: this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),
+    };
+    this.masterName = `/agent-performance?startDate=${model.startDate}&endDate=${model.endDate}`;
     this.subscription = this.apiService
       .getAll(this.masterName)
       .pipe(take(1))
@@ -187,11 +182,12 @@ export class AgentPerformanceComponent {
     } else {
       this.dateRangeError = false;
       var model: any = {
-        form: this.datePipe.transform(start, 'yyyy-MM-dd'),
-        to: this.datePipe.transform(end, 'yyyy-MM-dd'),
+        startDate: this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),
+        endDate: this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),
       };
+      this.masterName = `/agent-performance?startDate=${model.startDate}&endDate=${model.endDate}`;
       this.isProceess = true;
-      this.masterName = `/analytics-report?form=${model.form}&to=${model.to}`;
+      
       this.subscription = this.apiService
         .getAll(this.masterName)
         .pipe(take(1))

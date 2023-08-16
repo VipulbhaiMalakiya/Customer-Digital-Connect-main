@@ -51,8 +51,8 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Id</th>
-            <th>Name</th>
+            <th>User Name</th>
+            <th>Full Name</th>
             <th>Assigned</th>
             <th>Responded</th>
             <th>Total Resolved</th>
@@ -70,16 +70,16 @@
                 totalItems: count
               };let ind = index">
           <tr>
-            <td>{{i.name}}</td>
-            <td>{{i.total || ''}}</td>
-            <td>{{i.total || ''}}</td>
-            <td>{{i.total}}</td>
-            <td>{{i.total}}</td>
-            <td>{{i.name}}</td>
-            <td>{{i.total || ''}}</td>
-            <td>{{i.total || ''}}</td>
-            <td>{{i.total}}</td>
-            <td>{{i.total}}</td>
+            <td>{{i?.user?.username || ''}}</td>
+            <td>{{i.user?.firstName  + ' ' + i.user?.lastName  |titlecase}}</td>
+            <td>{{i.assigned || ''}}</td>
+            <td>{{i.responded || ''}}</td>
+            <td>{{i.totalResolved || ''}}</td>
+            <td>{{i.reassigned || ''}}</td>
+            <td>{{i.closed || ''}}</td>
+            <td>{{i.firstResponseTime || ''}}</td>
+            <td>{{i.avgResponseTime}}</td>
+            <td>{{i.resolutionTime}}</td>
           </tr>
         </tbody>
       </table>
