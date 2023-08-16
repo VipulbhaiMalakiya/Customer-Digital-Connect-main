@@ -180,7 +180,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   public connect(): void {
     if (!this.socket$ || this.socket$.closed) {
       this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
-      this.socket$.subscribe((data: MessageData) => {        
+      this.socket$.subscribe((data: MessageData) => {
         this.messagestates = data.messageStatus;
         if (data.mobileNo === this.contact) {
           this.receivedData.push(data);
@@ -198,7 +198,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           const audio = new Audio(
             '../assets/sound/Google Chat - Notification Tone.mp3'
           );
-          audio.play();
+          const currentUrl = this.location.path();
+          if (currentUrl === '/admin/inbox' || currentUrl === '/inbox') {
+            audio.play();
+          }
         }
       });
     }
@@ -293,11 +296,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   scrollToBottom(): void {
     try {
-      this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
+      this.chatContainer.nativeElement.scrollTop =
+        this.chatContainer.nativeElement.scrollHeight;
     } catch (err) {}
   }
-
-
 
   GetUser() {
     if (this._route.snapshot.paramMap.get('id') != null) {
@@ -423,10 +425,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           const lstRe = this.receivedData.slice(-1)[0];
           this.lastItem = lstRe.time;
           this.lastMessageTime = this.lastItem;
-          if(lstRe.mobileNo === e.phoneNo){
+          if (lstRe.mobileNo === e.phoneNo) {
             this.checkChatStatus();
           }
-      
+
           this.isProceess = false;
           this.masterName = `/chat-activity/${e.phoneNo}`;
           this.subscription = this.apiService
@@ -464,7 +466,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   checkChatStatus() {
-    this.message = ''
+    this.message = '';
     this.chatVisible = true;
     const currentTime = new Date();
     const date: any =
@@ -474,11 +476,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     const timeDifference = next24Hours.getTime() - currentTime.getTime();
     if (timeDifference <= 0) {
       this.chatVisible = false;
-      this.message =
-        'Outgoing message not allowed. Latest message not within the last 24 hours.';
+      this.message ='Outgoing message not allowed. Latest message not within the last 24 hours.';
     } else {
       setTimeout(() => {
-        this.message = ''
+        this.message = '';
         this.checkChatStatus();
       }, timeDifference);
     }

@@ -38,7 +38,7 @@ export class DateAgoPipePipe implements PipeTransform {
       // return `Today, ${date.format('h:mm A')}`;
     } else if (daysDiff === 1) {
       // Yesterday
-      return `${date.format('h:mm A')}`;
+      return `Yesterday`;
     } else if (daysDiff < 7) {
       // Within the last week
       return `${date.format('dddd')}`;
