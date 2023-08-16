@@ -48,7 +48,7 @@
                   <div class="col-sm-6" *ngIf="selectedValue.length > 0">
                     <div class="form-group">
                       <label for="TimeSlots" class="form-label">Available Time Slots</label>
-                      <select class="form-control" formControlName="TimeSlots" name="TimeSlots" id="TimeSlots">
+                      <select class="form-select" formControlName="TimeSlots" name="TimeSlots" id="TimeSlots">
                         <option value="">Please Select Time slots</option>
                         <option *ngIf="this.selectedValue === 'LUNCH'" value="TIME_12_00_PM">12:00 PM</option>
                         <option *ngIf="this.selectedValue === 'LUNCH'" value="TIME_01_00_PM">01:00 PM</option>

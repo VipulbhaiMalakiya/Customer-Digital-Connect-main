@@ -1,7 +1,10 @@
 .form-control {
   border-radius: 6px;
-  height: 40px !important;
+  height: 36px !important;
   background: #fff;
   border-color: #ccc;
   font-size: 13px;
+}
+.form-select{
+  height: 36px !important;
 }

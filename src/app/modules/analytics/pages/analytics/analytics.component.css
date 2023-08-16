@@ -1,3 +1,14 @@
 .form-select{
-  height: 45px;
+  height: 36px;
+}
+.form-control{
+  height: 36px;
+}
+.analdrop1 .btn.common-btn {
+  width: 100%;
+  height: 36px;
+}
+.analdrop1 .gray-btns {
+  height: 36px;
+  border: 1px solid #111;
 }
