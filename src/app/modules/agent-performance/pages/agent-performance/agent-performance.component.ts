@@ -101,7 +101,7 @@ export class AgentPerformanceComponent {
     const headers = ['Name', 'Total'];
     this.appService.exportAsExcelFile(
       exportData,
-      'Conversation Analytics',
+      'Agent Performance',
       headers
     );
   }

@@ -68,26 +68,25 @@
                 <th>Resolution Time</th>
               </tr>
             </thead>
-            <!-- <tbody *ngFor="let i of data  | customFilter: term | paginate
+            <tbody *ngFor="let i of data  | customFilter: term | paginate
             : {
                 itemsPerPage: tableSize,
                 currentPage: page,
                 totalItems: count
               };let ind = index">
               <tr>
-                <td>{{i.companyId}}</td>
-                <td>{{i.companyName || ''}}</td>
-                <td>{{i.apiKey || ''}}</td>
-                <td>{{i.createdDate | date :'medium'}}</td>
-                <td>{{i.createdBy?.firstName || ''}} {{i.createdBy?.lastName || ''}} </td>
-                <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
-                <td>
-                  <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
-                  <a class="btnClick" (click)="onEdit(i)"><i class="las la-edit"></i></a>
-                  <a class="btnClick" *ngIf="i.status" (click)="onDelete(i)"><i class="las la-trash-alt"></i></a>
-                </td>
+                <td>{{i.name}}</td>
+                <td>{{i.total || ''}}</td>
+                <td>{{i.total || ''}}</td>
+                <td>{{i.total}}</td>
+                <td>{{i.total}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.total || ''}}</td>
+                <td>{{i.total || ''}}</td>
+                <td>{{i.total}}</td>
+                <td>{{i.total}}</td>
               </tr>
-            </tbody> -->
+            </tbody>
           </table>
           <div *ngIf="data.length === 0" class="text-center">
              <Strong class="text-danger">No records found</Strong>

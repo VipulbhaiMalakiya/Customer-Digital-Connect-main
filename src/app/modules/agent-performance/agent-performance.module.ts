@@ -1,3 +1,4 @@
+import { agentperformanceftilterPipe } from './../../_helpers/agent-performance-filter';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,7 +11,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
-    AgentPerformanceComponent
+    AgentPerformanceComponent,
+    agentperformanceftilterPipe
   ],
   imports: [
     CommonModule,
