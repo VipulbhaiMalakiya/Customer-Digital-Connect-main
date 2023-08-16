@@ -1,0 +1,103 @@
+<app-loading-spin *ngIf="isProceess"></app-loading-spin>
+
+<div class="main-analytics-right">
+  <div class="page-title mt-0">
+    <h1><i class="las la-chart-bar"></i>Agent Performance</h1>
+    <p color="#737373" class="sc-gEvEer beJtS">Find out if your customers are getting timely responses &amp; getting
+      their issues resolved quickly! </p>
+  </div>
+  <div class="analytics-dropcols">
+    <div class="analdrop1 analdrop2">
+      <label>Select Date</label>
+      <select id="select-tags4" class="form-select" [(ngModel)]="selectedValue" (change)="onValueChange($event)">
+        <option value="Today">Today</option>
+        <option value="Yesterday">Yesterday</option>
+        <option value="7">Last 7 days</option>
+        <option value="30">Last 30 days</option>
+      </select>
+    </div>
+
+    <div class="analdrop1">
+      <div class="form-group">
+        <label for="startDate">From</label>
+        <input class="form-control" type="date" id="startDate" name="startDate" [(ngModel)]="startDate" [max]="endDate">
+      </div>
+    </div>
+    <div class="analdrop1">
+      <div class="form-group">
+        <label for="endDate">To</label>
+        <input class="form-control" type="date" id="endDate" name="endDate" [(ngModel)]="endDate" [max]="endDate">
+        <div *ngIf="dateRangeError" class="form-validate-err">
+          To Date must be after From Date
+        </div>
+      </div>
+    </div>
+    <div class="analdrop1">
+      <div class="form-group">
+        <label>&nbsp;</label>
+        <button class="btn common-btn" (click)="submitDateRange()">Submit</button>
+      </div>
+    </div>
+    <div class="analdrop1">
+      <label>Export Data</label>
+      <button (click)="onDownload()" class="gray-btns" type="button"><i class="las la-file-export"></i>
+        Download</button>
+    </div>
+  </div>
+
+  <div class="below-anlytics-chart">
+    <p>These stats are for all conversations which were initiated by customers in the selected period</p>
+   
+  </div>
+</div>
+ <div class="inner-middle-content">
+      <div class="dasboard-table dasboard-scroll">
+        <div class="table-responsive">
+          <table class="table" >
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Assigned</th>
+                <th>Responded</th>
+                <th>Total Resolved</th>
+                <th>Reassigned</th>
+                <th>Closed</th>
+                <th>1st Response Time</th>
+                <th>Avg Response Time</th>
+                <th>Resolution Time</th>
+              </tr>
+            </thead>
+            <!-- <tbody *ngFor="let i of data  | customFilter: term | paginate
+            : {
+                itemsPerPage: tableSize,
+                currentPage: page,
+                totalItems: count
+              };let ind = index">
+              <tr>
+                <td>{{i.companyId}}</td>
+                <td>{{i.companyName || ''}}</td>
+                <td>{{i.apiKey || ''}}</td>
+                <td>{{i.createdDate | date :'medium'}}</td>
+                <td>{{i.createdBy?.firstName || ''}} {{i.createdBy?.lastName || ''}} </td>
+                <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
+                <td>
+                  <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
+                  <a class="btnClick" (click)="onEdit(i)"><i class="las la-edit"></i></a>
+                  <a class="btnClick" *ngIf="i.status" (click)="onDelete(i)"><i class="las la-trash-alt"></i></a>
+                </td>
+              </tr>
+            </tbody> -->
+          </table>
+          <div *ngIf="data.length === 0" class="text-center">
+             <Strong class="text-danger">No records found</Strong>
+          </div>
+        </div>
+        <div class="clearfix" *ngIf="!isProceess && data.length > 0">
+          <ul class="pagination">
+            <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+            </pagination-controls>
+          </ul>
+        </div>
+      </div>
+    </div>

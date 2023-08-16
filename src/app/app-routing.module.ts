@@ -278,6 +278,14 @@ const routes: Routes = [
       },
 
       {
+        path: 'agent-performance',
+        loadChildren: () =>
+          import('./modules/agent-performance/agent-performance.module').then(
+            (m) => m.AgentPerformanceModule
+          ),
+      },
+
+      {
         path: 'workflow/create-workflow',
         component: CreateWorkflowComponent,
       },
@@ -300,7 +308,6 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'reset-password/:token', component: ResetPasswordComponent },
-
   { path: '**', component: NotFoundComponent },
 ];
 @NgModule({
