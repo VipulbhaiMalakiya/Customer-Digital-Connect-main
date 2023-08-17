@@ -1,12 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { MapsAPILoader } from '@agm/core';
+import {  Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-location-details',
   templateUrl: './location-details.component.html',
-  styleUrls: ['./location-details.component.css']
+  styleUrls: ['./location-details.component.css'],
 })
 export class LocationDetailsComponent implements OnInit {
   latitude: any;
@@ -14,21 +12,18 @@ export class LocationDetailsComponent implements OnInit {
   address: any;
   locationName: any;
 
-
   isProceess: boolean = true;
   customersMasterForm: any;
-  uploadFile: any = "";
-  check: any
+  uploadFile: any = '';
+  check: any;
   imageLoaded = false;
   imageURL: any = '../../../../../assets/images/default-nopic.jpg';
   previewUrl: any;
 
-
   constructor(
     private activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
-    private toastr: ToastrService,
-    private cd: ChangeDetectorRef) {
+  ) {
     this.isProceess = false;
 
     this.customersMasterForm = this.formBuilder.group({
@@ -38,7 +33,6 @@ export class LocationDetailsComponent implements OnInit {
       locationName: [''],
     });
   }
-
 
   ngOnInit() {
     this.getLocation();
@@ -59,19 +53,13 @@ export class LocationDetailsComponent implements OnInit {
     }
   }
 
-
-
-
-
   onCancel() {
     this.activeModal.dismiss();
   }
 
-
-
   getAddressFromCoordinates(latitude: any, longitude: any) {
     const geocoder = new google.maps.Geocoder();
-    const latlng = { lat: latitude, lng: longitude }
+    const latlng = { lat: latitude, lng: longitude };
     geocoder.geocode({ location: latlng }, (results, status) => {
       if (status === 'OK' && results[0]) {
         this.address = results[0].formatted_address;
@@ -98,15 +86,13 @@ export class LocationDetailsComponent implements OnInit {
   onSubmit() {
     if (this.customersMasterForm.valid) {
       let data = {
-        latitude:this.latitude,
-        longitude:this.longitude,
+        latitude: this.latitude,
+        longitude: this.longitude,
         address: this.address,
-        locationName:this.locationName,
-      }
-      this.activeModal.close(data)
+        locationName: this.locationName,
+      };
+      this.activeModal.close(data);
     } else {
-
     }
   }
-
 }
