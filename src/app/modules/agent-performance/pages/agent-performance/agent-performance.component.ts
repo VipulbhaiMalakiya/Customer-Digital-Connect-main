@@ -163,7 +163,7 @@ export class AgentPerformanceComponent {
       .subscribe(
         (data) => {
           if (data) {
-            this.data = data;
+            this.data = data.data;
             this.isProceess = false;
             this.cd.detectChanges();
           }
@@ -187,14 +187,14 @@ export class AgentPerformanceComponent {
       };
       this.masterName = `/agent-performance?startDate=${model.startDate}&endDate=${model.endDate}`;
       this.isProceess = true;
-      
+
       this.subscription = this.apiService
         .getAll(this.masterName)
         .pipe(take(1))
         .subscribe(
           (data) => {
             if (data) {
-              this.data = data;
+              this.data = data.data;
               this.isProceess = false;
               this.cd.detectChanges();
             }
