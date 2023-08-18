@@ -447,6 +447,9 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.contactinfo = e;
     this.bgclass = c;
     this.contactId = e.id;
+    this.showEmojiPicker = false;
+    this.showupload = false;
+    this.showupload1 = false;
     this.contact = e.phoneNo;
     this.show = true;
     if (e.fullName) {
@@ -692,6 +695,39 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           }
         );
     }
+  }
+
+  sendingCatalog(e:any){
+    var request = {
+      messaging_product: 'whatsapp',
+      recipient_type: 'individual',
+      to: this.contactinfo?.phoneNo,
+      type: 'interactive',
+      fromId: this.userData?.userId,
+      assignedto: this.userData?.userId,
+      fullname: this.contactinfo?.fullName || null,
+      interactiveName:e
+    };
+    let formData = new FormData();
+    formData.append('messageEntry', JSON.stringify(request));
+    this.isProceess = true;
+    this.subscription = this.whatsappService
+      .sendWhatsAppMessage(formData)
+      .pipe(take(1))
+      .subscribe(
+        (response) => {
+          let data: any = response;
+          this.toastr.success(data.message);
+          this.isProceess = false;
+          this.showupload1 = false;
+          this.showEmojiPicker = false;
+          this.scrollToBottom();
+        },
+        (error) => {
+          this.toastr.error(error.error.message);
+          this.isProceess = false;
+        }
+      );
   }
 
   ngOnDestroy() {

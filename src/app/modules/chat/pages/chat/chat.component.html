@@ -777,11 +777,11 @@
                   <div class="last-msg p-3 rounded">
                     <div class="senttemp-2">
                       <div class="pdf-nameic cursur"
-                      *ngIf="data.templateHeaderfileLink && data.templateHeaderFileType ==='document'"><span
-                        class="pdf-icon" (click)="downloadFile1(data)"><img src="../assets/images/pdf-icon.png"
-                          alt=""> {{data.templateName}}</span>
-                      <span class="pdf-downicon"><i class="las la-arrow-circle-down"></i></span>
-                    </div>
+                        *ngIf="data.templateHeaderfileLink && data.templateHeaderFileType ==='document'"><span
+                          class="pdf-icon" (click)="downloadFile1(data)"><img src="../assets/images/pdf-icon.png"
+                            alt=""> {{data.templateName}}</span>
+                        <span class="pdf-downicon"><i class="las la-arrow-circle-down"></i></span>
+                      </div>
                       {{replaceAndBoldPlaceholder(data)}}
                       <p class="mt-2"> <a class="temppay-btn text-left mb-2"
                           *ngIf="data.templateButton1">{{data.templateButton1}} <i class="las la-sign-in-alt"></i></a>
@@ -972,13 +972,15 @@
                 <li class="nav-item">
                   <a class="nav-link active" data-bs-toggle="pill" href="#reply">Reply</a>
                 </li>
-                <li class="nav-item" >
+                <li class="nav-item">
                   <a class="nav-link" data-bs-toggle="pill" href="#notes">Notes</a>
                 </li>
               </ul>
-              <div class="chatwrite-emojisico" >
-                <div class="chat-emoji-ico" (click)="toggleEmojiPicker()" *ngIf="chatVisible"><i class="las la-smile"></i></div>
-                <div class="chat-attach-ico" (click)="toggleupload()" *ngIf="chatVisible"><i class="las la-paperclip"></i></div>
+              <div class="chatwrite-emojisico">
+                <div class="chat-emoji-ico" (click)="toggleEmojiPicker()" *ngIf="chatVisible"><i
+                    class="las la-smile"></i></div>
+                <div class="chat-attach-ico" (click)="toggleupload()" *ngIf="chatVisible"><i
+                    class="las la-paperclip"></i></div>
                 <div class="chat-quickrply-ico" title="Quick Reply" (click)=" quickReply()"><img
                     src="../assets/images/quick-reply-icon.png" alt="" *ngIf="chatVisible"></div>
 
@@ -1006,35 +1008,36 @@
                     </g>
                   </svg>
                 </div>
-                <div class="chat-cart-ico" (click)="togglecart()"   *ngIf="chatVisible"><i class="las la-shopping-cart"></i></div>
+                <div class="chat-cart-ico" (click)="togglecart()" *ngIf="chatVisible"><i
+                    class="las la-shopping-cart"></i></div>
               </div>
               <div class="attach-opentray attach-opentray1" *ngIf="showupload1 && chatVisible">
                 <div class="inner-attachicons">
                   <div class="row">
                     <div class="col-sm-6">
-                      <div class="atthico cursur" (click)="onaudioAdd()"><a><img src="../assets/images/atticon-1.jpg"
+                      <div class="atthico cursur" (click)="sendingCatalog('foodAndBeverages')"><a><img src="../assets/images/atticon-1.jpg"
                             alt="">
-                          <p>Audio</p>
+                          <p>Food & Beverages</p>
                         </a></div>
                     </div>
 
                     <div class="col-sm-6">
-                      <div class="atthico cursur" (click)="onvideoAdd()"><a><img src="../assets/images/atticon-2.jpg"
+                      <div class="atthico cursur" (click)="sendingCatalog('allProducts')"><a><img src="../assets/images/atticon-2.jpg"
                             alt="">
-                          <p>Video</p>
+                          <p>All Products</p>
                         </a></div>
                     </div>
 
                     <div class="col-sm-6">
-                      <div class="atthico cursur" (click)="onimageAdd()"><a><img src="../assets/images/atticon-3.jpg"
+                      <div class="atthico cursur" (click)="sendingCatalog('spa')"><a><img src="../assets/images/atticon-3.jpg"
                             alt="">
-                          <p>Image</p>
+                          <p>SPA</p>
                         </a></div>
                     </div>
                     <div class="col-sm-6">
-                      <div class="atthico cursur" (click)="ondocumentAdd()"><a><img src="../assets/images/atticon-6.jpg"
+                      <div class="atthico cursur" (click)="sendingCatalog('drinks')"><a><img src="../assets/images/atticon-6.jpg"
                             alt="">
-                          <p>Documation</p>
+                          <p>Drinks</p>
                         </a></div>
                     </div>
 
@@ -1109,7 +1112,7 @@
                   </ng-container>
                 </form>
               </div>
-              <div class="tab-pane" id="notes" >
+              <div class="tab-pane" id="notes">
                 <form class="writechat-boder" #ngNotesForm="ngForm" (ngSubmit)="submitNoteForm(ngNotesForm)">
                   <textarea class="form-control h-auto" id="note" [(ngModel)]="message" required name="note"
                     placeholder="Type a note...." rows="1"></textarea>
