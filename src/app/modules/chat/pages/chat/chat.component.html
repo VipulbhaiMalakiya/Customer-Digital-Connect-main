@@ -1006,7 +1006,40 @@
                     </g>
                   </svg>
                 </div>
-                <div class="chat-cart-ico"  *ngIf="chatVisible"><i class="las la-shopping-cart"></i></div>
+                <div class="chat-cart-ico" (click)="togglecart()"   *ngIf="chatVisible"><i class="las la-shopping-cart"></i></div>
+              </div>
+              <div class="attach-opentray attach-opentray1" *ngIf="showupload1 && chatVisible">
+                <div class="inner-attachicons">
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="atthico cursur" (click)="onaudioAdd()"><a><img src="../assets/images/atticon-1.jpg"
+                            alt="">
+                          <p>Audio</p>
+                        </a></div>
+                    </div>
+
+                    <div class="col-sm-6">
+                      <div class="atthico cursur" (click)="onvideoAdd()"><a><img src="../assets/images/atticon-2.jpg"
+                            alt="">
+                          <p>Video</p>
+                        </a></div>
+                    </div>
+
+                    <div class="col-sm-6">
+                      <div class="atthico cursur" (click)="onimageAdd()"><a><img src="../assets/images/atticon-3.jpg"
+                            alt="">
+                          <p>Image</p>
+                        </a></div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="atthico cursur" (click)="ondocumentAdd()"><a><img src="../assets/images/atticon-6.jpg"
+                            alt="">
+                          <p>Documation</p>
+                        </a></div>
+                    </div>
+
+                  </div>
+                </div>
               </div>
               <div class="attach-opentray" *ngIf="showupload && chatVisible">
                 <div class="inner-attachicons">

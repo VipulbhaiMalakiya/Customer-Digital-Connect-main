@@ -85,10 +85,12 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   message = '';
   showEmojiPicker = false;
   showupload = false;
+  showupload1 = false;
   private notificationSound?: HTMLAudioElement;
 
   toggleEmojiPicker() {
     this.showupload = false;
+    this.showupload1 = false;
     this.showEmojiPicker = !this.showEmojiPicker;
   }
   addEmoji(event: any) {
@@ -241,7 +243,15 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   toggleupload() {
     this.showEmojiPicker = false;
+    this.showupload1 = false;
     this.showupload = !this.showupload;
+  }
+
+  togglecart(){
+    this.showEmojiPicker = false;
+    this.showupload = false;
+    this.showupload1 = !this.showupload1;
+
   }
   // Download code start
 
@@ -628,6 +638,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   quickReply() {
     this.isProceess = true;
     this.showupload = false;
+    this.showupload1 = false;
     this.showEmojiPicker = false;
     const modalRef = this.modalService.open(QuickReplyComponent, {
       size: 'md',
@@ -856,6 +867,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   onimageAdd() {
     this.isProceess = true;
     this.showupload = false;
+    this.showupload1 = false;
     const modalRef = this.modalService.open(ImageUplodComponent, {
       size: 'lg',
     });
@@ -906,6 +918,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   onaudioAdd() {
     this.isProceess = true;
     this.showupload = false;
+    this.showupload1 = false;
     const modalRef = this.modalService.open(AudioComponent, {
       size: 'md',
     });
@@ -954,6 +967,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   ondocumentAdd() {
     this.isProceess = true;
     this.showupload = false;
+    this.showupload1 = false;
     const modalRef = this.modalService.open(DocumentComponent, {
       size: 'md',
     });
@@ -1003,6 +1017,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   onvideoAdd() {
     this.isProceess = true;
     this.showupload = false;
+    this.showupload1 = false;
     const modalRef = this.modalService.open(VideoComponent, {
       size: 'md',
     });
@@ -1052,6 +1067,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   onLocationAdd() {
     this.isProceess = true;
     this.showupload = false;
+    this.showupload1 = false;
     const modalRef = this.modalService.open(LocationDetailsComponent, {
       size: 'md',
     });
@@ -1103,6 +1119,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   getTemplates(e: any) {
     this.isProceess = true;
     this.showupload = false;
+    this.showupload1 = false;
     this.showEmojiPicker = false;
     const modalRef = this.modalService.open(TempletsComponent, {
       size: 'lg',

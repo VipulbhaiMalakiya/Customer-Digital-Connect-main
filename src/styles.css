@@ -3934,6 +3934,10 @@ label.form-label {
   display: block;
 }
 
+.attach-opentray1 {
+  width: 200px !important;
+}
+
 .atthico {
   text-align: center;
   margin: 10px 0px;
