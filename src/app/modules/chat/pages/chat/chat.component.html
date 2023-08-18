@@ -126,7 +126,7 @@
         <div class="tab-content" id="pills-tabContent">
           <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
             <div class="nocon-txt" *ngIf="!open.length">
-              <div class="nochat-vector"><img src="../assets/images/nochat-vector.png" alt=""></div>
+              <div class="nochat-vector"><img src="../assets/images/nochat-vector.png" alt="File Not Found"></div>
             </div>
             <ul class="active-chat-list pe-3 my-custom-scrollbar my-custom-scrollbar-primary" *ngIf="open.length > 0">
               <li *ngFor="let i of open  | customFilter: term ; let ind=index; let isFirst = first"
@@ -177,7 +177,7 @@
           <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
             <ul class="active-chat-list pe-3">
               <div class="nocon-txt" *ngIf="!closed.length">
-                <div class="nochat-vector"><img src="../assets/images/nochat-vector.png" alt=""></div>
+                <div class="nochat-vector"><img src="../assets/images/nochat-vector.png" alt="File Not Found"></div>
                 <p>No conversations here...</p>
               </div>
 
@@ -310,7 +310,7 @@
                   <div class="chat-info">
                     <div class="last-msg p-3 rounded bg-cyan">{{data.message}}
                     </div>
-                    <div class="suserchat-info pt-2">
+                    <div class="suserchat-info">
                       <span class="suserchat-name" *ngIf="data.name == null">You</span>
                       <span class="suserchat-name" *ngIf="data.name !== null">{{data.name || ''}}</span>
                       {{data.time |dateAgo}}
@@ -348,7 +348,7 @@
                     <object data="../assets/images/example.pdf" type="application/pdf" width="100%" height="200px">
                     </object>
                     <div class="pdf-nameic cursur" (click)="downloadFile(data)"><span class="pdf-icon"><img
-                          src="../assets/images/document-icon.png" alt="">
+                          src="../assets/images/document-icon.png" alt="File Not Found">
                         {{data.filename | shortenFileName: 20}}</span> <span class="pdf-downicon"><i
                           class="las la-arrow-circle-down"></i></span></div>
                   </div>
@@ -381,12 +381,12 @@
                   <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
                 </div>
                 <div class="chat-info">
-                  <div class="last-msg p-2 pb-1 rounded">
+                  <div class="last-msg p-2 pb-1 mb-2 rounded">
                     <object data="../assets/images/example.pdf" type="application/pdf" width="100%" height="200px">
                     </object>
-                    <div class="pdf-nameic cursur" (click)="downloadFile(data)"><span class="pdf-icon"><img
-                          src="../assets/images/document-icon.png" alt="">
-                        {{data.filename}}</span> <span class="pdf-downicon"><i
+                    <div class="pdf-nameic cursur " (click)="downloadFile(data)"><span class="pdf-icon"><img
+                          src="../assets/images/document-icon.png" alt="File Not Found">
+                        {{data.filename || 'Api Data Not currect'}}</span> <span class="pdf-downicon"><i
                           class="las la-arrow-circle-down"></i></span></div>
                   </div>
                   <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
@@ -438,7 +438,7 @@
                   <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
                 </div>
                 <div class="chat-info">
-                  <div class="last-msg p-2 pb-1 rounded">
+                  <div class="last-msg p-2 pb-1 mb-2 rounded">
                     <audio controls="">
                       <source [src]=data.fileUrl type="audio/mpeg">
                       Your browser does not support the audio element.
@@ -494,7 +494,7 @@
                   <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
                 </div>
                 <div class="chat-info">
-                  <div class="last-msg p-2 pb-1 rounded">
+                  <div class="last-msg p-2 pb-1 mb-2 rounded">
                     <video width="320" height="240" controls="">
                       <source [src]=data.fileUrl type="video/mp4">
                       Your browser does not support the video tag.
@@ -514,7 +514,7 @@
                   <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
                 </div>
                 <div class="chat-info">
-                  <div class="last-msg p-2 rounded bg-light"><img [src]=data.fileUrl alt=""></div>
+                  <div class="last-msg p-2 rounded bg-light"><img [src]=data.fileUrl alt="File Not Found"></div>
                   <div class="suserchat-info pt-2">
                     <span class="suserchat-name" *ngIf="data.name == null">You</span>
                     <span class="suserchat-name" *ngIf="data.name !== null">{{data.name || ''}}</span>
@@ -546,7 +546,7 @@
                   <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
                 </div>
                 <div class="chat-info">
-                  <div class="last-msg p-2 rounded bg-light"><img [src]=data.fileUrl alt=""></div>
+                  <div class="last-msg p-2 rounded bg-light"><img [src]=data.fileUrl alt="File Not Found"></div>
                   <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
                     ||'Reception'}}</span>
                   <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
@@ -573,7 +573,7 @@
 
                         <img crossorigin="anonymous"
                           src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&amp;size=270x200&amp;scale=1&amp;language=en&amp;client=gme-whatsappinc&amp;markers=color%3Ared%7C28.650000585182685%2C+77.15672581570189&amp;signature=vJaz4QTIGR6coC2LQwv6e4LBh60"
-                          alt="" class="jnl3jror tvf2evcx oq44ahr5 lb5m6g5c o9wlm8ph _11JPr" tabindex="-1"
+                          alt="File Not Found" class="jnl3jror tvf2evcx oq44ahr5 lb5m6g5c o9wlm8ph _11JPr" tabindex="-1"
                           style="pointer-events: none; width: 270px; visibility: visible;">
                       </a>
                     </div>
@@ -612,7 +612,7 @@
                   <span [ngClass]="bgclass" *ngIf="data.name == null ">R</span>
                 </div>
                 <div class="chat-info">
-                  <div class="last-msg p-2 pb-1 rounded">
+                  <div class="last-msg p-2 pb-1 mb-2 rounded">
 
                     <div
                       data-plain-text="https://maps.google.com/maps/search/Samsara%20Resorts%20-%20Delhi%20office/@28.650000585182685,77.15672581570189,17z?hl=en">
@@ -623,7 +623,7 @@
 
                         <img crossorigin="anonymous"
                           src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&amp;size=270x200&amp;scale=1&amp;language=en&amp;client=gme-whatsappinc&amp;markers=color%3Ared%7C28.650000585182685%2C+77.15672581570189&amp;signature=vJaz4QTIGR6coC2LQwv6e4LBh60"
-                          alt="" class="jnl3jror tvf2evcx oq44ahr5 lb5m6g5c o9wlm8ph _11JPr" tabindex="-1"
+                          alt="File Not Found" class="jnl3jror tvf2evcx oq44ahr5 lb5m6g5c o9wlm8ph _11JPr" tabindex="-1"
                           style="pointer-events: none; width: 270px; visibility: visible;">
                       </a>
                     </div>
@@ -685,7 +685,7 @@
                 <div class="chat-info">
                   <div class="last-msg p-3 rounded">
                     <div class="senttemp-2">
-                      <!-- <div class="senttemp-pic"><img src="../assets/images/ceo-template.jpeg" alt=""></div> -->
+                      <!-- <div class="senttemp-pic"><img src="../assets/images/ceo-template.jpeg" alt="File Not Found"></div> -->
                       {{replaceAndBoldPlaceholder(data)}}
                       <p class="mt-2"> <a class="temppay-btn text-left mb-2"
                           *ngIf="data.templateButton1">{{data.templateButton1}} <i class="las la-sign-in-alt"></i></a>
@@ -733,7 +733,7 @@
                       <div class="pdf-nameic cursur"
                         *ngIf="data.templateHeaderfileLink && data.templateHeaderFileType ==='document'"><span
                           class="pdf-icon" (click)="downloadFile1(data)"><img src="../assets/images/pdf-icon.png"
-                            alt=""> {{data.templateName}}</span>
+                            alt="File Not Found"> {{data.templateName}}</span>
                         <span class="pdf-downicon"><i class="las la-arrow-circle-down"></i></span>
                       </div>
                       {{replaceAndBoldPlaceholder(data)}}
@@ -783,7 +783,7 @@
                       <div class="pdf-nameic cursur"
                         *ngIf="data.templateHeaderfileLink && data.templateHeaderFileType ==='document'"><span
                           class="pdf-icon" (click)="downloadFile1(data)"><img src="../assets/images/pdf-icon.png"
-                            alt=""> {{data.templateName}}</span>
+                            alt="File Not Found"> {{data.templateName}}</span>
                         <span class="pdf-downicon"><i class="las la-arrow-circle-down"></i></span>
                       </div>
                       {{replaceAndBoldPlaceholder(data)}}
@@ -1006,7 +1006,7 @@
                 <div class="chat-attach-ico" (click)="toggleupload()" *ngIf="chatVisible"><i
                     class="las la-paperclip"></i></div>
                 <div class="chat-quickrply-ico" title="Quick Reply" (click)=" quickReply()"><img
-                    src="../assets/images/quick-reply-icon.png" alt="" *ngIf="chatVisible"></div>
+                    src="../assets/images/quick-reply-icon.png" alt="File Not Found" *ngIf="chatVisible"></div>
 
                 <div class="chat-template-ico" title="Templates" (click)="getTemplates(chatname)">
                   <svg fill="#000000" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg">
@@ -1040,27 +1040,27 @@
                   <div class="row">
                     <div class="col-sm-6">
                       <div class="atthico cursur" (click)="sendingCatalog('foodAndBeverages')"><a><img
-                            src="../assets/images/atticon-7.png" alt="">
+                            src="../assets/images/atticon-7.png" alt="File Not Found">
                           <p>Food & Beverages</p>
                         </a></div>
                     </div>
 
                     <div class="col-sm-6">
                       <div class="atthico cursur" (click)="sendingCatalog('allProducts')"><a><img
-                            src="../assets/images/atticon-8.png" alt="">
+                            src="../assets/images/atticon-8.png" alt="File Not Found">
                           <p>All Products</p>
                         </a></div>
                     </div>
 
                     <div class="col-sm-6">
                       <div class="atthico cursur" (click)="sendingCatalog('spa')"><a><img
-                            src="../assets/images/atticon-9.png" alt="">
+                            src="../assets/images/atticon-9.png" alt="File Not Found">
                           <p>SPA</p>
                         </a></div>
                     </div>
                     <div class="col-sm-6">
                       <div class="atthico cursur" (click)="sendingCatalog('drinks')"><a><img
-                            src="../assets/images/atticon-10.png" alt="">
+                            src="../assets/images/atticon-10.png" alt="File Not Found">
                           <p>Drinks</p>
                         </a></div>
                     </div>
@@ -1074,40 +1074,40 @@
 
                     <div class="col-sm-4">
                       <div class="atthico cursur" (click)="onaudioAdd()"><a><img src="../assets/images/atticon-1.jpg"
-                            alt="">
+                            alt="File Not Found">
                           <p>Audio</p>
                         </a></div>
                     </div>
 
                     <div class="col-sm-4">
                       <div class="atthico cursur" (click)="onvideoAdd()"><a><img src="../assets/images/atticon-2.jpg"
-                            alt="">
+                            alt="File Not Found">
                           <p>Video</p>
                         </a></div>
                     </div>
 
                     <div class="col-sm-4">
                       <div class="atthico cursur" (click)="onimageAdd()"><a><img src="../assets/images/atticon-3.jpg"
-                            alt="">
+                            alt="File Not Found">
                           <p>Image</p>
                         </a></div>
                     </div>
                     <div class="col-sm-4">
                       <div class="atthico cursur" (click)="ondocumentAdd()"><a><img src="../assets/images/atticon-6.jpg"
-                            alt="">
+                            alt="File Not Found">
                           <p>Documation</p>
                         </a></div>
                     </div>
 
 
                     <div class="col-sm-4" (click)="onLocationAdd()">
-                      <div class="atthico cursur"><a><img src="../assets/images/atticon-5.jpg" alt="">
+                      <div class="atthico cursur"><a><img src="../assets/images/atticon-5.jpg" alt="File Not Found">
                           <p>Location</p>
                         </a></div>
                     </div>
 
                     <!-- <div class="col-sm-4">
-                      <div class="atthico cursur"><a><img src="../assets/images/atticon-4.jpg" alt="">
+                      <div class="atthico cursur"><a><img src="../assets/images/atticon-4.jpg" alt="File Not Found">
                           <p>Quick Replay</p>
                         </a></div>
                     </div> -->
@@ -1158,7 +1158,7 @@
     <div class="topright-chat">
       <div class="noconversation-main">
         <div class="inner-conv-col">
-          <div class="noconves-con"><img src="../assets/images/no-conversation.svg" alt=""></div>
+          <div class="noconves-con"><img src="../assets/images/no-conversation.svg" alt="File Not Found"></div>
           <h3>Select Conversation</h3>
           <p>Select any conversation to view all the messages.</p>
           <!-- <div class="convs-btn"><a class="common-btn">Initiate new conversation</a></div> -->
