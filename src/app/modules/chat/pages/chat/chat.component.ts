@@ -220,7 +220,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
             }
             else{
               const audio = new Audio(
-                '../assets/sound/Whatsapp Message - Sent - Sound.mp3'
+                '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
               );
               audio.play();
             }
