@@ -603,8 +603,9 @@
               </li>
               <li class="msg-sender" *ngIf="data.type === 'Receiver' && data.messagetype === 'location' ">
                 <div class="avata">
-                  <span *ngIf="data.name === null">Y</span>
-                  <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                  <span [ngClass]="bgclass" *ngIf="data.name !== null">{{getShortName(contactinfo.fullName||
+                    'R')}}</span>
+                  <span [ngClass]="bgclass" *ngIf="data.name == null ">R</span>
                 </div>
                 <div class="chat-info">
                   <div class="last-msg p-2 pb-1 rounded">
@@ -952,7 +953,7 @@
                 </div>
                 <div class="chat-info">
                   <div class="suserchat-info">
-                    <div class="last-msg p-3 rounded bg-light">{{data.message}}</div>
+                    <div class="last-msg p-3 mb-1  rounded bg-light">{{data.message}}</div>
                     <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
                       ||'Reception'}}</span>
                     <span class="suserchat-name" *ngIf="data.name == null">Reception</span>

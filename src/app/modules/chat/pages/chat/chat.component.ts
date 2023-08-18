@@ -214,15 +214,16 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           const currentUrl = this.location.path();
           if (currentUrl === '/admin/inbox' || currentUrl === '/inbox') {
             console.log(data);
-            let FullName:any;
-            if(data.name === null){
-              FullName = data.mobileNo
+            if(data.type === "Receiver"){
+              const message: string = `You got a message from ${data.name}`
+              this.speakNotification(message);
             }
             else{
-              FullName = data.name
+              const audio = new Audio(
+                '../assets/sound/Whatsapp Message - Sent - Sound.mp3'
+              );
+              audio.play();
             }
-            const message: string = `You got a message from ${FullName}`
-            this.speakNotification(message);
           }
         }
       });
