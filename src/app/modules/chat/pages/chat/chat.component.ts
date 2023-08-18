@@ -187,7 +187,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     if (!this.socket$ || this.socket$.closed) {
       this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
       this.socket$.subscribe((data: MessageData) => {
-        console.log(data);
+        // console.log(data);
         
         this.messagestates = data.messageStatus;
         if (data.mobileNo === this.contact) {
