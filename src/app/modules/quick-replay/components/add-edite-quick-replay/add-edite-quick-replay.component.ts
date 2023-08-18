@@ -18,7 +18,7 @@ export class AddEditeQuickReplayComponent {
   issueForm: any;
 
   get title(): string {
-    return this._labelsMaster ? 'Edit Quick Replay' : ' Add Quick Replay';
+    return this._labelsMaster ? 'Edit Quick Reply' : ' Add Quick Reply';
   }
 
   set issuesMaster(value: labelMasterModel) {
