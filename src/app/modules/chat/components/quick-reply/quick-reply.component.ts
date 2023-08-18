@@ -46,7 +46,7 @@ export class QuickReplyComponent {
   }
 
   onAdd() {
-    this.router.navigate(['/admin/master/quick-replay']);
+    this.router.navigate(['/admin/master/quick-reply']);
     this.onCancel();
   }
 
