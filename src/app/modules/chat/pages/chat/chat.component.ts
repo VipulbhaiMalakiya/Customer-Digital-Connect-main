@@ -523,7 +523,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
   onlabelRemove(e: any) {
-    this.label = '';
     this.isProceess = true;
     const modalRef = this.modalService.open(ConfirmationDialogModalComponent, {
       size: 'sm',
@@ -537,17 +536,17 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
     var componentInstance =
       modalRef.componentInstance as ConfirmationDialogModalComponent;
-    componentInstance.message = 'Are you sure you want to remove tegs?';
+    componentInstance.message = 'Are you sure you want to remove this ?';
     modalRef.result
       .then((canDelete: boolean) => {
         if (canDelete) {
           this.masterName = `/customer/label-remove/${this.contact}`;
-          // this.isProceess = true;
           this.subscription = this.apiService
             .deleteID(this.masterName)
             .pipe(take(1))
             .subscribe(
               (res) => {
+                this.label = '';
                 this.isProceess = false;
                 this.toastr.success(res.message);
                 this.getContactList();
@@ -561,6 +560,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       })
       .catch(() => {});
   }
+
   submitNoteForm(form: any) {
     if (form.valid) {
       let phone;

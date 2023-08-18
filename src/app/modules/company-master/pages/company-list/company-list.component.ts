@@ -204,7 +204,7 @@ export class CompanyListComponent implements OnInit, OnDestroy {
     }
 
     var componentInstance = modalRef.componentInstance as ConfirmationDialogModalComponent;
-    componentInstance.message = "Are you sure you want to delete this Delete Company master?";
+    componentInstance.message = "Are you sure you want to delete this ?";
     modalRef.result.then((canDelete: boolean) => {
       if (canDelete) {
         this.masterName = `/company/${dataItem?.companyId}`;

@@ -184,7 +184,7 @@ export class ProductsComponent implements OnInit {
       this.isProceess = false;
     }
     var componentInstance = modalRef.componentInstance as ConfirmationDialogModalComponent;
-    componentInstance.message = "Are you sure you want to delete this Prodact master?";
+    componentInstance.message = "Are you sure you want to delete this ?";
 
     modalRef.result.then(async (canDelete: boolean) => {
       if (canDelete) {

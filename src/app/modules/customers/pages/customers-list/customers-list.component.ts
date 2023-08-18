@@ -221,7 +221,7 @@ export class CustomersListComponent implements OnInit, OnDestroy {
     }
 
     var componentInstance = modalRef.componentInstance as ConfirmationDialogModalComponent;
-    componentInstance.message = "Are you sure you want to delete this  customer master?";
+    componentInstance.message = "Are you sure you want to delete this ?";
     modalRef.result.then((canDelete: boolean) => {
       if (canDelete) {
         this.masterName = `/customer/${dataItem?.customerId}`;

@@ -210,7 +210,7 @@ export class UserListComponent implements OnInit,OnDestroy {
       this.isProceess = false;
     }
     var componentInstance = modalRef.componentInstance as ConfirmationDialogModalComponent;
-    componentInstance.message = "Are you sure you want to delete this user master?";
+    componentInstance.message = "Are you sure you want to delete this ?";
     modalRef.result.then((canDelete: boolean) => {
       if (canDelete) {
         this.masterName = `/users/${dataItem?.userId}`;

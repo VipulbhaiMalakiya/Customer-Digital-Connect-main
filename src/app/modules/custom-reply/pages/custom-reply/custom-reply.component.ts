@@ -193,7 +193,7 @@ export class CustomReplyComponent implements OnInit, OnDestroy {
       this.isProceess = false;
     }
     var componentInstance = modalRef.componentInstance as ConfirmationDialogModalComponent;
-    componentInstance.message = "Are you sure you want to delete this custom auto reply?";
+    componentInstance.message = "Are you sure you want to delete this ?";
     modalRef.result.then((canDelete: boolean) => {
       if (canDelete) {
         this.masterName = `/auto-reply/${dataItem?.autoReplyId}`;
@@ -219,7 +219,7 @@ export class CustomReplyComponent implements OnInit, OnDestroy {
     }
     var componentInstance = modalRef.componentInstance as BulkUploadComponent;
     componentInstance.heading = "Company"
-    componentInstance.message = "Are you sure you want to delete this Delete Company master?";
+    componentInstance.message = "Are you sure you want to delete this ?";
   }
 
   ngOnDestroy(): void {
