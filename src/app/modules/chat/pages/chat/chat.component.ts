@@ -215,7 +215,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         } else {
           const currentUrl = this.location.path();
           if (currentUrl === '/admin/inbox' || currentUrl === '/inbox') {
-            console.log(data);
             if(data.type === "Receiver"){
               const message: string = `You got a message from ${data.name}`
               this.speakNotification(message);
