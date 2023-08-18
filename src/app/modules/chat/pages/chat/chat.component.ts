@@ -85,6 +85,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   message = '';
   showEmojiPicker = false;
   showupload = false;
+  private notificationSound?: HTMLAudioElement;
+
   toggleEmojiPicker() {
     this.showupload = false;
     this.showEmojiPicker = !this.showEmojiPicker;
@@ -142,6 +144,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.userData = JSON.parse(d);
     this.nrSelect = this.userData?.userId;
     this.titleService.setTitle('CDC -Inbox');
+
   }
   ngOnInit(): void {
     setTimeout(() => {
@@ -208,17 +211,32 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           this.messagestates == ' '
         ) {
         } else {
-          const audio = new Audio(
-            '../assets/sound/Google Chat - Notification Tone.mp3'
-          );
           const currentUrl = this.location.path();
           if (currentUrl === '/admin/inbox' || currentUrl === '/inbox') {
-            audio.play();
+            console.log(data);
+            let FullName:any;
+            if(data.name === null){
+              FullName = data.mobileNo
+            }
+            else{
+              FullName = data.name
+            }
+            const message: string = `You got a message from ${FullName}`
+            this.speakNotification(message);
           }
         }
       });
     }
   }
+
+  private speakNotification(message: string) {
+    const speechSynthesis = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(message);
+    utterance.lang = 'en-US'
+    speechSynthesis.speak(utterance);
+
+  }
+
 
   toggleupload() {
     this.showEmojiPicker = false;
