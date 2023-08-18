@@ -1605,7 +1605,8 @@ button.search-ico {
   position: relative;
 }
 .msg-sender .chat-info {
-  font-weight: 400;
+  font-weight: 500;
+  color: #111;
   font-size: 11px;
 }
 .last-msg {
