@@ -518,6 +518,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
 
 
+
+
   checkChatStatus() {
     this.message = '';
     this.chatVisible = true;

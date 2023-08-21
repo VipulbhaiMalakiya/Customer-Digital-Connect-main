@@ -35,8 +35,7 @@ import { TotalPricePipe } from 'src/app/_helpers/total-price.pipe';
         TempletsComponent,
         TempletilterPipe,
         ShortenFileNamePipe,
-        ReducePipe,
-        TotalPricePipe
+    
     ],
     imports: [
         CommonModule,
