@@ -137,7 +137,7 @@
                   <span class="chatpro-nmg" [ngClass]="getColorClass(ind)" *ngIf="i.fullName === null">
                     {{getShortName(i.phoneNo)}} </span>
 
-                  <span class="user-platfrm" *ngIf="i.messagetype === 'order'"><i
+                  <span class="user-platfrm" *ngIf="i.messagetype === 'interactive'"><i
                       class="las la-cart-arrow-down"></i></span>
                   <span class="user-platfrm" *ngIf="i.messagetype === 'document'"><i class="las la-file"></i></span>
                   <span class="user-platfrm" *ngIf="i.messagetype === 'document'"><i class="las la-file"></i></span>
@@ -188,7 +188,7 @@
                     {{getShortName(i.fullName)}} </span>
                   <span class="chatpro-nmg" [ngClass]="getColorClass(ind)" *ngIf="i.fullName === null">
                     {{getShortName(i.phoneNo)}} </span>
-                  <span class="user-platfrm" *ngIf="i.messagetype === 'order'"><i
+                  <span class="user-platfrm" *ngIf="i.messagetype === 'interactive'"><i
                       class="las la-cart-arrow-down"></i></span>
 
                   <span class="user-platfrm" *ngIf="i.messagetype === 'template'"><i
@@ -975,14 +975,78 @@
                 </div>
                 <div class="chat-info">
                   <div class="suserchat-info">
-                    <div class="last-msg p-3 mb-1  rounded bg-light">{{data.message || 'Order information not received
-                      form backend'}}</div>
-                    <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
-                      ||'Reception'}}</span>
-                    <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
-                    {{data.time |dateAgo}}
+                    <div class="tablecustomer-dt">
+                      <p><i class="las la-utensils"></i> Time <strong> : {{data.time |dateAgo}}</strong></p>
+                      <p><i class="las la-user-tie"></i> Customer Name: <strong>{{contactinfo.fullName
+                        ||'Reception'}}</strong></p>
+                     </div>
+                    <div class="order-protbl">
+                      <div class="dasboard-table">
+                        <div class="table-responsive">
+                          <table class="table table-bordered text-center w-100">
+                            <thead>
+                              <tr>
+                                <th>Id</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Currency</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let d of data?.catalogOrderItems">
+                                <td>
+                                  <div class="pro-tb-icopn">
+                                    <h4>{{d.product_retailer_id}}</h4>
+                                  </div>
+                                </td>
+                                <td>{{d.quantity}}</td>
+                                <td>{{d.item_price}}</td>
+                                <td>{{d.currency}}</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
+              </li>
+
+              <li class="msg-replayer"
+                *ngIf="data.type === 'Sender' && data.messagetype === 'interactive' || data.messagetype === 'Interactive'">
+                <ng-container>
+                  <div class="avata">
+                    <span *ngIf="data.name === null">Y</span>
+                    <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
+                  </div>
+                  <div class="chat-info">
+                    <div class="last-msg p-3 rounded bg-cyan">{{data.message}}
+                    </div>
+                    <div class="suserchat-info">
+                      <span class="suserchat-name" *ngIf="data.name == null">You</span>
+                      <span class="suserchat-name" *ngIf="data.name !== null">{{data.name || ''}}</span>
+                      {{data.time |dateAgo}}
+
+                      <ng-container *ngIf="!data.messageId">
+                        <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
+                            class="las la-check-double"></i></span>
+                        <span class="last-msg-checkic" *ngIf="data.messageStatus == 'sent'"><i
+                            class="las la-check"></i></span>
+                        <span class="last-msg-checkic" *ngIf="data.messageStatus == 'delivered'"><i
+                            class="las la-check-double"></i></span>
+                      </ng-container>
+
+                      <ng-container *ngIf="data.messageId">
+                        <span class="last-msg-checkic text-success" *ngIf="messagestates == 'read'"><i
+                            class="las la-check-double"></i></span>
+                        <span class="last-msg-checkic" *ngIf="messagestates == 'sent'"><i
+                            class="las la-check"></i></span>
+                        <span class="last-msg-checkic" *ngIf="messagestates== 'delivered'"><i
+                            class="las la-check-double"></i></span>
+                      </ng-container>
+                    </div>
+                  </div>
+                </ng-container>
               </li>
               <!-- Order End  -->
 

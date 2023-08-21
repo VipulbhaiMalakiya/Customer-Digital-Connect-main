@@ -28,4 +28,5 @@ export interface MessageData {
   notes?:any;
   username?:any;
   filename?:any;
+  catalogOrderItems?:any;
 }

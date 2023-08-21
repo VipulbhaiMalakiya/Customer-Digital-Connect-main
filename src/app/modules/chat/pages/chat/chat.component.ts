@@ -188,7 +188,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
       this.socket$.subscribe((data: MessageData) => {
         // console.log(data);
-        
+
         this.messagestates = data.messageStatus;
         if (data.mobileNo === this.contact) {
           this.receivedData.push(data);
@@ -1186,6 +1186,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
             templateBody: data.templateBody,
             templateHeader: data.templateHeader,
           };
+
           let formData = new FormData();
           formData.append('messageEntry', JSON.stringify(request));
           formData.append('file', data.file);
