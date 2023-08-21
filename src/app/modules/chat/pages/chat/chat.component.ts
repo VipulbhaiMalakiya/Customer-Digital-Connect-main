@@ -151,6 +151,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 
   }
   ngOnInit(): void {
+
+
     setTimeout(() => {
       this.connect();
       this.GetUser();
@@ -514,6 +516,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         }
       );
   }
+
 
   checkChatStatus() {
     this.message = '';

@@ -17,6 +17,8 @@ import { QuickReplyComponent } from './components/quick-reply/quick-reply.compon
 import { TempletsComponent } from './components/templets/templets.component';
 import { TempletilterPipe } from 'src/app/_helpers/templet-filter';
 import { ShortenFileNamePipe } from 'src/app/_helpers/ShortenFileName';
+import { ReducePipe } from 'src/app/_helpers/reducefuction';
+import { TotalPricePipe } from 'src/app/_helpers/total-price.pipe';
 
 @NgModule({
     declarations: [
@@ -32,7 +34,9 @@ import { ShortenFileNamePipe } from 'src/app/_helpers/ShortenFileName';
         QuickReplyComponent,
         TempletsComponent,
         TempletilterPipe,
-        ShortenFileNamePipe
+        ShortenFileNamePipe,
+        ReducePipe,
+        TotalPricePipe
     ],
     imports: [
         CommonModule,

@@ -1005,11 +1005,13 @@
                                 <td>{{ d.quantity * d.item_price}}</td>
                                 <td>{{d.currency}}</td>
                               </tr>
-                              <!-- <tr>
-                                <td colspan="2" >total quantity</td>
-                                <td colspan="3">total Price</td>
-                              </tr> -->
                             </tbody>
+                            <tfoot>
+                              <tr>
+                                <td colspan="2">Total Quantity: {{ data?.catalogOrderItems | reduce: 'quantity' }}</td>
+                                <td colspan="3">Total Amount: {{ data?.catalogOrderItems | totalPrice }}</td>
+                              </tr>
+                            </tfoot>
                           </table>
                         </div>
                       </div>
