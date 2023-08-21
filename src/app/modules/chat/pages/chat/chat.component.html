@@ -1006,12 +1006,12 @@
                                 <td>{{d.currency}}</td>
                               </tr>
                             </tbody>
-                            <tfoot>
+                            <!-- <tfoot>
                               <tr>
-                                <td colspan="2">Total Quantity: {{ data?.catalogOrderItems | totalPrice1}}</td>
+                                <td colspan="2">Total Quantity: {{ data?.catalogOrderItems | reduce }}</td>
                                 <td colspan="3">Total Amount: {{ data?.catalogOrderItems | totalPrice }}</td>
                               </tr>
-                            </tfoot>
+                            </tfoot> -->
                           </table>
                         </div>
                       </div>

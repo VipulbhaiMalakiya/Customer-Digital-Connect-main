@@ -1,12 +1,13 @@
+
+
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'totalPrice1'
+  name: 'reduce'
 })
-export class totalPrice1 implements PipeTransform {
+export class ReducePipe implements PipeTransform {
   transform(items: any[]): number {
     if (!items) return 0;
-
     return items.reduce((total, item) => total + (item.quantity), 0);
   }
 }
