@@ -1,14 +1,12 @@
-// Create a file named 'reduce.pipe.ts'
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'reduce'
+  name: 'totalPrice1'
 })
-export class ReducePipe implements PipeTransform {
-  transform(items: any[], prop: string): any {
-    if (!Array.isArray(items)) {
-      return 0;
-    }
-    return items.reduce((total, item) => total + item[prop], 0);
+export class totalPrice1 implements PipeTransform {
+  transform(items: any[]): number {
+    if (!items) return 0;
+
+    return items.reduce((total, item) => total + (item.quantity), 0);
   }
 }
