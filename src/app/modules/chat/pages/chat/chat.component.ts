@@ -50,6 +50,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   firstname: any;
   lastname: any;
   userData: any;
+  totalQuantity?: number = 0;
   userMessage = [];
   chatname: any;
   label: any;
@@ -79,6 +80,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   isempty: boolean = true;
   reloadFlag = true;
   openCount: any;
+  tqty?:any;
   DefoluteSelect: any;
   @ViewChild('chatContainer', { static: false }) chatContainer!: ElementRef;
   // Emoji Code Start
@@ -232,6 +234,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       });
     }
   }
+
+
 
   private speakNotification(message: string) {
     const speechSynthesis = window.speechSynthesis;
