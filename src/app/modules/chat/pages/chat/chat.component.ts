@@ -80,7 +80,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   isempty: boolean = true;
   reloadFlag = true;
   openCount: any;
-  tqty?:any;
+  tqty?: any;
   DefoluteSelect: any;
   @ViewChild('chatContainer', { static: false }) chatContainer!: ElementRef;
   // Emoji Code Start
@@ -111,7 +111,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.showEmojiPicker = false;
   }
 
-
   replaceAndBoldPlaceholder(data?: any): any {
     // Check if data is defined
     if (!data) {
@@ -119,7 +118,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
 
     // Check if data has the necessary properties
-    if (!data.templateBodyAttributes || data.templateBodyAttributes.length === 0) {
+    if (
+      !data.templateBodyAttributes ||
+      data.templateBodyAttributes.length === 0
+    ) {
       return 'templateBodyAttributes is missing or empty.';
     }
 
@@ -134,10 +136,15 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     const replacedString = originalString.replace('{{1}}', name);
     return replacedString;
   }
-  
-   replaceAndBoldPlaceholder1(data?: any): any {
+
+  replaceAndBoldPlaceholder1(data?: any): any {
     try {
-      if (!data || !data.templateBodyAttributes || data.templateBodyAttributes.length < 3 || !data.templatePreview) {
+      if (
+        !data ||
+        !data.templateBodyAttributes ||
+        data.templateBodyAttributes.length < 3 ||
+        !data.templatePreview
+      ) {
         // Handle the case where data is missing or incomplete
         throw new Error('Invalid data or missing attributes');
       }
@@ -160,8 +167,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       return 'Error: Unable to replace placeholders';
     }
   }
-
-
   //Emoji Code End
   constructor(
     private _route: ActivatedRoute,
@@ -181,11 +186,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.userData = JSON.parse(d);
     this.nrSelect = this.userData?.userId;
     this.titleService.setTitle('CDC -Inbox');
-
   }
   ngOnInit(): void {
-
-
     setTimeout(() => {
       this.connect();
       this.GetUser();
@@ -239,11 +241,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         } else {
           const currentUrl = this.location.path();
           if (currentUrl === '/admin/inbox' || currentUrl === '/inbox') {
-            if(data.type === "Receiver"){
-              const message: string = `You got a message from ${data.name}`
+            if (data.type === 'Receiver') {
+              const message: string = `You got a message from ${data.name}`;
               this.speakNotification(message);
-            }
-            else{
+            } else {
               const audio = new Audio(
                 '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
               );
@@ -258,20 +259,18 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   private speakNotification(message: string) {
     const speechSynthesis = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(message);
-    utterance.lang = 'en-US'
+    utterance.lang = 'en-US';
     speechSynthesis.speak(utterance);
-
   }
   toggleupload() {
     this.showEmojiPicker = false;
     this.showupload1 = false;
     this.showupload = !this.showupload;
   }
-  togglecart(){
+  togglecart() {
     this.showEmojiPicker = false;
     this.showupload = false;
     this.showupload1 = !this.showupload1;
-
   }
   // Download code start
 
@@ -716,7 +715,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
   }
 
-  sendingCatalog(e:any){
+  sendingCatalog(e: any) {
     var request = {
       messaging_product: 'whatsapp',
       recipient_type: 'individual',
@@ -725,7 +724,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       fromId: this.userData?.userId,
       assignedto: this.userData?.userId,
       fullname: this.contactinfo?.fullName || null,
-      interactiveName:e
+      interactiveName: e,
     };
     let formData = new FormData();
     formData.append('messageEntry', JSON.stringify(request));
