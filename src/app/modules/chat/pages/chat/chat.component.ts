@@ -111,23 +111,59 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     this.showEmojiPicker = false;
   }
 
+
   replaceAndBoldPlaceholder(data?: any): any {
+    // Check if data is defined
+    if (!data) {
+      return 'Data is undefined or null.';
+    }
+
+    // Check if data has the necessary properties
+    if (!data.templateBodyAttributes || data.templateBodyAttributes.length === 0) {
+      return 'templateBodyAttributes is missing or empty.';
+    }
+
     const name = data.templateBodyAttributes[0];
+
+    // Check if the originalString exists and contains the placeholder
+    if (!data.templatePreview || !data.templatePreview.includes('{{1}}')) {
+      return 'originalString is missing or does not contain {{1}} placeholder.';
+    }
+
     const originalString = data.templatePreview;
     const replacedString = originalString.replace('{{1}}', name);
     return replacedString;
   }
 
-  replaceAndBoldPlaceholder1(data?: any): any {
-    const name = data.templateBodyAttributes[0];
-    const un = data.templateBodyAttributes[1];
-    const pwd = data.templateBodyAttributes[2];
-    const originalString = data.templatePreview;
-    const replacedname = originalString.replace('{{1}}', name);
-    const replacedeml = replacedname.replace('{{2}}', un);
-    const replacedString = replacedeml.replace('{{3}}', pwd);
-    return replacedString;
+
+
+
+   replaceAndBoldPlaceholder1(data?: any): any {
+    try {
+      if (!data || !data.templateBodyAttributes || data.templateBodyAttributes.length < 3 || !data.templatePreview) {
+        // Handle the case where data is missing or incomplete
+        throw new Error('Invalid data or missing attributes');
+      }
+
+      const name = data.templateBodyAttributes[0];
+      const un = data.templateBodyAttributes[1];
+      const pwd = data.templateBodyAttributes[2];
+      const originalString = data.templatePreview;
+
+      // Use regular expressions to replace all occurrences of {{1}}, {{2}}, and {{3}}
+      const replacedString = originalString
+        .replace(/{{1}}/g, name)
+        .replace(/{{2}}/g, un)
+        .replace(/{{3}}/g, pwd);
+
+      return replacedString;
+    } catch (error) {
+      // Handle the error here, e.g., log it or return a default value
+      console.error('Error in replaceAndBoldPlaceholder1:', error);
+      return 'Error: Unable to replace placeholders';
+    }
   }
+
 
   //Emoji Code End
   constructor(
