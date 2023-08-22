@@ -235,18 +235,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           const foundItem = this.open.find(
             (item: { phoneNo: any }) => item.phoneNo === data.mobileNo
           );
-          // if (
-          //   this.messagestates !== 'read' &&
-          //   data.mobileNo === foundItem.phoneNo && data.mobileNo === this.contact
-          // ) {
-          //   this.messageCount++;
-          // }
         } else if (data.mobileNo !== this.contact) {
           this.getContactList();
-          // const foundItem = this.open.find((item: { phoneNo: any; }) => item.phoneNo === data.mobileNo);
-          // if(this.messagestates !== 'read' && data.mobileNo){
-          //   this.messageCount++;
-          // }
         }
         if (
           this.messagestates == 'sent' ||
