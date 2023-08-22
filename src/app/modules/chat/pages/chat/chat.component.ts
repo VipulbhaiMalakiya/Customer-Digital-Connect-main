@@ -134,10 +134,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     const replacedString = originalString.replace('{{1}}', name);
     return replacedString;
   }
-
-
-
-
+  
    replaceAndBoldPlaceholder1(data?: any): any {
     try {
       if (!data || !data.templateBodyAttributes || data.templateBodyAttributes.length < 3 || !data.templatePreview) {
@@ -258,8 +255,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
   }
 
-
-
   private speakNotification(message: string) {
     const speechSynthesis = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(message);
@@ -267,14 +262,11 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     speechSynthesis.speak(utterance);
 
   }
-
-
   toggleupload() {
     this.showEmojiPicker = false;
     this.showupload1 = false;
     this.showupload = !this.showupload;
   }
-
   togglecart(){
     this.showEmojiPicker = false;
     this.showupload = false;
@@ -471,7 +463,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         }
       );
   }
-
   onViewContact(e: any, c: any) {
     this.contactinfo = e;
     this.bgclass = c;
@@ -537,10 +528,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         }
       );
   }
-
-
-
-
   checkChatStatus() {
     this.message = '';
     this.chatVisible = true;
