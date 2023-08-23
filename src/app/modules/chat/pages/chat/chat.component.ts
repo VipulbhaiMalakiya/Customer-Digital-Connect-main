@@ -22,6 +22,8 @@ import { ConfirmationDialogModalComponent } from 'src/app/modules/shared/compone
 import { environment } from 'src/environments/environment';
 import { DatePipe, Location } from '@angular/common';
 import * as $ from 'jquery';
+import * as jQuery from 'jquery';
+
 import { Title } from '@angular/platform-browser';
 import { labelMasterModel } from 'src/app/_models/labels';
 import { ImageUplodComponent } from '../../components/image-uplod/image-uplod.component';
