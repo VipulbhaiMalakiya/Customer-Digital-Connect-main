@@ -76,6 +76,11 @@ export class CategoryListComponent implements OnInit, OnDestroy {
     }
   }
 
+
+  trackByFn(index: number, item: any): number {
+    return item.categoryId;
+  }
+
   onTableDataChange(event: any) {
     this.page = event;
     this.fatchData();
