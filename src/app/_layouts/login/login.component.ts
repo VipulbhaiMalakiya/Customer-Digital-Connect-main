@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit {
               } else {
                 this.router.navigate(['/login']);
               }
-              // this.toastr.success("You are successfully logged in!");
+              // this.toastr.success("You are successfully logged in!!");
             },
             (error: any) => {
               this.loading = false;
