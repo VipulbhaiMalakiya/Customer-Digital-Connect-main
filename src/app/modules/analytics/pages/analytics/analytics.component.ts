@@ -53,7 +53,9 @@ export class AnalyticsComponent {
   ngOnInit(): void {
     this.fatchData();
   }
-
+  trackByFn(index: number, item: any): number {
+    return item.name;
+  }
   fatchData() {
     this.isProceess = true;
     this.masterName = `/analytics-report?form=${this.datePipe.transform(

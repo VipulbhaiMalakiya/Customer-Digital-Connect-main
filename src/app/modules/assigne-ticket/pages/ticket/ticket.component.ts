@@ -46,7 +46,9 @@ export class TicketComponent {
   ngOnInit(): void {
     this.fatchData();
   }
-
+  trackByFn(index: number, item: any): number {
+    return item.ticketId;
+  }
   selectStatus(e: any) {
     if(e === this.tickitStatus){
       this.masterName = `/ticket/AssignedTo/${this.userData.userId}`;

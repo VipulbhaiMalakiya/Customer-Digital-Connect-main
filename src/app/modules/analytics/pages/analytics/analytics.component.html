@@ -52,7 +52,7 @@
   <div class="below-anlytics-chart">
     <p>These stats are for all conversations which were initiated by customers in the selected period</p>
     <div class="row">
-      <ng-container *ngFor="let i of data">
+      <ng-container *ngFor="let i of data ;trackBy: trackByFn">
         <div class="col-md-4 col-sm-12">
           <div class="analybidcol">
             <div class="info-tblg"  data-toggle="tooltip" data-placement="top"><i
