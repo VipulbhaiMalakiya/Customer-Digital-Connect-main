@@ -63,13 +63,13 @@
             <th>Resolution </th>
           </tr>
         </thead>
-        <tbody *ngFor="let i of data  | customFilter: term | paginate
-            : {
-                itemsPerPage: tableSize,
-                currentPage: page,
-                totalItems: count
-              };let ind = index">
-          <tr>
+        <tbody >
+          <tr *ngFor="let i of data  | customFilter: term | paginate
+          : {
+              itemsPerPage: tableSize,
+              currentPage: page,
+              totalItems: count
+            };let ind = index;trackBy: trackByFn">
             <td>{{i?.user?.username || ''}}</td>
             <td>{{i.user?.firstName  + ' ' + i.user?.lastName  |titlecase}}</td>
             <td>{{i.assigned || ''}}</td>
