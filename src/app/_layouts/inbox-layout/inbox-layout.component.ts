@@ -7,7 +7,7 @@ import { NavigationStart, Router } from '@angular/router';
   styleUrls: ['./inbox-layout.component.css'],
 })
 export class InboxLayoutComponent {
-  classToggled = true;
+  classToggled = false;
   currentRoute: any;
   currentUrl: any;
 
@@ -17,14 +17,13 @@ export class InboxLayoutComponent {
         if (event['url'] === '/admin/inbox') {
           this.classToggled = true;
           this.cd.detectChanges();
-        }  else if (event['url'] === '/inbox') {
+        } else if (event['url'] === '/inbox') {
           this.classToggled = true;
           this.cd.detectChanges();
-        }
-        else if (event['url'] === '/admin/inbox/:id') {
+        } else if (event['url'] === '/admin/inbox/:id') {
           this.classToggled = true;
           this.cd.detectChanges();
-        }  else {
+        } else {
           this.cd.detectChanges();
           this.classToggled = false;
         }
