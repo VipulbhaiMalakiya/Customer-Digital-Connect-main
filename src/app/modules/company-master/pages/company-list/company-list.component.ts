@@ -221,6 +221,10 @@ export class CompanyListComponent implements OnInit, OnDestroy {
     }).catch(() => { });
   }
 
+  trackByFn(index: number, item: any): number {
+    return item.companyId;
+  }
+
   ngOnDestroy(): void {
     this.subscription?.unsubscribe();
   }
