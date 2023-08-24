@@ -49,10 +49,16 @@ export class HeaderComponent  implements OnInit {
 
 
   classToggled = false;
-
+  isprofile = false;
    toggleField() {
+    this.isprofile = false;
     this.classToggled = !this.classToggled;
-    console.log( this.classToggled);
+
+  }
+
+  profile(){
+    this.classToggled = false;
+    this.isprofile = !this.isprofile;
 
   }
 

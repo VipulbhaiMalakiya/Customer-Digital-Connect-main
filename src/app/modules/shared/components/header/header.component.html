@@ -1,9 +1,9 @@
 <div class="top-noti-user">
   <div class="top-notify" (click)="toggleField()"><img src="../assets/images/bell-icon.png" alt=""><span>0</span></div>
   <div class="top-user-profile">
-    <a class="dropdown-toggle"   data-bs-toggle="dropdown"><img src="../assets/images/user.jpg" alt="">
+    <a class="dropdown-toggle" (click)="profile()"  data-bs-toggle="dropdown"><img src="../assets/images/user.jpg" alt="">
     </a>
-    <ul class="dropdown-menu">
+    <ul class="dropdown-menu" [class.toggled]="isprofile" >
       <li><a><i class="bi bi-person"></i>{{this.userData?.firstName | uppercase}} {{this.userData?.lastName
           |uppercase}}</a></li>
       <li class="cts-pointer"><a  routerLink="/" (click)="logout()"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
