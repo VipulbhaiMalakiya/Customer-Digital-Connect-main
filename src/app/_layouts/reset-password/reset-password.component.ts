@@ -69,7 +69,7 @@ export class ResetPasswordComponent {
       this.authenticationService.newPassword(data).subscribe(
         data => {
           if (data.code === 200) {
-
+            this.toastr.success(data.message);
             this.loading = false;
             this.router.navigate(['login']);
             this.userMasterMasterForm.reset();

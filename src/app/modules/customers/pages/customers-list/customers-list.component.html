@@ -35,13 +35,13 @@
             <th class="action-cl">Action</th>
           </tr>
         </thead>
-        <tbody *ngFor="let i of data | customFilter: term | paginate
-        : {
-            itemsPerPage: tableSize,
-            currentPage: page,
-            totalItems: count
-          };let ind = index">
-          <tr>
+        <tbody>
+          <tr  *ngFor="let i of data | customFilter: term | paginate
+          : {
+              itemsPerPage: tableSize,
+              currentPage: page,
+              totalItems: count
+            };let ind = index">
             <!-- <td>{{ind + 1}}</td> -->
             <td>{{i.customerId}}</td>
             <td>{{i.firstName}} {{i.lastName}}</td>
