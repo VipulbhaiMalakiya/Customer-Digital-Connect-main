@@ -5,7 +5,6 @@ import { departmentMasterModel } from 'src/app/_models/department';
 import { Department } from 'src/app/_models/master';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
 import { noBlankSpacesValidator } from 'src/app/shared/directives/noWhitespace.validator';
-import { capitalLetterValidator } from 'src/app/shared/directives/startsWithCapital';
 
 @Component({
   selector: 'app-add-edite-department-master',
@@ -47,7 +46,6 @@ export class AddEditeDepartmentMasterComponent {
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(30),
-        capitalLetterValidator(),
         noEmptySpaces,
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
       departmentCode: ["", [
@@ -60,7 +58,6 @@ export class AddEditeDepartmentMasterComponent {
         Validators.minLength(3),
         noEmptySpaces,
         Validators.maxLength(30),
-        capitalLetterValidator(),
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
         description: ['', [Validators.required , noEmptySpaces,]],
       status: [true, [Validators.required]]

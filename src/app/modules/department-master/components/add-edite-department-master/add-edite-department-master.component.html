@@ -27,9 +27,6 @@
             <div *ngIf="shouldShowError('departmentName','noBlankSpacesValidator')" class="form-validate-err">
               Spaces are not allowed.
             </div>
-            <div *ngIf="shouldShowError('departmentName','capitalLetter')" class="form-validate-err">
-              Start with a capital letter.
-            </div>
             <div *ngIf="shouldShowError('departmentName','noEmptySpaces')" class="form-validate-err">
               Should not contain empty spaces at the beginning or end.
             </div>
@@ -70,9 +67,6 @@
             </div>
             <div *ngIf="shouldShowError('departmentHead','pattern')" class="form-validate-err">
               Only characters are allowed.
-            </div>
-            <div *ngIf="shouldShowError('departmentHead','capitalLetter')" class="form-validate-err">
-              Start with a capital letter.
             </div>
             <div *ngIf="shouldShowError('departmentHead','noEmptySpaces')" class="form-validate-err">
               Should not contain empty spaces at the beginning or end.

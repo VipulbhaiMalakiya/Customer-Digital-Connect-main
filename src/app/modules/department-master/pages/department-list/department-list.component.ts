@@ -206,9 +206,7 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
           this.fatchData();
         }, error => {
           this.isProceess = false;
-          this.toastr.error("Department details not Delete");
-
-          // this.toastr.error(error.message);
+          this.toastr.error(error.message);
         });
       }
     }).catch(() => { });
