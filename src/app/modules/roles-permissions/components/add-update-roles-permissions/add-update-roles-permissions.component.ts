@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RoleMasterModel } from 'src/app/_models/role';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
-import { capitalLetterValidator } from 'src/app/shared/directives/startsWithCapital';
 
 @Component({
   selector: 'app-add-update-roles-permissions',
@@ -45,7 +44,6 @@ export class AddUpdateRolesPermissionsComponent {
         Validators.minLength(3),
         Validators.maxLength(30),
         noEmptySpaces,
-        capitalLetterValidator(),
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
       status: [true, [Validators.required]],
       roleDescription: ['', [Validators.required,noEmptySpaces]]

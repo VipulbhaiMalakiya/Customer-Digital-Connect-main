@@ -95,11 +95,10 @@ export class RolePermissionsListComponent implements OnInit,OnDestroy {
         this.subscription = this.apiService.add(addData).pipe(take(1),delay(1000)).subscribe(res => {
           this.isProceess = false;
           this.fatchData();
-          // this.toastr.success(res.message);
-          this.toastr.error("Role details not saved");
+          this.toastr.success(res.message);
         }, error => {
           this.isProceess = false;
-          this.toastr.error(error.message);
+          this.toastr.error(error.messages);
         });
       }
     }).catch(() => { });
