@@ -127,7 +127,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
               },
               (error) => {
                 this.isProceess = false;
-                this.toastr.error('Category details not saved');
+                this.toastr.error(error.messages);
               }
             );
         }
@@ -172,7 +172,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
                 this.fatchData();
               },
               (error) => {
-                this.toastr.error(error.message);
+                this.toastr.error(error.messages);
                 this.isProceess = false;
               }
             );

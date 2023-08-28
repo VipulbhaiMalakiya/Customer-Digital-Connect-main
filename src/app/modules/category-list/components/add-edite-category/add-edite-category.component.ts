@@ -39,7 +39,6 @@ export class AddEditeCategoryComponent {
       categoryName: ["", [
         Validators.required,
         Validators.minLength(2),
-        capitalLetterValidator(),
         Validators.maxLength(30),
         noEmptySpaces,
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
