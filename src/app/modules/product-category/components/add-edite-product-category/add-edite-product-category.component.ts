@@ -4,7 +4,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { imageExtensionValidator } from 'src/app/_helpers/image-extension.validator';
 import { prodactCategoryMasterModel } from 'src/app/_models/prodact_category';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
-import { capitalLetterValidator } from 'src/app/shared/directives/startsWithCapital';
 
 @Component({
   selector: 'app-add-edite-product-category',
@@ -57,7 +56,6 @@ export class AddEditeProductCategoryComponent {
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(30),
-        capitalLetterValidator(),
         noEmptySpaces,
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
       productCategoryDescription: ['', [Validators.required, noEmptySpaces]],
