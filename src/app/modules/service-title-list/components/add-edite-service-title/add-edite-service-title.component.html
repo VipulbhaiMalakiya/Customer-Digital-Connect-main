@@ -46,9 +46,6 @@
             <div *ngIf="shouldShowError('serviceName','pattern')" class="form-validate-err">
               Only characters are allowed.
             </div>
-            <div *ngIf="shouldShowError('serviceName','capitalLetter')" class="form-validate-err">
-              Start with a capital letter.
-            </div>
             <div *ngIf="shouldShowError('serviceName','noEmptySpaces')" class="form-validate-err">
               Service name should not contain empty spaces at the beginning or end.
             </div>

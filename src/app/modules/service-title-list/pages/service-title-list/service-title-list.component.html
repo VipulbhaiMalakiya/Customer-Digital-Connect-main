@@ -43,10 +43,10 @@
             };let ind = index">
             <!-- <td>{{ind + 1}}</td> -->
             <td>{{i.serviceId}}</td>
-            <td>{{i.serviceName}}</td>
-            <td>{{i.subCategory?.category?.categoryName}}</td>
-            <td>{{i.subCategory?.subCategoryName}}</td>
-            <td>{{i.defaultPriority?.priorityName}}</td>
+            <td>{{i.serviceName | titlecase}}</td>
+            <td>{{i.subCategory?.category?.categoryName | titlecase}}</td>
+            <td>{{i.subCategory?.subCategoryName | titlecase}}</td>
+            <td>{{i.defaultPriority?.priorityName | titlecase}}</td>
             <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
             <td>
               <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
