@@ -6,7 +6,6 @@ import { ToastrService } from 'ngx-toastr';
 import { delay, take } from 'rxjs';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
-import { capitalLetterValidator } from 'src/app/shared/directives/startsWithCapital';
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
@@ -35,7 +34,7 @@ export class MyProfileComponent implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(30),
         noEmptySpaces,
-        capitalLetterValidator(),
+
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
 
       lastName: [this.userData.lastName, [
@@ -43,7 +42,7 @@ export class MyProfileComponent implements OnInit {
         Validators.minLength(3),
         noEmptySpaces,
         Validators.maxLength(30),
-        capitalLetterValidator(),
+
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
 
       email: [this.userData.email, [
@@ -65,14 +64,14 @@ export class MyProfileComponent implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(30),
         noEmptySpaces,
-        capitalLetterValidator(),
+
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
 
       city: [this.userData.city, [
         Validators.required,
         Validators.minLength(3),
         noEmptySpaces,
-        capitalLetterValidator(),
+
         Validators.maxLength(30),
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
       username: [this.userData.username, [Validators.required, noEmptySpaces]],

@@ -1,7 +1,6 @@
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
-import { capitalLetterValidator } from 'src/app/shared/directives/startsWithCapital';
 import { labelMasterModel } from './../../../../_models/labels';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { quickrepliesModel } from 'src/app/_models/quickreplies';
@@ -45,7 +44,6 @@ export class AddEditeQuickReplayComponent {
           Validators.minLength(3),
           Validators.maxLength(30),
           noEmptySpaces,
-          capitalLetterValidator(),
           Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$'),
         ],
       ],

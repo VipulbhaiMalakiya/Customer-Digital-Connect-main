@@ -3,7 +3,6 @@ import { FormBuilder, Validators, FormControl, AbstractControl, ValidationErrors
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
-import { capitalLetterValidator } from 'src/app/shared/directives/startsWithCapital';
 
 @Component({
   selector: 'app-video',
@@ -33,7 +32,6 @@ export class VideoComponent {
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(30),
-        capitalLetterValidator(),
         noEmptySpaces,
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
     });

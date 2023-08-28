@@ -7,7 +7,6 @@ import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
-import { capitalLetterValidator } from 'src/app/shared/directives/startsWithCapital';
 
 @Component({
   selector: 'app-phone-no',

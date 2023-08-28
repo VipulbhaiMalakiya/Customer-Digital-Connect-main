@@ -9,7 +9,6 @@ import { AuthenticationService } from 'src/app/_services';
 import { ConfirmedValidator } from 'src/app/shared/directives/confirm-password.validator';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
 import { PasswordStrengthValidator } from 'src/app/shared/directives/password-strength.validators';
-import { capitalLetterValidator } from 'src/app/shared/directives/startsWithCapital';
 
 @Component({
   selector: 'app-reset-password',

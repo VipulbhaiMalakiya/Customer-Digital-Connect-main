@@ -4,7 +4,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryMasterModel } from 'src/app/_models/category';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
 import { noBlankSpacesValidator } from 'src/app/shared/directives/noWhitespace.validator';
-import { capitalLetterValidator } from 'src/app/shared/directives/startsWithCapital';
 @Component({
   selector: 'app-add-edite-category',
   templateUrl: './add-edite-category.component.html',

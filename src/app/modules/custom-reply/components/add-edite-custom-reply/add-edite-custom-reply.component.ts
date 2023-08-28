@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { customReplyMaster } from 'src/app/_models/custom-reply';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
-import { capitalLetterValidator } from 'src/app/shared/directives/startsWithCapital';
 
 @Component({
   selector: 'app-add-edite-custom-reply',
@@ -45,7 +44,7 @@ export class AddEditeCustomReplyComponent {
       input: ["", [
         Validators.required,
         Validators.minLength(2),
-        capitalLetterValidator(),
+
         Validators.maxLength(30),
         noEmptySpaces]],
         Inputvariation1:[''],

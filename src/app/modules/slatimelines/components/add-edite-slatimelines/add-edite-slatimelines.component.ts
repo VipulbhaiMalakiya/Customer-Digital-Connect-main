@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SLATimelinesMasterModel } from 'src/app/_models/SLA-Timelines';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
-import { capitalLetterValidator } from 'src/app/shared/directives/startsWithCapital';
 
 @Component({
   selector: 'app-add-edite-slatimelines',
@@ -45,7 +44,6 @@ export class AddEditeSlatimelinesComponent {
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(30),
-        capitalLetterValidator(),
         noEmptySpaces,
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
       slaTimeInHours: ['', [

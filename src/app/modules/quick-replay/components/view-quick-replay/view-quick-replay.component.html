@@ -22,9 +22,7 @@
         <div *ngIf="shouldShowError('name','pattern')" class="form-validate-err">
           Only characters are allowed.
         </div>
-        <div *ngIf="shouldShowError('name','capitalLetter')" class="form-validate-err">
-          Start with a capital letter.
-        </div>
+
         <div *ngIf="shouldShowError('name','noEmptySpaces')" class="form-validate-err">
           name should not contain empty spaces at the beginning or end.
         </div>

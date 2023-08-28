@@ -22,9 +22,7 @@
         <div *ngIf="shouldShowError('priorityName','pattern')" class="form-validate-err">
           Only characters are allowed.
         </div>
-        <div *ngIf="shouldShowError('priorityName','capitalLetter')" class="form-validate-err">
-          Start with a capital letter.
-        </div>
+
         <div *ngIf="shouldShowError('priorityName','noEmptySpaces')" class="form-validate-err">
           Priority name should not contain empty spaces at the beginning or end.
         </div>

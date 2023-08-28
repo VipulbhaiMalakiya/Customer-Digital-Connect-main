@@ -3,7 +3,6 @@ import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
-import { capitalLetterValidator } from 'src/app/shared/directives/startsWithCapital';
 
 @Component({
   selector: 'app-document',
@@ -33,7 +32,6 @@ export class DocumentComponent {
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(30),
-        capitalLetterValidator(),
         noEmptySpaces,
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
     });
