@@ -4,7 +4,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { issueMasterModel } from 'src/app/_models/issue';
 import { labelMasterModel } from 'src/app/_models/labels';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
-import { capitalLetterValidator } from 'src/app/shared/directives/startsWithCapital';
 
 @Component({
   selector: 'app-label-add-edite',
@@ -45,7 +44,6 @@ export class LabelAddEditeComponent {
         Validators.minLength(3),
         Validators.maxLength(30),
         noEmptySpaces,
-        capitalLetterValidator(),
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
         status:[true, [Validators.required]]
     });
