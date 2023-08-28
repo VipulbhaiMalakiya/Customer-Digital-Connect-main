@@ -44,10 +44,10 @@
           <tr>
             <!-- <td>{{ind + 1}}</td> -->
             <td>{{i.issueId}}</td>
-            <td>{{i.issueName}}</td>
-            <td>{{i.calculationSLA}}</td>
+            <td>{{i.issueName | titlecase}}</td>
+            <td>{{i.calculationSLA }}</td>
             <td>{{i.createdDate | date :'medium'}}</td>
-            <td>{{i.createdBy?.firstName || ''}} {{i.createdBy?.lastName || ''}} </td>
+            <td>{{i.createdBy?.firstName | titlecase}} {{i.createdBy?.lastName | titlecase}} </td>
             <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
             <td>
               <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>

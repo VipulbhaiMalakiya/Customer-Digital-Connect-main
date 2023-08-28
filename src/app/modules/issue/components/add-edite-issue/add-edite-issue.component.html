@@ -22,9 +22,6 @@
         <div *ngIf="shouldShowError('issueName','pattern')" class="form-validate-err">
           Only characters are allowed.
         </div>
-        <div *ngIf="shouldShowError('issueName','capitalLetter')" class="form-validate-err">
-          Start with a capital letter.
-        </div>
         <div *ngIf="shouldShowError('issueName','noEmptySpaces')" class="form-validate-err">
           Issue name should not contain empty spaces at the beginning or end.
         </div>

@@ -3,7 +3,6 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { issueMasterModel } from 'src/app/_models/issue';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
-import { capitalLetterValidator } from 'src/app/shared/directives/startsWithCapital';
 
 @Component({
   selector: 'app-add-edite-issue',
@@ -45,7 +44,6 @@ export class AddEditeIssueComponent {
         Validators.minLength(3),
         Validators.maxLength(30),
         noEmptySpaces,
-        capitalLetterValidator(),
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
         calculationSLA:['', [Validators.required]],
         status:[true, [Validators.required]]
