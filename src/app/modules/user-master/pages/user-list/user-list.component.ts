@@ -79,7 +79,7 @@ export class UserListComponent implements OnInit,OnDestroy {
           firstName: data.firstName.trim(),
           lastName: data.lastName.trim(),
           email: data.email.trim(),
-          contact: data.contact,
+          contact: `91${data.contact}`,
           address: data.address.trim(),
           state: data.state.trim(),
           city: data.city.trim(),
@@ -101,8 +101,7 @@ export class UserListComponent implements OnInit,OnDestroy {
           this.toastr.success(res.message);
         }, error => {
           this.isProceess = false;
-          this.toastr.error("User details not saved");
-          // this.toastr.error(error.message);
+          this.toastr.error(error.messages);
         });
 
       }

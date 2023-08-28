@@ -46,11 +46,11 @@
 
           <tr>
             <td>{{i.userId}}</td>
-            <td>{{i.username}}</td>
-            <td>{{i.firstName}} {{i.lastName}}</td>
+            <td>{{i.username | titlecase}}</td>
+            <td>{{i.firstName | titlecase}} {{i.lastName | titlecase}}</td>
             <td>{{i.contact}}</td>
-            <td>{{i.email}}</td>
-            <td>{{i.department?.departmentName}}</td>
+            <td>{{i.email  | titlecase}}</td>
+            <td>{{i.department?.departmentName | titlecase}}</td>
             <td>{{i.role?.roleName}}</td>
             <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
             <td>

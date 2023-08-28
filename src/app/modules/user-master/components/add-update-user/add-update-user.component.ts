@@ -5,7 +5,6 @@ import { UserMaster } from 'src/app/_models';
 import { ConfirmedValidator } from 'src/app/shared/directives/confirm-password.validator';
 import { PasswordStrengthValidator } from 'src/app/shared/directives/password-strength.validators';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
-import { capitalLetterValidator } from 'src/app/shared/directives/startsWithCapital';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
 
 @Component({
@@ -65,14 +64,14 @@ export class AddUpdateUserComponent implements OnInit {
         Validators.minLength(3),
         Validators.maxLength(30),
         noEmptySpaces,
-        capitalLetterValidator(),
+
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
       lastName: ["", [
         Validators.required,
         Validators.minLength(3),
         noEmptySpaces,
         Validators.maxLength(30),
-        capitalLetterValidator(),
+
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
       email: ['', [
         Validators.required,
@@ -83,21 +82,21 @@ export class AddUpdateUserComponent implements OnInit {
       ]],
       contact: ['', [
         Validators.required,
-        Validators.minLength(12),
-        Validators.maxLength(12),
+        Validators.minLength(10),
+        Validators.maxLength(10),
         Validators.pattern('^[0-9]*$')]],
       state: ["", [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(30),
         noEmptySpaces,
-        capitalLetterValidator(),
+
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
       city: ["", [
         Validators.required,
         Validators.minLength(3),
         noEmptySpaces,
-        capitalLetterValidator(),
+
         Validators.maxLength(30),
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
       roleId: ['', [Validators.required]],
