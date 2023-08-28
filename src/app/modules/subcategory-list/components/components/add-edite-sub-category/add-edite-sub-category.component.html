@@ -22,9 +22,6 @@
         <div *ngIf="shouldShowError('subCategoryName','pattern')" class="form-validate-err">
           Only characters are allowed.
         </div>
-        <div *ngIf="shouldShowError('subCategoryName','capitalLetter')" class="form-validate-err">
-          Start with a capital letter.
-        </div>
         <div *ngIf="shouldShowError('subCategoryName','noEmptySpaces')" class="form-validate-err">
           Sub category name should not contain empty spaces at the beginning or end.
         </div>

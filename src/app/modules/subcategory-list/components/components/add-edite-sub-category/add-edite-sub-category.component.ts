@@ -4,7 +4,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryMasterModel } from 'src/app/_models/category';
 import { subCategoryMasterModel } from 'src/app/_models/subCategoryMasterModel';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
-import { capitalLetterValidator } from 'src/app/shared/directives/startsWithCapital';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
 
 @Component({
@@ -45,7 +44,6 @@ export class AddEditeSubCategoryComponent implements OnInit {
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(30),
-        capitalLetterValidator(),
         noEmptySpaces,
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
       status: [true, [Validators.required]],

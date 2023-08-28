@@ -91,7 +91,7 @@ export class SubcategoryListComponent implements OnInit,OnDestroy {
           this.toastr.success(res.message);
         }, error => {
           this.isProceess = false;
-          this.toastr.error("Sub Category details not saved");
+          this.toastr.error(error.messages);
           // this.toastr.error(error.message);
         });
       }

@@ -45,12 +45,12 @@
           <tr>
             <!-- <td>{{ind + 1}}</td> -->
             <td>{{i.subCategoryId}}</td>
-            <td>{{i.subCategoryName}}</td>
-            <td>{{i.category?.categoryName}}</td>
+            <td>{{i.subCategoryName | titlecase}}</td>
+            <td>{{i.category?.categoryName | titlecase}}</td>
             <td>{{i.createdDate | date :'medium'}}</td>
-            <td>{{i.createdBy?.firstName || ''}} {{i.createdBy?.lastName || ''}} </td>
+            <td>{{i.createdBy?.firstName | titlecase}} {{i.createdBy?.lastName | titlecase}} </td>
             <td>{{i.updatedDate | date :'medium'}}</td>
-            <td>{{i.createdBy?.firstName || ''}} {{i.createdBy?.lastName || ''}}</td>
+            <td>{{i.createdBy?.firstName | titlecase}} {{i.createdBy?.lastName | titlecase}}</td>
             <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
             <td>
               <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
