@@ -48,7 +48,6 @@ export class AddEditeCompanyComponent {
         Validators.minLength(2),
         Validators.maxLength(30),
         noEmptySpaces,
-        capitalLetterValidator(),
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
       companyDescription: ['', [Validators.required, noEmptySpaces]],
       apiKey: ['', [Validators.required]],

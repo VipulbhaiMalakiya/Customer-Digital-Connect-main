@@ -24,9 +24,6 @@
             <div *ngIf="shouldShowError('companyName','pattern')" class="form-validate-err">
               Only characters are allowed.
             </div>
-            <div *ngIf="shouldShowError('companyName','capitalLetter')" class="form-validate-err">
-              The company name must start with a capital letter.
-            </div>
             <div *ngIf="shouldShowError('companyName','noEmptySpaces')" class="form-validate-err">
               Should not contain empty spaces at the beginning or end.
             </div>

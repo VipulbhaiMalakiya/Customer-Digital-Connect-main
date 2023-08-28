@@ -98,7 +98,7 @@ export class CompanyListComponent implements OnInit, OnDestroy {
           this.toastr.success(res.message);
         }, error => {
           this.isProceess = false;
-          this.toastr.error("Company details not saved");
+          this.toastr.error(error.messages);
         });
         // this.NgRxAPI.addCompany(model);
       }
