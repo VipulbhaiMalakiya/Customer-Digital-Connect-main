@@ -49,14 +49,12 @@ export class AddUpdateCustomersComponent {
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(30),
-        capitalLetterValidator(),
         noEmptySpaces,
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
       lastName: ["", [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(30),
-        capitalLetterValidator(),
         noEmptySpaces,
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
       email: ['', [
@@ -68,8 +66,8 @@ export class AddUpdateCustomersComponent {
       ]],
       contact: ['', [
         Validators.required,
-        Validators.minLength(12),
-        Validators.maxLength(12),
+        Validators.minLength(10),
+        Validators.maxLength(10),
         Validators.pattern('^[0-9]*$')]],
       postcode: ['', [
         Validators.required,
@@ -81,13 +79,11 @@ export class AddUpdateCustomersComponent {
         Validators.minLength(3),
         Validators.maxLength(30),
         noEmptySpaces,
-        capitalLetterValidator(),
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
       state: ["", [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(30),
-        capitalLetterValidator(),
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
       address: ['', [Validators.required,noEmptySpaces]],
       status: [true, [Validators.required]]

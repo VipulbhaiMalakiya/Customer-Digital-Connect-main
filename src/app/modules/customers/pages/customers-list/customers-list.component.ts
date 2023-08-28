@@ -121,7 +121,7 @@ export class CustomersListComponent implements OnInit, OnDestroy {
           firstName: data.firstName.trim(),
           lastName: data.lastName.trim(),
           email: data.email.trim(),
-          contact: data.contact,
+          contact: `91${data.contact}`,
           address: data.address.trim(),
           state: data.state.trim(),
           city: data.city.trim(),
@@ -136,8 +136,6 @@ export class CustomersListComponent implements OnInit, OnDestroy {
         }
         this.isProceess = true;
         this.subscription = this.apiService.add(addData).pipe(take(1)).subscribe(res => {
-          console.log(res);
-
           if (res) {
             this.fatchData();
             this.toastr.success(res.message);
@@ -190,7 +188,7 @@ export class CustomersListComponent implements OnInit, OnDestroy {
           this.isProceess = false;
           this.fatchData();
         }, error => {
-          this.toastr.error("Customer details are not updated");
+          this.toastr.error(error.messages);
           this.isProceess = false;
         });
       }

@@ -44,8 +44,8 @@
             };let ind = index">
             <!-- <td>{{ind + 1}}</td> -->
             <td>{{i.customerId}}</td>
-            <td>{{i.firstName}} {{i.lastName}}</td>
-            <td>{{i.email}}</td>
+            <td >{{i.firstName | titlecase}} {{i.lastName | titlecase}}</td>
+            <td>{{i.email | titlecase}}</td>
             <td>{{i.contact}}<span class="ctm-icone" *ngIf="i.status && i.firstName"> <i class="lab la-whatsapp"
                   (click)="sendMessage(i)"></i></span></td>
             <td>{{i.city}}</td>
