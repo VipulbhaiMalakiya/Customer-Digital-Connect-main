@@ -61,7 +61,7 @@
             <td>{{i.productCategory?.productCategoryName |titlecase}}</td>
             <td>{{i.productName |titlecase}}</td>
             <td>{{i.createdDate | date :'medium' || ''}}</td>
-            <td>{{i.createdBy?.firstName || ''}} {{i.createdBy?.lastName || ''}} </td>
+            <td>{{i.createdBy?.firstName |titlecase}} {{i.createdBy?.lastName |titlecase}} </td>
             <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
             <td>
               <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
