@@ -125,8 +125,7 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
 
         }, error => {
           this.isProceess = false;
-          this.toastr.error("Department details not saved");
-          // this.toastr.error(error.message);
+          this.toastr.error(error.messages);
         });
       }
     }).catch(() => { });
@@ -167,8 +166,7 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
           this.isProceess = false;
           this.fatchData();
         }, error => {
-          // this.toastr.error(error.message);
-          this.toastr.error("Department details not Update");
+          this.toastr.error(error.message);
           this.isProceess = false;
         });
       }
