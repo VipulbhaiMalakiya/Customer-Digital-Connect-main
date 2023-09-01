@@ -51,6 +51,7 @@
             <td>{{i.createdBy?.firstName |titlecase}} {{i.createdBy?.lastName |titlecase}} </td>
             <td>{{i.updatedDate | date :'medium'}}</td>
             <td>{{i.createdBy?.firstName |titlecase}} {{i.createdBy?.lastName |titlecase}}</td>
+            <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
             <td>
               <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
               <a class="btnClick" (click)="onEdit(i)"><i class="las la-edit"></i></a>
