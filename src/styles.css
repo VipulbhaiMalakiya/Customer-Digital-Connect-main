@@ -4363,3 +4363,57 @@ height: 100%;
 .analdrop1 .btn.common-btn{ width: 100%; height:40px; }
 .analdrop1 .btn.common-btn:focus{ background:#0094ab; color:#fff; }
 
+/*---------------permissions-page-------------*/
+
+.main-outer-wrapper.left-colapse .rightouter70 .permissions-page #pills-tab .nav-item{ max-width:none; flex:0 0 auto; text-align: left; padding-right: 5px; padding-left: 5px;  }
+
+.rightouter70 .permissions-page #pills-tab .nav-item{ max-width:none; flex:0 0 auto; }
+
+.permissions-page .nav-pills .nav-link {
+    padding-left: 25px;
+    padding-right: 25px;
+    border: 1px solid #ccc;
+    font-weight: 500;
+    font-size: 14px;
+	padding-top: 7px;
+    padding-bottom: 7px;
+}
+.permissions-page .nav-pills .nav-link.active{ background:#00abc5; border-color:#00abc5; }
+
+.permissions-page .tab-content{ margin-top: 30px; }
+
+.permis-tab1 {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.permis-tab1-left {
+    max-width: 70%;
+    flex: 0 0 70%;
+}
+.permis-tab1-right{
+    max-width: 30%;
+    flex: 0 0 30%;
+}
+
+.permis-tab1-right .form-check.form-switch {
+    display: flex;
+    justify-content: end;
+}
+
+.permis-tab1-right .form-switch .form-check-input{ width: 3em; height: 1.5em; cursor:pointer; }
+
+.permi-title{ margin-bottom:10px; }
+.permi-title h3{ font-size:17px; font-weight: 600; color:#333; }
+.permi-title h3 i{ font-size:24px; vertical-align: middle; margin-right:10px;  }
+
+.permis-tab1-left p{ margin-bottom: 0px; color:#111; }
+.permis-tab1-left p small{ font-size:11px;  }
+
+.permis-tab1-right .form-check-input:checked{ background-color:#2adc5b; border-color:#2adc5b;  }
+
+
+
