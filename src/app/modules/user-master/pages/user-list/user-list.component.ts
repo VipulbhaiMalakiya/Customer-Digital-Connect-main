@@ -148,7 +148,7 @@ export class UserListComponent implements OnInit,OnDestroy {
           this.isProceess = false;
           this.fatchData();
         }, error => {
-          this.toastr.error(error.message);
+          this.toastr.error(error.messages);
           this.isProceess = false;
         });
       }
