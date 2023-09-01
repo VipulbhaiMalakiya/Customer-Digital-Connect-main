@@ -201,7 +201,7 @@ export class ProductsComponent implements OnInit {
           }
         }, error => {
           this.isProceess = false;
-          this.toastr.error("Error while deleting Prodact Category!");
+          this.toastr.error(error.error.message);
         });
       }
     }).catch(() => { });
