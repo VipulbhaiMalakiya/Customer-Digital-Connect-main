@@ -163,7 +163,7 @@ export class CompanyListComponent implements OnInit, OnDestroy {
           this.fatchData();
           this.isProceess = false;
         }, error => {
-          this.toastr.error(error.message);
+          this.toastr.error(error.messages);
           this.isProceess = false;
         });
       }
