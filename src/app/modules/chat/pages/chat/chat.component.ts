@@ -258,9 +258,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
   }
 
-  getProductName(e: any): any {
-    return e || 'Unknown'; // Default to 'Unknown' if not found
-  }
   private speakNotification(message: string) {
     const speechSynthesis = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(message);
