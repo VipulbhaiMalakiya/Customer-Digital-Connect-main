@@ -289,6 +289,13 @@ const routes: Routes = [
         path: 'workflow/create-workflow',
         component: CreateWorkflowComponent,
       },
+      {
+        path: 'permissions',
+        loadChildren: () =>
+          import('./modules/permissions/permissions.module').then(
+            (m) => m.PermissionsModule
+          ),
+      },
 
       {
         path: 'inbox/:id',
