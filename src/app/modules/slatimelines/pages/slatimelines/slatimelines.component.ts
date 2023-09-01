@@ -100,8 +100,7 @@ export class SlatimelinesComponent implements OnInit, OnDestroy {
           this.toastr.success(res.message);
         }, error => {
           this.isProceess = false;
-          this.toastr.error("SLA Timeline details not saved");
-          // this.toastr.error(error.message);
+          this.toastr.error(error.messages);
         });
       }
     }).catch(() => { });
@@ -141,7 +140,7 @@ export class SlatimelinesComponent implements OnInit, OnDestroy {
           this.isProceess = false;
           this.fatchData();
         }, error => {
-          this.toastr.error(error.message);
+          this.toastr.error(error.messages);
           this.isProceess = false;
         });
       }
