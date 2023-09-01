@@ -978,8 +978,8 @@
                     <div class="tablecustomer-dt">
                       <p><i class="las la-utensils"></i> Time <strong> : {{data.time |dateAgo}}</strong></p>
                       <p><i class="las la-user-tie"></i> Customer Name: <strong>{{contactinfo.fullName
-                        ||'Reception'}}</strong></p>
-                     </div>
+                          ||'Reception'}}</strong></p>
+                    </div>
                     <div class="order-protbl">
                       <div class="dasboard-table">
                         <div class="table-responsive">
@@ -997,7 +997,7 @@
                               <tr *ngFor="let d of data?.catalogOrderItems">
                                 <td>
                                   <div class="pro-tb-icopn">
-                                    <h4>{{d.product_retailer_id}}</h4>
+                                    <h4>{{ getProductName(d.product_retailer_id) }}</h4>
                                   </div>
                                 </td>
                                 <td>{{d.quantity}}</td>
