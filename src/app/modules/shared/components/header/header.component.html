@@ -4,8 +4,8 @@
     <a class="dropdown-toggle" (click)="profile()"  data-bs-toggle="dropdown"><img src="../assets/images/user.jpg" alt="">
     </a>
     <ul class="dropdown-menu" [class.toggled]="isprofile" >
-      <li><a><i class="bi bi-person"></i>{{this.userData?.firstName | uppercase}} {{this.userData?.lastName
-          |uppercase}}</a></li>
+      <li><a><i class="bi bi-person"></i>{{this.userData?.firstName | titlecase}} {{this.userData?.lastName
+          |titlecase}}</a></li>
       <li class="cts-pointer"><a  routerLink="/" (click)="logout()"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
     </ul>
   </div>
