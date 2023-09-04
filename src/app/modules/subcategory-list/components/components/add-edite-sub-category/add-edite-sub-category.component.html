@@ -31,6 +31,7 @@
         <select class="form-select" id="categoryId" formControlName="categoryId">
           <option value="">Select</option>
           <option *ngFor="let i of data" [value]="i.categoryId">{{i.categoryName}}</option>
+          <option *ngIf="data.length === 0" value="">No records found</option>
         </select>
         <div *ngIf="shouldShowError('categoryId','required')" class="text-danger">This field is required
         </div>
