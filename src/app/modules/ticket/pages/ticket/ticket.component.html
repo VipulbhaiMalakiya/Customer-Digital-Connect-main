@@ -52,13 +52,13 @@
             <th class="action-cl">Action</th>
           </tr>
         </thead>
-        <tbody *ngFor="let i of data | customFilter: term| paginate
-        : {
-            itemsPerPage: tableSize,
-            currentPage: page,
-            totalItems: count
-          };let ind = index">
-          <tr>
+        <tbody >
+          <tr *ngFor="let i of data | customFilter: term| paginate
+          : {
+              itemsPerPage: tableSize,
+              currentPage: page,
+              totalItems: count
+            };let ind = index">
             <!-- <td>{{ind + 1}}</td> -->
             <td>{{i.ticketId}}</td>
             <td (click)="onUpdateTicket(i)" class="tblLink">{{i.ticketNo}}</td>
@@ -80,6 +80,9 @@
       </table>
       <div *ngIf="data.length === 0" class="text-center">
         <Strong class="text-danger">No records found</Strong>
+      </div>
+      <div *ngIf="(data | customFilter: term).length === 0">
+        No results found.
       </div>
     </div>
     <div class="clearfix" *ngIf="!isProceess && data.length > 0">
