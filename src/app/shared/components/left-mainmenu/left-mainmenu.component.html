@@ -38,8 +38,8 @@
       <div class="accordion" id="menu-accordion">
 
         <div *ngIf="isAdmin" class="card-header  collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne"
-          aria-expanded="true" aria-controls="collapseOne"  >
-          <img class="MenuImage" src="../assets/images/menu-icon-10.png" alt="" /> Restaurants
+          aria-expanded="true" aria-controls="collapseOne"  routerLink="/admin/reservation-table">
+          <img class="MenuImage" src="../assets/images/menu-icon-10.png" alt=""  /> Restaurants
         </div>
         <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#menu-accordion">
           <ul class="inner-acc-menu">
@@ -62,7 +62,7 @@
         </div>
 
         <div *ngIf="isAdmin" class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-          aria-expanded="true" aria-controls="collapseTwo" >
+          aria-expanded="true" aria-controls="collapseTwo" routerLink="/admin/master/category-list">
           <img class="MenuImage" src="../assets/images/menu-icon-3.png" alt="" /> Master
         </div>
 
@@ -144,8 +144,8 @@
         </div>
 
         <div  *ngIf="isAdmin" class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree"
-          aria-expanded="false" aria-controls="collapseThree" >
-          <img class="MenuImage" src="../assets/images/menu-icon-8.png" alt="" /> Reports
+          aria-expanded="false" aria-controls="collapseThree" routerLink="/admin/sla-reports">
+          <img class="MenuImage" src="../assets/images/menu-icon-8.png" alt=""  /> Reports
         </div>
         <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#menu-accordion">
           <ul class="inner-acc-menu">
@@ -172,9 +172,13 @@
           </ul>
 
         </div>
-        <div class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFore"
-          aria-expanded="false" aria-controls="collapseFore" >
-          <img class="MenuImage" src="../assets/images/menu-icon-11.png" alt="" /> Settings
+        <div *ngIf="isAdmin" class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFore"
+          aria-expanded="false" aria-controls="collapseFore" routerLink="/admin/profile">
+          <img class="MenuImage" src="../assets/images/menu-icon-11.png" alt="" routerLink="/admin/profile" /> Settings
+        </div>
+        <div *ngIf="isUser || isResolver" class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFore"
+          aria-expanded="false" aria-controls="collapseFore" routerLink="/profile">
+          <img class="MenuImage" src="../assets/images/menu-icon-11.png" alt="" routerLink="/admin/profile" /> Settings
         </div>
         <div id="collapseFore" class="accordion-collapse collapse" data-bs-parent="#menu-accordion">
           <ul class="inner-acc-menu">
