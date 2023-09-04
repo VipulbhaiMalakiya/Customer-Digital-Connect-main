@@ -43,7 +43,7 @@ export class AddUpdateUserComponent implements OnInit {
         postcode: this._userMaster.postcode,
         address: this._userMaster.address,
         departmentId: this.department,
-        roleId: this.role.roleId
+        roleId: this.role?.roleId
       });
       this.userMasterMasterForm.controls["password"].disable();
       this.userMasterMasterForm.controls["confirmPasswod"].disable();
