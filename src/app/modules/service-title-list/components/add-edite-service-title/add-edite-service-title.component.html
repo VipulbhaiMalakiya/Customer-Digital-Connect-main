@@ -13,6 +13,8 @@
             <select class="form-select" id="category" #sel (change)="changed(sel.value)" formControlName="category">
               <option value="">Select</option>
               <option *ngFor="let i of data" [value]="i.categoryId">{{i.categoryName}}</option>
+              <option *ngIf="data.length === 0" value="">No records found</option>
+
             </select>
             <div *ngIf="shouldShowError('category','required')" class="text-danger">This field is required
             </div>
@@ -24,6 +26,7 @@
             <select class="form-select" id="subCategoryId" formControlName="subCategoryId">
               <option value="">Select</option>
               <option *ngFor="let i of sdata" [value]="i.subCategoryId">{{i.subCategoryName}}</option>
+              <option *ngIf="sdata.length === 0" value="">No records found</option>
             </select>
             <div *ngIf="shouldShowError('subCategoryId','required')" class="text-danger">This field is required
             </div>
@@ -57,6 +60,7 @@
             <select class="form-select" id="defaultPriority" formControlName="defaultPriority">
               <option value="">Select</option>
               <option *ngFor="let i of slaData" [value]="i.id">{{i.priorityName}}</option>
+              <option *ngIf="slaData.length === 0" value="">No records found</option>
             </select>
             <div *ngIf="shouldShowError('defaultPriority','required')" class="text-danger">This field is required
             </div>
