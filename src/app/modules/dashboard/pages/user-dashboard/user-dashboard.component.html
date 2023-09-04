@@ -198,6 +198,9 @@
                   </div>
                 </article>
               </div>
+              <div *ngIf="(recenttickets | customFilter: term).length === 0">
+                No results found.
+              </div>
             </div>
           </div>
         </section>
