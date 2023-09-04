@@ -13,6 +13,7 @@
             <select class="form-select" id="category" #sel (change)="changed(sel.value)" formControlName="category">
               <option value="">Select</option>
               <option *ngFor="let i of data" [value]="i.categoryId">{{i.categoryName}}</option>
+              <option *ngIf="data.length === 0" value="">No records found</option>
             </select>
             <div *ngIf="shouldShowError('category','required')" class="text-danger">This field is required
             </div>
@@ -25,6 +26,7 @@
               formControlName="subCategory">
               <option value="">Select</option>
               <option *ngFor="let i of sdata" [value]="i.subCategoryId">{{i.subCategoryName}}</option>
+              <option *ngIf="sdata.length === 0" value="">No records found</option>
             </select>
             <div *ngIf="shouldShowError('subCategory','required')" class="text-danger">This field is required
             </div>
@@ -37,6 +39,8 @@
               formControlName="serviceTitle">
               <option value="">Select</option>
               <option *ngFor="let i of data1" [value]="i.serviceId">{{i.serviceName}}</option>
+              <option *ngIf="data1.length === 0" value="">No records found</option>
+
             </select>
             <div *ngIf="shouldShowError('serviceTitle','required')" class="text-danger">This field is required
             </div>
@@ -68,6 +72,7 @@
               <option value="">Select</option>
               <option *ngFor="let i of slaData" [value]="i.defaultPriority.id">{{i.defaultPriority.priorityName}}
               </option>
+              <option *ngIf="slaData.length === 0" value="">No records found</option>
             </select>
             <div *ngIf="shouldShowError('priority','required')" class="text-danger">This field is required
             </div>
@@ -79,6 +84,7 @@
             <select class="form-select" id="issue" formControlName="issue">
               <option value="">Select</option>
               <option *ngFor="let i of issueData" [value]="i.issueId">{{i.issueName}}</option>
+              <option *ngIf="issueData.length === 0" value="">No records found</option>
             </select>
             <div *ngIf="shouldShowError('issue','required')" class="text-danger">This field is required
             </div>
@@ -94,6 +100,8 @@
                 <ng-container *ngFor="let i of dept">
                   <option [value]="i.departmentId" *ngIf="i.departmentId === this.userData.department.departmentId">
                     {{i.departmentName}}</option>
+                    <option *ngIf="dept.length === 0" value="">No records found</option>
+
                 </ng-container>
               </select>
               <div *ngIf="shouldShowError('department','required')" class="text-danger">This field is required
@@ -111,6 +119,8 @@
                   <option *ngIf="i.role?.roleName === 'Resolver' && this.userData.userId  !== i.userId"
                     [value]="i.userId">{{i.firstName}} {{i.lastName}}
                   </option>
+                  <option *ngIf="duser.length === 0" value="">No records found</option>
+
                 </ng-container>
               </select>
               <div *ngIf="shouldShowError('assignedTo','required')" class="text-danger">This field is required
@@ -128,6 +138,7 @@
                 <ng-container *ngFor="let i of aciveUser">
                   <option *ngIf="i.userId === this.userData.userId" [value]="i.userId">{{i.firstName}} {{i.lastName}}
                   </option>
+                  <option *ngIf="aciveUser.length === 0" value="">No records found</option>
                 </ng-container>
               </select>
               <div *ngIf="shouldShowError('createForUser','required')" class="text-danger">This field is required

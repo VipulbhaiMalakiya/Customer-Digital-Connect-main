@@ -29,7 +29,6 @@
           <form class="common-form" [formGroup]="ticketMasterForm" (ngSubmit)="onSubmit()">
             <fieldset>
               <div class="row">
-
                 <div class="col-12 col-sm-6 col-md-3">
                   <div class="form-group">
                     <label for="subCategory">Sub Category <span class="text-danger">*</span></label>
@@ -37,6 +36,7 @@
                       formControlName="subCategory">
                       <option value="">Select</option>
                       <option *ngFor="let i of sdata" [value]="i.subCategoryId">{{i.subCategoryName}}</option>
+                      <option *ngIf="sdata.length === 0" value="">No records found</option>
                     </select>
                     <div *ngIf="shouldShowError('subCategory','required')" class="text-danger">This field is required
                     </div>
@@ -49,6 +49,7 @@
                     <select class="form-select" id="serviceTitle" formControlName="serviceTitle">
                       <option value="">Select</option>
                       <option *ngFor="let i of data1" [value]="i.serviceId" >{{i.serviceName}}</option>
+                      <option *ngIf="data1.length === 0" value="">No records found</option>
                     </select>
                     <div *ngIf="shouldShowError('serviceTitle','required')" class="text-danger">This field is required
                     </div>
@@ -86,11 +87,9 @@
                         <div *ngIf="shouldShowError('assignedTo','required')" class="text-danger">This field is required
                         </div>
                       </div>
-
                     </div>
                   </div>
                 </div>
-
                 <div class="col-6">
                   <div class="form-group">
                     <label for="additionalComments">Additional Comments <span class="text-danger">*</span></label>
