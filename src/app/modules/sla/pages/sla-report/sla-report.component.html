@@ -6,13 +6,13 @@
 
 <div class="page-btns-col">
   <div class="dt-buttons">
-    <button class="gray-btns"  *ngIf="data.length > 0" (click)="onDownload()" type="button"><i class="las la-file-excel"></i> Excel</button>
-    <div class="table-search" *ngIf="data.length > 0"><input type="text" class="form-control"
-      name="name" id="name" [(ngModel)]="term"
-      autocomplete="off" placeholder="Search..." required=""></div>
+    <button class="gray-btns" *ngIf="data.length > 0" (click)="onDownload()" type="button"><i
+        class="las la-file-excel"></i> Excel</button>
+    <div class="table-search" *ngIf="data.length > 0"><input type="text" class="form-control" name="name" id="name"
+        [(ngModel)]="term" autocomplete="off" placeholder="Search..." required=""></div>
   </div>
 </div>
-<div class="inner-middle-content" >
+<div class="inner-middle-content">
   <div class="dasboard-table dasboard-scroll">
     <div class="table-responsive">
       <table class="table">
@@ -28,18 +28,19 @@
             <th class="action-cl">Action</th>
           </tr>
         </thead>
-        <tbody *ngFor="let i of data  | customFilter: term | paginate
-        : {
-            itemsPerPage: tableSize,
-            currentPage: page,
-            totalItems: count
-          };let ind = index">
-          <tr [ngClass]="{'active': i.sla === 'Under', 'inactive': i.sla === 'Over', 'gray-bg':i.sla === null}" >
+        <tbody>
+          <tr *ngFor="let i of data  | customFilter: term | paginate
+          : {
+              itemsPerPage: tableSize,
+              currentPage: page,
+              totalItems: count
+            };let ind = index"
+            [ngClass]="{'active': i.sla === 'Under', 'inactive': i.sla === 'Over', 'gray-bg':i.sla === null}">
             <td>{{i.ticketId}}</td>
             <td>{{i.ticketNo}}</td>
             <td>{{i.mode}}</td>
             <td>{{i.resolveTimeStamp}}</td>
-            <td > {{i.sla}}</td>
+            <td> {{i.sla}}</td>
             <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
             <td>{{i.ticketStatus}}</td>
             <td>
@@ -50,7 +51,10 @@
       </table>
       <div *ngIf="data.length === 0" class="text-center">
         <Strong class="text-danger">No records found</Strong>
-     </div>
+      </div>
+      <div *ngIf="(data | customFilter: term).length === 0">
+        No results found.
+      </div>
     </div>
     <div class="clearfix" *ngIf="!isProceess && data.length > 0">
       <ul class="pagination">
@@ -60,4 +64,3 @@
     </div>
   </div>
 </div>
-
