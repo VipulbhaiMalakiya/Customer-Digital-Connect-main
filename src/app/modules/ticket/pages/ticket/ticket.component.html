@@ -20,9 +20,9 @@
         <option value="Resolved">Resolved</option>
         <option value="Closed">Closed</option>
       </select>
-      <button type="button"  *ngIf="this.userData?.role?.roleName  === 'Admin'"  (click)="onFilter()" class="add-btn dropdown-toggle">
+      <!-- <button type="button"  *ngIf="this.userData?.role?.roleName  === 'Admin'"  (click)="onFilter()" class="add-btn dropdown-toggle">
         Filter Data
-    </button>
+    </button> -->
       <button type="button" *ngIf="this.userData?.role?.roleName  !== 'Admin'" class="add-btn dropdown-toggle "
         data-bs-toggle="dropdown" aria-expanded="false">
         Add New
