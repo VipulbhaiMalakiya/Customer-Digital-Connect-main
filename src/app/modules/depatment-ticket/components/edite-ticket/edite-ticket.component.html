@@ -38,6 +38,7 @@
                       formControlName="subCategory">
                       <option value="">Select</option>
                       <option *ngFor="let i of sdata" [value]="i.subCategoryId">{{i.subCategoryName}}</option>
+                      <option *ngIf="sdata.length === 0" value="">No records found</option>
                     </select>
                     <div *ngIf="shouldShowError('subCategory','required')" class="text-danger">This field is required
                     </div>
@@ -49,6 +50,7 @@
                     <select class="form-select" id="serviceTitle" formControlName="serviceTitle">
                       <option value="">Select</option>
                       <option *ngFor="let i of data1" [value]="i.serviceId">{{i.serviceName}}</option>
+                      <option *ngIf="data1.length === 0" value="">No records found</option>
                     </select>
                     <div *ngIf="shouldShowError('serviceTitle','required')" class="text-danger">This field is required
                     </div>
@@ -78,6 +80,7 @@
                             <option *ngIf="i.role?.roleName !== 'User' " [value]="i.userId">{{i.firstName}}
                               {{i.lastName}}
                             </option>
+                            <option *ngIf="duser.length === 0" value="">No records found</option>
                           </ng-container>
                         </select>
                         <div *ngIf="shouldShowError('assignedTo','required')" class="text-danger">This field is required
