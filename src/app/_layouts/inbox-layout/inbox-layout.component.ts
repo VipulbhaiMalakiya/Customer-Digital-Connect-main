@@ -7,7 +7,7 @@ import { NavigationStart, Router } from '@angular/router';
   styleUrls: ['./inbox-layout.component.css'],
 })
 export class InboxLayoutComponent {
-  classToggled = false;
+  classToggled =true;
   currentRoute: any;
   currentUrl: any;
 

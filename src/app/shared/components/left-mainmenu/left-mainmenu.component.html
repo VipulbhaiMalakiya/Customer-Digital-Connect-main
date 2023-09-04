@@ -164,11 +164,11 @@
                 class="menu-list-title">
                 Agent Performance</a>
             </li>
-            <li routerLinkActive="active">
+            <!-- <li routerLinkActive="active">
               <a routerLink="/admin/workflow" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
                 class="menu-list-title">
                 Automation</a>
-            </li>
+            </li> -->
           </ul>
 
         </div>
@@ -182,10 +182,10 @@
               <a routerLink="/admin/profile" class="menu-list-title">
                 My Profile</a>
             </li>
-            <li *ngIf="isAdmin" routerLinkActive="active">
+            <!-- <li *ngIf="isAdmin" routerLinkActive="active">
               <a routerLink="/admin/permissions" class="menu-list-title">
                 Access Permissions</a>
-            </li>
+            </li> -->
             <li *ngIf="isUser || isResolver" routerLinkActive="active">
               <a routerLink="/profile" class="menu-list-title">
                 My Profile</a>
