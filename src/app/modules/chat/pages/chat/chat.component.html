@@ -16,9 +16,6 @@
           <div class="topchat-filter-icon"><i class="las la-filter"></i></div>
           <div class="topchat-checklist-icon"><i class="las la-list-alt"></i></div>
         </div>
-        <!-- The above code is incomplete and cannot be accurately described without additional
-        information. It appears to be a HTML code snippet that starts with a div element with a
-        class of "filters-popup", but there is no content or closing tag provided. -->
         <div class="filters-popup">
           <div class="chakra-popover">
             <h2 class="chakra-heading">Filter</h2>
@@ -127,6 +124,12 @@
           <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
             <div class="nocon-txt" *ngIf="!open.length">
               <div class="nochat-vector"><img src="../assets/images/nochat-vector.png" alt="File Not Found"></div>
+              <p>No conversations here...</p>
+            </div>
+            <div class="nocon-txt" *ngIf="(open | customFilter: term).length === 0">
+              <div class="nochat-vector">
+                <img src="../assets/images/nochat-vector.png" alt="File Not Found"></div>
+                <p>No results found.</p>
             </div>
             <ul class="active-chat-list pe-3 my-custom-scrollbar my-custom-scrollbar-primary" *ngIf="open.length > 0">
               <li *ngFor="let i of open  | customFilter: term ; let ind=index; let isFirst = first"
@@ -180,7 +183,11 @@
                 <div class="nochat-vector"><img src="../assets/images/nochat-vector.png" alt="File Not Found"></div>
                 <p>No conversations here...</p>
               </div>
-
+              <div class="nocon-txt" *ngIf="(closed | customFilter: term).length === 0">
+                <div class="nochat-vector">
+                  <img src="../assets/images/nochat-vector.png" alt="File Not Found"></div>
+                  <p>No results found.</p>
+              </div>
               <li *ngFor="let i of closed  |  customFilter: term  ; let isFirst = first ; let ind=index;"
                 [ngClass]="{ 'new-message': isFirst }" (click)="onViewContact(i,getColorClass(ind))">
                 <div class="avata">
