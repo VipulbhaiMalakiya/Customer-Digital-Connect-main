@@ -159,7 +159,7 @@
             <select class="form-select" id="roleId" name="roleId" formControlName="roleId">
               <option value="">Select Role</option>
               <option *ngFor="let i of sdata" [value]="i.roleId">{{i.roleName}}</option>
-              <option *ngIf="sdata.length === 0" value="">No records found</option>
+              <option *ngIf="sdata?.length === 0" value="">No records found</option>
             </select>
             <div *ngIf="shouldShowError('roleId','required')" class="form-validate-err">
               This field is required.
@@ -172,7 +172,7 @@
             <select class="form-select" name="departmentId" id="departmentId" formControlName="departmentId">
               <option value="">Select Department</option>
               <option *ngFor="let i of data" [value]="i.departmentId">{{i.departmentName}}</option>
-              <option *ngIf="data.length === 0" value="">No records found</option>
+              <option *ngIf="data?.length === 0" value="">No records found</option>
             </select>
             <div *ngIf="shouldShowError('departmentId','required')" class="form-validate-err">
               This field is required.
