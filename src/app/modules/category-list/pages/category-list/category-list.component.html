@@ -36,7 +36,7 @@
             <th class="action-cl">Action</th>
           </tr>
         </thead>
-        <tbody >
+        <tbody>
           <tr *ngFor="let i of data | customFilter: term | paginate
           : {
               itemsPerPage: tableSize,
@@ -45,12 +45,12 @@
             }; let ind = index; trackBy: trackByFn">
             <!-- <td>{{ind + 1}}</td> -->
             <td>{{i.categoryId}}</td>
-            <td >{{i.categoryName| titlecase}}</td>
+            <td>{{i.categoryName| titlecase}}</td>
             <td>{{i.createdDate | date :'medium' || ''}}</td>
             <td>{{i.createdBy?.firstName | titlecase}} {{i.createdBy?.lastName || ''}} </td>
             <td>{{i.updatedDate | date :'medium' || ''}}</td>
             <td>{{i.updatedBy?.firstName || ''}} {{i.updatedBy?.lastName || ''}}</td>
-            <td >{{i.status ? 'Active' : 'Deactivate' | titlecase}}</td>
+            <td>{{i.status ? 'Active' : 'Deactivate' | titlecase}}</td>
             <td>
               <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
               <a class="btnClick" (click)="onEdit(i)"><i class="las la-edit"></i></a>
@@ -61,7 +61,10 @@
       </table>
       <div *ngIf="data.length === 0" class="text-center">
         <Strong class="text-danger">No records found</Strong>
-     </div>
+      </div>
+      <div *ngIf="(data | customFilter: term).length === 0">
+        No results found.
+      </div>
     </div>
     <div class="clearfix" *ngIf="!isProceess">
       <ul class="pagination">
