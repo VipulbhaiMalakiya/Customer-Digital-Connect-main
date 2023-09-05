@@ -82,8 +82,8 @@ export class AddUpdateUserComponent implements OnInit {
       ]],
       contact: ['', [
         Validators.required,
-        Validators.minLength(10),
-        Validators.maxLength(10),
+        Validators.minLength(12),
+        Validators.maxLength(12),
         Validators.pattern('^[0-9]*$')]],
       state: ["", [
         Validators.required,
