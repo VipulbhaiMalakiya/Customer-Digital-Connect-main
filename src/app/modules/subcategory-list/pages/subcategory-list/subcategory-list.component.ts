@@ -154,7 +154,7 @@ export class SubcategoryListComponent implements OnInit,OnDestroy {
         updatedBy = ''
       }
       return {
-        "Id": x.categoryId || '',
+        "Id": x.subCategoryId || '',
         "Sub Category": x.subCategoryName || '',
         "Category": x.category?.categoryName || '',
         "created By": x.createdBy?.firstName + ' ' + x.createdBy?.lastName || '',
