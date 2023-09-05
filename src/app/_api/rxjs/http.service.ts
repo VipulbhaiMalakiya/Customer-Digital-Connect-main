@@ -63,7 +63,7 @@ export class HttpService {
   private getAuthHeader(): { [Header: string]: string | string[]; } {
     return {
       'Authorization': `Bearer ${localStorage.getItem('Token')}`,
-      'Access-Control-Allow-Origin': this.baseUrl,
+      'Access-Control-Allow-Origin': '*',
       // 'Content-Type':'application/json'
     }
   }
