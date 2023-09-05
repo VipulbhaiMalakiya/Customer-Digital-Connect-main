@@ -44,7 +44,7 @@
             totalItems: count
           };">
 
-          <tr>
+          <tr *ngIf="i.userId !== this.userData?.userId">
             <td>{{i.userId}}</td>
             <td>{{i.username | titlecase}}</td>
             <td>{{i.firstName | titlecase}} {{i.lastName | titlecase}}</td>

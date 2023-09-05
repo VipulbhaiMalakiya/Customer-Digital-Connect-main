@@ -86,7 +86,7 @@ export class UserListComponent implements OnInit,OnDestroy {
           postcode: data.postcode,
           roleId: data.roleId,
           departmentId: data.departmentId,
-          createdBy: this.userData.userId,
+          createdBy: this.userData?.userId,
           status: data.status,
         }
         this.masterName = `/register`;
