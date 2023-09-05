@@ -29,7 +29,7 @@ export class AuthenticationService {
   loginUser(data: any) {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.apiUrl,
+      'Access-Control-Allow-Origin': '*',
       // 'rejectUnauthorized': 'false'
 
       // Add any other required headers
@@ -46,7 +46,7 @@ export class AuthenticationService {
   forgotpassword(formData: FormData) {
     let headers = new HttpHeaders({
       // 'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.apiUrl,
+      'Access-Control-Allow-Origin': '*',
       // Add any other required headers
     });
     const httpOptions = { headers: headers };

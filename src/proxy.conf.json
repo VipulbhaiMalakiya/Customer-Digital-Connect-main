@@ -1,0 +1,6 @@
+{
+  "/api": {
+    "target": "https://customerdigitalconnect.com",
+    "secure": false
+  }
+}

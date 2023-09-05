@@ -17,7 +17,7 @@ export class HeadersService {
     let headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('Token')}`,
       // 'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': environment.apiUrl,
+      'Access-Control-Allow-Origin': '*',
     })
     return headers;
   }
