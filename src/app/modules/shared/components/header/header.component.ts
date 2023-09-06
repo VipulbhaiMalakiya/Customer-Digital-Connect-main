@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
   }
   closeDropdownAndNotification() {
     this.renderer.removeClass(this.elRef.nativeElement.querySelector('.top-user-profile'), 'toggled');
-    // this.renderer.removeClass(this.elRef.nativeElement.querySelector('.notification-bar'), 'toggled');
+    this.renderer.removeClass(this.elRef.nativeElement.querySelector('.notification-bar'), 'toggled');
     this.isprofile = false;
     this.classToggled = false;
   }
@@ -80,16 +80,18 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleField() {
-    this.closeDropdownAndNotification();
+    
 
-    this.isprofile = false;
+    // this.isprofile = false;
+    this.closeDropdownAndNotification();
     this.classToggled = !this.classToggled;
+   
   }
 
   profile() {
     this.closeDropdownAndNotification();
 
-    this.classToggled = false;
+    // this.classToggled = false;
     this.isprofile = !this.isprofile;
   }
 }
