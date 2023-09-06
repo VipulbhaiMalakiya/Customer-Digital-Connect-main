@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NavigationStart, Router } from '@angular/router';
 import { BnNgIdleService } from 'bn-ng-idle';
 import { AuthenticationService } from 'src/app/_services';
 
@@ -13,11 +14,20 @@ export class HeaderComponent  implements OnInit {
   title?: any = ' Dashboard'
   data: any;
   userData: any;
+  classToggled = false;
+  isprofile = false;
 
-  constructor(private authenticationService: AuthenticationService, private bnIdle: BnNgIdleService) {
+  constructor(private authenticationService: AuthenticationService
+    ,private router: Router, private bnIdle: BnNgIdleService) {
     this.data = localStorage.getItem("userData");
     this.userData = JSON.parse(this.data);
-
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationStart) {
+        // Close the fields when navigating to another page
+        this.classToggled = false;
+        this.isprofile = false;
+      }
+    });
   }
 
   ngOnInit(): void {
@@ -47,9 +57,8 @@ export class HeaderComponent  implements OnInit {
   }
 
 
-
-  classToggled = false;
-  isprofile = false;
+  
+ 
    toggleField() {
     this.isprofile = false;
     this.classToggled = !this.classToggled;
