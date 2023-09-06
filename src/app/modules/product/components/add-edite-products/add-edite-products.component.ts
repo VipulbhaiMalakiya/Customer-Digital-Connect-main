@@ -69,10 +69,8 @@ export class AddEditeProductsComponent implements OnInit {
       CategoryName: ['', [Validators.required]],
       ProductName: ["", [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30),
         noEmptySpaces,
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        ]],
       // ProductSerialNo: ['', [Validators.required]],
       status: [true, [Validators.required]],
       ProductDescription: ['', [Validators.required, noEmptySpaces,]],
