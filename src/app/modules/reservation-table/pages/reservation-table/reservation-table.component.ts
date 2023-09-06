@@ -51,18 +51,17 @@ export class ReservationTableComponent implements OnInit {
         '',
         [
           Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(30),
+       ,
           noEmptySpaces,
-          Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$'),
+         ,
         ],
       ],
       PhoneNo: [
         '',
         [
           Validators.required,
-          Validators.minLength(12),
-          Validators.maxLength(12),
+          Validators.minLength(10),
+          Validators.maxLength(10),
           Validators.pattern('^[0-9]*$'),
         ],
       ],
@@ -96,7 +95,7 @@ export class ReservationTableComponent implements OnInit {
         slotTime: this.customersMasterForm.value.TimeSlots,
         session: this.customersMasterForm.value.Session,
         customerName: this.customersMasterForm.value.FullName,
-        customerMobile: this.customersMasterForm.value.PhoneNo,
+        customerMobile: `91${this.customersMasterForm.value.PhoneNo}`,
         numberOfGuests: this.customersMasterForm.value.Person,
       };
 

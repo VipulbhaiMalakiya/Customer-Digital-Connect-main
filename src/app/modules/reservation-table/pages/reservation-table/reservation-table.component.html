@@ -74,16 +74,6 @@
                     <div *ngIf="shouldShowError('FullName','required')" class="form-validate-err">
                       Please Enter Full Name.
                     </div>
-                    <div *ngIf="shouldShowError('FullName','minlength')" class="form-validate-err">
-                      Full Name requied atleast 3 characters.
-                    </div>
-                    <div *ngIf="shouldShowError('FullName','maxlength')" class="form-validate-err">
-                      Full Name requied only 30 characters.
-                    </div>
-                    <div *ngIf="shouldShowError('FullName','pattern')" class="form-validate-err">
-                      Only characters are allowed.
-                    </div>
-
                     <div *ngIf="shouldShowError('FullName','noEmptySpaces')" class="form-validate-err">
                       Full name should not contain empty spaces at the beginning or end..
                     </div>
@@ -97,10 +87,10 @@
                       Please Enter Phone Number.
                     </div>
                     <div *ngIf="shouldShowError('PhoneNo','minlength')" class="form-validate-err">
-                      Phone Number requied atleast 12 characters.
+                      Phone Number requied atleast 10 characters.
                     </div>
                     <div *ngIf="shouldShowError('PhoneNo','maxlength')" class="form-validate-err">
-                      Phone Number requied only 12 characters.
+                      Phone Number requied only 10 characters.
                     </div>
                     <div *ngIf="shouldShowError('PhoneNo','pattern')" class="form-validate-err">
                       Only Numbers are allowed.
