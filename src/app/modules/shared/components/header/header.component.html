@@ -1,25 +1,26 @@
 <div class="top-noti-user">
   <div class="top-notify" (click)="toggleField()"><img src="../assets/images/bell-icon.png" alt=""><span>0</span></div>
   <div class="top-user-profile">
-    <a class="dropdown-toggle" (click)="profile()"  data-bs-toggle="dropdown"><img src="../assets/images/user.jpg" alt="">
+    <a class="dropdown-toggle" (click)="profile()" data-bs-toggle="dropdown"><img src="../assets/images/user.jpg"
+        alt="">
     </a>
-    <ul class="dropdown-menu" [class.toggled]="isprofile" >
+    <ul class="dropdown-menu" [class.toggled]="isprofile">
       <li><a><i class="bi bi-person"></i>{{this.userData?.firstName | titlecase}} {{this.userData?.lastName
           |titlecase}}</a></li>
-      <li class="cts-pointer"><a  routerLink="/" (click)="logout()"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+      <li class="cts-pointer"><a routerLink="/" (click)="logout()"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
     </ul>
   </div>
 </div>
 
-<div class="notification-wrapper"   >
+<div class="notification-wrapper">
   <div id="notification" class="notification-bar" [class.toggled]="classToggled">
     <div class="noti-head">
-      <h3>Notifications</h3> <a >Mark All As Read</a>
+      <h3>Notifications</h3> <a>Mark All As Read</a>
     </div>
 
     <div class="inner-noti-sec">
 
-      <div class="noti-col"><a >
+      <div class="noti-col"><a>
           <div class="noti-ico"><i class="las la-check"></i></div>
           <p>You have <b>1</b> campaigns at the moment <small>Just Now</small></p>
         </a>
@@ -35,13 +36,13 @@
         <p>Your Order will be delivered today! <small>Yesterday</small></p>
       </div>
 
-      <div class="noti-col"><a >
+      <div class="noti-col"><a>
           <div class="noti-ico"><i class="las la-check"></i></div>
           <p>You have <b>1</b> campaigns at the moment <small>11/07/2023</small></p>
         </a>
       </div>
 
-      <div class="noti-col"><a >
+      <div class="noti-col"><a>
           <div class="noti-ico"><i class="las la-check"></i></div>
           <p>You have <b>1</b> campaigns at the moment <small>5/07/2023</small></p>
         </a>
