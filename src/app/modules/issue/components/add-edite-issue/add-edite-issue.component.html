@@ -13,15 +13,6 @@
         <div *ngIf="shouldShowError('issueName','required')" class="form-validate-err">
           Please Enter Issue Name.
         </div>
-        <div *ngIf="shouldShowError('issueName','minlength')" class="form-validate-err">
-          Issue Name requied atleast 3 characters.
-        </div>
-        <div *ngIf="shouldShowError('issueName','maxlength')" class="form-validate-err">
-          Issue Name requied only 30 characters.
-        </div>
-        <div *ngIf="shouldShowError('issueName','pattern')" class="form-validate-err">
-          Only characters are allowed.
-        </div>
         <div *ngIf="shouldShowError('issueName','noEmptySpaces')" class="form-validate-err">
           Issue name should not contain empty spaces at the beginning or end.
         </div>

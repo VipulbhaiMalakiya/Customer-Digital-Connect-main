@@ -41,10 +41,8 @@ export class AddEditeIssueComponent {
     this.issueForm = this.formBuilder.group({
       issueName: ["", [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30),
         noEmptySpaces,
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        ]],
         calculationSLA:['', [Validators.required]],
         status:[true, [Validators.required]]
     });
