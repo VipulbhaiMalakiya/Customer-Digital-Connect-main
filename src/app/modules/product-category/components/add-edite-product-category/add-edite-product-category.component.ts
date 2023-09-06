@@ -23,7 +23,7 @@ export class AddEditeProductCategoryComponent {
   private _procatMaster: prodactCategoryMasterModel | undefined;
 
   get title(): string {
-    return this._procatMaster ? "Edit Prodact Category Master" : " Add Prodact Category Master";
+    return this._procatMaster ? "Edit product category Master" : " Add product category Master";
   }
   set prodactCatMaster(value: prodactCategoryMasterModel) {
     this.check = value;
