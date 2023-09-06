@@ -15,15 +15,7 @@
             <div *ngIf="shouldShowError('firstName','required')" class="form-validate-err">
               Please Enter First Name
             </div>
-            <div *ngIf="shouldShowError('firstName','minlength')" class="form-validate-err">
-              First Name requied atleast 3 characters.
-            </div>
-            <div *ngIf="shouldShowError('firstName','maxlength')" class="form-validate-err">
-              First Name requied only 30 characters.
-            </div>
-            <div *ngIf="shouldShowError('firstName','pattern')" class="form-validate-err">
-              Only characters are allowed.
-            </div>
+
             <div *ngIf="shouldShowError('firstName','noEmptySpaces')" class="form-validate-err">
               Should not contain empty spaces at the beginning or end.
             </div>
@@ -37,15 +29,7 @@
             <div *ngIf="shouldShowError('lastName','required')" class="form-validate-err">
               Please Enter Last Name.
             </div>
-            <div *ngIf="shouldShowError('lastName','minlength')" class="form-validate-err">
-              Last Name requied atleast 3 characters.
-            </div>
-            <div *ngIf="shouldShowError('lastName','maxlength')" class="form-validate-err">
-              Last Name requied only 30 characters.
-            </div>
-            <div *ngIf="shouldShowError('lastName','pattern')" class="form-validate-err">
-              Only characters are allowed.
-            </div>
+
             <div *ngIf="shouldShowError('lastName','noEmptySpaces')" class="form-validate-err">
               Should not contain empty spaces at the beginning or end.
             </div>
@@ -59,12 +43,7 @@
             <div *ngIf="shouldShowError('email','required')" class="form-validate-err">
               Please Enter Email.
             </div>
-            <div *ngIf="shouldShowError('email','minlength')" class="form-validate-err">
-              The email requied atleast 5 characters.
-            </div>
-            <div *ngIf="shouldShowError('email','maxlength')" class="form-validate-err">
-              The email requied only 80 characters.
-            </div>
+
             <div *ngIf="shouldShowError('email','pattern')" class="form-validate-err">
               The Email is not valid.
             </div>
@@ -106,9 +85,7 @@
             <div *ngIf="shouldShowError('postcode','maxlength')" class="form-validate-err">
               PinCode requied only 8 characters.
             </div>
-            <div *ngIf="shouldShowError('postcode','pattern')" class="form-validate-err">
-              Only alph-numerics are allowed.
-            </div>
+
           </div>
         </div>
         <div class="col-md-3">
@@ -118,15 +95,7 @@
             <div *ngIf="shouldShowError('city','required')" class="form-validate-err">
               Please Enter City Name
             </div>
-            <div *ngIf="shouldShowError('city','minlength')" class="form-validate-err">
-              City Name requied atleast 3 characters.
-            </div>
-            <div *ngIf="shouldShowError('city','maxlength')" class="form-validate-err">
-              City Name requied only 30 characters.
-            </div>
-            <div *ngIf="shouldShowError('city','pattern')" class="form-validate-err">
-              Only characters are allowed.
-            </div>
+
             <div *ngIf="shouldShowError('city','noEmptySpaces')" class="form-validate-err">
               Should not contain empty spaces at the beginning or end.
             </div>
@@ -139,15 +108,7 @@
             <div *ngIf="shouldShowError('state','required')" class="form-validate-err">
               Please Enter State Name
             </div>
-            <div *ngIf="shouldShowError('state','minlength')" class="form-validate-err">
-              State Name requied atleast 3 characters.
-            </div>
-            <div *ngIf="shouldShowError('state','maxlength')" class="form-validate-err">
-              State Name requied only 30 characters.
-            </div>
-            <div *ngIf="shouldShowError('state','pattern')" class="form-validate-err">
-              Only characters are allowed.
-            </div>
+
             <div *ngIf="shouldShowError('state','noEmptySpaces')" class="form-validate-err">
               Should not contain empty spaces at the beginning or end.
             </div>

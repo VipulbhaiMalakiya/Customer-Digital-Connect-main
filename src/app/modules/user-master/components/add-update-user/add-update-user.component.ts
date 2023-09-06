@@ -61,23 +61,16 @@ export class AddUpdateUserComponent implements OnInit {
     this.userMasterMasterForm = this.formBuilder.group({
       firstName: ["", [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30),
-        noEmptySpaces,
-
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        noEmptySpaces,]],
       lastName: ["", [
         Validators.required,
-        Validators.minLength(3),
         noEmptySpaces,
-        Validators.maxLength(30),
-
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+       ]],
       email: ['', [
         Validators.required,
-        Validators.minLength(5),
+
         noEmptySpaces,
-        Validators.maxLength(80),
+
         Validators.pattern(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
       ]],
       contact: ['', [
@@ -87,18 +80,17 @@ export class AddUpdateUserComponent implements OnInit {
         Validators.pattern('^[0-9]*$')]],
       state: ["", [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30),
+
         noEmptySpaces,
 
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        ]],
       city: ["", [
         Validators.required,
-        Validators.minLength(3),
+
         noEmptySpaces,
 
-        Validators.maxLength(30),
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+
+      ]],
       roleId: ['', [Validators.required]],
       password: ['', Validators.compose([Validators.required, PasswordStrengthValidator])],
       confirmPasswod: ['', Validators.required],
@@ -109,7 +101,7 @@ export class AddUpdateUserComponent implements OnInit {
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(8),
-        Validators.pattern(/^\d{6}$/)]],
+        ]],
       status: [true, [Validators.required]],
     },
       {
