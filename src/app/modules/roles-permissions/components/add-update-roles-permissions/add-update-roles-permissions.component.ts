@@ -41,10 +41,8 @@ export class AddUpdateRolesPermissionsComponent {
     this.rolesPermissionsMasterForm = this.formBuilder.group({
       roleName: ["", [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30),
         noEmptySpaces,
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        ]],
       status: [true, [Validators.required]],
       roleDescription: ['', [Validators.required,noEmptySpaces]]
     });
