@@ -56,10 +56,8 @@ export class AddEditeServiceTitleComponent {
       subCategoryId: ['', [Validators.required]],
       serviceName: ["", [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(200),
         noEmptySpaces,
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        ]],
     });
   }
   ngOnInit(): void {
