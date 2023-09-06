@@ -82,16 +82,16 @@ export class HeaderComponent implements OnInit {
   toggleField() {
     
 
-    // this.isprofile = false;
-    this.closeDropdownAndNotification();
+    this.isprofile = false;
+    // this.closeDropdownAndNotification();
     this.classToggled = !this.classToggled;
    
   }
 
   profile() {
-    this.closeDropdownAndNotification();
+    // this.closeDropdownAndNotification();
 
-    // this.classToggled = false;
+    this.classToggled = false;
     this.isprofile = !this.isprofile;
   }
 }
