@@ -42,10 +42,8 @@ export class AddEditeSlatimelinesComponent {
     this.SLATimelinesMasterForm = this.formBuilder.group({
       priorityName:["", [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30),
         noEmptySpaces,
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        ]],
       slaTimeInHours: ['', [
         Validators.required,
         Validators.pattern("^[0-9]*$")]],
