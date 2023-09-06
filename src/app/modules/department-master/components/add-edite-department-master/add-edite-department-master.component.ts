@@ -8,16 +8,18 @@ import { noBlankSpacesValidator } from 'src/app/shared/directives/noWhitespace.v
 
 @Component({
   selector: 'app-add-edite-department-master',
-  templateUrl: './add-edite-department-master.component.html'
+  templateUrl: './add-edite-department-master.component.html',
 })
 export class AddEditeDepartmentMasterComponent {
   private _departmentMaster: departmentMasterModel | undefined;
   isProceess: boolean = false;
-  data:any;
+  data: any;
   departmentMasterForm: any;
 
   get title(): string {
-    return this._departmentMaster ? "Edit Department Master" : " Add Department Master";
+    return this._departmentMaster
+      ? 'Edit Department Master'
+      : ' Add Department Master';
   }
 
   set departmentMaster(value: departmentMasterModel) {
@@ -26,13 +28,12 @@ export class AddEditeDepartmentMasterComponent {
     if (this._departmentMaster) {
       this.departmentMasterForm.patchValue({
         departmentName: this._departmentMaster.departmentName,
-        departmentCode:this._departmentMaster.departmentCode,
-        departmentHead:this._departmentMaster.departmentHead,
-        description:this._departmentMaster.description,
-        status:this._departmentMaster.status,
-
+        departmentCode: this._departmentMaster.departmentCode,
+        departmentHead: this._departmentMaster.departmentHead,
+        description: this._departmentMaster.description,
+        status: this._departmentMaster.status,
       });
-      this.departmentMasterForm.controls["departmentCode"].disable();
+      this.departmentMasterForm.controls['departmentCode'].disable();
     }
   }
 
@@ -42,38 +43,21 @@ export class AddEditeDepartmentMasterComponent {
     private cd: ChangeDetectorRef
   ) {
     this.departmentMasterForm = this.formBuilder.group({
-      departmentName: ["", [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30),
-        noEmptySpaces,
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
-      departmentCode: ["", [
-        Validators.required,
-        noEmptySpaces,
-        Validators.minLength(2),
-        Validators.maxLength(6)]],
-      departmentHead: ["", [
-        Validators.required,
-        Validators.minLength(3),
-        noEmptySpaces,
-        Validators.maxLength(30),
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
-        description: ['', [Validators.required , noEmptySpaces,]],
-      status: [true, [Validators.required]]
+      departmentName: ['', [Validators.required, noEmptySpaces]],
+      departmentCode: ['', [Validators.required, noEmptySpaces]],
+      departmentHead: ['', [Validators.required, noEmptySpaces]],
+      description: ['', [Validators.required, noEmptySpaces]],
+      status: [true, [Validators.required]],
     });
   }
-
-
 
   onCancel() {
     this.activeModal.dismiss();
   }
 
-
   onSubmit() {
     if (this.departmentMasterForm.valid) {
-      this.activeModal.close(this.departmentMasterForm.value)
+      this.activeModal.close(this.departmentMasterForm.value);
     } else {
       this.departmentMasterForm.controls['departmentName'].markAsTouched();
       this.departmentMasterForm.controls['departmentCode'].markAsTouched();
@@ -84,8 +68,9 @@ export class AddEditeDepartmentMasterComponent {
   }
 
   shouldShowError(controlName: string, errorName: string) {
-    return this.departmentMasterForm.controls[controlName].touched && this.departmentMasterForm.controls[controlName].hasError(errorName);
+    return (
+      this.departmentMasterForm.controls[controlName].touched &&
+      this.departmentMasterForm.controls[controlName].hasError(errorName)
+    );
   }
 }
-
-

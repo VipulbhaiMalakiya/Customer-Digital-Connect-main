@@ -15,18 +15,6 @@
             <div *ngIf="shouldShowError('departmentName','required')" class="form-validate-err">
               Please Enter Department Name.
             </div>
-            <div *ngIf="shouldShowError('departmentName','minlength')" class="form-validate-err">
-              Department Name requied atleast 2 characters.
-            </div>
-            <div *ngIf="shouldShowError('departmentName','maxlength')" class="form-validate-err">
-              Department Name requied only 30 characters.
-            </div>
-            <div *ngIf="shouldShowError('departmentName','pattern')" class="form-validate-err">
-              Only characters are allowed.
-            </div>
-            <div *ngIf="shouldShowError('departmentName','noBlankSpacesValidator')" class="form-validate-err">
-              Spaces are not allowed.
-            </div>
             <div *ngIf="shouldShowError('departmentName','noEmptySpaces')" class="form-validate-err">
               Should not contain empty spaces at the beginning or end.
             </div>
@@ -40,12 +28,6 @@
             <div *ngIf="shouldShowError('departmentCode','required')" class="form-validate-err">
               Please Enter Department code.
             </div>
-            <div *ngIf="shouldShowError('departmentCode','minlength')" class="form-validate-err">
-              Department code requied atleast 3 characters.
-            </div>
-            <div *ngIf="shouldShowError('departmentCode','maxlength')" class="form-validate-err">
-              Department code requied only 6 characters.
-            </div>
             <div *ngIf="shouldShowError('departmentCode','noEmptySpaces')" class="form-validate-err">
               Should not contain empty spaces at the beginning or end.
             </div>
@@ -58,15 +40,6 @@
               formControlName="departmentHead" placeholder="Department Head">
             <div *ngIf="shouldShowError('departmentHead','required')" class="form-validate-err">
               Please Enter Department Head Name.
-            </div>
-            <div *ngIf="shouldShowError('departmentHead','minlength')" class="form-validate-err">
-              Department Name requied atleast 3 characters.
-            </div>
-            <div *ngIf="shouldShowError('departmentHead','maxlength')" class="form-validate-err">
-              Department Head Name requied only 30 characters.
-            </div>
-            <div *ngIf="shouldShowError('departmentHead','pattern')" class="form-validate-err">
-              Only characters are allowed.
             </div>
             <div *ngIf="shouldShowError('departmentHead','noEmptySpaces')" class="form-validate-err">
               Should not contain empty spaces at the beginning or end.
