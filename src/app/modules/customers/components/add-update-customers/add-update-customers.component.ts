@@ -46,21 +46,13 @@ export class AddUpdateCustomersComponent {
     this.customersMasterForm = this.formBuilder.group({
       firstName: ["", [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30),
         noEmptySpaces,
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        ]],
       lastName: ["", [
-        Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30),
-        noEmptySpaces,
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        Validators.required,noEmptySpaces,]],
       email: ['', [
         Validators.required,
         Validators.email,
-        Validators.minLength(5),
-        Validators.maxLength(80),
         Validators.pattern(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
       ]],
       contact: ['', [
@@ -72,18 +64,16 @@ export class AddUpdateCustomersComponent {
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(8),
-        Validators.pattern(/^\d{6}$/)]],
+        ]],
       city: ["", [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30),
         noEmptySpaces,
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        ]],
       state: ["", [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30),
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        noEmptySpaces
+
+        ]],
       address: ['', [Validators.required,noEmptySpaces]],
       status: [true, [Validators.required]]
     });
