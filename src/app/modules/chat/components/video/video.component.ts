@@ -30,10 +30,9 @@ export class VideoComponent {
       image: ['', [Validators.required, this.videoFileValidator]],
       caption: ["", [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30),
+
         noEmptySpaces,
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        ]],
     });
   }
 

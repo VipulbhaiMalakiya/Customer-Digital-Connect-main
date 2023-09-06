@@ -16,18 +16,7 @@
           <div *ngIf="shouldShowError('caption','required')" class="form-validate-err">
             Please Enter Caption Name.
           </div>
-          <div *ngIf="shouldShowError('caption','minlength')" class="form-validate-err">
-            Caption Name requied atleast 2 characters.
-          </div>
-          <div *ngIf="shouldShowError('caption','maxlength')" class="form-validate-err">
-            Caption Name requied only 30 characters.
-          </div>
-          <div *ngIf="shouldShowError('caption','pattern')" class="form-validate-err">
-            Only characters are allowed.
-          </div>
-          <div *ngIf="shouldShowError('caption','noBlankSpacesValidator')" class="form-validate-err">
-            Spaces are not allowed.
-          </div>
+
 
           <div *ngIf="shouldShowError('caption','noEmptySpaces')" class="form-validate-err">
             Should not contain empty spaces at the beginning or end.

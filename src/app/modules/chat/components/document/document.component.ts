@@ -30,10 +30,9 @@ export class DocumentComponent {
       image: ['', [Validators.required, this.imageFileValidator]],
       caption: ["", [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30),
+
         noEmptySpaces,
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+      ]],
     });
   }
 
