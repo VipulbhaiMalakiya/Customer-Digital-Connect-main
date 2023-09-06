@@ -63,7 +63,7 @@ export class AddUpdateCustomersComponent {
       postcode: ['', [
         Validators.required,
         Validators.minLength(6),
-        Validators.maxLength(8),
+        Validators.maxLength(6),
         ]],
       city: ["", [
         Validators.required,

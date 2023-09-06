@@ -100,7 +100,7 @@ export class AddUpdateUserComponent implements OnInit {
       postcode: ['', [
         Validators.required,
         Validators.minLength(6),
-        Validators.maxLength(8),
+        Validators.maxLength(6),
         ]],
       status: [true, [Validators.required]],
     },

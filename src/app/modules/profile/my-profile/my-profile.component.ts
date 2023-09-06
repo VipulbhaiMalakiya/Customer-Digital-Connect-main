@@ -75,7 +75,7 @@ export class MyProfileComponent implements OnInit {
       postcode: [this.userData.postcode, [
         Validators.required,
         Validators.minLength(6),
-        Validators.maxLength(8)]],
+        Validators.maxLength(6)]],
       roleId: [this.userData?.role?.roleName , Validators.required],
       deptId: [this.userData.department.departmentName, Validators.required],
       address: [this.userData.address, [Validators.required, noEmptySpaces]],
