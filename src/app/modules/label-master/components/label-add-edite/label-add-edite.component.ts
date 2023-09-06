@@ -41,10 +41,9 @@ export class LabelAddEditeComponent {
     this.issueForm = this.formBuilder.group({
       labelName: ["", [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30),
+
         noEmptySpaces,
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        ]],
         status:[true, [Validators.required]]
     });
   }
