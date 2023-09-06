@@ -54,10 +54,9 @@ export class AddEditeProductCategoryComponent {
     this.customersMasterForm = this.formBuilder.group({
       productCategoryName: ["", [
         Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(30),
+
         noEmptySpaces,
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        ]],
       productCategoryDescription: ['', [Validators.required, noEmptySpaces]],
       status: [true, [Validators.required]],
       file: [''],

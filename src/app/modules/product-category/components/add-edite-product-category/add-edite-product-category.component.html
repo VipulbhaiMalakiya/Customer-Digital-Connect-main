@@ -30,15 +30,6 @@
                     <div *ngIf="shouldShowError('productCategoryName','required')" class="form-validate-err">
                       Please Enter Category Name.
                     </div>
-                    <div *ngIf="shouldShowError('productCategoryName','minlength')" class="form-validate-err">
-                      Category Name requied atleast 2 characters.
-                    </div>
-                    <div *ngIf="shouldShowError('productCategoryName','maxlength')" class="form-validate-err">
-                      Category Name requied only 30 characters.
-                    </div>
-                    <div *ngIf="shouldShowError('productCategoryName','pattern')" class="form-validate-err">
-                      Only characters are allowed.
-                    </div>
                     <div *ngIf="shouldShowError('productCategoryName','noEmptySpaces')" class="form-validate-err">
                       Should not contain empty spaces at the beginning or end.
                     </div>
