@@ -82,10 +82,7 @@ export class AddEditeTicketComponent {
       department: ['', [Validators.required]],
       assignedTo: ['', [Validators.required]],
       shortNotes: ["", [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(30),
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        Validators.required]],
       status: [true, [Validators.required]],
       createForUser: ['', [Validators.required]],
       file: [''],
