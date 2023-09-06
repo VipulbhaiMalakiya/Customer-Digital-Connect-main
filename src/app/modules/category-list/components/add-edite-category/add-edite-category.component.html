@@ -13,15 +13,6 @@
         <div *ngIf="shouldShowError('categoryName','required')" class="form-validate-err">
           Category name cannot be blank.
         </div>
-        <div *ngIf="shouldShowError('categoryName','minlength')" class="form-validate-err">
-          Category Name atleast 2 characters.
-        </div>
-        <div *ngIf="shouldShowError('categoryName','maxlength')" class="form-validate-err">
-          Category Name maximum only 30 characters allowed.
-        </div>
-        <div *ngIf="shouldShowError('categoryName','pattern')" class="form-validate-err">
-          Only characters are allowed.
-        </div>
         <div *ngIf="shouldShowError('categoryName','noEmptySpaces')" class="form-validate-err">
           Should not contain empty spaces at the beginning or end.
         </div>

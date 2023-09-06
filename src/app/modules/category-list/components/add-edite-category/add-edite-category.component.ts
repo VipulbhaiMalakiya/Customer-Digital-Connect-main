@@ -37,10 +37,8 @@ export class AddEditeCategoryComponent {
     this.CategoryMasterForm = this.formBuilder.group({
       categoryName: ["", [
         Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(30),
         noEmptySpaces,
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+      ]],
         status: [true, [Validators.required]],
     });
   }
