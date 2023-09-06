@@ -42,10 +42,8 @@ export class AddEditeSubCategoryComponent implements OnInit {
     this.subCategoryMasterForm = this.formBuilder.group({
       subCategoryName: ["", [
         Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(30),
         noEmptySpaces,
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+       ]],
       status: [true, [Validators.required]],
       categoryId: ['', [Validators.required]],
     });
