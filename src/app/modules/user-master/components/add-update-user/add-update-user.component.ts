@@ -48,6 +48,7 @@ export class AddUpdateUserComponent implements OnInit {
       this.userMasterMasterForm.controls["password"].disable();
       this.userMasterMasterForm.controls["confirmPasswod"].disable();
       this.userMasterMasterForm.controls["username"].disable();
+      this.userMasterMasterForm.controls["contact"].disable();
     }
 
   }
@@ -75,8 +76,8 @@ export class AddUpdateUserComponent implements OnInit {
       ]],
       contact: ['', [
         Validators.required,
-        Validators.minLength(12),
-        Validators.maxLength(12),
+        Validators.minLength(10),
+        Validators.maxLength(10),
         Validators.pattern('^[0-9]*$')]],
       state: ["", [
         Validators.required,
