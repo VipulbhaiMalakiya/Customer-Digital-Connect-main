@@ -31,25 +31,24 @@ export class MyProfileComponent implements OnInit {
     this.userForm = this.formBuilder.group({
       firstName: [this.userData.firstName, [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30),
+
         noEmptySpaces,
 
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        ]],
 
       lastName: [this.userData.lastName, [
         Validators.required,
-        Validators.minLength(3),
-        noEmptySpaces,
-        Validators.maxLength(30),
 
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        noEmptySpaces,
+
+
+       ]],
 
       email: [this.userData.email, [
         Validators.required,
-        Validators.minLength(5),
+
         noEmptySpaces,
-        Validators.maxLength(80),
+
         Validators.pattern(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
       ]],
 
@@ -61,25 +60,22 @@ export class MyProfileComponent implements OnInit {
 
       state: [this.userData.state, [
         Validators.required,
-        Validators.minLength(3),
-        Validators.maxLength(30),
+
         noEmptySpaces,
 
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        ]],
 
       city: [this.userData.city, [
         Validators.required,
-        Validators.minLength(3),
+
         noEmptySpaces,
 
-        Validators.maxLength(30),
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+ ]],
       username: [this.userData.username, [Validators.required, noEmptySpaces]],
       postcode: [this.userData.postcode, [
         Validators.required,
         Validators.minLength(6),
-        Validators.maxLength(8),
-        Validators.pattern(/^\d{6}$/)]],
+        Validators.maxLength(8)]],
       roleId: [this.userData?.role?.roleName , Validators.required],
       deptId: [this.userData.department.departmentName, Validators.required],
       address: [this.userData.address, [Validators.required, noEmptySpaces]],
