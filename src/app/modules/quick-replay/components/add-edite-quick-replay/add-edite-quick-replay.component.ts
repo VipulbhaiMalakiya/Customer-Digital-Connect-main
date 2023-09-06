@@ -41,10 +41,8 @@ export class AddEditeQuickReplayComponent {
         '',
         [
           Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(30),
           noEmptySpaces,
-          Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$'),
+          ,
         ],
       ],
       description: ['', [Validators.required, noEmptySpaces]],
