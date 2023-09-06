@@ -44,10 +44,8 @@ export class AddEditeCompanyComponent {
     this.companyMasterForm = this.formBuilder.group({
       companyName: ["", [
         Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(30),
         noEmptySpaces,
-        Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
+        ]],
       companyDescription: ['', [Validators.required, noEmptySpaces]],
       apiKey: ['', [Validators.required]],
       status: [true, [Validators.required]]

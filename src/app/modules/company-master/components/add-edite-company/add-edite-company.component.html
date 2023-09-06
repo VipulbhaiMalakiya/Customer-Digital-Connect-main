@@ -15,15 +15,6 @@
             <div *ngIf="shouldShowError('companyName','required')" class="form-validate-err">
               Please Enter Company Name.
             </div>
-            <div *ngIf="shouldShowError('companyName','minlength')" class="form-validate-err">
-              Company Name requied atleast 2 characters.
-            </div>
-            <div *ngIf="shouldShowError('companyName','maxlength')" class="form-validate-err">
-              Company Name requied only 30 characters.
-            </div>
-            <div *ngIf="shouldShowError('companyName','pattern')" class="form-validate-err">
-              Only characters are allowed.
-            </div>
             <div *ngIf="shouldShowError('companyName','noEmptySpaces')" class="form-validate-err">
               Should not contain empty spaces at the beginning or end.
             </div>
