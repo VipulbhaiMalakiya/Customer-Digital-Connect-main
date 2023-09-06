@@ -995,7 +995,7 @@
                               <tr *ngFor="let d of data?.catalogOrderItems">
                                 <td>
                                   <div class="pro-tb-icopn">
-                                    <h4>{{d.productName || ''}}</h4>
+                                    <h4>{{d.productName || d.product_retailer_id}}</h4>
                                   </div>
                                 </td>
                                 <td>{{d.quantity}}</td>
