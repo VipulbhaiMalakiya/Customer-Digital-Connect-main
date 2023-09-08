@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { RoleMasterModel } from 'src/app/_models/role';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-add-update-roles-permissions',
@@ -41,10 +41,10 @@ export class AddUpdateRolesPermissionsComponent {
     this.rolesPermissionsMasterForm = this.formBuilder.group({
       roleName: ["", [
         Validators.required,
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
         ]],
       status: [true, [Validators.required]],
-      roleDescription: ['', [Validators.required,noEmptySpaces]]
+      roleDescription: ['', [Validators.required,noLeadingSpaceValidator()]]
     });
   }
 
