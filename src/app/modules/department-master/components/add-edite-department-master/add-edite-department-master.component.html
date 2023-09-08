@@ -15,8 +15,8 @@
             <div *ngIf="shouldShowError('departmentName','required')" class="form-validate-err">
               Please Enter Department Name.
             </div>
-            <div *ngIf="shouldShowError('departmentName','noEmptySpaces')" class="form-validate-err">
-              Should not contain empty spaces at the beginning or end.
+            <div *ngIf="shouldShowError('departmentName','leadingSpace')" class="form-validate-err">
+              Input Field cannot start with a space.
             </div>
           </div>
         </div>
@@ -28,8 +28,8 @@
             <div *ngIf="shouldShowError('departmentCode','required')" class="form-validate-err">
               Please Enter Department code.
             </div>
-            <div *ngIf="shouldShowError('departmentCode','noEmptySpaces')" class="form-validate-err">
-              Should not contain empty spaces at the beginning or end.
+            <div *ngIf="shouldShowError('departmentCode','leadingSpace')" class="form-validate-err">
+              Input Field cannot start with a space.
             </div>
           </div>
         </div>
@@ -41,8 +41,8 @@
             <div *ngIf="shouldShowError('departmentHead','required')" class="form-validate-err">
               Please Enter Department Head Name.
             </div>
-            <div *ngIf="shouldShowError('departmentHead','noEmptySpaces')" class="form-validate-err">
-              Should not contain empty spaces at the beginning or end.
+            <div *ngIf="shouldShowError('departmentHead','leadingSpace')" class="form-validate-err">
+              Input Field cannot start with a space.
             </div>
           </div>
         </div>
@@ -65,8 +65,8 @@
             <div *ngIf="shouldShowError('description','required')" class="form-validate-err">
               Please Enter Description.
             </div>
-            <div *ngIf="shouldShowError('description','noEmptySpaces')" class="form-validate-err">
-              Should not contain empty spaces at the beginning or end.
+            <div *ngIf="shouldShowError('description','leadingSpace')" class="form-validate-err">
+              Input Field cannot start with a space.
             </div>
           </div>
         </div>

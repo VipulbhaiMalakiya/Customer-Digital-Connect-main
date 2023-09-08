@@ -2,9 +2,8 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { departmentMasterModel } from 'src/app/_models/department';
-import { Department } from 'src/app/_models/master';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
-import { noBlankSpacesValidator } from 'src/app/shared/directives/noWhitespace.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
+
 
 @Component({
   selector: 'app-add-edite-department-master',
@@ -43,10 +42,10 @@ export class AddEditeDepartmentMasterComponent {
     private cd: ChangeDetectorRef
   ) {
     this.departmentMasterForm = this.formBuilder.group({
-      departmentName: ['', [Validators.required, noEmptySpaces]],
-      departmentCode: ['', [Validators.required, noEmptySpaces]],
-      departmentHead: ['', [Validators.required, noEmptySpaces]],
-      description: ['', [Validators.required, noEmptySpaces]],
+      departmentName: ['', [Validators.required, noLeadingSpaceValidator()]],
+      departmentCode: ['', [Validators.required, noLeadingSpaceValidator()]],
+      departmentHead: ['', [Validators.required, noLeadingSpaceValidator()]],
+      description: ['', [Validators.required, noLeadingSpaceValidator()]],
       status: [true, [Validators.required]],
     });
   }
