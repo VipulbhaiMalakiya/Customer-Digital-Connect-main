@@ -4,6 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { companyMasterModel } from 'src/app/_models/company';
 import { CompanyMaster } from 'src/app/_models/master';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-add-edite-company',
@@ -44,9 +45,9 @@ export class AddEditeCompanyComponent {
     this.companyMasterForm = this.formBuilder.group({
       companyName: ["", [
         Validators.required,
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
         ]],
-      companyDescription: ['', [Validators.required, noEmptySpaces]],
+      companyDescription: ['', [Validators.required, noLeadingSpaceValidator()]],
       apiKey: ['', [Validators.required]],
       status: [true, [Validators.required]]
     });

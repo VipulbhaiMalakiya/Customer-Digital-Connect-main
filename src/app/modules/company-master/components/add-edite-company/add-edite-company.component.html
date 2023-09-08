@@ -15,8 +15,8 @@
             <div *ngIf="shouldShowError('companyName','required')" class="form-validate-err">
               Please Enter Company Name.
             </div>
-            <div *ngIf="shouldShowError('companyName','noEmptySpaces')" class="form-validate-err">
-              Should not contain empty spaces at the beginning or end.
+            <div *ngIf="shouldShowError('companyName','leadingSpace')" class="form-validate-err">
+              Input Field cannot start with a space.
             </div>
           </div>
         </div>
@@ -49,8 +49,8 @@
             <div *ngIf="shouldShowError('companyDescription','required')" class="form-validate-err">
               Description is required.
             </div>
-            <div *ngIf="shouldShowError('companyDescription','noEmptySpaces')" class="form-validate-err">
-              Description should not contain empty spaces at the beginning or end.
+            <div *ngIf="shouldShowError('companyDescription','leadingSpace')" class="form-validate-err">
+              Input Field cannot start with a space.
             </div>
           </div>
         </div>
