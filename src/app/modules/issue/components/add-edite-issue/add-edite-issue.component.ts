@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { issueMasterModel } from 'src/app/_models/issue';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-add-edite-issue',
@@ -41,7 +41,7 @@ export class AddEditeIssueComponent {
     this.issueForm = this.formBuilder.group({
       issueName: ["", [
         Validators.required,
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
         ]],
         calculationSLA:['', [Validators.required]],
         status:[true, [Validators.required]]
