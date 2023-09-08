@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { customReplyMaster } from 'src/app/_models/custom-reply';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-view-custom-reply',
@@ -51,13 +51,13 @@ export class ViewCustomReplyComponent {
         Validators.required,
         Validators.minLength(2),
         Validators.maxLength(30),
-        noEmptySpaces]],
+        noLeadingSpaceValidator()]],
         Inputvariation1:[''],
         Inputvariation2:[''],
         Inputvariation3:[''],
         Inputvariation4:[''],
         Inputvariation5:[''],
-        messageBody: ['', [Validators.required, noEmptySpaces]],
+        messageBody: ['', [Validators.required, noLeadingSpaceValidator()]],
     });
   }
 

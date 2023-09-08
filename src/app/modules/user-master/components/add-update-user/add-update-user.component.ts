@@ -5,7 +5,7 @@ import { UserMaster } from 'src/app/_models';
 import { ConfirmedValidator } from 'src/app/shared/directives/confirm-password.validator';
 import { PasswordStrengthValidator } from 'src/app/shared/directives/password-strength.validators';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-add-update-user',
@@ -62,15 +62,15 @@ export class AddUpdateUserComponent implements OnInit {
     this.userMasterMasterForm = this.formBuilder.group({
       firstName: ["", [
         Validators.required,
-        noEmptySpaces,]],
+        noLeadingSpaceValidator(),]],
       lastName: ["", [
         Validators.required,
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
        ]],
       email: ['', [
         Validators.required,
 
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
 
         Validators.pattern(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
       ]],
@@ -82,13 +82,13 @@ export class AddUpdateUserComponent implements OnInit {
       state: ["", [
         Validators.required,
 
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
 
         ]],
       city: ["", [
         Validators.required,
 
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
 
 
       ]],
@@ -96,8 +96,8 @@ export class AddUpdateUserComponent implements OnInit {
       password: ['', Validators.compose([Validators.required, PasswordStrengthValidator])],
       confirmPasswod: ['', Validators.required],
       departmentId: ['', [Validators.required]],
-      address: ['', [Validators.required,noEmptySpaces]],
-      username: ['', [Validators.required,noEmptySpaces]],
+      address: ['', [Validators.required,noLeadingSpaceValidator()]],
+      username: ['', [Validators.required,noLeadingSpaceValidator()]],
       postcode: ['', [
         Validators.required,
         Validators.minLength(6),

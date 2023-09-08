@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import * as moment from 'moment';
 import { labelMasterModel } from 'src/app/_models/labels';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-label-view',
@@ -58,7 +58,7 @@ export class LabelViewComponent {
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(30),
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
         Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$')]],
         status: ['', [Validators.required]],
         categoryId:[''],

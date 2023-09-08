@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { issueMasterModel } from 'src/app/_models/issue';
 import { labelMasterModel } from 'src/app/_models/labels';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-label-add-edite',
@@ -42,7 +42,7 @@ export class LabelAddEditeComponent {
       labelName: ["", [
         Validators.required,
 
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
         ]],
         status:[true, [Validators.required]]
     });

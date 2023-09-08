@@ -24,7 +24,7 @@
                 <div *ngIf="shouldShowError('input','maxlength')" class="form-validate-err">
                   input maximum only 30 characters allowed.
                 </div>
-                <div *ngIf="shouldShowError('input','noEmptySpaces')" class="form-validate-err">
+                <div *ngIf="shouldShowError('input','leadingSpace')" class="form-validate-err">
                   Should not contain empty spaces at the beginning or end.
                 </div>
 
@@ -36,7 +36,7 @@
                 <div *ngIf="shouldShowError('messageBody','required')" class="form-validate-err">
                   Message is required.
                 </div>
-                <div *ngIf="shouldShowError('messageBody','noEmptySpaces')" class="form-validate-err">
+                <div *ngIf="shouldShowError('messageBody','leadingSpace')" class="form-validate-err">
                   Message should not contain empty spaces at the beginning or end.
                 </div>
               </div>

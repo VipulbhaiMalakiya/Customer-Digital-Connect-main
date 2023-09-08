@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription, take } from 'rxjs';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
 import { AuthenticationService } from 'src/app/_services';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-forgot-password',
@@ -34,9 +34,9 @@ export class ForgotPasswordComponent {
     this.forgotPasswordForm = this.formBuilder.group({
       username: ['', [
         Validators.required,
-        Validators.minLength(5),
-        noEmptySpaces,
-        Validators.maxLength(80),
+
+        noLeadingSpaceValidator(),
+
         Validators.pattern(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
       ]],
     });

@@ -21,8 +21,8 @@
                     </div>
 
 
-                    <div *ngIf="shouldShowError('firstName','noEmptySpaces')" class="form-validate-err">
-                      Should not contain empty spaces at the beginning or end.
+                    <div *ngIf="shouldShowError('firstName','leadingSpace')" class="form-validate-err">
+                      Input Field cannot start with a space.
                     </div>
                   </div>
                 </div>
@@ -35,8 +35,8 @@
                     </div>
 
 
-                    <div *ngIf="shouldShowError('lastName','noEmptySpaces')" class="form-validate-err">
-                      Should not contain empty spaces at the beginning or end.
+                    <div *ngIf="shouldShowError('lastName','leadingSpace')" class="form-validate-err">
+                      Input Field cannot start with a space.
                     </div>
                   </div>
                 </div>
@@ -47,8 +47,8 @@
                     <div *ngIf="shouldShowError('username','required')" class="form-validate-err">
                       Please Enter User Name
                     </div>
-                    <div *ngIf="shouldShowError('username','noEmptySpaces')" class="form-validate-err">
-                      Should not contain empty spaces at the beginning or end.
+                    <div *ngIf="shouldShowError('username','leadingSpace')" class="form-validate-err">
+                      Input Field cannot start with a space.
                     </div>
 
                   </div>
@@ -64,8 +64,8 @@
                       Invalid email format.
                     </div>
 
-                    <div *ngIf="shouldShowError('email','noEmptySpaces')" class="form-validate-err">
-                      Should not contain empty spaces at the beginning or end.
+                    <div *ngIf="shouldShowError('email','leadingSpace')" class="form-validate-err">
+                      Input Field cannot start with a space.
                     </div>
                   </div>
                 </div>
@@ -112,8 +112,8 @@
                     <div *ngIf="shouldShowError('city','required')" class="form-validate-err">
                       Please Enter City Name
                     </div>
-                    <div *ngIf="shouldShowError('city','noEmptySpaces')" class="form-validate-err">
-                      Should not contain empty spaces at the beginning or end.
+                    <div *ngIf="shouldShowError('city','leadingSpace')" class="form-validate-err">
+                      Input Field cannot start with a space.
                     </div>
                   </div>
                 </div>
@@ -124,8 +124,8 @@
                     <div *ngIf="shouldShowError('state','required')" class="form-validate-err">
                       Please Enter State Name
                     </div>
-                    <div *ngIf="shouldShowError('state','noEmptySpaces')" class="form-validate-err">
-                      Should not contain empty spaces at the beginning or end.
+                    <div *ngIf="shouldShowError('state','leadingSpace')" class="form-validate-err">
+                      Input Field cannot start with a space.
                     </div>
                   </div>
                 </div>
@@ -148,8 +148,8 @@
                     <div *ngIf="shouldShowError('address','required')" class="form-validate-err">
                       This field is required.
                     </div>
-                    <div *ngIf="shouldShowError('address','noEmptySpaces')" class="form-validate-err">
-                      Should not contain empty spaces at the beginning or end.
+                    <div *ngIf="shouldShowError('address','leadingSpace')" class="form-validate-err">
+                      Input Field cannot start with a space.
                     </div>
                   </div>
                 </div>

@@ -1,9 +1,9 @@
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
 import { labelMasterModel } from './../../../../_models/labels';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { quickrepliesModel } from 'src/app/_models/quickreplies';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-add-edite-quick-replay',
@@ -41,11 +41,11 @@ export class AddEditeQuickReplayComponent {
         '',
         [
           Validators.required,
-          noEmptySpaces,
+          noLeadingSpaceValidator(),
           ,
         ],
       ],
-      description: ['', [Validators.required, noEmptySpaces]],
+      description: ['', [Validators.required, noLeadingSpaceValidator()]],
     });
   }
 

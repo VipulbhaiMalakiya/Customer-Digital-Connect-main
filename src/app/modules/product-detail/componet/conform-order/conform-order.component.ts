@@ -2,7 +2,6 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Customers } from 'src/app/_models/master';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
 
 @Component({
   selector: 'app-conform-order',

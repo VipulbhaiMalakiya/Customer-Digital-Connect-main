@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryMasterModel } from 'src/app/_models/category';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { leadingSpace } from 'src/app/shared/directives/leadingSpace.validator';
 import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 import { noBlankSpacesValidator } from 'src/app/shared/directives/noWhitespace.validator';
 @Component({

@@ -14,8 +14,8 @@
           Please Enter Sub Category Name.
         </div>
 
-        <div *ngIf="shouldShowError('subCategoryName','noEmptySpaces')" class="form-validate-err">
-          Sub category name should not contain empty spaces at the beginning or end.
+        <div *ngIf="shouldShowError('subCategoryName','leadingSpace')" class="form-validate-err">
+          Input Field cannot start with a space.
         </div>
       </div>
       <div class="form-group">

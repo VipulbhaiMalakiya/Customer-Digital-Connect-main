@@ -5,7 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { delay, take } from 'rxjs';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
@@ -32,14 +32,14 @@ export class MyProfileComponent implements OnInit {
       firstName: [this.userData.firstName, [
         Validators.required,
 
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
 
         ]],
 
       lastName: [this.userData.lastName, [
         Validators.required,
 
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
 
 
        ]],
@@ -47,7 +47,7 @@ export class MyProfileComponent implements OnInit {
       email: [this.userData.email, [
         Validators.required,
 
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
 
         Validators.pattern(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/),
       ]],
@@ -61,24 +61,24 @@ export class MyProfileComponent implements OnInit {
       state: [this.userData.state, [
         Validators.required,
 
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
 
         ]],
 
       city: [this.userData.city, [
         Validators.required,
 
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
 
  ]],
-      username: [this.userData.username, [Validators.required, noEmptySpaces]],
+      username: [this.userData.username, [Validators.required, noLeadingSpaceValidator()]],
       postcode: [this.userData.postcode, [
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(6)]],
       roleId: [this.userData?.role?.roleName , Validators.required],
       deptId: [this.userData.department.departmentName, Validators.required],
-      address: [this.userData.address, [Validators.required, noEmptySpaces]],
+      address: [this.userData.address, [Validators.required, noLeadingSpaceValidator()]],
     });
     this.userForm.controls["roleId"].disable();
     this.userForm.controls["deptId"].disable()

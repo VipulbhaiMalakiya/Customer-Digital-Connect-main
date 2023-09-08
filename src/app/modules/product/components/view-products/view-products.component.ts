@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
 import { prodactMasterModel } from 'src/app/_models/prodact';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-view-products',
@@ -88,14 +88,14 @@ export class ViewProductsComponent implements OnInit {
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(30),
-          noEmptySpaces,
+          noLeadingSpaceValidator(),
 
           Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$'),
         ],
       ],
       ProductSerialNo: ['', [Validators.required]],
       status: [true, [Validators.required]],
-      ProductDescription: ['', [Validators.required, noEmptySpaces]],
+      ProductDescription: ['', [Validators.required, noLeadingSpaceValidator()]],
       file: [''],
       image: [''],
       radioOption: ['PIECE', Validators.required],

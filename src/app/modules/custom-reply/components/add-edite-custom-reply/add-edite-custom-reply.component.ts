@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { customReplyMaster } from 'src/app/_models/custom-reply';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { leadingSpace } from 'src/app/shared/directives/leadingSpace.validator';
 
 @Component({
   selector: 'app-add-edite-custom-reply',
@@ -46,13 +46,13 @@ export class AddEditeCustomReplyComponent {
         Validators.minLength(2),
 
         Validators.maxLength(30),
-        noEmptySpaces]],
+        leadingSpace]],
         Inputvariation1:[''],
         Inputvariation2:[''],
         Inputvariation3:[''],
         Inputvariation4:[''],
         Inputvariation5:[''],
-        messageBody: ['', [Validators.required, noEmptySpaces]],
+        messageBody: ['', [Validators.required, leadingSpace]],
     });
   }
 

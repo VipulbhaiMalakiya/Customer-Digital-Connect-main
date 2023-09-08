@@ -4,7 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryMasterModel } from 'src/app/_models/category';
 import { subCategoryMasterModel } from 'src/app/_models/subCategoryMasterModel';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-add-edite-sub-category',
@@ -42,7 +42,7 @@ export class AddEditeSubCategoryComponent implements OnInit {
     this.subCategoryMasterForm = this.formBuilder.group({
       subCategoryName: ["", [
         Validators.required,
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
        ]],
       status: [true, [Validators.required]],
       categoryId: ['', [Validators.required]],

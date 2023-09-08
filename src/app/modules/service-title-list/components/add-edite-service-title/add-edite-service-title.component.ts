@@ -6,7 +6,7 @@ import { servicetitleMasterModel } from 'src/app/_models/servicetitle';
 import { subCategoryMasterModel } from 'src/app/_models/subCategoryMasterModel';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
 import { SLATimelinesMasterModel } from 'src/app/_models/SLA-Timelines';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-add-edite-service-title',
@@ -56,7 +56,7 @@ export class AddEditeServiceTitleComponent {
       subCategoryId: ['', [Validators.required]],
       serviceName: ["", [
         Validators.required,
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
         ]],
     });
   }

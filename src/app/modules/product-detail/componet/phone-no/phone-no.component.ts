@@ -6,7 +6,6 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
 
 @Component({
   selector: 'app-phone-no',

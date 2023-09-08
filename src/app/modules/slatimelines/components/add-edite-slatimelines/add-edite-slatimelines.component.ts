@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SLATimelinesMasterModel } from 'src/app/_models/SLA-Timelines';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-add-edite-slatimelines',
@@ -42,7 +42,7 @@ export class AddEditeSlatimelinesComponent {
     this.SLATimelinesMasterForm = this.formBuilder.group({
       priorityName:["", [
         Validators.required,
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
         ]],
       slaTimeInHours: ['', [
         Validators.required,

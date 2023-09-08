@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { imageExtensionValidator } from 'src/app/_helpers/image-extension.validator';
 import { prodactCategoryMasterModel } from 'src/app/_models/prodact_category';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-add-edite-product-category',
@@ -55,9 +55,9 @@ export class AddEditeProductCategoryComponent {
       productCategoryName: ["", [
         Validators.required,
 
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
         ]],
-      productCategoryDescription: ['', [Validators.required, noEmptySpaces]],
+      productCategoryDescription: ['', [Validators.required, noLeadingSpaceValidator()]],
       status: [true, [Validators.required]],
       file: [''],
       image: ['']

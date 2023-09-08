@@ -32,8 +32,8 @@
                 Please Enter Product Name.
               </div>
 
-              <div *ngIf="shouldShowError('ProductName','noEmptySpaces')" class="form-validate-err">
-                Should not contain empty spaces at the beginning or end.
+              <div *ngIf="shouldShowError('ProductName','leadingSpace')" class="form-validate-err">
+                Input Field cannot start with a space.
               </div>
 
             </div>
@@ -152,8 +152,8 @@
                 <div *ngIf="shouldShowError('ProductDescription','required')" class="form-validate-err">
                   Please Enter Description.
                 </div>
-                <div *ngIf="shouldShowError('ProductDescription','noEmptySpaces')" class="form-validate-err">
-                  Should not contain empty spaces at the beginning or end.
+                <div *ngIf="shouldShowError('ProductDescription','leadingSpace')" class="form-validate-err">
+                  Input Field cannot start with a space.
                 </div>
               </div>
               <div class="form-group">

@@ -3,7 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { labelMasterModel } from 'src/app/_models/labels';
 import { quickrepliesModel } from 'src/app/_models/quickreplies';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-view-quick-replay',
@@ -45,11 +45,11 @@ export class ViewQuickReplayComponent {
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(30),
-          noEmptySpaces,
+          noLeadingSpaceValidator(),
           Validators.pattern('^(?!\\s*$)[a-zA-Z\\s]*$'),
         ],
       ],
-      description: ['', [Validators.required, noEmptySpaces]],
+      description: ['', [Validators.required, noLeadingSpaceValidator()]],
     });
   }
 

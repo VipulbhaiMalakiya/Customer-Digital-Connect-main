@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, Validators, FormControl, AbstractControl, ValidationErrors } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { leadingSpace } from 'src/app/shared/directives/leadingSpace.validator';
 
 @Component({
   selector: 'app-video',
@@ -31,7 +31,7 @@ export class VideoComponent {
       caption: ["", [
         Validators.required,
 
-        noEmptySpaces,
+        leadingSpace,
         ]],
     });
   }
