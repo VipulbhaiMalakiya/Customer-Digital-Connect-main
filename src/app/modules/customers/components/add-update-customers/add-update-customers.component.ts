@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Customers } from 'src/app/_models/customer';
-import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-add-update-customers',
@@ -46,10 +46,10 @@ export class AddUpdateCustomersComponent {
     this.customersMasterForm = this.formBuilder.group({
       firstName: ["", [
         Validators.required,
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
         ]],
       lastName: ["", [
-        Validators.required,noEmptySpaces,]],
+        Validators.required,noLeadingSpaceValidator(),]],
       email: ['', [
         Validators.required,
         Validators.email,
@@ -67,14 +67,14 @@ export class AddUpdateCustomersComponent {
         ]],
       city: ["", [
         Validators.required,
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
         ]],
       state: ["", [
         Validators.required,
-        noEmptySpaces
+        noLeadingSpaceValidator()
 
         ]],
-      address: ['', [Validators.required,noEmptySpaces]],
+      address: ['', [Validators.required,noLeadingSpaceValidator()]],
       status: [true, [Validators.required]]
     });
   }
