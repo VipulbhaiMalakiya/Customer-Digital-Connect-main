@@ -7,7 +7,6 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
 import { AuthenticationService } from 'src/app/_services';
 import { ConfirmedValidator } from 'src/app/shared/directives/confirm-password.validator';
-import { leadingSpace } from 'src/app/shared/directives/leadingSpace.validator';
 import { PasswordStrengthValidator } from 'src/app/shared/directives/password-strength.validators';
 
 @Component({
