@@ -18,14 +18,9 @@
                 <div *ngIf="shouldShowError('input','required')" class="form-validate-err">
                   input name cannot be blank.
                 </div>
-                <div *ngIf="shouldShowError('input','minlength')" class="form-validate-err">
-                  input Name atleast 2 characters.
-                </div>
-                <div *ngIf="shouldShowError('input','maxlength')" class="form-validate-err">
-                  input maximum only 30 characters allowed.
-                </div>
+
                 <div *ngIf="shouldShowError('input','leadingSpace')" class="form-validate-err">
-                  Should not contain empty spaces at the beginning or end.
+                  Input Field cannot start with a space.
                 </div>
 
               </div>
@@ -37,7 +32,7 @@
                   Message is required.
                 </div>
                 <div *ngIf="shouldShowError('messageBody','leadingSpace')" class="form-validate-err">
-                  Message should not contain empty spaces at the beginning or end.
+                  Input Field cannot start with a space.
                 </div>
               </div>
             </div>

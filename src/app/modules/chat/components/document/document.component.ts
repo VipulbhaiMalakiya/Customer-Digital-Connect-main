@@ -2,7 +2,7 @@ import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, Validators, FormControl } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { leadingSpace } from 'src/app/shared/directives/leadingSpace.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-document',
@@ -31,7 +31,7 @@ export class DocumentComponent {
       caption: ["", [
         Validators.required,
 
-        leadingSpace,
+        noLeadingSpaceValidator(),
       ]],
     });
   }
