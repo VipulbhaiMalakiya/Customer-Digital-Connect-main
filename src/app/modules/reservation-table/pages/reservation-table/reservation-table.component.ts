@@ -1,12 +1,13 @@
 import { DatePipe } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-reservation-table',
@@ -52,7 +53,8 @@ export class ReservationTableComponent implements OnInit {
         [
           Validators.required,
        ,
-          noEmptySpaces,
+
+        noLeadingSpaceValidator()
          ,
         ],
       ],
@@ -67,6 +69,8 @@ export class ReservationTableComponent implements OnInit {
       ],
     });
   }
+
+
 
   ngOnInit(): void {}
 

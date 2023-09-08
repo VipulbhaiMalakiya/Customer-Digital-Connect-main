@@ -74,8 +74,8 @@
                     <div *ngIf="shouldShowError('FullName','required')" class="form-validate-err">
                       Please Enter Full Name.
                     </div>
-                    <div *ngIf="shouldShowError('FullName','noEmptySpaces')" class="form-validate-err">
-                      Full name should not contain empty spaces at the beginning or end..
+                    <div *ngIf="shouldShowError('FullName','leadingSpace')" class="form-validate-err">
+                      Input Field cannot start with a space.
                     </div>
                   </div>
                   <div class="col-sm-6">

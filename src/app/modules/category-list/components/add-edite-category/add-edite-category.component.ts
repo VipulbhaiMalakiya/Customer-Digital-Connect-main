@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryMasterModel } from 'src/app/_models/category';
 import { noEmptySpaces } from 'src/app/shared/directives/noEmptySpaces.validator';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 import { noBlankSpacesValidator } from 'src/app/shared/directives/noWhitespace.validator';
 @Component({
   selector: 'app-add-edite-category',
@@ -37,7 +38,7 @@ export class AddEditeCategoryComponent {
     this.CategoryMasterForm = this.formBuilder.group({
       categoryName: ["", [
         Validators.required,
-        noEmptySpaces,
+        noLeadingSpaceValidator(),
       ]],
         status: [true, [Validators.required]],
     });
