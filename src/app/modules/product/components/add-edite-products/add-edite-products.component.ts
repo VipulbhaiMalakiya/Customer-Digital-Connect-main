@@ -16,7 +16,7 @@ export class AddEditeProductsComponent implements OnInit {
   uploadFile: any = "";
   check: any
   checkboxValue: boolean = false;
-  prodactCategory: any;
+  prodactCategory: any [] = [];
   imageURL: any = '../../../../../assets/images/default-nopic.jpg';
   previewUrl: any;
   masterName?: any;
