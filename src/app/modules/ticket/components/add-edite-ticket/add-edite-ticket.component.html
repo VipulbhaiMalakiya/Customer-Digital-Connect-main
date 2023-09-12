@@ -50,7 +50,7 @@
           <div class="form-group">
             <label for="contact">Alternative Contact No <span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="contact" name="contact" formControlName="alternativeContactNo"
-              placeholder="Contact">
+              placeholder="Contact" (keydown)="onKeyDown($event)">
             <div *ngIf="shouldShowError('alternativeContactNo','required')" class="form-validate-err">
               Please Enter Phone Number.
             </div>

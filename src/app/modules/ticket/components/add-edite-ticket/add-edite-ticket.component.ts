@@ -109,6 +109,21 @@ export class AddEditeTicketComponent {
     this.activeIssue();
   }
 
+  onKeyDown(event: KeyboardEvent) {
+    const allowedKeys = [
+      'Backspace',
+      'Tab',
+      'Delete',
+      'ArrowLeft',
+      'ArrowRight',
+      'Home',
+      'End',
+    ];
+    const input = event.key;
+    if (!allowedKeys.includes(input) && isNaN(parseInt(input, 10))) {
+      event.preventDefault();
+    }
+  }
 
   fatchData() {
     this.masterName = "/category/active"
