@@ -40,9 +40,6 @@ export class UpdateTicketComponent {
   updatedUser?: any;
   set ticketsMaster(value: ticketMasterModel) {
     this._tickettsMaster = value;
-
-    console.log(this._tickettsMaster);
-
     this.tNo = this._tickettsMaster.ticketNo;
     this.subject = this._tickettsMaster.shortNotes;
     this.updatedData = this._tickettsMaster;
@@ -51,7 +48,7 @@ export class UpdateTicketComponent {
     if (this._tickettsMaster) {
       this.ticketMasterForm.patchValue({
         subCategory: this._tickettsMaster.subCategory?.subCategoryId,
-        serviceTitle: this._tickettsMaster.serviceTitle?.serviceId,
+        serviceTitle: this._tickettsMaster?.serviceTitle?.serviceId,
         assignedTo: this._tickettsMaster.assignedTo?.userId,
         ticketStatus: this._tickettsMaster.ticketStatus,
       });
@@ -59,6 +56,8 @@ export class UpdateTicketComponent {
         this.ticketMasterForm.controls['ticketStatus'].disable();
       }
     }
+
+    console.log(this._tickettsMaster?.serviceTitle?.serviceId);
 
   }
 
@@ -90,9 +89,11 @@ export class UpdateTicketComponent {
   }
 
     getserviceTitle() {
-    this.masterName = `/servicetitle/active/${this.categoryid.subCategory?.subCategoryId}`;
+    this.masterName = `/servicetitle/active`;
     this.apiService.getAll(this.masterName).subscribe((data) => {
       this.data1 = data;
+      console.log(this.data1);
+
       this.isProceess = false;
       this.cd.detectChanges();
     });
