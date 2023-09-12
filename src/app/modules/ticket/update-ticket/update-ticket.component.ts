@@ -89,11 +89,9 @@ export class UpdateTicketComponent {
   }
 
     getserviceTitle() {
-    this.masterName = `/servicetitle/active`;
+    this.masterName = `/servicetitle/active/${this.categoryid.subCategory?.subCategoryId}`;
     this.apiService.getAll(this.masterName).subscribe((data) => {
       this.data1 = data;
-      console.log(this.data1);
-
       this.isProceess = false;
       this.cd.detectChanges();
     });

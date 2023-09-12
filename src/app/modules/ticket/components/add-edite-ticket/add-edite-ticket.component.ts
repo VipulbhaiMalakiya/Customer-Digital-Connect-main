@@ -43,12 +43,13 @@ export class AddEditeTicketComponent {
   }
   set ticketsMaster(value: ticketMasterModel) {
     this._tickettsMaster = value;
+
     this.chek = value;
     if (this._tickettsMaster) {
       this.ticketMasterForm.patchValue({
         category: this._tickettsMaster.category?.categoryId,
         subCategory: this._tickettsMaster.subCategory?.subCategoryId,
-        serviceTitle: this._tickettsMaster.serviceTitle?.serviceId,
+        serviceTitle: this._tickettsMaster?.serviceTitle?.serviceId,
         alternativeContactNo: this._tickettsMaster.alternativeContactNo,
         priority: this._tickettsMaster.priority?.id,
         issue: this._tickettsMaster.issue?.issueId,
@@ -253,7 +254,6 @@ export class AddEditeTicketComponent {
     });
   }
   selectCategory(e: any) {
-
     this.masterName = "/servicetitle/active"
     this.apiService.getAll(this.masterName).subscribe(data => {
       this.data1 = data;
@@ -264,7 +264,7 @@ export class AddEditeTicketComponent {
     });
   }
   getserviceTitle() {
-    this.masterName = `/servicetitle/active/${this.categoryid.serviceTitle?.serviceId}`
+    this.masterName = `/servicetitle/active/${this.categoryid?.serviceTitle?.serviceId}`
     this.apiService.getAll(this.masterName).subscribe(data => {
       this.data1 = data;
       this.isProceess = false;
