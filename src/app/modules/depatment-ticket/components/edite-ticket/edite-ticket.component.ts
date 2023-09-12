@@ -148,7 +148,7 @@ export class EditeTicketComponent {
   }
 
   getserviceTitle() {
-    this.masterName = `/servicetitle/active/${this.categoryid?.serviceTitle?.serviceId}`
+    this.masterName = `/servicetitle/active/${this.categoryid.subCategory?.subCategoryId}`
     this.apiService.getAll(this.masterName).subscribe(data => {
       this.data1 = data;
       this.isProceess = false;
