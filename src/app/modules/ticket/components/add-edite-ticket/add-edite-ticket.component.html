@@ -55,10 +55,10 @@
               Please Enter Phone Number.
             </div>
             <div *ngIf="shouldShowError('alternativeContactNo','minlength')" class="form-validate-err">
-              Phone Number requied atleast 10 characters.
+              The minimum length allowed is 10 digits
             </div>
             <div *ngIf="shouldShowError('alternativeContactNo','maxlength')" class="form-validate-err">
-              Phone Number requied only 12 characters.
+              The maximum length allowed is 10 digits
             </div>
             <div *ngIf="shouldShowError('alternativeContactNo','pattern')" class="form-validate-err">
               Only Numbers are allowed.
