@@ -177,6 +177,7 @@ export class AddEditeTicketComponent {
     this.masterName = `/servicetitle/servicePriority/${this.categoryid.serviceTitle?.serviceId}`
     this.apiService.getAll(this.masterName).subscribe(data => {
       this.slaData = data;
+      this.selectedOption = this.slaData[0].defaultPriority.id;
       this.isProceess = false;
       this.cd.detectChanges();
     }, error => {
