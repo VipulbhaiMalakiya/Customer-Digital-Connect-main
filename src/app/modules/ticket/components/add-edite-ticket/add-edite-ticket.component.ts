@@ -110,6 +110,7 @@ export class AddEditeTicketComponent {
     this.getDepartment();
     this.ActiveUser();
     this.activeIssue();
+    this.selectDepartment();
   }
 
   onKeyDown(event: KeyboardEvent) {
@@ -218,8 +219,9 @@ export class AddEditeTicketComponent {
       this.isProceess = false;
     });
   }
-  selectDepartment(e: any) {
-    this.masterName = `/users/active/${e}`;
+  selectDepartment() {
+
+    this.masterName = `/users/active/${this.userData?.department?.departmentId}`;
     this.apiService.getAll(this.masterName).subscribe(data => {
       this.duser = data;
       this.isProceess = false;
