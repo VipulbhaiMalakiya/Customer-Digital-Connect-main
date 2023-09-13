@@ -28,6 +28,8 @@ export class AddEditeTicketComponent {
   issueData: issueMasterModel[] = [];
   slaData: MaindefaultPriorityMaster[] = [];
   uploadFile: any = "";
+  selectedOption:any;
+  selectedOption1:any;
   selectedValue: any;
   uploadFile1: any = "";
   categoryid: any;
@@ -164,6 +166,7 @@ export class AddEditeTicketComponent {
     this.masterName = `/servicetitle/servicePriority/${e}`
     this.apiService.getAll(this.masterName).subscribe(data => {
       this.slaData = data;
+      this.selectedOption = this.slaData[0].defaultPriority.id;
       this.isProceess = false;
       this.cd.detectChanges();
     }, error => {
@@ -207,6 +210,7 @@ export class AddEditeTicketComponent {
     this.masterName = "/department/active"
     this.apiService.getAll(this.masterName).subscribe(data => {
       this.dept = data;
+      this.selectedOption1 = this.userData?.department?.departmentId;
       this.isProceess = false;
       this.cd.detectChanges();
     }, error => {

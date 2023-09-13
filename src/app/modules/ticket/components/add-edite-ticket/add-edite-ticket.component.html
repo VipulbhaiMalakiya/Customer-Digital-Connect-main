@@ -68,7 +68,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="priority"> Priority <span class="text-danger">*</span></label>
-            <select class="form-select" id="priority" formControlName="priority">
+            <select class="form-select" id="priority" formControlName="priority" [(ngModel)]="selectedOption">
               <option value="">Select</option>
               <option *ngFor="let i of slaData" [value]="i.defaultPriority.id">{{i.defaultPriority.priorityName}}
               </option>
@@ -94,7 +94,7 @@
           <div class="form-group">
             <div class="form-Department">
               <label for="department">Department <span class="text-danger">*</span></label>
-              <select class="form-select" #sel3 (change)="selectDepartment(sel3.value)" id="department"
+              <select class="form-select" #sel3 (change)="selectDepartment(sel3.value)" [(ngModel)]="selectedOption1" id="department"
                 formControlName="department">
                 <option value="">Select</option>
                 <ng-container *ngFor="let i of dept">
