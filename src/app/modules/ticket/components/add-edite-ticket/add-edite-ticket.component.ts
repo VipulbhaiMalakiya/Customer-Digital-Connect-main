@@ -250,15 +250,22 @@ export class AddEditeTicketComponent {
     });
   }
   changed(e: any) {
-    this.masterName = `/subcategory/active/${e}`
-    this.apiService.getAll(this.masterName).subscribe(data => {
-      this.sdata = data;
-      this.selectDepartment();
-      this.isProceess = false;
-      this.cd.detectChanges();
-    }, error => {
-      this.isProceess = false;
-    });
+    if(e !==''){
+      this.masterName = `/subcategory/active/${e}`
+      this.apiService.getAll(this.masterName).subscribe(data => {
+        this.sdata = data;
+        this.selectDepartment();
+        this.isProceess = false;
+        this.cd.detectChanges();
+      }, error => {
+        this.isProceess = false;
+      });
+    }
+    else{
+      this.sdata = [];
+    }
+
+
   }
   selectCategory(e: any) {
     if(e !==''){
@@ -273,7 +280,7 @@ export class AddEditeTicketComponent {
       });
     }
     else{
-      this.data1 = []
+      this.data1 = [];
     }
 
   }
