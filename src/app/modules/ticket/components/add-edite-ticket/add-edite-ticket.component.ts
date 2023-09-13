@@ -109,12 +109,14 @@ export class AddEditeTicketComponent {
     if (this._tickettsMaster) {
       this.subCategory();
       this.getserviceTitle();
-      this.selectDEPT();
+
       this.getPriority();
     }
     this.getDepartment();
     this.ActiveUser();
     this.activeIssue();
+    this.selectDepartment();
+    // this.selectDEPT();
   }
 
   onKeyDown(event: KeyboardEvent) {
@@ -255,7 +257,6 @@ export class AddEditeTicketComponent {
         this.duser = data;
         this.isProceess = false;
         this.cd.detectChanges();
-        this.selectDepartment();
       },
       (error) => {
         this.isProceess = false;
@@ -294,6 +295,7 @@ export class AddEditeTicketComponent {
       this.apiService.getAll(this.masterName).subscribe(
         (data) => {
           this.sdata = data;
+
           this.isProceess = false;
           this.cd.detectChanges();
         },
