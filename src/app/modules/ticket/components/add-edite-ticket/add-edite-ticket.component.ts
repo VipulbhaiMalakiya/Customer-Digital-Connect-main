@@ -110,7 +110,6 @@ export class AddEditeTicketComponent {
     this.getDepartment();
     this.ActiveUser();
     this.activeIssue();
-    this.selectDepartment();
   }
 
   onKeyDown(event: KeyboardEvent) {
@@ -168,6 +167,7 @@ export class AddEditeTicketComponent {
     this.apiService.getAll(this.masterName).subscribe(data => {
       this.slaData = data;
       this.selectedOption = this.slaData[0].defaultPriority.id;
+
       this.isProceess = false;
       this.cd.detectChanges();
     }, error => {
@@ -220,7 +220,6 @@ export class AddEditeTicketComponent {
     });
   }
   selectDepartment() {
-
     this.masterName = `/users/active/${this.userData?.department?.departmentId}`;
     this.apiService.getAll(this.masterName).subscribe(data => {
       this.duser = data;
@@ -231,7 +230,7 @@ export class AddEditeTicketComponent {
     });
   }
   selectDEPT() {
-    this.masterName = `/users/active/${this.categoryid.department?.departmentId}`
+    this.masterName = `/users/active/${this.categoryid.department?.departmentId}`;
     this.apiService.getAll(this.masterName).subscribe(data => {
       this.duser = data;
       this.isProceess = false;
@@ -254,6 +253,7 @@ export class AddEditeTicketComponent {
     this.masterName = `/subcategory/active/${e}`
     this.apiService.getAll(this.masterName).subscribe(data => {
       this.sdata = data;
+      this.selectDepartment();
       this.isProceess = false;
       this.cd.detectChanges();
     }, error => {
