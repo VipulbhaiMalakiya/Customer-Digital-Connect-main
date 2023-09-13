@@ -86,8 +86,8 @@
       <div *ngIf="data.length === 0" class="text-center">
         <Strong class="text-danger">No records found</Strong>
       </div>
-      <div *ngIf="(data | customFilter: term).length === 0">
-        No results found.
+      <div class="text-center" *ngIf="(data | customFilter: term).length === 0 && data.length > 0">
+        <Strong class="text-danger">No results found.</Strong>
       </div>
     </div>
     <div class="clearfix" *ngIf="!isProceess && data.length > 0">
