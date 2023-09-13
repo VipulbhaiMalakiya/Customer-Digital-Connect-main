@@ -146,12 +146,18 @@ export class UpdateTicketComponent {
   }
 
   selectCategory(e: any) {
-    this.masterName = `/servicetitle/active/${e}`;
-    this.apiService.getAll(this.masterName).subscribe((data) => {
-      this.data1 = data;
-      this.isProceess = false;
-      this.cd.detectChanges();
-    });
+    if(e !==''){
+      this.masterName = `/servicetitle/active/${e}`;
+      this.apiService.getAll(this.masterName).subscribe((data) => {
+        this.data1 = data;
+        this.isProceess = false;
+        this.cd.detectChanges();
+      });
+    }
+    else{
+      this.data1 = [];
+    }
+
   }
 
 
