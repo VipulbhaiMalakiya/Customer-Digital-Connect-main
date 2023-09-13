@@ -59,7 +59,7 @@
       <div *ngIf="data.length === 0" class="text-center">
          <Strong class="text-danger">No records found</Strong>
       </div>
-      <div *ngIf="(data | customFilter: term).length === 0">
+      <div *ngIf="(data | customFilter: term).length === 0 && data.length > 0">
         No results found.
       </div>
     </div>
