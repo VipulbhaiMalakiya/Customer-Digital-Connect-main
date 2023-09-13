@@ -295,7 +295,6 @@ export class AddEditeTicketComponent {
       this.apiService.getAll(this.masterName).subscribe(
         (data) => {
           this.sdata = data;
-
           this.isProceess = false;
           this.cd.detectChanges();
         },
@@ -305,6 +304,7 @@ export class AddEditeTicketComponent {
       );
     } else {
       this.sdata = [];
+
     }
   }
   selectCategory(e: any) {
@@ -357,6 +357,7 @@ export class AddEditeTicketComponent {
         status: this.ticketMasterForm.value.status,
         file: this.uploadFile || null,
       };
+
       this.activeModal.close(data);
     } else {
       this.ticketMasterForm.controls['subCategory'].markAsTouched();

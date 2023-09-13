@@ -40,7 +40,6 @@
               <option value="">Select</option>
               <option *ngFor="let i of data1" [value]="i.serviceId">{{i.serviceName}}</option>
               <option *ngIf="data1.length === 0" value="">No records found</option>
-
             </select>
             <div *ngIf="shouldShowError('serviceTitle','required')" class="text-danger">This field is required
             </div>
