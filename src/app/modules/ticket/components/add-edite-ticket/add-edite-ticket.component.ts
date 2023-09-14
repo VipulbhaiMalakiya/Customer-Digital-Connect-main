@@ -178,8 +178,8 @@ export class AddEditeTicketComponent {
   }
 
   selectserviceTitle(e: any) {
-    if (e !== '') {
-      this.masterName = `/servicetitle/servicePriority/${e}`;
+    if (e.target.value !== '') {
+      this.masterName = `/servicetitle/servicePriority/${e.target.value}`;
       this.apiService.getAll(this.masterName).subscribe(
         (data) => {
           this.slaData = data;
@@ -290,8 +290,8 @@ export class AddEditeTicketComponent {
     );
   }
   changed(e: any) {
-    if (e !== '') {
-      this.masterName = `/subcategory/active/${e}`;
+    if (e.target.value !== '') {
+      this.masterName = `/subcategory/active/${e.target.value}`;
       this.apiService.getAll(this.masterName).subscribe(
         (data) => {
           this.sdata = data;
@@ -308,8 +308,8 @@ export class AddEditeTicketComponent {
     }
   }
   selectCategory(e: any) {
-    if (e !== '') {
-      this.masterName = `/servicetitle/active/${e}`;
+    if (e.target.value !== '') {
+      this.masterName = `/servicetitle/active/${e.target.value}`;
       this.apiService.getAll(this.masterName).subscribe(
         (data) => {
           this.data1 = data;

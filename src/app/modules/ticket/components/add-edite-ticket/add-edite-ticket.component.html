@@ -10,7 +10,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="category">Category <span class="text-danger">*</span></label>
-            <select class="form-select" id="category" #sel (change)="changed(sel.value)" formControlName="category">
+            <select class="form-select" id="category" (change)="changed($event)" formControlName="category">
               <option value="">Select</option>
               <option *ngFor="let i of data" [value]="i.categoryId">{{i.categoryName}}</option>
               <option *ngIf="data.length === 0" value="">No records found</option>
@@ -22,7 +22,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="subCategory">Sub Category <span class="text-danger">*</span></label>
-            <select class="form-select" #sel1 (change)="selectCategory(sel1.value)" id="subCategory"
+            <select class="form-select"  (change)="selectCategory($event)" id="subCategory"
               formControlName="subCategory">
               <option value="">Select</option>
               <option *ngFor="let i of sdata" [value]="i.subCategoryId">{{i.subCategoryName}}</option>
@@ -35,7 +35,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="serviceTitle">Service Title <span class="text-danger">*</span></label>
-            <select class="form-select" #sel89 (change)="selectserviceTitle(sel89.value)" id="serviceTitle"
+            <select class="form-select"  (change)="selectserviceTitle($event)" id="serviceTitle"
               formControlName="serviceTitle">
               <option value="">Select</option>
               <option *ngFor="let i of data1" [value]="i.serviceId">{{i.serviceName}}</option>
