@@ -22,8 +22,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <label for="subCategory">Sub Category <span class="text-danger">*</span></label>
-            <select class="form-select"  (change)="selectCategory($event)" id="subCategory"
-              formControlName="subCategory">
+            <select class="form-select" (change)="selectCategory($event)" id="subCategory" formControlName="subCategory">
               <option value="">Select</option>
               <option *ngFor="let i of sdata" [value]="i.subCategoryId">{{i.subCategoryName}}</option>
               <option *ngIf="sdata.length === 0" value="">No records found</option>
