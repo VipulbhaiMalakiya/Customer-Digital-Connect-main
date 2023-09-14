@@ -156,6 +156,7 @@ export class UpdateTicketComponent {
     }
     else{
       this.data1 = [];
+      this.ticketMasterForm .get('serviceTitle').setValue('');
     }
 
   }
