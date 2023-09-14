@@ -308,11 +308,8 @@ export class AddEditeTicketComponent {
     } else {
       this.sdata = [];
       this.ticketMasterForm .get('subCategory').setValue('');
-      this.ticketMasterForm .get('serviceTitle').setValue('');
-      this.ticketMasterForm .get('priority').setValue('');
     }
     this.ticketMasterForm .get('subCategory').setValue('');
-    this.ticketMasterForm .get('serviceTitle').setValue('');
   }
 
 
