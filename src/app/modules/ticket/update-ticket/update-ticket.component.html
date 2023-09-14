@@ -32,7 +32,7 @@
                 <div class="col-12 col-sm-6 col-md-3">
                   <div class="form-group">
                     <label for="subCategory">Sub Category <span class="text-danger">*</span></label>
-                    <select class="form-select" #sel1 (change)="selectCategory(sel1.value)" id="subCategory"
+                    <select class="form-select"  (change)="selectCategory($event)" id="subCategory"
                       formControlName="subCategory">
                       <option value="">Select</option>
                       <option *ngFor="let i of sdata" [value]="i.subCategoryId">{{i.subCategoryName}}</option>

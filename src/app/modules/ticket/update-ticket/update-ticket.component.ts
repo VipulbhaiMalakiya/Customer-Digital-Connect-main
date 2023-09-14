@@ -146,8 +146,8 @@ export class UpdateTicketComponent {
   }
 
   selectCategory(e: any) {
-    if(e !==''){
-      this.masterName = `/servicetitle/active/${e}`;
+    if(e.target.value !== ''){
+      this.masterName = `/servicetitle/active/${e.target.value}`;
       this.apiService.getAll(this.masterName).subscribe((data) => {
         this.data1 = data;
         this.isProceess = false;
