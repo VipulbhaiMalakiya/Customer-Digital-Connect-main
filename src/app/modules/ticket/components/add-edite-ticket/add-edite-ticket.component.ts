@@ -310,6 +310,8 @@ export class AddEditeTicketComponent {
       this.ticketMasterForm .get('subCategory').setValue('');
     }
     this.ticketMasterForm .get('subCategory').setValue('');
+
+    console.log(this.ticketMasterForm .get('serviceTitle'));
   }
 
 
@@ -334,6 +336,9 @@ export class AddEditeTicketComponent {
     }
     this.ticketMasterForm .get('serviceTitle').setValue('');
     this.ticketMasterForm .get('priority').setValue('');
+
+
+
 
   }
   getserviceTitle() {
