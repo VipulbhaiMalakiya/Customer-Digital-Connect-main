@@ -291,6 +291,7 @@ export class AddEditeTicketComponent {
       }
     );
   }
+
   changed(e: any) {
     if (e.target.value !== '') {
       this.masterName = `/subcategory/active/${e.target.value}`;
@@ -306,10 +307,12 @@ export class AddEditeTicketComponent {
       );
     } else {
       this.sdata = [];
-      // Set the value of the "Sub Category" select element to an empty string
       this.ticketMasterForm .get('subCategory').setValue('');
+      this.ticketMasterForm .get('serviceTitle').setValue('');
+      this.ticketMasterForm .get('priority').setValue('');
     }
     this.ticketMasterForm .get('subCategory').setValue('');
+    this.ticketMasterForm .get('serviceTitle').setValue('');
   }
 
 

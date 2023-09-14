@@ -115,36 +115,6 @@
             </div>
           </div>
         </div>
-        <!-- <div class="col-md-3">
-          <div class="form-group">
-            <div class="form-Department">
-              <label for="createForUser">Create by user <span class="text-danger">*</span></label>
-              <select [(ngModel)]='nrSelect' class="form-select" id="createForUser" formControlName="createForUser"
-                [value]='this.userData.userId'>
-
-                <ng-container *ngFor="let i of aciveUser">
-                  <option *ngIf="i.userId === this.userData.userId" [value]="i.userId">{{i.firstName}} {{i.lastName}}
-                  </option>
-                  <option *ngIf="aciveUser.length === 0" value="">No records found</option>
-                </ng-container>
-              </select>
-              <div *ngIf="shouldShowError('createForUser','required')" class="text-danger">This field is required
-              </div>
-            </div>
-          </div>
-        </div> -->
-        <!-- <div class="col-md-3">
-          <div class="form-group">
-            <label for="status">Status</label>
-            <select class="form-select" id="status" formControlName="status">
-              <option value="">Select</option>
-              <option value="true">Active</option>
-              <option value="false">Deactive</option>
-            </select>
-            <div *ngIf="shouldShowError('status','required')" class="text-danger">This field is required
-            </div>
-          </div>
-        </div> -->
         <div class="col-md-3">
           <div class="form-group">
             <label for="shortNotes">Short Notes <span class="text-danger">*</span></label>
