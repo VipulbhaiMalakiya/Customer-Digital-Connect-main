@@ -81,7 +81,6 @@ export class AddEditeTicketComponent {
       alternativeContactNo: [
         '',
         [
-
           Validators.minLength(10),
           Validators.maxLength(10),
           Validators.pattern('^[0-9]*$'),
@@ -193,10 +192,9 @@ export class AddEditeTicketComponent {
           this.isProceess = false;
         }
       );
-    }
-    else{
+    } else {
       this.slaData = [];
-      this.ticketMasterForm .get('priority').setValue('');
+      this.ticketMasterForm.get('priority').setValue('');
     }
   }
   getPriority() {
@@ -307,13 +305,10 @@ export class AddEditeTicketComponent {
       );
     } else {
       this.sdata = [];
-      this.ticketMasterForm .get('subCategory').setValue('');
+      this.ticketMasterForm.get('subCategory').setValue('');
     }
-    this.ticketMasterForm .get('subCategory').setValue('');
-
-    console.log(this.ticketMasterForm .get('serviceTitle'));
+    this.ticketMasterForm.get('subCategory').setValue('');
   }
-
 
   selectCategory(e: any) {
     if (e.target.value !== '') {
@@ -330,16 +325,11 @@ export class AddEditeTicketComponent {
       );
     } else {
       this.data1 = [];
-      this.ticketMasterForm .get('serviceTitle').setValue('');
-      this.ticketMasterForm .get('priority').setValue('');
-
+      this.ticketMasterForm.get('serviceTitle').setValue('');
+      this.ticketMasterForm.get('priority').setValue('');
     }
-    this.ticketMasterForm .get('serviceTitle').setValue('');
-    this.ticketMasterForm .get('priority').setValue('');
-
-
-
-
+    this.ticketMasterForm.get('serviceTitle').setValue('');
+    this.ticketMasterForm.get('priority').setValue('');
   }
   getserviceTitle() {
     this.masterName = `/servicetitle/active/${this.categoryid.subCategory?.subCategoryId}`;
