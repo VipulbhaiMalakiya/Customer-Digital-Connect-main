@@ -243,7 +243,7 @@ export class AddEditeTicketComponent {
     this.apiService.getAll(this.masterName).subscribe(
       (data) => {
         this.dept = data;
-        this.selectedOption1 = this.userData?.department?.departmentId;
+        this.selectedOption1 = this.userData?.department?.departmentName;
         this.isProceess = false;
         this.cd.detectChanges();
       },
@@ -361,7 +361,7 @@ export class AddEditeTicketComponent {
         alternativeContactNo: this.ticketMasterForm.value.alternativeContactNo,
         priority: this.ticketMasterForm.value.priority,
         issue: this.ticketMasterForm.value.issue,
-        department: this.ticketMasterForm.value.department,
+        department: this.userData?.department?.departmentId,
         assignedTo: this.ticketMasterForm.value.assignedTo,
         shortNotes: this.ticketMasterForm.value.shortNotes,
         additionalComments: this.ticketMasterForm.value.additionalComments,

@@ -6,3 +6,8 @@ span.cst-icone {
   right: 5px;
   top: 3px;
 }
+
+.disabled-input {
+  background-color: #f6f6f6;
+  border-color: #e1e1e1;
+}
