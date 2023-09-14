@@ -147,7 +147,9 @@ export class EditeTicketComponent {
       });
     }else{
       this.data1 = [];
+      this.ticketMasterForm .get('serviceTitle').setValue('');
     }
+    this.ticketMasterForm .get('serviceTitle').setValue('');
 
   }
 
