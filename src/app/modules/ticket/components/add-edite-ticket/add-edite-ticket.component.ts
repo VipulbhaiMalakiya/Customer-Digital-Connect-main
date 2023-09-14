@@ -92,8 +92,8 @@ export class AddEditeTicketComponent {
       department: ['', [Validators.required]],
       assignedTo: ['', [Validators.required]],
       shortNotes: ['', [Validators.required]],
-      status: [true, [Validators.required]],
-      createForUser: ['', [Validators.required]],
+      status: [true],
+      createForUser: [''],
       file: [''],
       additionalComments: ['', [Validators.required]],
     });
@@ -365,8 +365,8 @@ export class AddEditeTicketComponent {
         assignedTo: this.ticketMasterForm.value.assignedTo,
         shortNotes: this.ticketMasterForm.value.shortNotes,
         additionalComments: this.ticketMasterForm.value.additionalComments,
-        createForUser: this.ticketMasterForm.value.createForUser,
-        status: this.ticketMasterForm.value.status,
+        createForUser: this.userData.userId,
+        status: true,
         file: this.uploadFile || null,
       };
 
@@ -381,8 +381,6 @@ export class AddEditeTicketComponent {
       this.ticketMasterForm.controls['assignedTo'].markAsTouched();
       this.ticketMasterForm.controls['shortNotes'].markAsTouched();
       this.ticketMasterForm.controls['additionalComments'].markAsTouched();
-      this.ticketMasterForm.controls['status'].markAsTouched();
-      this.ticketMasterForm.controls['createForUser'].markAsTouched();
     }
   }
   shouldShowError(controlName: string, errorName: string) {

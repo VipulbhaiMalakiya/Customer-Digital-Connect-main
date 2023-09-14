@@ -346,7 +346,7 @@ export class TicketComponent implements OnInit, OnDestroy {
         'Created Date': moment(x.createdDate || '').format('llll'),
         'Updated By': updatedBy,
         'Updated Date': moment(x.updatedDate || '').format('llll'),
-        Status: x.status ? 'Active' : 'Deactivate',
+
         Issue: x.issue?.issueName || '',
         'Create For User': x.createForUser?.username || '',
         'File Url': x.fileUrl || '',
@@ -371,7 +371,7 @@ export class TicketComponent implements OnInit, OnDestroy {
       'created By',
       'Updated Date',
       'Updated By',
-      'Status',
+
     ];
     this.appService.exportAsExcelFile(exportData, 'Ticket', headers);
   }
