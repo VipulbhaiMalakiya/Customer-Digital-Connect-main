@@ -46,12 +46,9 @@
         </div>
         <div class="col-md-3">
           <div class="form-group">
-            <label for="contact">Alternative Contact No <span class="text-danger">*</span></label>
+            <label for="contact">Alternative Contact No </label>
             <input type="text" class="form-control" id="contact" name="contact" formControlName="alternativeContactNo"
               placeholder="Contact" (keydown)="onKeyDown($event)">
-            <div *ngIf="shouldShowError('alternativeContactNo','required')" class="form-validate-err">
-              Please Enter Phone Number.
-            </div>
             <div *ngIf="shouldShowError('alternativeContactNo','minlength')" class="form-validate-err">
               The minimum length allowed is 10 digits
             </div>

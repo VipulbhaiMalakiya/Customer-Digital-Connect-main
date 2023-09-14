@@ -20,6 +20,7 @@ import { UserMaster } from 'src/app/_models/user';
 })
 export class AddEditeTicketComponent {
   private _tickettsMaster: ticketMasterModel | undefined;
+
   isProceess: boolean = true;
   ticketMasterForm: any;
   data: CategoryMasterModel[] = [];
@@ -80,7 +81,7 @@ export class AddEditeTicketComponent {
       alternativeContactNo: [
         '',
         [
-          Validators.required,
+
           Validators.minLength(10),
           Validators.maxLength(10),
           Validators.pattern('^[0-9]*$'),
@@ -374,7 +375,6 @@ export class AddEditeTicketComponent {
       this.ticketMasterForm.controls['subCategory'].markAsTouched();
       this.ticketMasterForm.controls['category'].markAsTouched();
       this.ticketMasterForm.controls['serviceTitle'].markAsTouched();
-      this.ticketMasterForm.controls['alternativeContactNo'].markAsTouched();
       this.ticketMasterForm.controls['priority'].markAsTouched();
       this.ticketMasterForm.controls['issue'].markAsTouched();
       this.ticketMasterForm.controls['department'].markAsTouched();
