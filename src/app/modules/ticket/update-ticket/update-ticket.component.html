@@ -98,6 +98,9 @@
                     <div *ngIf="shouldShowError('additionalComments','required')" class="text-danger">This field is
                       required
                     </div>
+                    <div *ngIf="shouldShowError('additionalComments','leadingSpace')" class="form-validate-err">
+                      Input Field cannot start with a space.
+                    </div>
                   </div>
                 </div>
                 <div class="col-6" *ngIf="this.userData?.role?.roleName !== 'User'">
@@ -105,6 +108,9 @@
                     <label for="workNotes">Work Notes</label>
                     <textarea id="workNotes" class="form-control" placeholder="Enter Work Notes"
                       formControlName="workNotes" rows="2"></textarea>
+                      <div *ngIf="shouldShowError('workNotes','leadingSpace')" class="form-validate-err">
+                        Input Field cannot start with a space.
+                      </div>
                   </div>
                 </div>
                 <div class="col-sm-6">

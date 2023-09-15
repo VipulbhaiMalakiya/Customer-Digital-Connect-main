@@ -94,6 +94,9 @@
                     <textarea class="form-control" id="additionalComments" placeholder="Enter Additional Comments" formControlName="additionalComments" rows="2"></textarea>
                     <div *ngIf="shouldShowError('additionalComments','required')" class="text-danger">This field is required
                     </div>
+                    <div *ngIf="shouldShowError('additionalComments','leadingSpace')" class="form-validate-err">
+                      Input Field cannot start with a space.
+                    </div>
                   </div>
                 </div>
 
@@ -101,6 +104,9 @@
                   <div class="form-group">
                     <label for="workNotes">Work Notes</label>
                     <textarea id="workNotes" class="form-control"  placeholder="Enter Work Notes" formControlName="workNotes"  rows="2"></textarea>
+                  </div>
+                  <div *ngIf="shouldShowError('workNotes','leadingSpace')" class="form-validate-err">
+                    Input Field cannot start with a space.
                   </div>
                 </div>
 

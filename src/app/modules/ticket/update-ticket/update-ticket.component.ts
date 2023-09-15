@@ -7,6 +7,7 @@ import { CategoryMasterModel } from 'src/app/_models/category';
 import { servicetitleMasterModel } from 'src/app/_models/servicetitle';
 import { subCategoryMasterModel } from 'src/app/_models/subCategoryMasterModel';
 import { cooment, ticketMasterModel } from 'src/app/_models/ticket';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-update-ticket',
@@ -73,8 +74,8 @@ export class UpdateTicketComponent {
       assignedTo: ['', [Validators.required]],
       ticketStatus: ['', [Validators.required]],
       file: [''],
-      additionalComments: ['', [Validators.required]],
-      workNotes: [''],
+      additionalComments: ['', [Validators.required,noLeadingSpaceValidator()]],
+      workNotes: ['',[noLeadingSpaceValidator()]],
     });
 
     const d: any = localStorage.getItem('userData');

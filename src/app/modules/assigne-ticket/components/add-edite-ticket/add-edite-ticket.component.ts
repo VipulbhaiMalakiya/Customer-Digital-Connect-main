@@ -8,6 +8,7 @@ import { CategoryMasterModel } from 'src/app/_models/category';
 import { servicetitleMasterModel } from 'src/app/_models/servicetitle';
 import { subCategoryMasterModel } from 'src/app/_models/subCategoryMasterModel';
 import { ticketMasterModel } from 'src/app/_models/ticket';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 
 @Component({
   selector: 'app-add-edite-ticket',
@@ -74,8 +75,8 @@ export class AddEditeTicketComponent {
       serviceTitle: ['', [Validators.required]],
       assignedTo: ['', [Validators.required]],
       ticketStatus:['', [Validators.required]],
-      additionalComments:['', [Validators.required]],
-      workNotes:[''],
+      additionalComments:['', [Validators.required,noLeadingSpaceValidator()]],
+      workNotes:['',[Validators.required,noLeadingSpaceValidator()]],
       file: [''],
     });
 
