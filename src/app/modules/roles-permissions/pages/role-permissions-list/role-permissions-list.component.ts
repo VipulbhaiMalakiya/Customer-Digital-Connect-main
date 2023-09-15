@@ -51,6 +51,7 @@ export class RolePermissionsListComponent implements OnInit,OnDestroy {
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1),delay(1000)).subscribe(data => {
       if(data){
         this.data = data;
+        this.count = this.data.length;
         this.cd.detectChanges();
         this.isProceess = false;
       }
