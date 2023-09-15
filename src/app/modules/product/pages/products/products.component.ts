@@ -99,6 +99,7 @@ export class ProductsComponent implements OnInit {
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
       if (data) {
         this.data = data.data;
+        this.count = this.data.length;
         this.isProceess = false;
         this.cd.detectChanges();
       }
