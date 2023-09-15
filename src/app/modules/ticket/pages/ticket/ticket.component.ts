@@ -62,6 +62,7 @@ export class TicketComponent implements OnInit, OnDestroy {
       .subscribe(
         (data) => {
           this.data = data;
+          this.count = this.data.length;
           this.cd.detectChanges();
           this.isProceess = false;
         },
@@ -93,6 +94,7 @@ export class TicketComponent implements OnInit, OnDestroy {
       .subscribe(
         (data) => {
           this.data = data;
+          this.count = this.data.length;
           this.cd.detectChanges();
           this.isProceess = false;
         },

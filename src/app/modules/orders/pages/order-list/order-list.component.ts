@@ -61,6 +61,7 @@ export class OrderListComponent implements OnInit {
         (data) => {
           if (data) {
             this.data = data.data;
+            this.count = this.data.length;
             this.isProceess = false;
             this.cd.detectChanges();
           }

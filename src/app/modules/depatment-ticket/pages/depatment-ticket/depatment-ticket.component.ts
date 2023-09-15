@@ -51,6 +51,7 @@ export class DepatmentTicketComponent implements OnInit, OnDestroy {
     this.masterName = `/ticket/departmentId/${this.userData.department.departmentId}`;
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
       this.data = data;
+      this.count = this.data.length;
       this.cd.detectChanges();
       this.isProceess = false;
     }, error => {
@@ -68,6 +69,7 @@ export class DepatmentTicketComponent implements OnInit, OnDestroy {
     this.isProceess = true;
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
       this.data = data;
+      this.count = this.data.length;
       this.cd.detectChanges();
       this.isProceess = false;
     }, error => {
