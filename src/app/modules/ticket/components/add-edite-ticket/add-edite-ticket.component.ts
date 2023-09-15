@@ -13,6 +13,7 @@ import { servicetitleMasterModel } from 'src/app/_models/servicetitle';
 import { subCategoryMasterModel } from 'src/app/_models/subCategoryMasterModel';
 import { ticketMasterModel } from 'src/app/_models/ticket';
 import { UserMaster } from 'src/app/_models/user';
+import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 @Component({
   selector: 'app-add-edite-ticket',
   templateUrl: './add-edite-ticket.component.html',
@@ -90,11 +91,11 @@ export class AddEditeTicketComponent {
       issue: ['', [Validators.required]],
       department: ['', [Validators.required]],
       assignedTo: ['', [Validators.required]],
-      shortNotes: ['', [Validators.required]],
+      shortNotes: ['', [Validators.required,noLeadingSpaceValidator()]],
       status: [true],
       createForUser: [''],
       file: [''],
-      additionalComments: ['', [Validators.required]],
+      additionalComments: ['', [Validators.required,noLeadingSpaceValidator()]],
     });
 
     const d: any = localStorage.getItem('userData');

@@ -123,8 +123,9 @@
             <div *ngIf="shouldShowError('shortNotes','required')" class="form-validate-err">
               Please Enter Short Notes.
             </div>
-
-
+            <div *ngIf="shouldShowError('shortNotes','leadingSpace')" class="form-validate-err">
+              Input Field cannot start with a space.
+            </div>
           </div>
         </div>
         <div class="col-md-3">
@@ -151,6 +152,9 @@
             <textarea cols="0" rows="3" id="additionalComments" name="additionalComments"
               formControlName="additionalComments" class="form-control" placeholder="Additional Comments"></textarea>
             <div *ngIf="shouldShowError('additionalComments','required')" class="text-danger">This field is required
+            </div>
+            <div *ngIf="shouldShowError('additionalComments','leadingSpace')" class="form-validate-err">
+              Input Field cannot start with a space.
             </div>
           </div>
         </div>
