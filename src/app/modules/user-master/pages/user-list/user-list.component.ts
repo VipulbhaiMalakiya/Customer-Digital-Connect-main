@@ -46,6 +46,7 @@ export class UserListComponent implements OnInit,OnDestroy {
     this.masterName = "/users";
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1),delay(1000)).subscribe(data => {
       this.data = data;
+      this.count = this.data.length;
       this.cd.detectChanges();
       this.isProceess = false;
     },error => {
