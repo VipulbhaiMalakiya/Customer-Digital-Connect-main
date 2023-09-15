@@ -48,30 +48,6 @@ export class TicketComponent implements OnInit, OnDestroy {
     this.fatchData();
   }
 
-  fatchData() {
-    if (this.userData?.role?.roleName === 'Resolver') {
-      this.masterName = `/ticket/createdBy/${this.userData.userId}`;
-    } else if (this.userData?.role?.roleName === 'Admin') {
-      this.masterName = `/ticket/ticketscomments`;
-    } else if (this.userData?.role?.roleName === 'User') {
-      this.masterName = `/ticket/createdBy/${this.userData.userId}`;
-    }
-    this.subscription = this.apiService
-      .getAll(this.masterName)
-      .pipe(take(1))
-      .subscribe(
-        (data) => {
-          this.data = data;
-          this.count = this.data.length;
-          this.cd.detectChanges();
-          this.isProceess = false;
-        },
-        (error) => {
-          this.isProceess = false;
-        }
-      );
-  }
-
   selectStatus(e: any) {
     if (e === this.tickitStatus && this.userData?.role?.roleName !== 'Admin') {
       this.masterName = `/ticket/createdBy/${this.userData.userId}`;
@@ -104,14 +80,38 @@ export class TicketComponent implements OnInit, OnDestroy {
       );
   }
 
+  fatchData() {
+    if (this.userData?.role?.roleName === 'Resolver') {
+      this.masterName = `/ticket/createdBy/${this.userData.userId}`;
+    } else if (this.userData?.role?.roleName === 'Admin') {
+      this.masterName = `/ticket/ticketscomments`;
+    } else if (this.userData?.role?.roleName === 'User') {
+      this.masterName = `/ticket/createdBy/${this.userData.userId}`;
+    }
+    this.subscription = this.apiService
+      .getAll(this.masterName)
+      .pipe(take(1))
+      .subscribe(
+        (data) => {
+          this.data = data;
+          this.count = this.data.length;
+          this.cd.detectChanges();
+          this.isProceess = false;
+        },
+        (error) => {
+          this.isProceess = false;
+        }
+      );
+  }
+
+
+
   onTableDataChange(event: any) {
     this.page = event;
-    this.fatchData();
   }
   onTableSizeChange(event: any): void {
     this.tableSize = event.target.value;
     this.page = 1;
-    this.fatchData();
   }
 
   onAdd() {

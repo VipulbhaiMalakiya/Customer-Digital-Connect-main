@@ -65,12 +65,10 @@ export class SlaReportComponent {
   }
   onTableDataChange(event: any) {
     this.page = event;
-    this.fatchData();
   }
   onTableSizeChange(event: any): void {
     this.tableSize = event.target.value;
     this.page = 1;
-    this.fatchData();
   }
   onDownload() {
     const exportData = this.data.map(x => {

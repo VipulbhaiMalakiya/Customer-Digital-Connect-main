@@ -66,12 +66,10 @@ export class CustomReplyComponent implements OnInit, OnDestroy {
 
   onTableDataChange(event: any) {
     this.page = event;
-    this.fatchData();
   }
   onTableSizeChange(event: any): void {
     this.tableSize = event.target.value;
     this.page = 1;
-    this.fatchData();
   }
 
   onAdd() {
