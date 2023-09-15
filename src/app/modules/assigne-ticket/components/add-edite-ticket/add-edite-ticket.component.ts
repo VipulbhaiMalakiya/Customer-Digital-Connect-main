@@ -76,7 +76,7 @@ export class AddEditeTicketComponent {
       assignedTo: ['', [Validators.required]],
       ticketStatus:['', [Validators.required]],
       additionalComments:['', [Validators.required,noLeadingSpaceValidator()]],
-      workNotes:['',[Validators.required,noLeadingSpaceValidator()]],
+      workNotes:['',[noLeadingSpaceValidator()]],
       file: [''],
     });
 
