@@ -48,6 +48,7 @@ export class DepartmentListComponent implements OnInit, OnDestroy {
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
       if (data) {
         this.data = data;
+        this.count = this.data.length;
         this.isProceess = false;
         this.cd.detectChanges();
       }
