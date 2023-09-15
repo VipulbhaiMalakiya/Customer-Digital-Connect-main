@@ -62,6 +62,7 @@ export class CategoryListComponent implements OnInit, OnDestroy {
         .subscribe(
           (response) => {
             this.data = response;
+            this.count = this.data.length;
             this.isProceess = false;
             this.cd.detectChanges();
           },
