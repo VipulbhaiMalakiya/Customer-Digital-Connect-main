@@ -57,9 +57,6 @@ export class UpdateTicketComponent {
         this.ticketMasterForm.controls['ticketStatus'].disable();
       }
     }
-
-    console.log(this._tickettsMaster?.serviceTitle?.serviceId);
-
   }
 
   constructor(
