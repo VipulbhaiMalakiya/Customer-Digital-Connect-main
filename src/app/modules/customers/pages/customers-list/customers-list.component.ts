@@ -142,7 +142,7 @@ export class CustomersListComponent implements OnInit, OnDestroy {
           }
         }, error => {
           this.isProceess = false;
-          this.toastr.error("Customers details not saved");
+          this.toastr.error(error.error.message);
         });
       }
     }).catch(() => { });
@@ -187,7 +187,7 @@ export class CustomersListComponent implements OnInit, OnDestroy {
           this.isProceess = false;
           this.fatchData();
         }, error => {
-          this.toastr.error(error.messages);
+          this.toastr.error(error.error.message);
           this.isProceess = false;
         });
       }
