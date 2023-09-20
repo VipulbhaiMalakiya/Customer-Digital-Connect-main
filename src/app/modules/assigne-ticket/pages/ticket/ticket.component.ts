@@ -10,6 +10,7 @@ import { AppService } from 'src/app/_services/app.service';
 import * as moment from 'moment';
 import { ViewTicketComponent } from '../../components/view-ticket/view-ticket.component';
 import { AddEditeTicketComponent } from '../../components/add-edite-ticket/add-edite-ticket.component';
+import {  ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-ticket',
@@ -18,6 +19,8 @@ import { AddEditeTicketComponent } from '../../components/add-edite-ticket/add-e
 })
 export class TicketComponent {
   isProceess: boolean = true;
+  @ViewChild('sel3', { static: false }) sel3!: ElementRef;
+
   userData: any;
   data: ticketMasterModel[] = [];
   term: any;
@@ -151,6 +154,8 @@ export class TicketComponent {
           this.isProceess = false;
           this.toastr.success("Ticket Updated!");
           this.fatchData();
+          this.sel3.nativeElement.value = 'All';
+          this.sel3.nativeElement.dispatchEvent(new Event('change'));
         }, error => {
           this.isProceess = false;
           this.toastr.error("Error while saving Ticket!");

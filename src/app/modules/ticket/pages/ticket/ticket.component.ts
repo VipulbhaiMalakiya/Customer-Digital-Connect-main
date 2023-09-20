@@ -14,12 +14,16 @@ import { ApiService } from 'src/app/_api/rxjs/api.service';
 import { UpdateTicketComponent } from '../../update-ticket/update-ticket.component';
 import { Subscription, delay, take } from 'rxjs';
 import { FilterTicketComponent } from '../../components/filter-ticket/filter-ticket.component';
+import { ViewChild, ElementRef } from '@angular/core';
+
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
   styleUrls: ['./ticket.component.css'],
 })
 export class TicketComponent implements OnInit, OnDestroy {
+  @ViewChild('sel3', { static: false }) sel3!: ElementRef;
+
   isProceess: boolean = true;
   userData: any;
   data: ticketMasterModel[] = [];
@@ -165,6 +169,8 @@ export class TicketComponent implements OnInit, OnDestroy {
                 this.isProceess = false;
                 this.toastr.success('Ticket Master Added!');
                 this.fatchData();
+                this.sel3.nativeElement.value = 'All';
+                this.sel3.nativeElement.dispatchEvent(new Event('change'));
               },
               (error) => {
                 this.isProceess = false;
@@ -232,6 +238,8 @@ export class TicketComponent implements OnInit, OnDestroy {
                 if (responseData) {
                   this.toastr.success('Ticket Updated!');
                   this.fatchData();
+                  this.sel3.nativeElement.value = 'All';
+                  this.sel3.nativeElement.dispatchEvent(new Event('change'));
                   this.isProceess = false;
                 }
               },
@@ -308,6 +316,8 @@ export class TicketComponent implements OnInit, OnDestroy {
                 if (responseData) {
                   this.toastr.success('Ticket Updated!');
                   this.fatchData();
+                  this.sel3.nativeElement.value = 'All';
+                  this.sel3.nativeElement.dispatchEvent(new Event('change'));
                   this.isProceess = false;
                 }
               },

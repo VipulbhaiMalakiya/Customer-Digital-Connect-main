@@ -10,6 +10,7 @@ import { ticketMasterModel } from 'src/app/_models/ticket';
 import { AppService } from 'src/app/_services/app.service';
 import { EditeTicketComponent } from '../../components/edite-ticket/edite-ticket.component';
 import { ViewTicketComponent } from '../../components/view-ticket/view-ticket.component';
+import {  ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-depatment-ticket',
@@ -28,6 +29,8 @@ export class DepatmentTicketComponent implements OnInit, OnDestroy {
   tableSize: number = 10;
   tableSizes: any = [3, 6, 9, 12];
   tickitStatus = "All";
+  @ViewChild('sel3', { static: false }) sel3!: ElementRef;
+
 
   constructor(
     private cd: ChangeDetectorRef,
@@ -174,6 +177,8 @@ export class DepatmentTicketComponent implements OnInit, OnDestroy {
           this.isProceess = false;
           this.toastr.success("Ticket Updated!");
           this.fatchData();
+          this.sel3.nativeElement.value = 'All';
+          this.sel3.nativeElement.dispatchEvent(new Event('change'));
         }, error => {
           this.isProceess = false;
           this.toastr.error("Error while saving Ticket!");
