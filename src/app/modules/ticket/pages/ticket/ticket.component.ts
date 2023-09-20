@@ -428,6 +428,8 @@ export class TicketComponent implements OnInit, OnDestroy {
                 this.isProceess = false;
                 this.toastr.success('Ticket Deleted!');
                 this.fatchData();
+                this.sel3.nativeElement.value = 'All';
+                this.sel3.nativeElement.dispatchEvent(new Event('change'));
               },
               (error) => {
                 this.isProceess = false;
