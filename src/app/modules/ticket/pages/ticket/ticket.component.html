@@ -12,7 +12,7 @@
   </div>
   <div class="topbr-btns">
     <div class="btn-group">
-      <select class="form-select cst-margin" #sel3 (change)="selectStatus(sel3.value)">
+      <select class="form-select cst-margin"  [(ngModel)]="tickitStatus" (change)="selectStatus($event)">
         <option value="All" selected>All</option>
         <option value="New">New</option>
         <option value="In_Progress">In-Progress</option>

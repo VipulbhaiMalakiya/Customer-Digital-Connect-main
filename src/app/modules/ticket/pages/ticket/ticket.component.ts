@@ -49,12 +49,13 @@ export class TicketComponent implements OnInit, OnDestroy {
   }
 
   selectStatus(e: any) {
-    if (e === this.tickitStatus && this.userData?.role?.roleName !== 'Admin') {
+    this.tickitStatus = e.target.value;
+    if (this.tickitStatus === this.tickitStatus && this.userData?.role?.roleName !== 'Admin') {
       this.masterName = `/ticket/createdBy/${this.userData.userId}`;
     } else if (this.userData?.role?.roleName === 'Resolver') {
       this.masterName = `/ticket/createdBy/${this.userData.userId}/ticketStatus/${e}`;
     } else if (
-      e === this.tickitStatus &&
+      this.tickitStatus === this.tickitStatus &&
       this.userData?.role?.roleName === 'Admin'
     ) {
       this.masterName = `/ticket/ticketscomments`;
@@ -81,6 +82,7 @@ export class TicketComponent implements OnInit, OnDestroy {
   }
 
   fatchData() {
+    this.tickitStatus = 'All';
     if (this.userData?.role?.roleName === 'Resolver') {
       this.masterName = `/ticket/createdBy/${this.userData.userId}`;
     } else if (this.userData?.role?.roleName === 'Admin') {
@@ -164,6 +166,8 @@ export class TicketComponent implements OnInit, OnDestroy {
               (responseData) => {
                 this.isProceess = false;
                 this.toastr.success('Ticket Master Added!');
+                this.tickitStatus = 'All';
+                this.cd.detectChanges();
                 this.fatchData();
               },
               (error) => {
@@ -180,14 +184,17 @@ export class TicketComponent implements OnInit, OnDestroy {
     const modalRef = this.modalService.open(AddEditeTicketComponent, {
       size: 'xl',
     });
+
     if (modalRef) {
       this.isProceess = false;
     } else {
       this.isProceess = false;
     }
+
     var componentInstance =
       modalRef.componentInstance as AddEditeTicketComponent;
     componentInstance.ticketsMaster = dataItem;
+
     modalRef.result
       .then((data: ticketMasterModel) => {
         if (data) {
@@ -214,7 +221,7 @@ export class TicketComponent implements OnInit, OnDestroy {
             updatedBy: this.userData.userId,
             ticketStatus: Tstatus,
             comment: data.additionalComments || ' ',
-            mode:"User"
+            mode: "User",
           };
           let formData = new FormData();
           if (data.file === null) {
@@ -228,10 +235,12 @@ export class TicketComponent implements OnInit, OnDestroy {
             .updateMasterData(formData, dataItem.ticketId)
             .pipe(take(1))
             .subscribe(
-              (responseData) => {
+              (responseData: any) => {
                 if (responseData) {
-                  this.toastr.success('Ticket Updated!');
+                  this.toastr.success(responseData.message);
                   this.fatchData();
+                  this.tickitStatus = 'All';
+                  this.cd.detectChanges();
                   this.isProceess = false;
                 }
               },
@@ -244,6 +253,7 @@ export class TicketComponent implements OnInit, OnDestroy {
       })
       .catch(() => {});
   }
+
 
   onFilter() {
     const modalRef = this.modalService.open(FilterTicketComponent, {
