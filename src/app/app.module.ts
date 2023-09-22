@@ -25,7 +25,6 @@ import { MainlayoutComponent } from './_layouts/mainlayout/mainlayout.component'
 import { ResetPasswordComponent } from './_layouts/reset-password/reset-password.component';
 import { NotFoundComponent } from './_layouts/not-found/not-found.component';
 import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
-import { AgmCoreModule } from '@agm/core';
 import { AuthGaurdGuard } from './_helpers/auth-gaurd.guard';
 
 @NgModule({
