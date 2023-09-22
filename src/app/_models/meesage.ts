@@ -29,4 +29,6 @@ export interface MessageData {
   username?:any;
   filename?:any;
   catalogOrderItems?:any
+  latitude?:any;
+  longitude?:any
 }

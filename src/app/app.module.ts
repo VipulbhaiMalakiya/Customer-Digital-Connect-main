@@ -26,6 +26,7 @@ import { ResetPasswordComponent } from './_layouts/reset-password/reset-password
 import { NotFoundComponent } from './_layouts/not-found/not-found.component';
 import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
 import { AuthGaurdGuard } from './_helpers/auth-gaurd.guard';
+import {GoogleMapsModule} from '@angular/google-maps';  // added
 
 @NgModule({
   declarations: [
@@ -50,7 +51,7 @@ import { AuthGaurdGuard } from './_helpers/auth-gaurd.guard';
     NgbModule,
     StoreModule.forRoot(rootReducer),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-
+    GoogleMapsModule
   ],
   providers: [
     ApiService,

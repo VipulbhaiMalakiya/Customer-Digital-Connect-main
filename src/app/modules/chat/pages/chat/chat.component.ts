@@ -56,6 +56,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   userMessage = [];
   chatname: any;
   label: any;
+
   Userinfo?: any;
   quickReplydata: any = [];
   closedCount?: any;
@@ -91,6 +92,14 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   showupload = false;
   showupload1 = false;
   private notificationSound?: HTMLAudioElement;
+
+  latitude: number = 0; // Initialize with a default value
+  longitude: number = 0; // Initialize with a default value
+  center: google.maps.LatLngLiteral = {
+    lat: this.latitude,
+    lng: this.longitude,
+  };
+
 
   toggleEmojiPicker() {
     this.showupload = false;
@@ -222,6 +231,30 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     $(document).on('click', () => {
       $('.filters-popup').hide();
     });
+  }
+
+  display: any; // Property to store latitude and longitude data from the map
+
+  getLocation(data?: any) {
+    if (data && data.latitude && data.longitude) {
+      this.latitude = data.latitude;
+      this.longitude = data.longitude;
+
+      // Update the center property when you have the latitude and longitude values
+      this.center = {
+        lat: this.latitude,
+        lng: this.longitude,
+      };
+    }
+  }
+
+
+  zoom = 4; // Initial zoom level for the map
+  move(event: google.maps.MapMouseEvent) {
+    // Method to handle map click event and update the display property
+    if (event.latLng != null) {
+      this.display = event.latLng.toJSON();
+    }
   }
 
   public connect(): void {

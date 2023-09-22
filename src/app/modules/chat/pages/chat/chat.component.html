@@ -560,25 +560,10 @@
                   <span *ngIf="data.name !== null"> {{getShortName(data.name)}}</span>
                 </div>
                 <div class="chat-info">
-                  <div class="last-msg p-2 pb-1 rounded">
-
-                    <div
-                      data-plain-text="https://maps.google.com/maps/search/Samsara%20Resorts%20-%20Delhi%20office/@28.650000585182685,77.15672581570189,17z?hl=en">
-
-                      <a rel="noopener noreferrer"
-                        href="https://maps.google.com/maps/search/Samsara%20Resorts%20-%20Delhi%20office/@28.650000585182685,77.15672581570189,17z?hl=en"
-                        target="_blank" aria-label="Open map location">
-
-                        <img crossorigin="anonymous"
-                          src="https://maps.googleapis.com/maps/api/staticmap?zoom=15&amp;size=270x200&amp;scale=1&amp;language=en&amp;client=gme-whatsappinc&amp;markers=color%3Ared%7C28.650000585182685%2C+77.15672581570189&amp;signature=vJaz4QTIGR6coC2LQwv6e4LBh60"
-                          alt="File Not Found" class="jnl3jror tvf2evcx oq44ahr5 lb5m6g5c o9wlm8ph _11JPr" tabindex="-1"
-                          style="pointer-events: none; width: 270px; visibility: visible;">
-                      </a>
-                    </div>
-
-                    <div class="maplocaname"><a href="https://goo.gl/maps/7hXYYTpGctEjdKhg6" target="_blank"
-                        title="Samsara Resorts - Delhi office">Avataara Resort & Spa</a></div>
-
+                  <div class="last-msg p-2 pb-1 rounded" {{getLocation(data)}}>
+                    <google-map [center]="center" height="230px"
+                    width="250px"  [zoom]="zoom" (mapMousemove)="move($event)">
+                    </google-map>
                   </div>
                   <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
                     ||'Reception'}}</span>

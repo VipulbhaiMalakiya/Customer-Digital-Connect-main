@@ -1,4 +1,4 @@
-import {  Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 @Component({
@@ -7,11 +7,12 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./location-details.component.css'],
 })
 export class LocationDetailsComponent implements OnInit {
-  latitude: any;
-  longitude: any;
+  latitude?: number;
+  longitude?: number;
+  zoom: number = 14;
   address: any;
   locationName: any;
-
+  center:any
   isProceess: boolean = true;
   customersMasterForm: any;
   uploadFile: any = '';
@@ -22,7 +23,7 @@ export class LocationDetailsComponent implements OnInit {
 
   constructor(
     private activeModal: NgbActiveModal,
-    private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder
   ) {
     this.isProceess = false;
 
@@ -32,6 +33,11 @@ export class LocationDetailsComponent implements OnInit {
       address: [''],
       locationName: [''],
     });
+    // Initialize center with a default value
+    this.center = {
+      lat: 0, // Initial latitude
+      lng: 0, // Initial longitude
+    };
   }
 
   ngOnInit() {
@@ -44,12 +50,24 @@ export class LocationDetailsComponent implements OnInit {
         (position) => {
           this.latitude = position.coords.latitude;
           this.longitude = position.coords.longitude;
-          // this.getAddressFromCoordinates(this.latitude, this.longitude);
+          this.center = {
+            lat: this.latitude,
+            lng: this.longitude,
+          };
         },
         (error) => console.log(error)
       );
     } else {
       console.log('Geolocation is not supported by this browser.');
+    }
+  }
+  display: any; // Property to store latitude and longitude data from the map
+
+
+  move(event: google.maps.MapMouseEvent) {
+    // Method to handle map click event and update the display property
+    if (event.latLng != null) {
+      this.display = event.latLng.toJSON();
     }
   }
 
