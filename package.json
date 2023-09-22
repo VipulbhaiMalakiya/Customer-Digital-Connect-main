@@ -11,7 +11,7 @@
   "private": true,
   "dependencies": {
     "@abacritt/angularx-social-login": "^1.2.5",
-    "@agm/core": "^3.0.0-beta.0",
+    "@agm/core": "^1.0.0-beta.2",
     "@angular-eslint/eslint-plugin": "^15.2.0",
     "@angular/animations": "^16.0.0",
     "@angular/common": "^16.0.0",

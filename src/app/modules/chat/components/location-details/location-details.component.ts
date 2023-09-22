@@ -57,31 +57,31 @@ export class LocationDetailsComponent implements OnInit {
     this.activeModal.dismiss();
   }
 
-  getAddressFromCoordinates(latitude: any, longitude: any) {
-    const geocoder = new google.maps.Geocoder();
-    const latlng = { lat: latitude, lng: longitude };
-    geocoder.geocode({ location: latlng }, (results, status) => {
-      if (status === 'OK' && results[0]) {
-        this.address = results[0].formatted_address;
-        this.locationName = this.getLocationNameFromGeocodeResult(results[0]);
-      } else {
-        console.log('Geocoder failed due to: ' + status);
-      }
-    });
-  }
+  // getAddressFromCoordinates(latitude?: any, longitude?: any) {
+  //   const geocoder = new google.maps.Geocoder();
+  //   const latlng = { lat: latitude, lng: longitude };
+  //   geocoder.geocode({ location: latlng }, (results, status) => {
+  //     if (status === 'OK' && results[0]) {
+  //       this.address = results[0].formatted_address;
+  //       this.locationName = this.getLocationNameFromGeocodeResult(results[0]);
+  //     } else {
+  //       console.log('Geocoder failed due to: ' + status);
+  //     }
+  //   });
+  // }
 
-  getLocationNameFromGeocodeResult(result: google.maps.GeocoderResult): string {
-    const locationNameComponent = result.address_components.find(
-      (component) =>
-        component.types.includes('point_of_interest') ||
-        component.types.includes('establishment') ||
-        component.types.includes('natural_feature') ||
-        component.types.includes('park') ||
-        component.types.includes('locality')
-    );
+  // getLocationNameFromGeocodeResult(result: google.maps.GeocoderResult): string {
+  //   const locationNameComponent = result.address_components.find(
+  //     (component) =>
+  //       component.types.includes('point_of_interest') ||
+  //       component.types.includes('establishment') ||
+  //       component.types.includes('natural_feature') ||
+  //       component.types.includes('park') ||
+  //       component.types.includes('locality')
+  //   );
 
-    return locationNameComponent ? locationNameComponent.long_name : '';
-  }
+  //   return locationNameComponent ? locationNameComponent.long_name : '';
+  // }
 
   onSubmit() {
     if (this.customersMasterForm.valid) {

@@ -19,6 +19,7 @@ import { TempletilterPipe } from 'src/app/_helpers/templet-filter';
 import { ShortenFileNamePipe } from 'src/app/_helpers/ShortenFileName';
 import { ReducePipe } from 'src/app/_helpers/reducefuction';
 import { TotalPricePipe } from 'src/app/_helpers/total-price.pipe';
+import { AgmCoreModule } from '@agm/core/core.module';
 
 @NgModule({
     declarations: [
