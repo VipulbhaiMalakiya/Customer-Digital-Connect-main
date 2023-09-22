@@ -20,6 +20,7 @@ import { ShortenFileNamePipe } from 'src/app/_helpers/ShortenFileName';
 import { ReducePipe } from 'src/app/_helpers/reducefuction';
 import { TotalPricePipe } from 'src/app/_helpers/total-price.pipe';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { ParseFloatPipe } from 'src/app/_helpers/parseFloat.pipe';
 
 @NgModule({
     declarations: [
@@ -36,6 +37,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
         TempletsComponent,
         TempletilterPipe,
         ShortenFileNamePipe,
+        ParseFloatPipe 
 
     ],
     imports: [

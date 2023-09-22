@@ -56,7 +56,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   userMessage = [];
   chatname: any;
   label: any;
-
+  latitude?: number;
+  longitude?: number;
   Userinfo?: any;
   quickReplydata: any = [];
   closedCount?: any;
@@ -93,13 +94,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   showupload1 = false;
   private notificationSound?: HTMLAudioElement;
 
-  latitude: number = 0; // Initialize with a default value
-  longitude: number = 0; // Initialize with a default value
-  center: google.maps.LatLngLiteral = {
-    lat: this.latitude,
-    lng: this.longitude,
-  };
-
+  
 
   toggleEmojiPicker() {
     this.showupload = false;
@@ -207,6 +202,14 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.ActiveLabels();
     }, 2000);
 
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.data.latitude = position.coords.latitude.toString();
+        this.data.longitude = position.coords.longitude.toString();
+      });
+    }
+
     $('.select-dropdown__button').on('click', function () {
       $('.select-dropdown__list').toggleClass('active');
     });
@@ -236,18 +239,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   display: any; // Property to store latitude and longitude data from the map
 
   getLocation(data?: any) {
-    if (data && data.latitude && data.longitude) {
-      this.latitude = data.latitude;
-      this.longitude = data.longitude;
-
-      // Update the center property when you have the latitude and longitude values
-      this.center = {
-        lat: this.latitude,
-        lng: this.longitude,
-      };
-    }
+    this.latitude=data.latitude;
+    this.longitude= this.longitude;
   }
-
+  
 
   zoom = 4; // Initial zoom level for the map
   move(event: google.maps.MapMouseEvent) {
