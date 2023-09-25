@@ -38,11 +38,11 @@ export class LoginComponent implements OnInit {
     const d: any = localStorage.getItem('userData');
     this.logUsers = JSON.parse(d);
     if (this.logUsers) {
-      if (this.logUsers.role.roleName == 'Admin') {
+      if (this.logUsers.role?.roleName == 'Admin') {
         this.router.navigate(['/admin/inbox']);
-      } else if (this.logUsers.role.roleName == 'User') {
+      } else if (this.logUsers.role?.roleName == 'User') {
         this.router.navigate(['/inbox']);
-      } else if (this.logUsers.role.roleName == 'Resolver') {
+      } else if (this.logUsers.role?.roleName == 'Resolver') {
         this.router.navigate(['/inbox']);
       }
     }
