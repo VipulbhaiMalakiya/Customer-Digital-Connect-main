@@ -18,6 +18,47 @@ export class HeaderComponent implements OnInit {
   classToggled = false;
   isprofile = false;
 
+  messages: { text: string; time: any; icone:any; read: boolean }[] = [
+    {
+      text: 'You have 1 campaigns at the moment',
+      time: 'JUST NOW',
+      icone:'las la-check',
+      read: true,
+    },
+    {
+      text: 'Vipul has assigned new task to you',
+      time: '10 HOURS',
+      icone:'las la-file-alt',
+      read: true,
+    },
+    {
+      text: 'Your Order will be delivered today',
+      time: 'YESTERDAY',
+      icone:'las la-thumbs-up',
+      read: false,
+    },
+    {
+      text: 'You have 1 campaigns at the moment',
+      time: '11/07/2023',
+      icone:'las la-check',
+      read: false,
+    },
+    {
+      text: 'You have 1 campaigns at the moment',
+      time: '5/07/2023',
+      icone:'las la-check',
+      read: false,
+    },
+    // Add more messages here
+  ];
+
+  unreadCount: number = this.messages.filter(message => !message.read).length;
+
+  markAsRead(message: { text: string, read: boolean }) {
+    message.read = true;
+    this.unreadCount = this.messages.filter(m => !m.read).length;
+  }
+
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router,
@@ -41,16 +82,23 @@ export class HeaderComponent implements OnInit {
     const isClickInsideDropdown = this.elRef.nativeElement
       .querySelector('.top-user-profile')
       .contains(event.target);
-    const isClickInsideNotification = this.elRef.nativeElement
-      .contains(event.target);
+    const isClickInsideNotification = this.elRef.nativeElement.contains(
+      event.target
+    );
 
     if (!isClickInsideDropdown && !isClickInsideNotification) {
       this.closeDropdownAndNotification();
     }
   }
   closeDropdownAndNotification() {
-    this.renderer.removeClass(this.elRef.nativeElement.querySelector('.top-user-profile'), 'toggled');
-    this.renderer.removeClass(this.elRef.nativeElement.querySelector('.notification-bar'), 'toggled');
+    this.renderer.removeClass(
+      this.elRef.nativeElement.querySelector('.top-user-profile'),
+      'toggled'
+    );
+    this.renderer.removeClass(
+      this.elRef.nativeElement.querySelector('.notification-bar'),
+      'toggled'
+    );
     this.isprofile = false;
     this.classToggled = false;
   }
@@ -80,12 +128,9 @@ export class HeaderComponent implements OnInit {
   }
 
   toggleField() {
-    
-
     this.isprofile = false;
     // this.closeDropdownAndNotification();
     this.classToggled = !this.classToggled;
-   
   }
 
   profile() {

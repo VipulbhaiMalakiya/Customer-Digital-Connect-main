@@ -1,3 +1,8 @@
 .cts-pointer{
   cursor: pointer;
 }
+
+.unread {
+  font-weight: bold;
+  color: blue !important;
+}

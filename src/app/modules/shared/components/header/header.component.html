@@ -1,5 +1,6 @@
 <div class="top-noti-user">
-  <div class="top-notify" (click)="toggleField()"><img src="../assets/images/bell-icon.png" alt=""><span>0</span></div>
+  <div class="top-notify" (click)="toggleField()"><img src="../assets/images/bell-icon.png" alt=""><span
+      *ngIf="unreadCount > 0">{{ unreadCount }} </span></div>
   <div class="top-user-profile">
     <a class="dropdown-toggle" (click)="profile()" data-bs-toggle="dropdown"><img src="../assets/images/user.jpg"
         alt="">
@@ -19,35 +20,13 @@
     </div>
 
     <div class="inner-noti-sec">
-
-      <div class="noti-col"><a>
-          <div class="noti-ico"><i class="las la-check"></i></div>
-          <p>You have <b>1</b> campaigns at the moment <small>Just Now</small></p>
+      <div class="noti-col" *ngFor="let message of messages" [class.unread]="!message.read" (click)="markAsRead(message)"><a>
+          <div class="noti-ico">
+            <i class="{{ message.icone }}"></i>
+          </div>
+          <p>{{ message.text }} <small>{{ message.time }}</small></p>
         </a>
       </div>
-
-      <div class="noti-col">
-        <div class="noti-ico"><i class="las la-file-alt"></i></div>
-        <p>Vipul has assigned new task to you <small>10 hours</small></p>
-      </div>
-
-      <div class="noti-col">
-        <div class="noti-ico"><i class="las la-thumbs-up"></i></div>
-        <p>Your Order will be delivered today! <small>Yesterday</small></p>
-      </div>
-
-      <div class="noti-col"><a>
-          <div class="noti-ico"><i class="las la-check"></i></div>
-          <p>You have <b>1</b> campaigns at the moment <small>11/07/2023</small></p>
-        </a>
-      </div>
-
-      <div class="noti-col"><a>
-          <div class="noti-ico"><i class="las la-check"></i></div>
-          <p>You have <b>1</b> campaigns at the moment <small>5/07/2023</small></p>
-        </a>
-      </div>
-
     </div>
 
   </div>

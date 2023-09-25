@@ -94,8 +94,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   showupload1 = false;
   private notificationSound?: HTMLAudioElement;
 
-  
-
   toggleEmojiPicker() {
     this.showupload = false;
     this.showupload1 = false;
@@ -202,7 +200,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.ActiveLabels();
     }, 2000);
 
-
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.data.latitude = position.coords.latitude.toString();
@@ -239,10 +236,9 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   display: any; // Property to store latitude and longitude data from the map
 
   getLocation(data?: any) {
-    this.latitude=data.latitude;
-    this.longitude= this.longitude;
+    this.latitude = data.latitude;
+    this.longitude = this.longitude;
   }
-  
 
   zoom = 4; // Initial zoom level for the map
   move(event: google.maps.MapMouseEvent) {
@@ -256,6 +252,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     if (!this.socket$ || this.socket$.closed) {
       this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
       this.socket$.subscribe((data: MessageData) => {
+        console.log(data);
         this.messagestates = data.messageStatus;
         if (data.mobileNo === this.contact) {
           this.receivedData.push(data);
