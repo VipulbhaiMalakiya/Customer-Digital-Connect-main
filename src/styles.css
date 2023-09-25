@@ -1783,6 +1783,12 @@ button.search-ico {
   border-top-right-radius: 0px !important;
 }
 
+.bg-notifaction {
+  background-color:  #fed7d7 !important;
+
+  color: #333;
+  border-top-right-radius: 0px !important;
+}
 .chat-body {}
 
 .msg-sender .suserchat-info {
