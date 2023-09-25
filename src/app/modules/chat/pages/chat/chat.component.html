@@ -298,8 +298,7 @@
           <ul class="msg-history" #chatContainer>
             <ng-container *ngFor="let data of receivedData">
               <!-- Notifaction -->
-              <li class="msg-replayer"
-                *ngIf="data.type === 'notification' && data.messagetype === 'escalationmatrix'">
+              <li class="msg-replayer" *ngIf="data.type === 'notification' && data.messagetype === 'escalationmatrix'">
                 <ng-container>
                   <div class="avata">
                     <span *ngIf="data.name === null">Y</span>
@@ -573,8 +572,6 @@
                   </div>
                 </div>
               </li>
-
-
               <li class="msg-sender" *ngIf="data.type === 'Receiver' && data.messagetype === 'image' ">
                 <div class="avata">
                   <span *ngIf="data.name === null">Y</span>
@@ -599,7 +596,8 @@
                 <div class="chat-info">
                   <div class="last-msg p-2 pb-1 rounded">
 
-                    <google-map [center]="{ lat: (data?.latitude | parseFloat), lng: (data?.longitude | parseFloat) }" height="230px" width="250px"></google-map>
+                    <google-map [center]="{ lat: (data?.latitude | parseFloat), lng: (data?.longitude | parseFloat) }"
+                      height="230px" width="250px"></google-map>
 
 
                   </div>
@@ -635,7 +633,8 @@
                 <div class="chat-info">
                   <div class="last-msg p-2 pb-1 mb-2 rounded">
 
-                    <google-map [center]="{ lat: (data?.latitude | parseFloat), lng: (data?.longitude | parseFloat) }" height="230px" width="250px"></google-map>
+                    <google-map [center]="{ lat: (data?.latitude | parseFloat), lng: (data?.longitude | parseFloat) }"
+                      height="230px" width="250px"></google-map>
 
 
                   </div>
@@ -1205,8 +1204,8 @@
               <div class="tab-pane active" id="reply">
                 <form class="writechat-boder" #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
                   <textarea class="form-control h-auto" id="chat" [(ngModel)]="message" required name="chat"
-                    placeholder="Type a message...." rows="1">
-                </textarea>
+                    placeholder="Type a message...." rows="1" (keydown.enter)="submitForm(loginForm)" appWhitespaceValidator>
+                  </textarea>
                   <ng-container *ngIf="chatVisible">
                     <button class="chatsubmit-btn invalid" type="submit" *ngIf="loginForm.invalid"
                       [disabled]="loginForm.invalid"><i class="lab la-telegram-plane"></i></button>
@@ -1214,11 +1213,12 @@
                       [disabled]="loginForm.invalid"><i class="lab la-telegram-plane"></i></button>
                   </ng-container>
                 </form>
+
               </div>
               <div class="tab-pane" id="notes">
                 <form class="writechat-boder" #ngNotesForm="ngForm" (ngSubmit)="submitNoteForm(ngNotesForm)">
                   <textarea class="form-control h-auto" id="note" [(ngModel)]="message" required name="note"
-                    placeholder="Type a note...." rows="1"></textarea>
+                    placeholder="Type a note...." rows="1" (keydown.enter)="submitNoteForm(loginForm)" appWhitespaceValidator></textarea>
                   <ng-container *ngIf="chatVisible">
                     <button class="chatsubmit-btn invalid" type="submit" *ngIf="ngNotesForm.invalid"
                       [disabled]="ngNotesForm.invalid"><i class="lab la-telegram-plane"></i></button>

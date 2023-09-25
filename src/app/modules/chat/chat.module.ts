@@ -21,6 +21,7 @@ import { ReducePipe } from 'src/app/_helpers/reducefuction';
 import { TotalPricePipe } from 'src/app/_helpers/total-price.pipe';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { ParseFloatPipe } from 'src/app/_helpers/parseFloat.pipe';
+import { WhitespaceValidatorDirective } from 'src/app/_helpers/whitespace-validator.directive';
 
 @NgModule({
     declarations: [
@@ -37,7 +38,8 @@ import { ParseFloatPipe } from 'src/app/_helpers/parseFloat.pipe';
         TempletsComponent,
         TempletilterPipe,
         ShortenFileNamePipe,
-        ParseFloatPipe 
+        ParseFloatPipe,
+        WhitespaceValidatorDirective
 
     ],
     imports: [
@@ -47,7 +49,8 @@ import { ParseFloatPipe } from 'src/app/_helpers/parseFloat.pipe';
         SharedModule,
         FormsModule,
         PickerComponent,
-        GoogleMapsModule
+        GoogleMapsModule,
+
 
     ]
 })

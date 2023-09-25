@@ -301,6 +301,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
   // Download code start
 
+
   downloadFile(e: any) {
     const link = document.createElement('a');
     link.setAttribute('href', e.fileUrl);
