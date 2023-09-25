@@ -67,7 +67,7 @@ export class LoginComponent implements OnInit {
           this.authenticationService.loginDetail(decoded.sub).then(
             (userInfo: any) => {
               localStorage.setItem('userData', JSON.stringify(userInfo));
-              let role = userInfo.role.roleName;
+              let role = userInfo.role?.roleName;
               this.loading = false;
               if (role == 'Admin') {
                 this.router.navigate(['/admin/inbox']);
