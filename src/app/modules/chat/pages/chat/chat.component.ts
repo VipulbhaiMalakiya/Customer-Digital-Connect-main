@@ -254,6 +254,8 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.socket$.subscribe((data: MessageData) => {
         console.log(data);
         this.messagestates = data.messageStatus;
+        console.log(this.contact);
+
         if (data.mobileNo === this.contact) {
           this.receivedData.push(data);
         } else if (data.mobileNo !== this.contact) {
