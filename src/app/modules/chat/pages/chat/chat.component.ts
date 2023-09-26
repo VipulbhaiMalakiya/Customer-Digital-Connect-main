@@ -232,14 +232,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       $('.filters-popup').hide();
     });
   }
-
-  display: any; // Property to store latitude and longitude data from the map
-
-  getLocation(data?: any) {
-    this.latitude = data.latitude;
-    this.longitude = this.longitude;
-  }
-
+  display: any;
   zoom = 4; // Initial zoom level for the map
   move(event: google.maps.MapMouseEvent) {
     // Method to handle map click event and update the display property
@@ -248,6 +241,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
   }
 
+/**
+ * The `connect` function establishes a WebSocket connection and subscribes to incoming messages,
+ * handling them based on their status and type.
+ */
   public connect(): void {
     if (!this.socket$ || this.socket$.closed) {
       this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
@@ -285,17 +282,29 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
   }
 
+/**
+ * The function `speakNotification` uses the Web Speech API to convert a given message into speech and
+ * speak it out loud.
+ * @param {string} message - The `message` parameter is a string that represents the text that you want
+ * to be spoken out loud.
+ */
   private speakNotification(message: string) {
     const speechSynthesis = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(message);
     utterance.lang = 'en-US';
     speechSynthesis.speak(utterance);
   }
+/**
+ * The function "toggleupload" toggles the visibility of an upload feature and hides an emoji picker.
+ */
   toggleupload() {
     this.showEmojiPicker = false;
     this.showupload1 = false;
     this.showupload = !this.showupload;
   }
+ /**
+  * The function "togglecart" toggles the value of "showupload1" between true and false.
+  */
   togglecart() {
     this.showEmojiPicker = false;
     this.showupload = false;
@@ -304,6 +313,14 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   // Download code start
 
 
+/**
+ * The `downloadFile` function creates a link element, sets its attributes to the provided file URL and
+ * filename, appends it to the document body, triggers a click event on the link to initiate the file
+ * download, and finally removes the link element from the document body.
+ * @param {any} e - The parameter "e" is of type "any", which means it can be any type of data. It is
+ * likely an event object that contains information about the file to be downloaded, such as the file
+ * URL and filename.
+ */
   downloadFile(e: any) {
     const link = document.createElement('a');
     link.setAttribute('href', e.fileUrl);
@@ -312,6 +329,12 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     link.click();
     document.body.removeChild(link);
   }
+/**
+ * The function `downloadFile1` creates a link element, sets its attributes for downloading a file,
+ * appends it to the document body, triggers a click event on the link, and then removes the link from
+ * the document body.
+ * @param {any} e - The parameter "e" is of type "any", which means it can be any type of data.
+ */
   downloadFile1(e: any) {
     const link = document.createElement('a');
     link.setAttribute('href', e.templateHeaderfileLink);
@@ -321,6 +344,9 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     document.body.removeChild(link);
   }
   // Download code end
+/**
+ * The function "ActiveLabels" retrieves active labels from an API and assigns the data to a variable.
+ */
   ActiveLabels() {
     this.isProceess = true;
     this.masterName = '/label/active';
@@ -337,10 +363,26 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         }
       );
   }
+/**
+ * The function checks if an element is overflowing horizontally.
+ * @param {any} el - The "el" parameter represents an element in the DOM (Document Object Model). It
+ * can be any HTML element such as a div, span, p, etc.
+ * @returns a boolean value indicating whether the element's content is overflowing horizontally.
+ */
 
   isOverflowing(el: any) {
     return el.offsetWidth < el.scrollWidth;
   }
+/**
+ * The `getColorClass` function returns a color class based on the index provided, using a repeated
+ * pattern of predefined colors.
+ * @param {number} index - The `index` parameter is a number that represents the position of the color
+ * in the `colors` array.
+ * @returns a string representing a color class. The color class is determined based on the index
+ * provided as an argument to the function. The index is used to calculate the color index by taking
+ * the remainder when divided by the length of the colors array. The color index is then used to access
+ * the corresponding color class from the colors array, which is returned by the function.
+ */
   getColorClass(index: number): string {
     const colors = [
       'color1',
@@ -355,6 +397,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     return colors[colorIndex];
   }
 
+/**
+ * The function `ActiveUser()` retrieves active user data from an API and assigns it to the
+ * `activeUser` variable.
+ */
   ActiveUser() {
     this.isProceess = true;
     this.masterName = '/users/active';
@@ -372,19 +418,37 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       );
   }
 
+/**
+ * The ngAfterViewChecked function is used in Angular to scroll to the bottom of a view after it has
+ * been checked for any changes.
+ */
   ngAfterViewChecked() {
     this.scrollToBottom();
   }
 
+ /**
+  * The function `getShortName` takes an optional `fullName` parameter and returns the first character
+  * of the `fullName` string.
+  * @param {any} [fullName] - The fullName parameter is a string that represents a person's full name.
+  * @returns the first character of the `fullName` string.
+  */
   getShortName(fullName?: any) {
     return fullName.charAt(0);
     // return fullName?.split(' ').map((n: any[]) => n[0]).join('');
   }
 
+ /**
+  * The ngAfterViewInit function is used to scroll to the bottom of a page after the view has been
+  * initialized.
+  */
   ngAfterViewInit() {
     this.scrollToBottom();
   }
 
+
+/**
+ * The scrollToBottom function scrolls the chat container to the bottom.
+ */
   scrollToBottom(): void {
     try {
       this.chatContainer.nativeElement.scrollTop =
@@ -392,6 +456,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     } catch (err) {}
   }
 
+/**
+ * The function `GetUser()` retrieves user data based on the provided ID and performs additional
+ * operations on the data.
+ */
   GetUser() {
     if (this._route.snapshot.paramMap.get('id') != null) {
       this.show = true;
@@ -435,6 +503,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
     this.isProceess = false;
   }
+/**
+ * The `getContactList()` function retrieves a contact list based on the user's role and updates the
+ * component's properties accordingly.
+ */
 
   getContactList() {
     // this.isProceess = true;
@@ -475,6 +547,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
   }
 
+/**
+ * The `chathistory` function retrieves the chat history for a given phone number using the WhatsApp
+ * service and assigns the response to the `item` variable.
+ */
   chathistroy() {
     let phone: any = this.data?.contact;
     this.isProceess = true;
@@ -492,6 +568,14 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         }
       );
   }
+ /**
+  * The function `onViewContact` is used to display contact information and chat history for a selected
+  * contact.
+  * @param {any} e - The parameter `e` is an object that represents contact information. It contains
+  * properties such as `id`, `fullName`, `phoneNo`, and `customerLabel`.
+  * @param {any} c - The parameter `c` is used to set the background class for the contact. It is
+  * likely used for styling purposes.
+  */
   onViewContact(e: any, c: any) {
     this.contactinfo = e;
     this.bgclass = c;
@@ -557,6 +641,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         }
       );
   }
+/**
+ * The function checks if the last message time is within the last 24 hours and updates the chat
+ * visibility and message accordingly.
+ */
   checkChatStatus() {
     this.message = '';
     this.chatVisible = true;
@@ -578,6 +666,11 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
   }
 
+/**
+ * The `onlabel` function updates a customer's label and displays a success message if the update is
+ * successful, or an error message if it fails.
+ * @param {any} e - The parameter "e" is of type "any", which means it can be any data type.
+ */
   onlabel(e: any) {
     this.masterName = `/customer/label-update/${this.contact}/${e.id}`;
     let updateData: any = {
@@ -601,6 +694,12 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       );
   }
 
+/**
+ * The `onlabelRemove` function opens a confirmation dialog modal and if the user confirms the removal,
+ * it sends a delete request to the server and updates the contact list.
+ * @param {any} e - The parameter `e` is of type `any`, which means it can accept any type of value. It
+ * is likely an event object that is passed to the function when it is triggered.
+ */
   onlabelRemove(e: any) {
     this.isProceess = true;
     const modalRef = this.modalService.open(ConfirmationDialogModalComponent, {
@@ -640,6 +739,11 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       .catch(() => {});
   }
 
+ /**
+  * The `submitNoteForm` function sends a WhatsApp message with a note, using the provided form data.
+  * @param {any} form - The `form` parameter is an object that represents a form in the application. It
+  * is used to validate the form and retrieve the values entered by the user.
+  */
   submitNoteForm(form: any) {
     if (form.valid) {
       let phone;
@@ -685,6 +789,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
   }
 
+/**
+ * The function `quickReply()` opens a modal window to display a QuickReplyComponent, and assigns the
+ * selected message to the variable `this.message`.
+ */
   quickReply() {
     this.isProceess = true;
     this.showupload = false;
@@ -706,6 +814,12 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       })
       .catch(() => {});
   }
+/**
+ * The `submitForm` function sends a WhatsApp message using the provided form data if the form is
+ * valid.
+ * @param {any} form - The `form` parameter is an object that represents a form in the application. It
+ * is used to access the values and validity of the form fields.
+ */
   submitForm(form: any) {
     if (form.valid) {
       var request = {
@@ -745,6 +859,11 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
   }
 
+/**
+ * The function `sendingCatalog` sends a WhatsApp message with a catalog to an individual recipient.
+ * @param {any} e - The parameter "e" is the name of the interactive catalog that you want to send. It
+ * is passed as an argument to the "sendingCatalog" function.
+ */
   sendingCatalog(e: any) {
     var request = {
       messaging_product: 'whatsapp',
@@ -778,10 +897,20 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       );
   }
 
+ /**
+  * The ngOnDestroy function is used to unsubscribe from a subscription and complete a socket
+  * connection.
+  */
   ngOnDestroy() {
     // this.socket$.complete();
     this.subscription?.unsubscribe();
   }
+/**
+ * The `onClose` function is used to handle the closing of a chat, displaying a confirmation dialog and
+ * performing various API calls based on the user's response.
+ * @param {any} contactinfo - The `contactinfo` parameter is an object that contains information about
+ * the contact, such as their phone number (`phoneNo`).
+ */
   onClose(contactinfo: any) {
     this.isProceess = true;
     const modalRef = this.modalService.open(ConfirmationDialogModalComponent, {
@@ -865,6 +994,12 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       .catch(() => {});
   }
 
+/**
+ * The `selectDepartment` function assigns a department to a contact and performs various API calls and
+ * data manipulations.
+ * @param {any} e - The parameter `e` is the value selected from the department dropdown. It represents
+ * the department to which the contact will be assigned.
+ */
   selectDepartment(e: any) {
     let phone;
     if (this.contact == undefined) {
@@ -947,6 +1082,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       );
   }
 
+/**
+ * The `onimageAdd()` function opens a modal for uploading an image, sends the image as a WhatsApp
+ * message, and displays a success or error message.
+ */
   onimageAdd() {
     this.isProceess = true;
     this.showupload = false;
@@ -998,6 +1137,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       .catch(() => {});
   }
 
+/**
+ * The `onaudioAdd()` function opens a modal to select an audio file, sends the selected file to a
+ * WhatsApp service for sending a message, and displays success or error messages accordingly.
+ */
   onaudioAdd() {
     this.isProceess = true;
     this.showupload = false;
@@ -1047,6 +1190,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       .catch(() => {});
   }
 
+/**
+ * The function `ondocumentAdd()` opens a modal to add a document, sends the document to a recipient
+ * via WhatsApp, and displays a success message or an error message.
+ */
   ondocumentAdd() {
     this.isProceess = true;
     this.showupload = false;
@@ -1096,6 +1243,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       })
       .catch(() => {});
   }
+/**
+ * The `onvideoAdd()` function opens a modal to add a video, sends the video file and caption to a
+ * server, and displays a success message or error message accordingly.
+ */
 
   onvideoAdd() {
     this.isProceess = true;
@@ -1147,6 +1298,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       .catch(() => {});
   }
 
+ /**
+  * The function `onLocationAdd()` opens a modal to add location details, and upon receiving the
+  * location data, sends a WhatsApp message with the location information.
+  */
   onLocationAdd() {
     this.isProceess = true;
     this.showupload = false;
@@ -1199,6 +1354,13 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       })
       .catch(() => {});
   }
+
+ /**
+  * The function `getTemplates` opens a modal window, allows the user to select a template, and sends a
+  * WhatsApp message with the selected template.
+  * @param {any} e - The parameter `e` is of type `any`, which means it can accept any type of value.
+  * It is used as an argument in the `getTemplates` function.
+  */
   getTemplates(e: any) {
     this.isProceess = true;
     this.showupload = false;
