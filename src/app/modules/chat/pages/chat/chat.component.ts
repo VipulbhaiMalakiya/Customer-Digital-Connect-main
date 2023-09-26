@@ -251,8 +251,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       this.socket$.subscribe((data: MessageData) => {
         console.log(data);
         this.messagestates = data.messageStatus;
-        console.log(this.contact);
-
         if (data.mobileNo === this.contact) {
           this.receivedData.push(data);
         } else if (data.mobileNo !== this.contact) {
@@ -603,7 +601,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           this.lastItem = lstRe.time;
           this.lastMessageTime = this.lastItem;
           if (lstRe.mobileNo === e.phoneNo) {
-            this.checkChatStatus();
+            // this.checkChatStatus();
           }
 
           this.isProceess = false;
@@ -645,26 +643,26 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
  * The function checks if the last message time is within the last 24 hours and updates the chat
  * visibility and message accordingly.
  */
-  checkChatStatus() {
-    this.message = '';
-    this.chatVisible = true;
-    const currentTime = new Date();
-    const date: any =
-      this.datePipe.transform(this.lastMessageTime, this.targetFormat) || '';
-    const next24Hours = new Date(date);
-    next24Hours.setHours(next24Hours.getHours() + 24);
-    const timeDifference = next24Hours.getTime() - currentTime.getTime();
-    if (timeDifference <= 0) {
-      this.chatVisible = false;
-      this.message =
-        'Outgoing message not allowed. Latest message not within the last 24 hours.';
-    } else {
-      setTimeout(() => {
-        this.message = '';
-        this.checkChatStatus();
-      }, timeDifference);
-    }
-  }
+  // checkChatStatus() {
+  //   this.message = '';
+  //   this.chatVisible = true;
+  //   const currentTime = new Date();
+  //   const date: any =
+  //     this.datePipe.transform(this.lastMessageTime, this.targetFormat) || '';
+  //   const next24Hours = new Date(date);
+  //   next24Hours.setHours(next24Hours.getHours() + 24);
+  //   const timeDifference = next24Hours.getTime() - currentTime.getTime();
+  //   if (timeDifference <= 0) {
+  //     this.chatVisible = false;
+  //     this.message =
+  //       'Outgoing message not allowed. Latest message not within the last 24 hours.';
+  //   } else {
+  //     setTimeout(() => {
+  //       this.message = '';
+  //       this.checkChatStatus();
+  //     }, timeDifference);
+  //   }
+  // }
 
 /**
  * The `onlabel` function updates a customer's label and displays a success message if the update is

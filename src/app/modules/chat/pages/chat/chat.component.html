@@ -1079,12 +1079,12 @@
                 </li>
               </ul>
               <div class="chatwrite-emojisico">
-                <div class="chat-emoji-ico" (click)="toggleEmojiPicker()" *ngIf="chatVisible"><i
+                <div class="chat-emoji-ico" (click)="toggleEmojiPicker()" ><i
                     class="las la-smile"></i></div>
-                <div class="chat-attach-ico" (click)="toggleupload()" *ngIf="chatVisible"><i
+                <div class="chat-attach-ico" (click)="toggleupload()" ><i
                     class="las la-paperclip"></i></div>
                 <div class="chat-quickrply-ico" title="Quick Reply" (click)=" quickReply()"><img
-                    src="../assets/images/quick-reply-icon.png" alt="File Not Found" *ngIf="chatVisible"></div>
+                    src="../assets/images/quick-reply-icon.png" alt="File Not Found" ></div>
 
                 <div class="chat-template-ico" title="Templates" (click)="getTemplates(chatname)">
                   <svg fill="#000000" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg">
@@ -1110,10 +1110,10 @@
                     </g>
                   </svg>
                 </div>
-                <div class="chat-cart-ico" (click)="togglecart()" *ngIf="chatVisible"><i
+                <div class="chat-cart-ico" (click)="togglecart()" ><i
                     class="las la-shopping-cart"></i></div>
               </div>
-              <div class="attach-opentray attach-opentray1" *ngIf="showupload1 && chatVisible">
+              <div class="attach-opentray attach-opentray1" *ngIf="showupload1">
                 <div class="inner-attachicons">
                   <div class="row">
                     <div class="col-sm-6">
@@ -1146,7 +1146,7 @@
                   </div>
                 </div>
               </div>
-              <div class="attach-opentray" *ngIf="showupload && chatVisible">
+              <div class="attach-opentray" *ngIf="showupload">
                 <div class="inner-attachicons">
                   <div class="row">
 
@@ -1206,7 +1206,7 @@
                   <textarea class="form-control h-auto" id="chat" [(ngModel)]="message" required name="chat"
                     placeholder="Type a message...." rows="1" (keydown.enter)="submitForm(loginForm)" appWhitespaceValidator>
                   </textarea>
-                  <ng-container *ngIf="chatVisible">
+                  <ng-container >
                     <button class="chatsubmit-btn invalid" type="submit" *ngIf="loginForm.invalid"
                       [disabled]="loginForm.invalid"><i class="lab la-telegram-plane"></i></button>
                     <button class="chatsubmit-btn valid" type="submit" *ngIf="loginForm.valid"
@@ -1219,7 +1219,7 @@
                 <form class="writechat-boder" #ngNotesForm="ngForm" (ngSubmit)="submitNoteForm(ngNotesForm)">
                   <textarea class="form-control h-auto" id="note" [(ngModel)]="message" required name="note"
                     placeholder="Type a note...." rows="1" (keydown.enter)="submitNoteForm(loginForm)" appWhitespaceValidator></textarea>
-                  <ng-container *ngIf="chatVisible">
+                  <ng-container>
                     <button class="chatsubmit-btn invalid" type="submit" *ngIf="ngNotesForm.invalid"
                       [disabled]="ngNotesForm.invalid"><i class="lab la-telegram-plane"></i></button>
                     <button class="chatsubmit-btn valid" type="submit" *ngIf="ngNotesForm.valid"
