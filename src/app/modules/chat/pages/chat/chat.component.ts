@@ -253,6 +253,12 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         this.messagestates = data.messageStatus;
         if (data.mobileNo === this.contact) {
           this.receivedData.push(data);
+          if(data.type == 'Sender'){
+            const audio = new Audio(
+              '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
+            );
+            audio.play();
+          }
         } else if (data.mobileNo !== this.contact) {
           this.getContactList();
         }
@@ -270,7 +276,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
               this.speakNotification(message);
             } else {
               const audio = new Audio(
-                '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
+                // '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
               );
               audio.play();
             }
