@@ -440,7 +440,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   * initialized.
   */
   ngAfterViewInit() {
-    this.scrollToBottom();
+    // this.scrollToBottom();
   }
 
 
@@ -449,11 +449,11 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
  */
   scrollToBottom(): void {
     try {
-      this.chatContainer.nativeElement.scrollTop =
-        this.chatContainer.nativeElement.scrollHeight;
-    } catch (err) {}
+      this.chatContainer.nativeElement.scrollTop = this.chatContainer.nativeElement.scrollHeight;
+    } catch (err) {
+      console.error(err);
+    }
   }
-
 /**
  * The function `GetUser()` retrieves user data based on the provided ID and performs additional
  * operations on the data.
