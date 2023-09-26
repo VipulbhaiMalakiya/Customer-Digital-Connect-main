@@ -595,16 +595,19 @@
                 </div>
                 <div class="chat-info">
                   <div class="last-msg p-2 pb-1 rounded">
-                    <google-map [center]="{ lat: (data?.locationLatitude | parseFloat ), lng: (data?.locationLongitude | parseFloat) }"
-                    height="230px" width="250px"></google-map>
+                    <google-map *ngIf="data?.locationLatitude !== null && data?.latitude == null"
+                      [center]="{ lat: (data?.locationLatitude | parseFloat), lng: (data?.locationLongitude | parseFloat) }"
+                      height="230px" width="250px"></google-map>
 
-                    <google-map [center]="{ lat: (data?.latitude| parseFloat ), lng: (data?.longitude | parseFloat) }"
+                    <google-map *ngIf="data?.latitude !== null && data?.locationLatitude == null"
+                      [center]="{ lat: (data?.latitude | parseFloat), lng: (data?.longitude | parseFloat) }"
                       height="230px" width="250px"></google-map>
                   </div>
                   <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
                     ||'Reception'}}</span>
                   <span class="suserchat-name" *ngIf="data.name == null">Reception</span>
                   {{data.time |dateAgo}}
+
                   <ng-container *ngIf="!data.messageId">
                     <span class="last-msg-checkic text-success" *ngIf="data.messageStatus == 'read'"><i
                         class="las la-check-double"></i></span>
@@ -632,9 +635,13 @@
                 </div>
                 <div class="chat-info">
                   <div class="last-msg p-2 pb-1 mb-2 rounded">
+                    <google-map *ngIf="data?.locationLatitude !== null && data?.latitude == null"
+                    [center]="{ lat: (data?.locationLatitude | parseFloat), lng: (data?.locationLongitude | parseFloat) }"
+                    height="230px" width="250px"></google-map>
 
-                    <google-map [center]="{ lat: (data?.latitude | parseFloat), lng: (data?.longitude | parseFloat) }"
-                      height="230px" width="250px"></google-map>
+                  <google-map *ngIf="data?.latitude !== null && data?.locationLatitude == null"
+                    [center]="{ lat: (data?.latitude | parseFloat), lng: (data?.longitude | parseFloat) }"
+                    height="230px" width="250px"></google-map>
 
 
                   </div>
@@ -1079,12 +1086,10 @@
                 </li>
               </ul>
               <div class="chatwrite-emojisico">
-                <div class="chat-emoji-ico" (click)="toggleEmojiPicker()" ><i
-                    class="las la-smile"></i></div>
-                <div class="chat-attach-ico" (click)="toggleupload()" ><i
-                    class="las la-paperclip"></i></div>
+                <div class="chat-emoji-ico" (click)="toggleEmojiPicker()"><i class="las la-smile"></i></div>
+                <div class="chat-attach-ico" (click)="toggleupload()"><i class="las la-paperclip"></i></div>
                 <div class="chat-quickrply-ico" title="Quick Reply" (click)=" quickReply()"><img
-                    src="../assets/images/quick-reply-icon.png" alt="File Not Found" ></div>
+                    src="../assets/images/quick-reply-icon.png" alt="File Not Found"></div>
 
                 <div class="chat-template-ico" title="Templates" (click)="getTemplates(chatname)">
                   <svg fill="#000000" viewBox="0 0 32 32" id="icon" xmlns="http://www.w3.org/2000/svg">
@@ -1110,8 +1115,7 @@
                     </g>
                   </svg>
                 </div>
-                <div class="chat-cart-ico" (click)="togglecart()" ><i
-                    class="las la-shopping-cart"></i></div>
+                <div class="chat-cart-ico" (click)="togglecart()"><i class="las la-shopping-cart"></i></div>
               </div>
               <div class="attach-opentray attach-opentray1" *ngIf="showupload1">
                 <div class="inner-attachicons">
@@ -1204,9 +1208,10 @@
               <div class="tab-pane active" id="reply">
                 <form class="writechat-boder" #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
                   <textarea class="form-control h-auto" id="chat" [(ngModel)]="message" required name="chat"
-                    placeholder="Type a message...." rows="1" (keydown.enter)="submitForm(loginForm)" appWhitespaceValidator>
+                    placeholder="Type a message...." rows="1" (keydown.enter)="submitForm(loginForm)"
+                    appWhitespaceValidator>
                   </textarea>
-                  <ng-container >
+                  <ng-container>
                     <button class="chatsubmit-btn invalid" type="submit" *ngIf="loginForm.invalid"
                       [disabled]="loginForm.invalid"><i class="lab la-telegram-plane"></i></button>
                     <button class="chatsubmit-btn valid" type="submit" *ngIf="loginForm.valid"
@@ -1218,7 +1223,8 @@
               <div class="tab-pane" id="notes">
                 <form class="writechat-boder" #ngNotesForm="ngForm" (ngSubmit)="submitNoteForm(ngNotesForm)">
                   <textarea class="form-control h-auto" id="note" [(ngModel)]="message" required name="note"
-                    placeholder="Type a note...." rows="1" (keydown.enter)="submitNoteForm(loginForm)" appWhitespaceValidator></textarea>
+                    placeholder="Type a note...." rows="1" (keydown.enter)="submitNoteForm(loginForm)"
+                    appWhitespaceValidator></textarea>
                   <ng-container>
                     <button class="chatsubmit-btn invalid" type="submit" *ngIf="ngNotesForm.invalid"
                       [disabled]="ngNotesForm.invalid"><i class="lab la-telegram-plane"></i></button>
