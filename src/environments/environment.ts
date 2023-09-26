@@ -1,6 +1,5 @@
 export const environment = {
   production: false,
-  //prod
   apiUrl: 'https://customerdigitalconnect.com',
   // apiUrl: 'http://35.154.46.164:8080',
   EncryptKey: '1203199320052021',
