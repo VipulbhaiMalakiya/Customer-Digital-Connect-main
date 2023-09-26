@@ -447,12 +447,24 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
 /**
  * The scrollToBottom function scrolls the chat container to the bottom.
  */
+
+
   scrollToBottom(): void {
     try {
-      this.chatContainer.nativeElement.scrollTop =
-        this.chatContainer.nativeElement.scrollHeight;
-    } catch (err) {}
+      if (this.chatContainer) { // Check if chatContainer is defined
+        const container = this.chatContainer.nativeElement;
+        const shouldScroll = container.scrollTop + container.clientHeight >= container.scrollHeight;
+
+        if (!shouldScroll) {
+          container.scrollTop = container.scrollHeight;
+        }
+      }
+    } catch (err) {
+      console.error(err);
+    }
   }
+
+
 
 /**
  * The function `GetUser()` retrieves user data based on the provided ID and performs additional
