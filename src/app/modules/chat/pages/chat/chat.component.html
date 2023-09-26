@@ -595,11 +595,11 @@
                 </div>
                 <div class="chat-info">
                   <div class="last-msg p-2 pb-1 rounded">
+                    <google-map [center]="{ lat: (data?.locationLatitude | parseFloat ), lng: (data?.locationLongitude | parseFloat) }"
+                    height="230px" width="250px"></google-map>
 
-                    <google-map [center]="{ lat: (data?.latitude | parseFloat), lng: (data?.longitude | parseFloat) }"
+                    <google-map [center]="{ lat: (data?.latitude| parseFloat ), lng: (data?.longitude | parseFloat) }"
                       height="230px" width="250px"></google-map>
-
-
                   </div>
                   <span class="suserchat-name" *ngIf="data.name !== null">{{contactinfo.fullName
                     ||'Reception'}}</span>

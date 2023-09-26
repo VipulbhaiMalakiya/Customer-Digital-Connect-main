@@ -10,8 +10,7 @@ export interface MessageData {
   mobileNo?: any;
   fromId?:any;
   assignedto?:any;
-  locationLatitude?:any;
-  locationLongitude?:any;
+
   messageId?:any;
   messageStatus?:any;
   templateName?:any;
@@ -30,5 +29,7 @@ export interface MessageData {
   filename?:any;
   catalogOrderItems?:any
   latitude?:any;
-  longitude?:any
+  longitude?:any;
+  locationLatitude?:any;
+  locationLongitude?:any;
 }
