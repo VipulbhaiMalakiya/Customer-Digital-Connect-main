@@ -77,7 +77,6 @@ export class ChatComponent
   contactId?: any;
   contactinfo?: any;
   messagestates?: any = '';
-  private isScrolling = false;
   masterName?: any;
   nrSelect?: any;
   subscription?: Subscription;
@@ -393,56 +392,29 @@ export class ChatComponent
     // return fullName?.split(' ').map((n: any[]) => n[0]).join('');
   }
 
+  // Define a flag to track scrolling state
+  private isScrolling = false;
+
   ngAfterViewInit() {
-    // Call scrollToBottom in AfterViewInit
-    this.scrollToBottom();
+
   }
 
   ngAfterViewChecked() {
-    // Scroll to the bottom in AfterViewChecked, but make sure it's not already scrolling
-    if (!this.isScrolling) {
-      this.scrollToBottom();
-    }
+    this.scrollToBottom();
   }
 
-  /**
-   * The scrollToBottom function scrolls the chat container to the bottom.
-   */
-
-  // scrollToBottom(): void {
-  //   try {
-  //     if (this.chatContainer) {
-  //       // Check if chatContainer is defined
-  //       const container = this.chatContainer.nativeElement;
-  //       const shouldScroll =
-  //         container.scrollTop + container.clientHeight >=
-  //         container.scrollHeight;
-
-  //       if (!shouldScroll) {
-  //         container.scrollTop = container.scrollHeight;
-  //       }
-  //     }
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // }
-
-  scrollToBottom() {
+  scrollToBottom(): void {
     try {
-      const chatWindowElement: HTMLElement = this.chatContainer.nativeElement;
-      const isScrolledToBottom =
-        chatWindowElement.scrollHeight - chatWindowElement.clientHeight <=
-        chatWindowElement.scrollTop + 1;
-
-      if (!isScrolledToBottom) {
-        // Set isScrolling to true to prevent re-triggering scrolling during the scroll
-        this.isScrolling = true;
-
-        // Scroll to the bottom
-        chatWindowElement.scrollTop = chatWindowElement.scrollHeight;
-      } else {
-        // Set isScrolling to false when already at the bottom
-        this.isScrolling = false;
+      if (this.chatContainer) {
+        // Check if chatContainer is defined
+        const container = this.chatContainer.nativeElement;
+        const shouldScroll =
+          container.scrollTop + container.clientHeight >=
+          container.scrollHeight;
+  
+        if (!shouldScroll) {
+          container.scrollTop = container.scrollHeight;
+        }
       }
     } catch (err) {
       console.error(err);
@@ -492,7 +464,6 @@ export class ChatComponent
     }
     this.isProceess = false;
   }
-
 
   getContactList() {
     // this.isProceess = true;
@@ -638,7 +609,6 @@ export class ChatComponent
   //   }
   // }
 
-
   onlabel(e: any) {
     this.masterName = `/customer/label-update/${this.contact}/${e.id}`;
     let updateData: any = {
@@ -750,7 +720,6 @@ export class ChatComponent
     }
   }
 
-
   quickReply() {
     this.isProceess = true;
     this.showupload = false;
@@ -816,7 +785,6 @@ export class ChatComponent
     }
   }
 
-
   sendingCatalog(e: any) {
     var request = {
       messaging_product: 'whatsapp',
@@ -853,7 +821,6 @@ export class ChatComponent
         }
       );
   }
-
 
   ngOnDestroy() {
     // this.socket$.complete();
@@ -942,7 +909,6 @@ export class ChatComponent
       })
       .catch(() => {});
   }
-
 
   selectDepartment(e: any) {
     let phone;
@@ -1080,7 +1046,6 @@ export class ChatComponent
       .catch(() => {});
   }
 
-
   onaudioAdd() {
     this.isProceess = true;
     this.showupload = false;
@@ -1133,7 +1098,6 @@ export class ChatComponent
       })
       .catch(() => {});
   }
-
 
   ondocumentAdd() {
     this.isProceess = true;
@@ -1243,7 +1207,6 @@ export class ChatComponent
       .catch(() => {});
   }
 
-
   onLocationAdd() {
     this.isProceess = true;
     this.showupload = false;
@@ -1300,7 +1263,6 @@ export class ChatComponent
       })
       .catch(() => {});
   }
-
 
   getTemplates(e: any) {
     this.isProceess = true;
