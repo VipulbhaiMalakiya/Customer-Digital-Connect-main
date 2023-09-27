@@ -1223,7 +1223,7 @@
               <div class="tab-pane" id="notes">
                 <form class="writechat-boder" #ngNotesForm="ngForm" (ngSubmit)="submitNoteForm(ngNotesForm)">
                   <textarea class="form-control h-auto" id="note" [(ngModel)]="message" required name="note"
-                    placeholder="Type a note...." rows="1" (keydown.enter)="submitNoteForm(loginForm)"
+                    placeholder="Type a note...." rows="1" (keydown.enter)="submitNoteForm(ngNotesForm)"
                     appWhitespaceValidator></textarea>
                   <ng-container>
                     <button class="chatsubmit-btn invalid" type="submit" *ngIf="ngNotesForm.invalid"
