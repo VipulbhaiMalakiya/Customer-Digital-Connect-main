@@ -1,5 +1,6 @@
 import {
   AfterViewChecked,
+  AfterViewInit,
   ChangeDetectorRef,
   Component,
   ElementRef,
@@ -38,7 +39,9 @@ import { TempletsComponent } from '../../components/templets/templets.component'
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css'],
 })
-export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
+export class ChatComponent
+  implements OnInit, OnDestroy, AfterViewInit, AfterViewChecked
+{
   show: boolean = false;
   data: any = [];
   bgclass: any;
@@ -74,6 +77,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   contactId?: any;
   contactinfo?: any;
   messagestates?: any = '';
+  private isScrolling = false;
   masterName?: any;
   nrSelect?: any;
   subscription?: Subscription;
@@ -241,10 +245,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
   }
 
-  /**
-   * The `connect` function establishes a WebSocket connection and subscribes to incoming messages,
-   * handling them based on their status and type.
-   */
   public connect(): void {
     if (!this.socket$ || this.socket$.closed) {
       this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
@@ -267,7 +267,9 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           if (currentUrl === '/admin/inbox' || currentUrl === '/inbox') {
             if (data.type === 'Receiver') {
               // const message: string = `You got a message from ${data.name}`;
-              const message: string = `You got a message from ${this.getOnlyName(data.name)}`;
+              const message: string = `You got a message from ${this.getOnlyName(
+                data.name
+              )}`;
 
               this.speakNotification(message);
             } else {
@@ -281,7 +283,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     }
   }
 
-  getOnlyName(name:any) {
+  getOnlyName(name: any) {
     // Remove emojis and emoji picker emoji
     const emojiRegex =
       /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{1FAB0}-\u{1FABF}\u{1FAC0}-\u{1FAFF}\u{2000}-\u{2BFF}\u{2600}-\u{26FF}\u{2300}-\u{23FF}\u{2700}-\u{27BF}\u{2B05}\u{2194}-\u{21AA}\u{2B05}\u{2B06}\u{2934}\u{25AA}\u{25FE}\u{25FD}\u{2B1B}\u{2B1C}\u{25B6}\u{25AA}\u{25FE}\u{25FD}\u{2B1B}\u{2B1C}\u{25B6}]+/gu;
@@ -296,29 +298,19 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     return trimmedName;
   }
 
-  /**
-   * The function `speakNotification` uses the Web Speech API to convert a given message into speech and
-   * speak it out loud.
-   * @param {string} message - The `message` parameter is a string that represents the text that you want
-   * to be spoken out loud.
-   */
   private speakNotification(message: string) {
     const speechSynthesis = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(message);
     utterance.lang = 'hi-IN';
     speechSynthesis.speak(utterance);
   }
-  /**
-   * The function "toggleupload" toggles the visibility of an upload feature and hides an emoji picker.
-   */
+
   toggleupload() {
     this.showEmojiPicker = false;
     this.showupload1 = false;
     this.showupload = !this.showupload;
   }
-  /**
-   * The function "togglecart" toggles the value of "showupload1" between true and false.
-   */
+
   togglecart() {
     this.showEmojiPicker = false;
     this.showupload = false;
@@ -326,14 +318,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   }
   // Download code start
 
-  /**
-   * The `downloadFile` function creates a link element, sets its attributes to the provided file URL and
-   * filename, appends it to the document body, triggers a click event on the link to initiate the file
-   * download, and finally removes the link element from the document body.
-   * @param {any} e - The parameter "e" is of type "any", which means it can be any type of data. It is
-   * likely an event object that contains information about the file to be downloaded, such as the file
-   * URL and filename.
-   */
   downloadFile(e: any) {
     const link = document.createElement('a');
     link.setAttribute('href', e.fileUrl);
@@ -342,12 +326,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     link.click();
     document.body.removeChild(link);
   }
-  /**
-   * The function `downloadFile1` creates a link element, sets its attributes for downloading a file,
-   * appends it to the document body, triggers a click event on the link, and then removes the link from
-   * the document body.
-   * @param {any} e - The parameter "e" is of type "any", which means it can be any type of data.
-   */
+
   downloadFile1(e: any) {
     const link = document.createElement('a');
     link.setAttribute('href', e.templateHeaderfileLink);
@@ -356,10 +335,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     link.click();
     document.body.removeChild(link);
   }
-  // Download code end
-  /**
-   * The function "ActiveLabels" retrieves active labels from an API and assigns the data to a variable.
-   */
+
   ActiveLabels() {
     this.isProceess = true;
     this.masterName = '/label/active';
@@ -376,26 +352,11 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         }
       );
   }
-  /**
-   * The function checks if an element is overflowing horizontally.
-   * @param {any} el - The "el" parameter represents an element in the DOM (Document Object Model). It
-   * can be any HTML element such as a div, span, p, etc.
-   * @returns a boolean value indicating whether the element's content is overflowing horizontally.
-   */
 
   isOverflowing(el: any) {
     return el.offsetWidth < el.scrollWidth;
   }
-  /**
-   * The `getColorClass` function returns a color class based on the index provided, using a repeated
-   * pattern of predefined colors.
-   * @param {number} index - The `index` parameter is a number that represents the position of the color
-   * in the `colors` array.
-   * @returns a string representing a color class. The color class is determined based on the index
-   * provided as an argument to the function. The index is used to calculate the color index by taking
-   * the remainder when divided by the length of the colors array. The color index is then used to access
-   * the corresponding color class from the colors array, which is returned by the function.
-   */
+
   getColorClass(index: number): string {
     const colors = [
       'color1',
@@ -410,10 +371,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
     return colors[colorIndex];
   }
 
-  /**
-   * The function `ActiveUser()` retrieves active user data from an API and assigns it to the
-   * `activeUser` variable.
-   */
   ActiveUser() {
     this.isProceess = true;
     this.masterName = '/users/active';
@@ -431,55 +388,66 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       );
   }
 
-  /**
-   * The ngAfterViewChecked function is used in Angular to scroll to the bottom of a view after it has
-   * been checked for any changes.
-   */
-  ngAfterViewChecked() {
-    this.scrollToBottom();
-  }
-
-  /**
-   * The function `getShortName` takes an optional `fullName` parameter and returns the first character
-   * of the `fullName` string.
-   * @param {any} [fullName] - The fullName parameter is a string that represents a person's full name.
-   * @returns the first character of the `fullName` string.
-   */
   getShortName(fullName?: any) {
     return fullName.charAt(0);
     // return fullName?.split(' ').map((n: any[]) => n[0]).join('');
   }
 
-  /**
-   * The ngAfterViewInit function is used to scroll to the bottom of a page after the view has been
-   * initialized.
-   */
   ngAfterViewInit() {
-    // this.scrollToBottom();
+    // Call scrollToBottom in AfterViewInit
+    this.scrollToBottom();
+  }
+
+  ngAfterViewChecked() {
+    // Scroll to the bottom in AfterViewChecked, but make sure it's not already scrolling
+    if (!this.isScrolling) {
+      this.scrollToBottom();
+    }
   }
 
   /**
    * The scrollToBottom function scrolls the chat container to the bottom.
    */
 
-  scrollToBottom(): void {
-    try {
-      if (this.chatContainer) {
-        // Check if chatContainer is defined
-        const container = this.chatContainer.nativeElement;
-        const shouldScroll =
-          container.scrollTop + container.clientHeight >=
-          container.scrollHeight;
+  // scrollToBottom(): void {
+  //   try {
+  //     if (this.chatContainer) {
+  //       // Check if chatContainer is defined
+  //       const container = this.chatContainer.nativeElement;
+  //       const shouldScroll =
+  //         container.scrollTop + container.clientHeight >=
+  //         container.scrollHeight;
 
-        if (!shouldScroll) {
-          container.scrollTop = container.scrollHeight;
-        }
+  //       if (!shouldScroll) {
+  //         container.scrollTop = container.scrollHeight;
+  //       }
+  //     }
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // }
+
+  scrollToBottom() {
+    try {
+      const chatWindowElement: HTMLElement = this.chatContainer.nativeElement;
+      const isScrolledToBottom =
+        chatWindowElement.scrollHeight - chatWindowElement.clientHeight <=
+        chatWindowElement.scrollTop + 1;
+
+      if (!isScrolledToBottom) {
+        // Set isScrolling to true to prevent re-triggering scrolling during the scroll
+        this.isScrolling = true;
+
+        // Scroll to the bottom
+        chatWindowElement.scrollTop = chatWindowElement.scrollHeight;
+      } else {
+        // Set isScrolling to false when already at the bottom
+        this.isScrolling = false;
       }
     } catch (err) {
       console.error(err);
     }
   }
-
   /**
    * The function `GetUser()` retrieves user data based on the provided ID and performs additional
    * operations on the data.
