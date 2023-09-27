@@ -689,7 +689,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       .pipe(take(1))
       .subscribe(
         (res) => {
-          this.toastr.success(res.message);
+          // this.toastr.success(res.message);
           this.isProceess = false;
           this.getContactList();
           this.label = e.name;
@@ -733,7 +733,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
               (res) => {
                 this.label = '';
                 this.isProceess = false;
-                this.toastr.success(res.message);
+                // this.toastr.success(res.message);
                 this.getContactList();
               },
               (error) => {
@@ -781,7 +781,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         .subscribe(
           (response) => {
             let data: any = response;
-            this.toastr.success(data.message);
+            // this.toastr.success(data.message);
             this.isProceess = false;
             this.showEmojiPicker = false;
             form.reset();
@@ -855,7 +855,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         .subscribe(
           (response) => {
             let data: any = response;
-            this.toastr.success(data.message);
+            // this.toastr.success(data.message);
             this.isProceess = false;
             this.showEmojiPicker = false;
             form.reset();
@@ -899,7 +899,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
       .subscribe(
         (response) => {
           let data: any = response;
-          this.toastr.success(data.message);
+          // this.toastr.success(data.message);
           this.isProceess = false;
           this.showupload1 = false;
           this.showEmojiPicker = false;
@@ -1140,7 +1140,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
             .subscribe(
               (response) => {
                 let data: any = response;
-                this.toastr.success(data.message);
+                // this.toastr.success(data.message);
                 this.isProceess = false;
                 this.showEmojiPicker = false;
                 this.scrollToBottom();
@@ -1197,7 +1197,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
             .subscribe(
               (response) => {
                 let data: any = response;
-                this.toastr.success(data.message);
+                // this.toastr.success(data.message);
                 this.isProceess = false;
                 this.showEmojiPicker = false;
                 this.scrollToBottom();
@@ -1255,7 +1255,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
             .subscribe(
               (response) => {
                 let data: any = response;
-                this.toastr.success(data.message);
+                // this.toastr.success(data.message);
                 this.isProceess = false;
                 this.showEmojiPicker = false;
                 this.scrollToBottom();
@@ -1313,7 +1313,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
             .subscribe(
               (response) => {
                 let data: any = response;
-                this.toastr.success(data.message);
+                // this.toastr.success(data.message);
                 this.isProceess = false;
                 this.showEmojiPicker = false;
                 this.scrollToBottom();
@@ -1374,7 +1374,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
             .subscribe(
               (response) => {
                 let data: any = response;
-                this.toastr.success(data.message);
+                // this.toastr.success(data.message);
                 this.isProceess = false;
                 this.showEmojiPicker = false;
                 this.scrollToBottom();
@@ -1443,7 +1443,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
             .subscribe(
               (response) => {
                 let data: any = response;
-                this.toastr.success(data.message);
+                // this.toastr.success(data.message);
                 this.isProceess = false;
                 this.showEmojiPicker = false;
                 this.scrollToBottom();
