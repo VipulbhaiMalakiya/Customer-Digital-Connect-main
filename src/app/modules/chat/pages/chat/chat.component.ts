@@ -305,7 +305,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
   private speakNotification(message: string) {
     const speechSynthesis = window.speechSynthesis;
     const utterance = new SpeechSynthesisUtterance(message);
-    utterance.lang = 'en-US';
+    utterance.lang = 'hi-IN';
     speechSynthesis.speak(utterance);
   }
   /**
