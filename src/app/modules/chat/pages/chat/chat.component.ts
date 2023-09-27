@@ -266,7 +266,9 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           const currentUrl = this.location.path();
           if (currentUrl === '/admin/inbox' || currentUrl === '/inbox') {
             if (data.type === 'Receiver') {
-              const message: string = `You got a message from ${data.name}`;
+              // const message: string = `You got a message from ${data.name}`;
+              const message: string = `You got a message from ${this.getOnlyName(data.name)}`;
+
               this.speakNotification(message);
             } else {
               const audio = new Audio();
@@ -277,6 +279,21 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         }
       });
     }
+  }
+
+  getOnlyName(name:any) {
+    // Remove emojis and emoji picker emoji
+    const emojiRegex =
+      /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{1F700}-\u{1F77F}\u{1F780}-\u{1F7FF}\u{1F800}-\u{1F8FF}\u{1F900}-\u{1F9FF}\u{1FA00}-\u{1FA6F}\u{1FA70}-\u{1FAFF}\u{1FAB0}-\u{1FABF}\u{1FAC0}-\u{1FAFF}\u{2000}-\u{2BFF}\u{2600}-\u{26FF}\u{2300}-\u{23FF}\u{2700}-\u{27BF}\u{2B05}\u{2194}-\u{21AA}\u{2B05}\u{2B06}\u{2934}\u{25AA}\u{25FE}\u{25FD}\u{2B1B}\u{2B1C}\u{25B6}\u{25AA}\u{25FE}\u{25FD}\u{2B1B}\u{2B1C}\u{25B6}]+/gu;
+    const nameWithoutEmojis = name.replace(emojiRegex, '');
+
+    // Remove numbers
+    const nameWithoutNumbers = nameWithoutEmojis.replace(/\d/g, '');
+
+    // Trim any leading or trailing spaces
+    const trimmedName = nameWithoutNumbers.trim();
+
+    return trimmedName;
   }
 
   /**
