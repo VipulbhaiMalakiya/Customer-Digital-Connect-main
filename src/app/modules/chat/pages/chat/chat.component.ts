@@ -253,12 +253,6 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
         this.messagestates = data.messageStatus;
         if (data.mobileNo === this.contact) {
           this.receivedData.push(data);
-          if(data.type == 'Sender'){
-            const audio = new Audio(
-              '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
-            );
-            audio.play();
-          }
         } else if (data.mobileNo !== this.contact) {
           this.getContactList();
         }
@@ -795,6 +789,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
             this.showEmojiPicker = false;
             form.reset();
             this.scrollToBottom();
+            const audio = new Audio(
+              '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
+            );
+            audio.play();
           },
           (error) => {
             this.toastr.error(error.error.message);
@@ -865,6 +863,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
             this.showEmojiPicker = false;
             form.reset();
             this.scrollToBottom();
+             const audio = new Audio(
+              '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
+            );
+            audio.play();
           },
           (error) => {
             this.toastr.error(error.error.message);
@@ -905,6 +907,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
           this.showupload1 = false;
           this.showEmojiPicker = false;
           this.scrollToBottom();
+          const audio = new Audio(
+            '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
+          );
+          audio.play();
         },
         (error) => {
           this.toastr.error(error.error.message);
@@ -1139,9 +1145,12 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
                 let data: any = response;
                 this.toastr.success(data.message);
                 this.isProceess = false;
-
                 this.showEmojiPicker = false;
                 this.scrollToBottom();
+                const audio = new Audio(
+                  '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
+                );
+                audio.play();
               },
               (error) => {
                 this.toastr.error(error.error.message);
@@ -1195,6 +1204,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
                 this.isProceess = false;
                 this.showEmojiPicker = false;
                 this.scrollToBottom();
+                const audio = new Audio(
+                  '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
+                );
+                audio.play();
               },
               (error) => {
                 this.toastr.error(error.error.message);
@@ -1249,6 +1262,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
                 this.isProceess = false;
                 this.showEmojiPicker = false;
                 this.scrollToBottom();
+                const audio = new Audio(
+                  '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
+                );
+                audio.play();
               },
               (error) => {
                 this.toastr.error(error.error.message);
@@ -1303,6 +1320,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
                 this.isProceess = false;
                 this.showEmojiPicker = false;
                 this.scrollToBottom();
+                const audio = new Audio(
+                  '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
+                );
+                audio.play();
               },
               (error) => {
                 this.toastr.error(error.error.message);
@@ -1360,6 +1381,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
                 this.isProceess = false;
                 this.showEmojiPicker = false;
                 this.scrollToBottom();
+                const audio = new Audio(
+                  '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
+                );
+                audio.play();
               },
               (error) => {
                 this.toastr.error(error.error.message);
@@ -1425,6 +1450,10 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked {
                 this.isProceess = false;
                 this.showEmojiPicker = false;
                 this.scrollToBottom();
+                const audio = new Audio(
+                  '../../../../../assets/sound/Whatsapp Message - Sent - Sound.mp3'
+                );
+                audio.play();
               },
               (error) => {
                 this.toastr.error(error.error.message);
