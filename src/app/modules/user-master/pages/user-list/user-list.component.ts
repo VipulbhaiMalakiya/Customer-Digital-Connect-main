@@ -19,7 +19,7 @@ export class UserListComponent implements OnInit,OnDestroy {
   isProceess: boolean = true;
   data: UserMaster[] = [];
   userData: any;
-  term: any;
+  term?: any;
   subscription?: Subscription;
   masterName?: any;
   page: number = 1;
