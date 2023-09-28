@@ -5,6 +5,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { delay, take } from 'rxjs';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
+import { AuthenticationService } from 'src/app/_services';
 import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
 @Component({
   selector: 'app-my-profile',
@@ -24,6 +25,7 @@ export class MyProfileComponent implements OnInit {
     private titleService: Title,
     private formBuilder: FormBuilder,
     private apiService: ApiService,
+    private authenticationService: AuthenticationService,
   ) {
     this.titleService.setTitle("CDC - My-Profile");
     this.data = localStorage.getItem("userData");
@@ -121,7 +123,8 @@ export class MyProfileComponent implements OnInit {
       }
       this.isProceess = true;
       this.apiService.update(updateData).pipe(take(1)).subscribe(res => {
-        this.toastr.success("Profile has been update successfuly");
+        this.toastr.success(res.message);
+        this.authenticationService.logout();
         this.isProceess = false;
       }, error => {
         this.toastr.error(error.message);
