@@ -23,6 +23,14 @@ export class ViewTicketComponent {
       updatedBy = ''
     }
 
+    let createForUser:any = ' '
+    if(this._tickettsMaster.createForUser?.firstName  != undefined ){
+      createForUser = this._tickettsMaster.createForUser?.firstName + ' '+ this._tickettsMaster.createForUser?.lastName
+    }
+    else{
+      createForUser = ''
+    }
+
     if (this._tickettsMaster) {
       this.ticketMasterForm.patchValue({
         ticketId: this._tickettsMaster.ticketId,
@@ -37,7 +45,7 @@ export class ViewTicketComponent {
         shortNotes: this._tickettsMaster.shortNotes,
         additionalComments: this._tickettsMaster.additionalComments,
         status: this._tickettsMaster.status,
-        createForUser: this._tickettsMaster.createForUser?.firstName + ' '+ this._tickettsMaster.createForUser?.lastName,
+        createForUser: createForUser,
         createdDate: moment(this._tickettsMaster.createdDate || '').format("llll"),
         createdBy: this._tickettsMaster.createdBy?.firstName + ' ' + this._tickettsMaster.createdBy?.lastName,
         updatedDate: moment(this._tickettsMaster.updatedDate || '').format("llll"),
