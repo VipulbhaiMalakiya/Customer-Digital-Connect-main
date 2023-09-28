@@ -95,6 +95,7 @@ export class ChatComponent
   showEmojiPicker = false;
   showupload = false;
   showupload1 = false;
+  unreadmessage?: any = [];
   private notificationSound?: HTMLAudioElement;
 
   toggleEmojiPicker() {
@@ -248,7 +249,6 @@ export class ChatComponent
     if (!this.socket$ || this.socket$.closed) {
       this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
       this.socket$.subscribe((data: MessageData) => {
-        console.log(data);
         this.messagestates = data.messageStatus;
         if (data.mobileNo === this.contact) {
           this.receivedData.push(data);
@@ -281,6 +281,18 @@ export class ChatComponent
       });
     }
   }
+
+  // getUnreadMessageCount(contact: any): number {
+  //   return this.receivedData.filter(
+  //     (data) =>
+  //       data.mobileNo === contact &&
+  //       data.type == 'Sender' &&
+  //       data.messageStatus !== 'sent' &&
+  //       data.messageStatus !== 'delivered' &&
+  //       data.messageStatus !== 'read' &&
+  //       data.messagetype == 'text'
+  //   ).length;
+  // }
 
   getOnlyName(name: any) {
     // Remove emojis and emoji picker emoji
@@ -395,9 +407,7 @@ export class ChatComponent
   // Define a flag to track scrolling state
   private isScrolling = false;
 
-  ngAfterViewInit() {
-
-  }
+  ngAfterViewInit() {}
 
   ngAfterViewChecked() {
     this.scrollToBottom();
@@ -411,7 +421,7 @@ export class ChatComponent
         const shouldScroll =
           container.scrollTop + container.clientHeight >=
           container.scrollHeight;
-  
+
         if (!shouldScroll) {
           container.scrollTop = container.scrollHeight;
         }

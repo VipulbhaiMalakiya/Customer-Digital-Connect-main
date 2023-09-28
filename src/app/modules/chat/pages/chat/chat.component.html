@@ -167,7 +167,7 @@
                 </div>
                 <div class="chat-time ms-auto text-end">
                   <div class="mb-1">{{i.time | dateAgo}}</div>
-                  <div class="un-read" *ngIf="i.messageStatus !== 'read' && messageCount > 0">{{messageCount}}</div>
+                  <!-- <div class="un-read" >{{ getUnreadMessageCount(i.phoneNo) }}</div> -->
                 </div>
               </li>
             </ul>
@@ -220,7 +220,7 @@
                 </div>
                 <div class="chat-time ms-auto text-end">
                   <div class="mb-1"> {{i.time | dateAgo}}</div>
-                  <div class="un-read" *ngIf="i.messageStatus !== 'read' && messageCount > 0 ">messageCount</div>
+                  <!-- <div class="un-read" *ngIf="i.messageStatus !== 'read' && messageCount > 0 ">messageCount</div> -->
                 </div>
               </li>
             </ul>
@@ -1227,7 +1227,7 @@
                     </button>
                   </ng-container>
                 </form>
-                
+
 
               </div>
               <div class="tab-pane" id="notes">
