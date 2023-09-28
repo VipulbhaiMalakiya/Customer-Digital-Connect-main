@@ -3,6 +3,8 @@ import { NavigationStart, Router } from '@angular/router';
 import { BnNgIdleService } from 'bn-ng-idle';
 import { AuthenticationService } from 'src/app/_services';
 import { ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { ConfirmationDialogModalComponent } from '../confirmation-dialog-modal/confirmation-dialog-modal.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-header',
@@ -64,7 +66,8 @@ export class HeaderComponent implements OnInit {
     private router: Router,
     private bnIdle: BnNgIdleService,
     private elRef: ElementRef,
-    private renderer: Renderer2
+    private renderer: Renderer2,
+    private modalService: NgbModal
   ) {
     this.data = localStorage.getItem('userData');
     this.userData = JSON.parse(this.data);
@@ -124,7 +127,23 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authenticationService.logout();
+
+    const modalRef = this.modalService.open(ConfirmationDialogModalComponent, {
+      size: 'sm',
+      centered: true,
+      backdrop: 'static',
+    });
+
+    var componentInstance =
+      modalRef.componentInstance as ConfirmationDialogModalComponent;
+    componentInstance.message = 'Are you sure you want to logout?';
+    modalRef.result
+      .then((canDelete: boolean) => {
+        if (canDelete) {
+          this.authenticationService.logout();
+        }
+      })
+      .catch(() => { });
   }
 
   toggleField() {
