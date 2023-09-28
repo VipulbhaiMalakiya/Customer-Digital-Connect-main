@@ -7,6 +7,7 @@ import { delay, take } from 'rxjs';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
 import { AuthenticationService } from 'src/app/_services';
 import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpaceValidator.validatot';
+import { ConfirmationDialogModalComponent } from '../../shared/components/confirmation-dialog-modal/confirmation-dialog-modal.component';
 @Component({
   selector: 'app-my-profile',
   templateUrl: './my-profile.component.html',
@@ -36,7 +37,7 @@ export class MyProfileComponent implements OnInit {
 
         noLeadingSpaceValidator(),
 
-        ]],
+      ]],
 
       lastName: [this.userData.lastName, [
         Validators.required,
@@ -44,7 +45,7 @@ export class MyProfileComponent implements OnInit {
         noLeadingSpaceValidator(),
 
 
-       ]],
+      ]],
 
       email: [this.userData.email, [
         Validators.required,
@@ -65,20 +66,20 @@ export class MyProfileComponent implements OnInit {
 
         noLeadingSpaceValidator(),
 
-        ]],
+      ]],
 
       city: [this.userData.city, [
         Validators.required,
 
         noLeadingSpaceValidator(),
 
- ]],
+      ]],
       username: [this.userData.username, [Validators.required, noLeadingSpaceValidator()]],
       postcode: [this.userData.postcode, [
         Validators.required,
         Validators.minLength(6),
         Validators.maxLength(6)]],
-      roleId: [this.userData?.role?.roleName , Validators.required],
+      roleId: [this.userData?.role?.roleName, Validators.required],
       deptId: [this.userData.department.departmentName, Validators.required],
       address: [this.userData.address, [Validators.required, noLeadingSpaceValidator()]],
     });
@@ -95,6 +96,8 @@ export class MyProfileComponent implements OnInit {
       event.preventDefault();
     }
   }
+
+  
 
   onSubmit() {
     if (this.userForm.valid) {
@@ -113,26 +116,31 @@ export class MyProfileComponent implements OnInit {
         roleId: this.userData.role?.roleId,
         departmentId: this.userData.department.departmentId,
         userId: this.userData.userId
-      }
+      };
+  
       this.isProceess = true;
-
       this.masterName = `/users/${this.userData.userId}`;
       let updateData: any = {
         url: this.masterName,
         model: model
-      }
-      this.isProceess = true;
+      };
+  
       this.apiService.update(updateData).pipe(take(1)).subscribe(res => {
         this.toastr.success(res.message);
-        this.authenticationService.logout();
+
+        const logoutConfirmation = `Are you sure you want to logout?`;
+        const isConfirmed = confirm(logoutConfirmation);
+  
+        if (isConfirmed) {
+          this.authenticationService.logout();
+        }
+  
         this.isProceess = false;
       }, error => {
         this.toastr.error(error.message);
         this.isProceess = false;
       });
-
     } else {
-
       this.userForm.controls['postcode'].markAsTouched();
       this.userForm.controls['username'].markAsTouched();
       this.userForm.controls['address'].markAsTouched();
@@ -146,6 +154,9 @@ export class MyProfileComponent implements OnInit {
       this.userForm.controls['departmentId'].markAsTouched();
     }
   }
+  
+
+
 
   shouldShowError(controlName: string, errorName: string) {
     return this.userForm.controls[controlName].touched && this.userForm.controls[controlName].hasError(errorName);
