@@ -75,7 +75,7 @@
                         <label for="assignedTo">Assigned To <span class="text-danger">*</span></label>
                         <select class="form-select" id="assignedTo" formControlName="assignedTo">
                           <ng-container *ngFor="let i of duser">
-                            <option *ngIf="i.role?.roleName === 'Resolver' && i.role?.roleName !== 'User' " [value]="i.userId">{{i.firstName}} {{i.lastName}}
+                            <option *ngIf="i.role?.roleName !== 'User'" [value]="i.userId">{{i.firstName}} {{i.lastName}}
                             </option>
                             <option *ngIf="duser?.length === 0" value="">No records found</option>
                           </ng-container>
