@@ -2153,7 +2153,7 @@ button.search-ico {
 
 .u-dashbidcol {
   background: #fff;
-  padding: 10px 20px;
+  padding: 10px 10px;
   border-radius: 5px;
   border-bottom: 5px solid red;
 }
@@ -2163,7 +2163,7 @@ button.search-ico {
 }
 
 .u-dashbidcol h3 {
-  font-size: 13px;
+  font-size: 10px;
   text-transform: uppercase;
   color: #444;
   margin-bottom: 8px;

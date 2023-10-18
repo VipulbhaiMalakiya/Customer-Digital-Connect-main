@@ -84,6 +84,9 @@ export class TicketComponent {
     else if (this.userData?.role?.roleName === 'User') {
       this.masterName = `/ticket/AssignedTo/${this.userData.userId}`;
     }
+    else if (this.userData?.role?.roleName === 'Admin') {
+      this.masterName = `/ticket/AssignedTo/${this.userData.userId}`;
+    }
 
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1),delay(1000)).subscribe(data => {
       this.data = data;

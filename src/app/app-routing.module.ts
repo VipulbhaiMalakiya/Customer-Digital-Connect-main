@@ -230,6 +230,13 @@ const routes: Routes = [
         loadChildren: () =>
           import('./modules/ticket/ticket.module').then((m) => m.TicketModule),
       },
+         {
+        path: 'assigned-ticket-list',
+        loadChildren: () =>
+          import('./modules/assigne-ticket/assigne-ticket.module').then(
+            (m) => m.AssigneTicketModule
+          ),
+      },
       {
         path: 'orders',
         loadChildren: () =>

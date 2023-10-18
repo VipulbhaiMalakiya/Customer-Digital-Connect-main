@@ -76,6 +76,14 @@
                         <label for="assignedTo">Assigned To <span class="text-danger">*</span></label>
                         <select class="form-select" id="assignedTo" formControlName="assignedTo">
                           <ng-container *ngFor="let i of duser">
+                            <option
+                              [value]="i.userId">{{i.firstName}} {{i.lastName}}
+                            </option>
+                          </ng-container>
+                        </select>
+<!-- 
+                        <select class="form-select" id="assignedTo" formControlName="assignedTo">
+                          <ng-container *ngFor="let i of duser">
                             <option *ngIf="i.role?.roleName === 'Resolver' &&  userData.userId !== i.userId"
                               [value]="i.userId">{{i.firstName}} {{i.lastName}}
                             </option>
@@ -83,7 +91,7 @@
                               {{i.lastName}}
                             </option>
                           </ng-container>
-                        </select>
+                        </select> -->
                         <div *ngIf="shouldShowError('assignedTo','required')" class="text-danger">This field is required
                         </div>
                       </div>

@@ -108,7 +108,11 @@
       </div>
     </div>
 
-    <div class="main-user-dash-right" *ngIf="resolverData && this.userData?.role?.roleName === 'Resolver'&& !isProceess ">
+    <!-- <div class="main-user-dash-right" *ngIf="resolverData && this.userData?.role?.roleName === 'Resolver'&& !isProceess "> -->
+    <!-- <div class="main-user-dash-right"
+      *ngIf="resolverData && this.userData?.role?.roleName !== 'Admin'&& !isProceess "> -->
+      <div class="main-user-dash-right"
+      *ngIf="resolverData && !isProceess ">
       <div class="dash-blck-title">Assign to me</div>
       <div class="user-dash-right-card">
         <ul>
@@ -184,7 +188,8 @@
           <div class="card-body nopadding">
             <div class="best-seller" id="searched_tickets">
               <h4 class="small-title2" *ngIf="this.userData?.role?.roleName !== 'Resolver'">Recent tickets</h4>
-              <h4 class="small-title2" *ngIf="this.userData?.role?.roleName === 'Resolver'">Recent tickets assigned to me
+              <h4 class="small-title2" *ngIf="this.userData?.role?.roleName === 'Resolver'">Recent tickets assigned to
+                me
               </h4>
               <div class="inner-dashres-col">
                 <article class="media" *ngFor="let i of recenttickets | customFilter: term">
@@ -198,7 +203,7 @@
                 </article>
               </div>
               <div class="text-center" *ngIf="(recenttickets | customFilter: term).length === 0">
-               <strong class="text-danger"> No results found.</strong>
+                <strong class="text-danger"> No results found.</strong>
               </div>
             </div>
           </div>
@@ -302,12 +307,13 @@
 
                 <ng-container
                   *ngIf="this.userData?.role?.roleName === 'Admin' && !isProceess && ticketassigntousers.length > 0">
-                  <google-chart style="width: 100%;" [options]="chartOptions" [type]="ColumnChart" [data]="ticketassigntousers">
+                  <google-chart style="width: 100%;" [options]="chartOptions" [type]="ColumnChart"
+                    [data]="ticketassigntousers">
                   </google-chart>
                 </ng-container>
 
                 <ng-container *ngIf="this.userData?.role?.roleName === 'Resolver' && !isProceess">
-                  <google-chart style="width: 100%;" [type]="ColumnChart"  [options]="chartOptions"
+                  <google-chart style="width: 100%;" [type]="ColumnChart" [options]="chartOptions"
                     [data]="departmentticketsstatus">
                   </google-chart>
                 </ng-container>

@@ -383,7 +383,7 @@ export class AdminDashboardComponent implements OnInit {
 
 
   GetResolver() {
-    if (this.userData?.role?.roleName == 'Resolver') {
+    if (this.userData?.role?.roleName == 'Resolver' || 'User' || 'Admin') {
       this.masterName = `/ticket/resolver-assigned/statistics/${this.userData.userId}`;
     }
     this.isProceess = true;
