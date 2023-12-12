@@ -31,6 +31,8 @@ export class ViewTicketComponent {
       createForUser = ''
     }
 
+    console.log(this._tickettsMaster);
+
     if (this._tickettsMaster) {
       this.ticketMasterForm.patchValue({
         ticketId: this._tickettsMaster.ticketId,

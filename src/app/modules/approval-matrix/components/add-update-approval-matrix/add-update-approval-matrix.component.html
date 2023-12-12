@@ -57,7 +57,7 @@
             <option value="">Select</option>
             <ng-container *ngFor="let i of l3User">
               <option *ngIf="i.role?.roleName !== 'User'"
-                [value]="i.userId">{{i.firstName}} {{i.lastName}} {{i.role?.roleName}}
+                [value]="i.userId">{{i.firstName}} {{i.lastName}}
               </option>
               <option *ngIf="l3User.length === 0" value="">No records found</option>
             </ng-container>
