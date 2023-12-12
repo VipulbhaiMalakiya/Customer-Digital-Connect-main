@@ -27,7 +27,7 @@ export class ApprovalMatrixListComponent implements OnInit {
 
   onAdd() {
     this.isProceess = true;
-    const modalRef = this.modalService.open(AddUpdateApprovalMatrixComponent, { size: "md" });
+    const modalRef = this.modalService.open(AddUpdateApprovalMatrixComponent, { size: "lg" });
     if (modalRef) {
       this.isProceess = false;
     } else {

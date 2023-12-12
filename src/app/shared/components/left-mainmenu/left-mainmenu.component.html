@@ -38,10 +38,11 @@
       <a routerLink="/admin/assigned-ticket-list" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         class="menu-list-title"><img src="../assets/images/menu-icon-14.png" alt="" /> Assigned To Me</a>
     </li>
+
     <li>
       <div class="accordion" id="menu-accordion">
 
-        <div *ngIf="isAdmin" class="card-header  collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne"
+        <!-- <div *ngIf="isAdmin" class="card-header  collapsed" data-bs-toggle="collapse" data-bs-target="#collapseOne"
           aria-expanded="true" aria-controls="collapseOne"  routerLink="/admin/reservation-table">
           <img class="MenuImage" src="../assets/images/menu-icon-10.png" alt=""  /> Restaurants
         </div>
@@ -63,7 +64,7 @@
                 Order List </a>
             </li>
           </ul>
-        </div>
+        </div> -->
 
         <div *ngIf="isAdmin" class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo"
           aria-expanded="true" aria-controls="collapseTwo" routerLink="/admin/master/category-list">
@@ -143,6 +144,11 @@
               <a [routerLink]="['/admin/master/custom-reply']" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }">Custom Reply</a>
             </li>
+            <li routerLinkActive="active">
+              <a routerLink="/admin/master/approval-matrix" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                class="menu-list-title">
+                Approval Matrix</a>
+            </li>
           </ul>
 
         </div>
@@ -168,6 +174,8 @@
                 class="menu-list-title">
                 Agent Performance</a>
             </li>
+
+
             <!-- <li routerLinkActive="active">
               <a routerLink="/admin/workflow" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
                 class="menu-list-title">

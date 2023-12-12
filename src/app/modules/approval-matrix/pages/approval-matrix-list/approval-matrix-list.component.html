@@ -1,12 +1,12 @@
+<app-header></app-header>
+
 <app-loading-spin *ngIf="isProceess"></app-loading-spin>
 <div class="page-title">
   <h1>Approval Matrix</h1>
 </div>
 <div class="page-btns-col">
   <div class="dt-buttons">
-    <button class="gray-btns" type="button" ><i class="las la-file-csv"></i> CSV</button>
     <button class="gray-btns" type="button"><i class="las la-file-excel"></i> Excel</button>
-    <button class="gray-btns" type="button" ><i class="las la-file-pdf"></i> PDF</button>
     <div class="table-search"><input type="text" class="form-control" name="name" id="name" placeholder="Search here"
         required=""></div>
   </div>
@@ -17,7 +17,7 @@
     </button>
     <ul class="dropdown-menu">
       <li (click)="onAdd()"><a class="dropdown-item"><i class="las la-plus"></i> Create new approval matrix</a></li>
-      <li (click)="onbulkUpload()"><a class="dropdown-item" ><i class="las la-layer-group"></i> Bulk Upload</a></li>
+      <!-- <li (click)="onbulkUpload()"><a class="dropdown-item" ><i class="las la-layer-group"></i> Bulk Upload</a></li> -->
     </ul>
   </div>
 </div>
@@ -28,9 +28,10 @@
         <thead>
           <tr>
             <th >ID</th>
-            <th >Name</th>
-            <th >Description</th>
-            <th>Api Key</th>
+            <th >Department</th>
+            <th >L1 Manager</th>
+            <th>L2 Manager</th>
+            <th>L3 Manager</th>
             <th>Status</th>
             <th class="action-cl">Action</th>
           </tr>
@@ -38,11 +39,11 @@
         <tbody *ngIf="!isProceess">
 
           <tr>
-            <td>#1cwg-er3f</td>
-            <td>CS Tamanna Chugh</td>
-            <td>Lorem Ipsum is simply dummy text of the printing and typesetting industry when an unknown printer
-              took a galley.</td>
-            <td>10671204-740b-4943-aec4</td>
+            <td>1</td>
+            <td>IT</td>
+            <td>Vipul Malakiya</td>
+            <td>Vipul Malakiya</td>
+            <td>Vipul Malakiya</td>
             <td>Active</td>
             <td>
               <a class="btnClick" (click)="onViewDetail()"><i class="las la-eye"></i></a>

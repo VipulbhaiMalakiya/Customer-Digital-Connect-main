@@ -122,6 +122,13 @@ const routes: Routes = [
               ),
           },
           {
+            path: 'approval-matrix',
+            loadChildren: () =>
+              import('./modules/approval-matrix/approval-matrix.module').then(
+                (m) => m.ApprovalMatrixModule
+              ),
+          },
+          {
             path: 'customers',
             loadChildren: () =>
               import('./modules/customers/customers.module').then(
@@ -230,7 +237,7 @@ const routes: Routes = [
         loadChildren: () =>
           import('./modules/ticket/ticket.module').then((m) => m.TicketModule),
       },
-         {
+      {
         path: 'assigned-ticket-list',
         loadChildren: () =>
           import('./modules/assigne-ticket/assigne-ticket.module').then(
@@ -292,6 +299,8 @@ const routes: Routes = [
           ),
       },
 
+
+
       {
         path: 'workflow/create-workflow',
         component: CreateWorkflowComponent,
@@ -332,4 +341,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
