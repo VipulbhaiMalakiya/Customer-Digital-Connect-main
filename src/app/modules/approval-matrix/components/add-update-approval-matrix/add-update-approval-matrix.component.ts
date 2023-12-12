@@ -19,9 +19,8 @@ export class AddUpdateApprovalMatrixComponent implements OnInit{
   userRole?:string;
   duser: UserMaster[] = [];
   userData: any;
-  l1_l2Dept?:any;
-  l1data?:any;
-  l3data?:any;
+  l3User?:any;
+
   get title(): string {
     return this._approvalMatrixMaster ? "Edit Approval Matrix Master" : " Add Approval Matrix Master";
   }
@@ -38,7 +37,6 @@ export class AddUpdateApprovalMatrixComponent implements OnInit{
       L1Manager: ['', [Validators.required]],
       L2Manager: ['', [Validators.required]],
       L3Manager: ['', [Validators.required]],
-      l3departmentId:['', [Validators.required]]
     });
 
     const d: any = localStorage.getItem('userData');
@@ -57,7 +55,6 @@ export class AddUpdateApprovalMatrixComponent implements OnInit{
     this.masterName ="/department/active"
     this.apiService.getAll(this.masterName).subscribe(data => {
       this.data = data;
-      this.l1_l2Dept = this.data;
       this.isProceess = false;
       this.cd.detectChanges();
     },error => {
@@ -71,9 +68,9 @@ export class AddUpdateApprovalMatrixComponent implements OnInit{
       this.apiService.getAll(this.masterName).subscribe(
         (data) => {
           this.duser = data;
-          this.l1data = data;
           // console.log(this.duser );
           this.isProceess = false;
+          this.l3manager();
           this.cd.detectChanges();
         },
         (error) => {
@@ -81,34 +78,29 @@ export class AddUpdateApprovalMatrixComponent implements OnInit{
         }
       );
     } else {
-      // this.duser = [];
+       this.duser = [];
       this.approvalMatrixMasterForm.get('L1Manager').setValue('');
       this.approvalMatrixMasterForm.get('L2Manager').setValue('');
+      this.approvalMatrixMasterForm.get('L3Manager').setValue('');
     }
     this.approvalMatrixMasterForm.get('L1Manager').setValue('');
     this.approvalMatrixMasterForm.get('L2Manager').setValue('');
+    this.approvalMatrixMasterForm.get('L3Manager').setValue('');
   }
 
 
-  l3changed(e: any) {
-    if (e.target.value !== '') {
-      this.masterName = `/users/active/${e.target.value}`;
-      this.apiService.getAll(this.masterName).subscribe(
-        (data) => {
-          this.duser = data;
-          this.l3data = data;
-          // console.log(this.duser );
-          this.isProceess = false;
-          this.cd.detectChanges();
-        },
-        (error) => {
-          this.isProceess = false;
-        }
-      );
-    } else {
-      this.approvalMatrixMasterForm.get('L3Manager').setValue('');
-    }
-    this.approvalMatrixMasterForm.get('L3Manager').setValue('');
+  l3manager(){
+    this.masterName = `/users/active/`;
+    this.apiService.getAll(this.masterName).subscribe(
+      (data) => {
+        this.l3User = data;
+        this.isProceess = false;
+        this.cd.detectChanges();
+      },
+      (error) => {
+        this.isProceess = false;
+      }
+    );
   }
 
 
@@ -122,7 +114,6 @@ export class AddUpdateApprovalMatrixComponent implements OnInit{
       this.approvalMatrixMasterForm.controls['L1Manager'].markAsTouched();
       this.approvalMatrixMasterForm.controls['L2Manager'].markAsTouched();
       this.approvalMatrixMasterForm.controls['L3Manager'].markAsTouched();
-      this.approvalMatrixMasterForm.controls['l3departmentId'].markAsTouched();
 
     }
   }
