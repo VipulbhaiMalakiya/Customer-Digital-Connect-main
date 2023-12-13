@@ -6,13 +6,12 @@
 </div>
 <div class="page-btns-col">
   <div class="dt-buttons">
-    <button class="gray-btns" type="button"><i class="las la-file-excel"></i> Excel</button>
-    <div class="table-search"><input type="text" class="form-control" name="name" id="name" placeholder="Search here"
-        required=""></div>
+
+    <div class="table-search" *ngIf="data.length > 0"><input type="text" class="form-control" name="name" id="name"
+        [(ngModel)]="term" autocomplete="off" placeholder="Search..." required=""></div>
   </div>
   <div class="btn-group">
-    <button type="button"  class="add-btn dropdown-toggle" data-bs-toggle="dropdown"
-      aria-expanded="false">
+    <button type="button" class="add-btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
       Add New
     </button>
     <ul class="dropdown-menu">
@@ -21,50 +20,67 @@
     </ul>
   </div>
 </div>
-<div class="inner-middle-content" >
-  <div class="dasboard-table">
+<div class="inner-middle-content">
+  <div class="dasboard-table dasboard-scroll">
     <div class="table-responsive">
       <table class="table">
         <thead>
           <tr>
-            <th >ID</th>
-            <th >Department</th>
-            <th >L1 Manager</th>
+            <th>ID</th>
+            <th>Department</th>
+            <th>L1 Manager</th>
             <th>L2 Manager</th>
             <th>L3 Manager</th>
             <th>Status</th>
             <th class="action-cl">Action</th>
           </tr>
         </thead>
-        <tbody *ngIf="!isProceess">
-
+        <tbody *ngFor="let i of data | customFilter: term | paginate
+        : {
+            itemsPerPage: tableSize,
+            currentPage: page,
+            totalItems: count
+          };let ind = index">
           <tr>
-            <td>1</td>
-            <td>IT</td>
-            <td>Vipul Malakiya</td>
-            <td>Vipul Malakiya</td>
-            <td>Vipul Malakiya</td>
-            <td>Active</td>
-            <td>
-              <a class="btnClick" (click)="onViewDetail()"><i class="las la-eye"></i></a>
-              <a class="btnClick" href="#"><i class="las la-edit"></i></a>
-              <a class="btnClick" (click)="onDelete()"><i class="las la-trash-alt"></i></a>
-            </td>
+            <!-- <td>{{ind + 1}}</td> -->
+            <td>{{i.id}}</td>
+            <td>{{i.department?.departmentName | titlecase}}</td>
+            <td>{{i.userL1[0]?.fullName | titlecase}}</td>
+            <td><span *ngFor="let item of i.userL2">
+          <tr>
+            <td>{{item.fullName}},</td>
+          </tr>
+          </span></td>
+          <td>
+            <span *ngFor="let item of i.userL3">
+              <tr>
+                <td>
+                  {{item.fullName}} ,
+                </td>
+              </tr>
+            </span>
+          </td>
+          <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
+          <td>
+            <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
+            <a class="btnClick" (click)="onEdit(i)"><i class="las la-edit"></i></a>
+            <a class="btnClick" *ngIf="i.status" (click)="onDelete(i)"><i class="las la-trash-alt"></i></a>
+          </td>
           </tr>
         </tbody>
       </table>
+      <div *ngIf="data.length === 0" class="text-center">
+        <Strong class="text-danger">No records found</Strong>
+      </div>
+      <div class="text-center" *ngIf="(data | customFilter: term).length === 0 && data.length > 0">
+        <Strong class="text-danger"> No results found.</Strong>
+      </div>
     </div>
-    <!-- <div class="clearfix" *ngIf="!isProceess">
-      <div class="hint-text">Showing <b>1</b> out of <b>10</b> entries</div>
+    <div class="clearfix" *ngIf="!isProceess && data.length > 0">
       <ul class="pagination">
-        <li class="page-item disabled"><a href="#"><i class="las la-angle-left"></i></a></li>
-        <li class="page-item active"><a href="#" class="page-link">1</a></li>
-        <li class="page-item"><a href="#" class="page-link">2</a></li>
-        <li class="page-item"><a href="#" class="page-link">3</a></li>
-        <li class="page-item"><a href="#" class="page-link">4</a></li>
-        <li class="page-item"><a href="#" class="page-link">5</a></li>
-        <li class="page-item"><a href="#" class="page-link"><i class="las la-angle-right"></i></a></li>
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
       </ul>
-    </div> -->
+    </div>
   </div>
 </div>

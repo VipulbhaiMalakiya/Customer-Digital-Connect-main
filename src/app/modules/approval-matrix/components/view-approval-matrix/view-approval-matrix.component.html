@@ -4,33 +4,70 @@
       <h1 class="modal-title fs-5" id="viewrecord-modalLabel">View approval matrix record</h1>
       <button type="button" (click)="onCancel()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
     </div>
-    <div class="modal-body">
+    <div class="modal-body mb-0">
       <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
-      <form class="common-modal-form" name="cform" method="post">
+      <form class="common-modal-form" [formGroup]="approvalMatrixMasterForm" >
         <div class="row">
-          <div class="form-group col-md-4">
-            <label>ID</label>
-            <input type="text" class="form-control" name="" id="" value="#1cwg-er3f" disabled readonly>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="departmentId">Department <span class="text-danger">*</span></label>
+              <select class="form-select" name="departmentId" id="departmentId" formControlName="departmentId"
+                (change)="changed($event)">
+                <option value="">Select Department</option>
+                <option *ngFor="let i of data" [value]="i.departmentId">{{i.departmentName}}</option>
+                <!-- <option *ngIf="data.length === 0" value="">No records found</option> -->
+              </select>
+        
+            </div>
           </div>
-
-          <div class="form-group col-md-8">
-            <label>Name</label>
-            <input type="text" class="form-control" name="" id="" value="CS Tamanna Chugh" disabled readonly>
+          <div class="col-md-4">
+            <div class="form-group">
+              <div class="form-Department">
+                <label for="assignedTo">L1 Manager <span class="text-danger">*</span></label>
+                <select class="form-select" id="assignedTo" formControlName="L1Manager">
+                  <option value="">Select</option>
+                  <ng-container *ngFor="let i of duser">
+                    <option *ngIf="i.role?.roleName === 'User'" [value]="i.username">{{i.firstName}} {{i.lastName}}
+                    </option>
+                    <option *ngIf="duser.length === 0" value="">No records found</option>
+                  </ng-container>
+                </select>
+               
+              </div>
+            </div>
           </div>
-
+          <div class="col-md-4">
+            <div class="form-group">
+              <div class="form-Department">
+                <label for="assignedTo">L2 Manager <span class="text-danger">*</span></label>
+                <ng-multiselect-dropdown [settings]="dropdownSettings1" [data]="filteredUsers"  formControlName="L2Manager">
+                </ng-multiselect-dropdown>
+              
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <div class="form-Department">
+                <label for="assignedTo">L3 Manager <span class="text-danger">*</span></label>
+                <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="l3User"  formControlName="L3Manager">
+                </ng-multiselect-dropdown>
+              
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="status">Status</label>
+              <select class="form-select" id="status" formControlName="status">
+                <option value="true">Active</option>
+                <option value="false">Deactive</option>
+              </select>
+        
+            </div>
+          </div>
         </div>
-
-        <div class="form-group">
-          <label>Description</label>
-          <textarea cols="0" rows="3" name="" class="form-control" disabled
-            readonly>Lorem Ipsum is simply dummy text of the printing and typesetting industry when an unknown printer took a galley.</textarea>
-        </div>
-
-        <div class="form-group">
-          <label>Api Key</label>
-          <input type="text" class="form-control" name="" id="" value="10671204-740b-4943-aec4" disabled readonly>
-        </div>
-
+        
       </form>
     </div>
 

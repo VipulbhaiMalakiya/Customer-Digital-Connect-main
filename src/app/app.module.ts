@@ -27,6 +27,7 @@ import { NotFoundComponent } from './_layouts/not-found/not-found.component';
 import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/common';
 import { AuthGaurdGuard } from './_helpers/auth-gaurd.guard';
 import {GoogleMapsModule} from '@angular/google-maps';  // added
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import {GoogleMapsModule} from '@angular/google-maps';  // added
     BrowserAnimationsModule,
     NgbModule,
     StoreModule.forRoot(rootReducer),
+    NgMultiSelectDropDownModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     GoogleMapsModule
   ],

@@ -6,68 +6,74 @@
   <div class="modal-body mb-0">
     <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
     <form class="common-modal-form" [formGroup]="approvalMatrixMasterForm" (ngSubmit)="onSubmit()">
-      <div class="form-group">
-        <label for="departmentId">Department <span class="text-danger">*</span></label>
-        <select class="form-select" name="departmentId" id="departmentId" formControlName="departmentId"
-        (change)="changed($event)">
-          <option value="">Select Department</option>
-          <option *ngFor="let i of data" [value]="i.departmentId">{{i.departmentName}}</option>
-          <option *ngIf="data?.length === 0" value="">No records found</option>
-        </select>
-        <div *ngIf="shouldShowError('departmentId','required')" class="form-validate-err">
-          This field is required.
-        </div>
-      </div>
-      <div class="form-group">
-        <div class="form-Department">
-          <label for="assignedTo">L1 Manager <span class="text-danger">*</span></label>
-          <select class="form-select" id="assignedTo" formControlName="L1Manager">
-            <option value="">Select</option>
-            <ng-container *ngFor="let i of duser">
-              <option *ngIf="i.role?.roleName === 'User'"
-                [value]="i.userId">{{i.firstName}} {{i.lastName}}
-              </option>
-              <option *ngIf="duser.length === 0" value="">No records found</option>
-            </ng-container>
-          </select>
-          <div *ngIf="shouldShowError('L1Manager','required')" class="text-danger">This field is required
+      <div class="row">
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="departmentId">Department <span class="text-danger">*</span></label>
+            <select class="form-select" name="departmentId" id="departmentId" formControlName="departmentId"
+              (change)="changed($event)">
+              <option value="">Select Department</option>
+              <option *ngFor="let i of data" [value]="i.departmentId">{{i.departmentName}}</option>
+              <!-- <option *ngIf="data.length === 0" value="">No records found</option> -->
+            </select>
+            <div *ngIf="shouldShowError('departmentId','required')" class="form-validate-err">
+              This field is required.
+            </div>
           </div>
         </div>
-      </div>
-      <div class="form-group">
-        <div class="form-Department">
-          <label for="assignedTo">L2 Manager <span class="text-danger">*</span></label>
-          <select class="form-select" id="assignedTo" formControlName="L2Manager">
-            <option value="">Select</option>
-            <ng-container *ngFor="let i of duser">
-              <option *ngIf="i.role?.roleName === 'Resolver'"
-                [value]="i.userId">{{i.firstName}} {{i.lastName}}
-              </option>
-              <option *ngIf="duser.length === 0" value="">No records found</option>
-            </ng-container>
-          </select>
-          <div *ngIf="shouldShowError('L2Manager','required')" class="text-danger">This field is required
+        <div class="col-md-4">
+          <div class="form-group">
+            <div class="form-Department">
+              <label for="assignedTo">L1 Manager <span class="text-danger">*</span></label>
+              <select class="form-select" id="assignedTo" formControlName="L1Manager">
+                <option value="">Select</option>
+                <ng-container *ngFor="let i of duser">
+                  <option *ngIf="i.role?.roleName === 'User'" [value]="i.username">{{i.firstName}} {{i.lastName}}
+                  </option>
+                  <option *ngIf="duser.length === 0" value="">No records found</option>
+                </ng-container>
+              </select>
+              <div *ngIf="shouldShowError('L1Manager','required')" class="text-danger">This field is required
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="form-group">
-        <div class="form-Department">
-          <label for="assignedTo">L3 Manager <span class="text-danger">*</span></label>
-          <select class="form-select" id="assignedTo" formControlName="L3Manager">
-            <option value="">Select</option>
-            <ng-container *ngFor="let i of l3User">
-              <option *ngIf="i.role?.roleName !== 'User'"
-                [value]="i.userId">{{i.firstName}} {{i.lastName}}
-              </option>
-              <option *ngIf="l3User.length === 0" value="">No records found</option>
-            </ng-container>
-          </select>
-          <div *ngIf="shouldShowError('L3Manager','required')" class="text-danger">This field is required
+        <div class="col-md-4">
+          <div class="form-group">
+            <div class="form-Department">
+              <label for="assignedTo">L2 Manager <span class="text-danger">*</span></label>
+              <ng-multiselect-dropdown [settings]="dropdownSettings1" [data]="filteredUsers"  formControlName="L2Manager">
+              </ng-multiselect-dropdown>
+              <div *ngIf="shouldShowError('L2Manager','required')" class="text-danger">This field is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <div class="form-Department">
+              <label for="assignedTo">L3 Manager <span class="text-danger">*</span></label>
+              <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="l3User"  formControlName="L3Manager">
+              </ng-multiselect-dropdown>
+              <div *ngIf="shouldShowError('L3Manager','required')" class="text-danger">This field is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select class="form-select" id="status" formControlName="status">
+              <option value="true">Active</option>
+              <option value="false">Deactive</option>
+            </select>
+            <div *ngIf="shouldShowError('status','required')" class="text-danger">This field is required
+            </div>
           </div>
         </div>
       </div>
       <div class="form-group mb-0 text-end">
-        <button type="submit" class="common-btn">Add Now</button>
+        <button type="submit" class="common-btn">Submit</button>
       </div>
     </form>
   </div>
