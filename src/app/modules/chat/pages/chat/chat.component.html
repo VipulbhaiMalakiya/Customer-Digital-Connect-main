@@ -289,8 +289,16 @@
               </ul>
             </div>
           </div>
-          <div class="clschat-btn" *ngIf='Userinfo?.isopen'><a (click)="onClose(contactinfo)">Close
+          <span *ngIf="!ticketflag">
+            <div class="clschat-btn" *ngIf='Userinfo?.isopen'><a (click)="onClose(contactinfo)">Close
               <i class="las la-check"></i> </a></div>
+          </span>
+
+          <span *ngIf="ticketflag">
+            <div class="clschat-btn disabled"  *ngIf='Userinfo?.isopen'><a >Close
+              <i class="las la-check"></i> </a></div>
+          </span>
+
         </div>
       </div>
       <div class="chatarea-sec">
@@ -636,12 +644,12 @@
                 <div class="chat-info">
                   <div class="last-msg p-2 pb-1 mb-2 rounded">
                     <google-map *ngIf="data?.locationLatitude !== null && data?.latitude == null"
-                    [center]="{ lat: (data?.locationLatitude | parseFloat), lng: (data?.locationLongitude | parseFloat) }"
-                    height="230px" width="250px"></google-map>
+                      [center]="{ lat: (data?.locationLatitude | parseFloat), lng: (data?.locationLongitude | parseFloat) }"
+                      height="230px" width="250px"></google-map>
 
-                  <google-map *ngIf="data?.latitude !== null && data?.locationLatitude == null"
-                    [center]="{ lat: (data?.latitude | parseFloat), lng: (data?.longitude | parseFloat) }"
-                    height="230px" width="250px"></google-map>
+                    <google-map *ngIf="data?.latitude !== null && data?.locationLatitude == null"
+                      [center]="{ lat: (data?.latitude | parseFloat), lng: (data?.longitude | parseFloat) }"
+                      height="230px" width="250px"></google-map>
 
 
                   </div>
@@ -1207,22 +1215,16 @@
             <div class="tab-content">
               <div class="tab-pane active" id="reply">
                 <form class="writechat-boder" #loginForm="ngForm" (ngSubmit)="submitForm(loginForm)">
-                  <textarea
-                    class="form-control h-auto"
-                    id="chat"
-                    [(ngModel)]="message"
-                    required
-                    name="chat"
-                    placeholder="Type a message...."
-                    rows="1"
-                    (keydown.enter)="submitForm(loginForm); $event.preventDefault()"
-                    appWhitespaceValidator
-                  ></textarea>
+                  <textarea class="form-control h-auto" id="chat" [(ngModel)]="message" required name="chat"
+                    placeholder="Type a message...." rows="1"
+                    (keydown.enter)="submitForm(loginForm); $event.preventDefault()" appWhitespaceValidator></textarea>
                   <ng-container>
-                    <button class="chatsubmit-btn invalid" type="submit" *ngIf="loginForm.invalid" [disabled]="loginForm.invalid">
+                    <button class="chatsubmit-btn invalid" type="submit" *ngIf="loginForm.invalid"
+                      [disabled]="loginForm.invalid">
                       <i class="lab la-telegram-plane"></i>
                     </button>
-                    <button class="chatsubmit-btn valid" type="submit" *ngIf="loginForm.valid" [disabled]="loginForm.invalid">
+                    <button class="chatsubmit-btn valid" type="submit" *ngIf="loginForm.valid"
+                      [disabled]="loginForm.invalid">
                       <i class="lab la-telegram-plane"></i>
                     </button>
                   </ng-container>
@@ -1233,7 +1235,8 @@
               <div class="tab-pane" id="notes">
                 <form class="writechat-boder" #ngNotesForm="ngForm" (ngSubmit)="submitNoteForm(ngNotesForm)">
                   <textarea class="form-control h-auto" id="note" [(ngModel)]="message" required name="note"
-                    placeholder="Type a note...." rows="1" (keydown.enter)="submitNoteForm(ngNotesForm);$event.preventDefault()"
+                    placeholder="Type a note...." rows="1"
+                    (keydown.enter)="submitNoteForm(ngNotesForm);$event.preventDefault()"
                     appWhitespaceValidator></textarea>
                   <ng-container>
                     <button class="chatsubmit-btn invalid" type="submit" *ngIf="ngNotesForm.invalid"

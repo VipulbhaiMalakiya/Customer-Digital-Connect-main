@@ -53,6 +53,7 @@ export class ChatComponent
   chatVisible: boolean = true;
   isProceess: boolean = true;
   firstname: any;
+  ticketflag?:any;
   lastname: any;
   userData: any;
   totalQuantity?: number = 0;
@@ -249,7 +250,6 @@ export class ChatComponent
     if (!this.socket$ || this.socket$.closed) {
       this.socket$ = webSocket(environment.SOCKET_ENDPOINT);
       this.socket$.subscribe((data: MessageData) => {
-        console.log(data);
         this.messagestates = data.messageStatus;
         if (data.mobileNo === this.contact) {
           this.receivedData.push(data);
@@ -392,6 +392,8 @@ export class ChatComponent
       .subscribe(
         (data) => {
           this.aciveUser = data;
+          console.log();
+
           this.isProceess = false;
         },
         (error) => {
@@ -456,6 +458,7 @@ export class ChatComponent
                   (data) => {
                     this.Userinfo = data;
                     this.contactinfo = data;
+
                     this.nrSelect = this.Userinfo?.assignedto;
                     this.isProceess = false;
                     this.cd.detectChanges();
@@ -544,6 +547,9 @@ export class ChatComponent
     this.show = true;
     if (e.fullName) {
       this.chatname = e.fullName;
+
+      //Ticket flag check in sidebar click event
+      this.ticketflag = e.ticketflag;
     } else {
       this.chatname = e.phoneNo;
     }

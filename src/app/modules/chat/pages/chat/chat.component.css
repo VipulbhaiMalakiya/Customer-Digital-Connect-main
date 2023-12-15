@@ -62,3 +62,9 @@
 .last-message {
   align-self: flex-end;
 } */
+
+.clschat-btn.disabled {
+  pointer-events: none;
+  opacity: 0.5; /* or any other value */
+  /* Add other styles for a disabled appearance */
+}
