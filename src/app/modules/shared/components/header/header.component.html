@@ -16,18 +16,28 @@
 <div class="notification-wrapper">
   <div id="notification" class="notification-bar" [class.toggled]="classToggled">
     <div class="noti-head">
-      <h3>Notifications</h3> <a>Mark All As Read</a>
+      <h3>Notifications</h3>
+      <!-- <a>Mark All As Read</a> -->
     </div>
 
     <div class="inner-noti-sec">
-      <div class="noti-col" *ngFor="let message of messages" [class.unread]="!message.read" (click)="markAsRead(message)"><a>
-          <div class="noti-ico">
-            <i class="{{ message.icone }}"></i>
-          </div>
-          <p>{{ message.text }} <small>{{ message.time }}</small></p>
-        </a>
-      </div>
-    </div>
+      <ng-container *ngIf="unreadCount > 0">
+        <div class="noti-col" *ngFor="let message of messages" [class.unread]="!message.read"
+          (click)="markAsRead(message)"><a>
+            <div class="noti-ico">
+              <i class="{{ message.icone }}"></i>
+            </div>
+            <p>{{ message.text }} <small>{{ message.time }}</small></p>
+          </a>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="unreadCount <= 0">
+        <div class="noti-col"><a>
+            <p>No Notifications Available</p>
+          </a>
+        </div>
+      </ng-container>
 
+    </div>
   </div>
 </div>

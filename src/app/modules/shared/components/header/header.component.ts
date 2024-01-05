@@ -37,19 +37,19 @@ export class HeaderComponent implements OnInit {
       text: 'Your Order will be delivered today',
       time: 'YESTERDAY',
       icone:'las la-thumbs-up',
-      read: false,
+      read: true,
     },
     {
       text: 'You have 1 campaigns at the moment',
       time: '11/07/2023',
       icone:'las la-check',
-      read: false,
+      read: true,
     },
     {
       text: 'You have 1 campaigns at the moment',
       time: '5/07/2023',
       icone:'las la-check',
-      read: false,
+      read: true,
     },
     // Add more messages here
   ];
