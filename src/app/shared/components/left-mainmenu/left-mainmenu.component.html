@@ -188,7 +188,7 @@
           aria-expanded="false" aria-controls="collapseFore" routerLink="/admin/profile">
           <img class="MenuImage" src="../assets/images/menu-icon-11.png" alt="" routerLink="/admin/profile" /> Settings
         </div>
-        <div *ngIf="isUser || isResolver" class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFore"
+        <div *ngIf="isUser || isResolver || isApprover" class="card-header collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFore"
           aria-expanded="false" aria-controls="collapseFore" routerLink="/profile">
           <img class="MenuImage" src="../assets/images/menu-icon-11.png" alt="" routerLink="/admin/profile" /> Settings
         </div>
@@ -202,7 +202,7 @@
               <a routerLink="/admin/permissions" class="menu-list-title">
                 Access Permissions</a>
             </li> -->
-            <li *ngIf="isUser || isResolver" routerLinkActive="active">
+            <li *ngIf="isUser || isResolver ||isApprover " routerLinkActive="active">
               <a routerLink="/profile" class="menu-list-title">
                 My Profile</a>
             </li>
