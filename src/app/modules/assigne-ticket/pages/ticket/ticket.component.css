@@ -2,3 +2,17 @@ td.tblLink {
   cursor: pointer;
   color: #00abc5;
 }
+
+i.las.la-check {
+  color: green;
+}
+i.las.la-times {
+  color: red;
+}
+
+.disabled i.las.la-check {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: black;
+}

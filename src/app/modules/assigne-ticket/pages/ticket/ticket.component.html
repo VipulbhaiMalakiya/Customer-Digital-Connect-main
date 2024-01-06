@@ -12,9 +12,9 @@
   </div>
   <div class="topbr-btns">
     <div class="btn-group">
-      <select class="form-select"#sel3 (change)="selectStatus(sel3.value)">
+      <select class="form-select" #sel3 (change)="selectStatus(sel3.value)">
         <option value="All" selected>All</option>
-        <option value="New" >New</option>
+        <option value="New">New</option>
         <option value="In_Progress">In-Progress</option>
         <option value="Pending_Client">Pending Client</option>
         <option value="Resolved">Resolved</option>
@@ -41,7 +41,7 @@
             <th class="action-cl">Action</th>
           </tr>
         </thead>
-        <tbody >
+        <tbody>
           <tr *ngFor="let i of data | customFilter: term | paginate
           : {
               itemsPerPage: tableSize,
@@ -50,8 +50,9 @@
             };let ind = index ;trackBy: trackByFn">
             <!-- <td>{{ind + 1}}</td> -->
             <td>{{i.ticketId}}</td>
-            <td  *ngIf="this.userData?.role?.roleName !== 'Approver' " (click)="onEdit(i)" class="tblLink">{{i.ticketNo}}</td>
-            <td  *ngIf="this.userData?.role?.roleName == 'Approver' "  >{{i.ticketNo}}</td>
+            <td *ngIf="this.userData?.role?.roleName !== 'Approver' " (click)="onEdit(i)" class="tblLink">{{i.ticketNo}}
+            </td>
+            <td *ngIf="this.userData?.role?.roleName == 'Approver' ">{{i.ticketNo}}</td>
 
             <td>{{i.createdDate | date :'medium'}}</td>
             <td>{{i.ticketStatus || ''}}</td>
@@ -62,9 +63,16 @@
             <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
             <td>
               <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
-              <a class="btnClick" *ngIf="this.userData?.role?.roleName !== 'Approver' " (click)="onEdit(i)"><i class="las la-edit"></i></a>
-              <a class="btnClick" *ngIf="this.userData?.role?.roleName == 'Approver' " (click)="onEdit(i)"><i class="las la-check"></i></a>
-              <a class="btnClick" *ngIf="this.userData?.role?.roleName == 'Approver' " (click)="onEdit(i)"><i class="las la-times"></i></a>
+              <a class="btnClick" *ngIf="this.userData?.role?.roleName !== 'Approver' " (click)="onEdit(i)"><i
+                  class="las la-edit"></i></a>
+              <a class="btnClick" *ngIf="this.userData?.role?.roleName == 'Approver' " (click)="onAprove(i)"><i
+                  class="las la-check"></i>
+                </a>
+                <a class="btnClick disabled"   *ngIf="this.userData?.role?.roleName == 'Approver' "><i
+                  class="las la-check"></i>
+                </a>
+              <a class="btnClick" *ngIf="this.userData?.role?.roleName == 'Approver' " (click)="onReject(i)"><i
+                  class="las la-times"></i></a>
 
             </td>
           </tr>

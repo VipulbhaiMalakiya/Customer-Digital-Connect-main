@@ -1,0 +1,25 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">Approve</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <form class="common-modal-form" [formGroup]="customersMasterForm" (ngSubmit)="onSubmit()">
+      <div class="row">   
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="comment">Comment <span class="text-danger">*</span></label>
+            <textarea cols="0" rows="3" id="comment" name="comment" formControlName="comment" class="form-control"
+              placeholder="comment"></textarea>
+            <div *ngIf="shouldShowError('comment','required')" class="form-validate-err">
+              Please Enter Comment.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group mb-0 text-end">
+        <button type="submit" class="common-btn">Submit</button>
+      </div>
+    </form>
+  </div>
+</div>

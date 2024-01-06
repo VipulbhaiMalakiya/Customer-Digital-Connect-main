@@ -8,6 +8,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { SharedModule } from '../shared/shared.module';
 import { assignedTickeftilterPipe } from 'src/app/_helpers/assigned-ticket';
+import { OnAproveComponent } from './components/on-aprove/on-aprove.component';
+import { OnRejectComponent } from './components/on-reject/on-reject.component';
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import { assignedTickeftilterPipe } from 'src/app/_helpers/assigned-ticket';
     TicketComponent,
     AddEditeTicketComponent,
     ViewTicketComponent,
-    assignedTickeftilterPipe
+    assignedTickeftilterPipe,
+    OnAproveComponent,
+    OnRejectComponent
   ],
   imports: [
     CommonModule,
