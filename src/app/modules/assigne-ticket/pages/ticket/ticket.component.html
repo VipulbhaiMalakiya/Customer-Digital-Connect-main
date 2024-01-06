@@ -63,6 +63,9 @@
             <td>
               <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
               <a class="btnClick" *ngIf="this.userData?.role?.roleName !== 'Approver' " (click)="onEdit(i)"><i class="las la-edit"></i></a>
+              <a class="btnClick" *ngIf="this.userData?.role?.roleName == 'Approver' " (click)="onEdit(i)"><i class="las la-check"></i></a>
+              <a class="btnClick" *ngIf="this.userData?.role?.roleName == 'Approver' " (click)="onEdit(i)"><i class="las la-times"></i></a>
+
             </td>
           </tr>
         </tbody>
