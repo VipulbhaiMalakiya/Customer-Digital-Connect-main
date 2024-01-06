@@ -55,6 +55,8 @@
                   </div>
                 </div>
 
+
+
                 <div class="col-12 col-sm-6 col-md-3">
                   <div class="form-group">
                     <label for="Status">Status <span class="text-danger">*</span></label>
@@ -124,6 +126,32 @@
                     <div class="input-group mb-3">
                       <input type="file" class="form-control" id="custom-file-input" (change)="onFileChange($event)" name="file"
                       accept="image/*" formControlName="file" #fileInput >
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                  <div class="form-group">
+                    <label for="l1ticketApproval">l1 Ticket Approval <span class="text-danger">*</span></label>
+                    <select class="form-select" id="l1ticketApproval" formControlName="l1ticketApproval">
+                      <option value="">Select</option>
+                      <option value="APPROVAL_PENDING">Pending</option>
+                      <option value="APPROVED">Approved</option>
+                      <option value="REJECTED">Rejected</option>
+                    </select>
+                    <div *ngIf="shouldShowError('l1ticketApproval','required')" class="text-danger">This field is required
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-sm-6 col-md-3">
+                  <div class="form-group">
+                    <label for="l2ticketApproval">l2 Ticket Approval <span class="text-danger">*</span></label>
+                    <select class="form-select" id="l2ticketApproval" formControlName="l2ticketApproval">
+                      <option value="">Select</option>
+                      <option value="APPROVAL_PENDING">Pending</option>
+                      <option value="APPROVED">Approved</option>
+                      <option value="REJECTED">Rejected</option>
+                    </select>
+                    <div *ngIf="shouldShowError('serviceTitle','required')" class="text-danger">This field is required
                     </div>
                   </div>
                 </div>

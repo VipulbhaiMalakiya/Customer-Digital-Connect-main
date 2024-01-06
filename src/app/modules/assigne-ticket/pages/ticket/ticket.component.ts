@@ -132,7 +132,7 @@ export class TicketComponent {
     }
     var componentInstance = modalRef.componentInstance as AddEditeTicketComponent;
     componentInstance.ticketsMaster = dataItem;
-    modalRef.result.then((data: ticketMasterModel) => {
+    modalRef.result.then((data: any) => {
       if (data) {
         var model: any = {
           createForUser: dataItem.createForUser?.userId,
@@ -150,7 +150,10 @@ export class TicketComponent {
           updatedBy: this.userData.userId,
           ticketStatus: data.ticketStatus,
           comment:data.additionalComments || ' ',
-          mode:"User"
+          mode:"User",
+          l1ticketApproval:data.l1ticketApproval,
+          l2ticketApproval:data.l2ticketApproval
+
         }
         let formData = new FormData();
         if(data.file === null){
