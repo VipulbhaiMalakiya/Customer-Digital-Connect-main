@@ -8,7 +8,7 @@
       <a routerLink="/inbox" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         class="menu-list-title"><img src="../assets/images/menu-icon-2.png" alt="" /> inbox</a>
     </li>
-    <li *ngIf="isUser || isResolver || isApprover" routerLinkActive="active">
+    <li *ngIf="isUser || isResolver" routerLinkActive="active">
       <a routerLink="/ticket" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         class="menu-list-title"><img src="../assets/images/menu-icon-15.png" alt="" /> MY Ticket</a>
     </li>
