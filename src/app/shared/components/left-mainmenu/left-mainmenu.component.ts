@@ -20,9 +20,13 @@ export class LeftMainmenuComponent implements OnInit {
     this.userData = JSON.parse(this.data);
 
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
 
+  get isAuditor(){
+    return this.userData?.department?.departmentName == 'Auditor';
+  }
   get isAdmin() {
     return this.userData?.role?.roleName == 'Admin';
   }
