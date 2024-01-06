@@ -1,0 +1,149 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">{{ title }}</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-modal-form" [formGroup]="ticketMasterForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="category">Category <span class="text-danger">*</span></label>
+            <select class="form-select" id="category" (change)="changed($event)" formControlName="category">
+              <option value="">Select</option>
+              <option *ngFor="let i of data" [value]="i.categoryId">{{i.categoryName}}</option>
+              <option *ngIf="data.length === 0" value="">No records found</option>
+            </select>
+            <div *ngIf="shouldShowError('category','required')" class="text-danger">This field is required
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="subCategory">Sub Category <span class="text-danger">*</span></label>
+            <select class="form-select" (change)="selectCategory($event)" id="subCategory" formControlName="subCategory">
+              <option value="">Select</option>
+              <option *ngFor="let i of sdata" [value]="i.subCategoryId">{{i.subCategoryName}}</option>
+              <option *ngIf="sdata.length === 0" value="">No records found</option>
+            </select>
+            <div *ngIf="shouldShowError('subCategory','required')" class="text-danger">This field is required
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="serviceTitle">Service Title <span class="text-danger">*</span></label>
+            <select class="form-select"  (change)="selectserviceTitle($event)" id="serviceTitle"
+              formControlName="serviceTitle">
+              <option value="">Select</option>
+              <option *ngFor="let i of data1" [value]="i.serviceId">{{i.serviceName}}</option>
+              <option *ngIf="data1.length === 0" value="">No records found</option>
+            </select>
+            <div *ngIf="shouldShowError('serviceTitle','required')" class="text-danger">This field is required
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="contact">Alternative Contact No </label>
+            <input type="text" class="form-control" id="contact" name="contact" formControlName="alternativeContactNo"
+              placeholder="Contact" (keydown)="onKeyDown($event)">
+            <div *ngIf="shouldShowError('alternativeContactNo','minlength')" class="form-validate-err">
+              The minimum length allowed is 10 digits
+            </div>
+            <div *ngIf="shouldShowError('alternativeContactNo','maxlength')" class="form-validate-err">
+              The maximum length allowed is 10 digits
+            </div>
+            <div *ngIf="shouldShowError('alternativeContactNo','pattern')" class="form-validate-err">
+              Only Numbers are allowed.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="priority"> Priority <span class="text-danger">*</span></label>
+            <select class="form-select" id="priority" formControlName="priority" [(ngModel)]="selectedOption">
+              <option value="">Select</option>
+              <option *ngFor="let i of slaData" [value]="i.defaultPriority.id">{{i.defaultPriority.priorityName}}
+              </option>
+              <option *ngIf="slaData.length === 0" value="">No records found</option>
+            </select>
+            <div *ngIf="shouldShowError('priority','required')" class="text-danger">This field is required
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="issue"> Issue <span class="text-danger">*</span></label>
+            <select class="form-select" id="issue" formControlName="issue">
+              <option value="">Select</option>
+              <option *ngFor="let i of issueData" [value]="i.issueId">{{i.issueName}}</option>
+              <option *ngIf="issueData.length === 0" value="">No records found</option>
+            </select>
+            <div *ngIf="shouldShowError('issue','required')" class="text-danger">This field is required
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <div class="form-Department">
+              <label for="department">Department <span class="text-danger">*</span></label>
+              <input type="text" class="form-control disabled-input" [(ngModel)]="selectedOption1" id="department"
+              formControlName="department" readonly>
+              <div *ngIf="shouldShowError('department','required')" class="text-danger">This field is required
+              </div>
+            </div>
+          </div>
+        </div>
+     
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="shortNotes">Short Notes <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="shortNotes" name="shortNotes" formControlName="shortNotes"
+              placeholder="short Notes">
+            <div *ngIf="shouldShowError('shortNotes','required')" class="form-validate-err">
+              Please Enter Short Notes.
+            </div>
+            <div *ngIf="shouldShowError('shortNotes','leadingSpace')" class="form-validate-err">
+              Input Field cannot start with a space.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="custom-file">
+            <label for="custom-file-input">Attachment</label>
+            <input type="file" class="form-control" id="custom-file-input" (change)="onFileChange($event)" name="file"
+              accept="image/*" formControlName="file" #fileInput >
+            <div *ngIf="shouldShowError('file','required')" class="text-danger">This field is required
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" *ngIf="imagePath">
+          <label for="custom-fil">Attachment</label>
+          <div class="input-group mb-3">
+            <input type="text" id="custom-fil" disabled class="form-control " value="{{this.imagePath}}">
+            <div class="input-group-append" (click)="attachmentDownload()">
+              <span class="cst-icone"><i class="las la-download"></i></span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label for="additionalComments">Additional Comments <span class="text-danger">*</span></label>
+            <textarea cols="0" rows="3" id="additionalComments" name="additionalComments"
+              formControlName="additionalComments" class="form-control" placeholder="Additional Comments"></textarea>
+            <div *ngIf="shouldShowError('additionalComments','required')" class="text-danger">This field is required
+            </div>
+            <div *ngIf="shouldShowError('additionalComments','leadingSpace')" class="form-validate-err">
+              Input Field cannot start with a space.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group mb-0 text-end">
+        <button type="submit" class="common-btn">{{this.chek ?'Update Now' : 'Add New'}}</button>
+      </div>
+    </form>
+  </div>
+</div>

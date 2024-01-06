@@ -74,8 +74,7 @@ export class AddEditeTicketComponent {
       subCategory: ['', [Validators.required]],
       serviceTitle: ['', [Validators.required]],
       assignedTo: ['', [Validators.required]],
-      l2ticketApproval:[''],
-      l1ticketApproval:[''],
+
       ticketStatus:['', [Validators.required]],
       additionalComments:['', [Validators.required,noLeadingSpaceValidator()]],
       workNotes:['',[noLeadingSpaceValidator()]],
@@ -191,8 +190,6 @@ export class AddEditeTicketComponent {
         additionalComments:this.ticketMasterForm.value.additionalComments,
         workNotes:this.ticketMasterForm.value.workNotes,
         file: this.uploadFile || null ,
-        l1ticketApproval:this.ticketMasterForm.value.l1ticketApproval,
-        l2ticketApproval:this.ticketMasterForm.value.l2ticketApproval,
       }
       this.activeModal.close(data)
     } else {

@@ -10,6 +10,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { TicketilterPipe } from 'src/app/_helpers/ticket-filter.pipe';
 import { UpdateTicketComponent } from './update-ticket/update-ticket.component';
 import { FilterTicketComponent } from './components/filter-ticket/filter-ticket.component';
+import { AuditorAddComponent } from './components/auditor-add/auditor-add.component';
 @NgModule({
   declarations: [
     TicketComponent,
@@ -17,7 +18,8 @@ import { FilterTicketComponent } from './components/filter-ticket/filter-ticket.
     ViewTicketComponent,
     TicketilterPipe,
     UpdateTicketComponent,
-    FilterTicketComponent
+    FilterTicketComponent,
+    AuditorAddComponent
   ],
   imports: [
     CommonModule,

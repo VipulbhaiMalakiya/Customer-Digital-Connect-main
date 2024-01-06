@@ -15,6 +15,7 @@ import { UpdateTicketComponent } from '../../update-ticket/update-ticket.compone
 import { Subscription, delay, take } from 'rxjs';
 import { FilterTicketComponent } from '../../components/filter-ticket/filter-ticket.component';
 import { ViewChild, ElementRef } from '@angular/core';
+import { AuditorAddComponent } from '../../components/auditor-add/auditor-add.component';
 
 @Component({
   selector: 'app-ticket',
@@ -98,7 +99,7 @@ export class TicketComponent implements OnInit, OnDestroy {
     else if (this.userData?.role?.roleName === 'Approver') {
       this.masterName = `/ticket/createdBy/${this.userData.userId}`;
     }
-    
+
     this.subscription = this.apiService
       .getAll(this.masterName)
       .pipe(take(1))
@@ -143,6 +144,69 @@ export class TicketComponent implements OnInit, OnDestroy {
             status: data.status,
             shortNotes: data.shortNotes,
             assignedTo: data.assignedTo,
+            departmentId: data.department,
+            issueId: data.issue,
+            priority: data.priority,
+            alternativeContactNo: data.alternativeContactNo,
+            serviceTitleId: data.serviceTitle,
+            subCategoryId: data.subCategory,
+            categoryId: data.category,
+            emailId: this.userData.email,
+            comment: data.additionalComments || ' ',
+            mode:"User"
+          };
+          var commentModel: any = {
+            additionalMessage: data.additionalComments || ' ',
+            userId: this.userData.userId,
+          };
+          let formData = new FormData();
+
+          if (data.file === null) {
+          } else {
+            formData.append('file', data.file);
+          }
+
+          formData.append('userData', JSON.stringify(model));
+          // formData.append('comment', JSON.stringify(commentModel));
+          this.isProceess = true;
+          this.subscription = this.masterAPI
+            .saveMasterData(formData)
+            .pipe(take(1))
+            .subscribe(
+              (responseData) => {
+                this.isProceess = false;
+                this.toastr.success('Ticket Master Added!');
+                this.fatchData();
+                this.sel3.nativeElement.value = 'All';
+                this.sel3.nativeElement.dispatchEvent(new Event('change'));
+              },
+              (error) => {
+                this.isProceess = false;
+                this.toastr.error('Error while saving Ticket!');
+              }
+            );
+        }
+      })
+      .catch(() => {});
+  }
+
+  onAuditorAdd(){
+    const modalRef = this.modalService.open(AuditorAddComponent, {
+      size: 'xl',
+    });
+    if (modalRef) {
+      this.isProceess = false;
+    } else {
+      this.isProceess = false;
+    }
+    modalRef.result
+      .then((data: any) => {
+        if (data) {
+          var model: any = {
+            createdBy: this.userData.userId,
+            createForUser: data.createForUser,
+            status: data.status,
+            shortNotes: data.shortNotes,
             departmentId: data.department,
             issueId: data.issue,
             priority: data.priority,

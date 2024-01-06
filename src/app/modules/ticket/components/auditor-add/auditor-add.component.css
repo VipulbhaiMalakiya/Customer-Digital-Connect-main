@@ -1,0 +1,13 @@
+span.cst-icone {
+  position: absolute;
+  font-size: 25px;
+  color: #00abc5;
+  cursor: pointer;
+  right: 5px;
+  top: 3px;
+}
+
+.disabled-input {
+  background-color: #f6f6f6;
+  border-color: #e1e1e1;
+}

@@ -28,7 +28,9 @@
         Add New
       </button>
       <ul class="dropdown-menu">
-        <li (click)="onAdd()"><a class="dropdown-item"><i class="las la-plus"></i> Create new Ticket</a></li>
+        <li *ngIf="this.userData.department.departmentName != 'Auditor'" (click)="onAdd()"><a class="dropdown-item"><i class="las la-plus"></i> Create new Ticket</a></li>
+        <li *ngIf="this.userData.department.departmentName == 'Auditor'" (click)="onAuditorAdd()"><a class="dropdown-item"><i class="las la-plus"></i> Create new Ticket</a></li>
+
         <!-- <li (click)="onbulkUpload()"><a class="dropdown-item" ><i class="las la-layer-group"></i> Bulk Upload</a></li> -->
       </ul>
     </div>

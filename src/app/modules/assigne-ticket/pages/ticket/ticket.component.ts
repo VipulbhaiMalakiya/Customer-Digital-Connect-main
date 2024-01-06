@@ -48,6 +48,8 @@ export class TicketComponent {
 
   ngOnInit(): void {
     this.fatchData();
+    console.log(this.userData?.role?.roleName);
+    
   }
   trackByFn(index: number, item: any): number {
     return item.ticketId;
@@ -151,9 +153,6 @@ export class TicketComponent {
           ticketStatus: data.ticketStatus,
           comment:data.additionalComments || ' ',
           mode:"User",
-          l1ticketApproval:data.l1ticketApproval,
-          l2ticketApproval:data.l2ticketApproval
-
         }
         let formData = new FormData();
         if(data.file === null){
