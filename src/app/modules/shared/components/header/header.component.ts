@@ -71,6 +71,7 @@ export class HeaderComponent implements OnInit {
   ) {
     this.data = localStorage.getItem('userData');
     this.userData = JSON.parse(this.data);
+   
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationStart) {
         // Close the fields when navigating to another page
@@ -112,6 +113,8 @@ export class HeaderComponent implements OnInit {
     //     this.logout();
     //   }
     // });
+
+
   }
 
   get isAdmin() {

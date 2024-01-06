@@ -17,7 +17,7 @@
       <a routerLink="/assigned-ticket-list" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         class="menu-list-title"><img src="../assets/images/menu-icon-14.png" alt="" /> Assigned To Me</a>
     </li>
-    <li *ngIf="isResolver" routerLinkActive="active">
+    <li *ngIf="isResolver || isApprover" routerLinkActive="active">
       <a routerLink="/department-tickets" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         class="menu-list-title"><img src="../assets/images/menu-icon-13.png" alt="" /> Department
         Tickets</a>
