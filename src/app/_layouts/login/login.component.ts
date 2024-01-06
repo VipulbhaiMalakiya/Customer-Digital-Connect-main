@@ -45,6 +45,10 @@ export class LoginComponent implements OnInit {
       } else if (this.logUsers.role?.roleName == 'Resolver') {
         this.router.navigate(['/inbox']);
       }
+      else if (this.logUsers.role?.roleName == 'Approver') {
+        this.router.navigate(['/assigned-ticket-list']);
+        this.toastr.success('You are successfully logged in!');
+      }
     }
   }
   onSubmit() {
@@ -78,7 +82,12 @@ export class LoginComponent implements OnInit {
               } else if (role == 'Resolver') {
                 this.router.navigate(['/inbox']);
                 this.toastr.success('You are successfully logged in!');
-              } else {
+              }
+              else if (role == 'Approver') {
+                this.router.navigate(['/assigned-ticket-list']);
+                this.toastr.success('You are successfully logged in!');
+              }
+              else {
                 this.router.navigate(['/login']);
               }
               // this.toastr.success("You are successfully logged in!!");

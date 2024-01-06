@@ -66,6 +66,10 @@ export class TicketComponent {
     else if (this.userData?.role?.roleName === 'User') {
       this.masterName = `/ticket/ticketscomments`;
     }
+    else if (this.userData?.role?.roleName === 'Approver') {
+      this.masterName = `/ticket/AssignedTo/${this.userData.userId}/ticketStatus/${e}`;
+    }
+
     this.isProceess = true;
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1),delay(1000)).subscribe(data => {
       this.data = data;
@@ -85,6 +89,9 @@ export class TicketComponent {
       this.masterName = `/ticket/AssignedTo/${this.userData.userId}`;
     }
     else if (this.userData?.role?.roleName === 'Admin') {
+      this.masterName = `/ticket/AssignedTo/${this.userData.userId}`;
+    }
+    else if (this.userData?.role?.roleName === 'Approver') {
       this.masterName = `/ticket/AssignedTo/${this.userData.userId}`;
     }
 

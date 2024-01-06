@@ -8,16 +8,16 @@
       <a routerLink="/inbox" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         class="menu-list-title"><img src="../assets/images/menu-icon-2.png" alt="" /> inbox</a>
     </li>
-    <li *ngIf="isUser || isResolver" routerLinkActive="active">
+    <li *ngIf="isUser || isResolver || isApprover" routerLinkActive="active">
       <a routerLink="/ticket" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         class="menu-list-title"><img src="../assets/images/menu-icon-15.png" alt="" /> MY Ticket</a>
     </li>
 
-    <li *ngIf="isUser || isResolver"  routerLinkActive="active">
+    <li *ngIf="isUser || isResolver || isApprover"  routerLinkActive="active">
       <a routerLink="/assigned-ticket-list" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         class="menu-list-title"><img src="../assets/images/menu-icon-14.png" alt="" /> Assigned To Me</a>
     </li>
-    <li *ngIf="isResolver" routerLinkActive="active">
+    <li *ngIf="isResolver || isApprover" routerLinkActive="active">
       <a routerLink="/department-tickets" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
         class="menu-list-title"><img src="../assets/images/menu-icon-13.png" alt="" /> Department
         Tickets</a>

@@ -66,7 +66,13 @@ export class DepatmentTicketComponent implements OnInit, OnDestroy {
     if (e === this.tickitStatus && this.userData?.role?.roleName === 'Resolver') {
       this.masterName = `/ticket/departmentId/${this.userData.department.departmentId}`;
     }
+    else if(e === this.tickitStatus && this.userData?.role?.roleName === 'Approver'){
+      this.masterName = `/ticket/departmentId/${this.userData.department.departmentId}`;
+    }
     else if (this.userData?.role?.roleName === 'Resolver') {
+      this.masterName = `/ticket/departmentId/${this.userData.department.departmentId}/ticketStatus/${e}`;
+    }
+    else if (this.userData?.role?.roleName === 'Approver') {
       this.masterName = `/ticket/departmentId/${this.userData.department.departmentId}/ticketStatus/${e}`;
     }
     this.isProceess = true;

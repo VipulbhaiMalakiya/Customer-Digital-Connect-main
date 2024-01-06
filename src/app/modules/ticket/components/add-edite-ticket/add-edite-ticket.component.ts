@@ -90,7 +90,7 @@ export class AddEditeTicketComponent {
       priority: ['', [Validators.required]],
       issue: ['', [Validators.required]],
       department: ['', [Validators.required]],
-      assignedTo: ['', [Validators.required]],
+      assignedTo: [''],
       shortNotes: ['', [Validators.required,noLeadingSpaceValidator()]],
       status: [true],
       createForUser: [''],
@@ -374,7 +374,6 @@ export class AddEditeTicketComponent {
       this.ticketMasterForm.controls['priority'].markAsTouched();
       this.ticketMasterForm.controls['issue'].markAsTouched();
       this.ticketMasterForm.controls['department'].markAsTouched();
-      this.ticketMasterForm.controls['assignedTo'].markAsTouched();
       this.ticketMasterForm.controls['shortNotes'].markAsTouched();
       this.ticketMasterForm.controls['additionalComments'].markAsTouched();
     }

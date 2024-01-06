@@ -35,6 +35,10 @@ export class LeftMainmenuComponent implements OnInit {
     return this.userData?.role?.roleName == 'Resolver';
   }
 
+  get isApprover() {
+    return this.userData?.role?.roleName == 'Approver';
+  }
+
   reloadCurrentPage() {
     this.router.navigate(['/admin/inbox/']);
   }

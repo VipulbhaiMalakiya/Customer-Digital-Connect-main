@@ -67,6 +67,9 @@ export class TicketComponent implements OnInit, OnDestroy {
     } else if (this.userData?.role?.roleName === 'User') {
       this.masterName = `/ticket/createdBy/${this.userData.userId}/ticketStatus/${e}`;
     }
+    else if (this.userData?.role?.roleName === 'Approver') {
+      this.masterName = `/ticket/createdBy/${this.userData.userId}/ticketStatus/${e}`;
+    }
     this.isProceess = true;
     this.subscription = this.apiService
       .getAll(this.masterName)
@@ -92,6 +95,10 @@ export class TicketComponent implements OnInit, OnDestroy {
     } else if (this.userData?.role?.roleName === 'User') {
       this.masterName = `/ticket/createdBy/${this.userData.userId}`;
     }
+    else if (this.userData?.role?.roleName === 'Approver') {
+      this.masterName = `/ticket/createdBy/${this.userData.userId}`;
+    }
+    
     this.subscription = this.apiService
       .getAll(this.masterName)
       .pipe(take(1))
