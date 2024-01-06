@@ -50,8 +50,6 @@ export class TicketComponent {
 
   ngOnInit(): void {
     this.fatchData();
-    console.log(this.userData?.role?.roleName);
-    
   }
   trackByFn(index: number, item: any): number {
     return item.ticketId;

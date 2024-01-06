@@ -10,7 +10,7 @@ i.las.la-times {
   color: red;
 }
 
-.disabled i.las.la-check {
+.disabled i {
   pointer-events: none;
   cursor: default;
   text-decoration: none;
