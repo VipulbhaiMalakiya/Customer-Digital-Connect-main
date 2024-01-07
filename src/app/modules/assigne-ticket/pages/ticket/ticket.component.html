@@ -32,12 +32,11 @@
             <th>Id</th>
             <th>Ticket No</th>
             <th>Created Date</th>
-            <th>Status</th>
-            <th>Category</th>
-            <th>Sub Category</th>
+        
             <th>Department</th>
             <th>Assigned To</th>
-            <th>Status</th>
+            <th>L1 Status</th>
+            <th>L2 Status</th>
             <th class="action-cl">Action</th>
           </tr>
         </thead>
@@ -53,14 +52,13 @@
             <td *ngIf="this.userData?.role?.roleName !== 'Approver' " (click)="onEdit(i)" class="tblLink">{{i.ticketNo}}
             </td>
             <td *ngIf="this.userData?.role?.roleName == 'Approver' ">{{i.ticketNo}}</td>
-
+         
             <td>{{i.createdDate | date :'medium'}}</td>
-            <td>{{i.ticketStatus || ''}}</td>
-            <td>{{i.category?.categoryName}}</td>
-            <td>{{i.subCategory?.subCategoryName}}</td>
+  
             <td>{{i.department?.departmentName}}</td>
             <td>{{i.assignedTo?.firstName}} {{i.assignedTo?.lastName}}</td>
-            <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
+            <td>{{i.l1ticketApproval || ''}}</td>
+            <td>{{i.l2ticketApproval || ''}}</td>
             <td>
               <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
 
@@ -77,18 +75,26 @@
                 (click)="onAprove(i)"><i class="las la-check"></i>
               </a>
 
+              <a class="btnClick disabled"
+                *ngIf="this.userData?.role?.roleName == 'Approver' && this.userData?.username == i.assignedTo?.username && i.l1ticketApproval == 'APPROVED' && i.l2ticketApproval != 'APPROVAL_PENDING' ||  i.l1ticketApproval != 'APPROVAL_PENDING' && i.l2ticketApproval == null "><i
+                  class="las la-check"></i></a>
+
 
               <a class="btnClick"
-              *ngIf="this.userData?.role?.roleName == 'Approver' && this.userData?.username == i.assignedTo?.username && i.l1ticketApproval == 'APPROVED' && i.l2ticketApproval == 'APPROVAL_PENDING'"
-              (click)="onReject(i)"><i class="las la-times"></i></a>
-              
-          
-         
-             
+                *ngIf="this.userData?.role?.roleName == 'Approver' && this.userData?.username == i.assignedTo?.username && i.l1ticketApproval == 'APPROVED' && i.l2ticketApproval == 'APPROVAL_PENDING'"
+                (click)="onReject(i)"><i class="las la-times"></i></a>
+
+
+
+
 
               <a class="btnClick"
                 *ngIf="this.userData?.role?.roleName == 'Approver' && this.userData?.username == i.assignedTo?.username && i.l1ticketApproval == 'APPROVAL_PENDING' "
                 (click)="onReject(i)"><i class="las la-times"></i></a>
+
+              <a class="btnClick disabled"
+                *ngIf="this.userData?.role?.roleName == 'Approver' && this.userData?.username == i.assignedTo?.username && i.l1ticketApproval == 'APPROVED' && i.l2ticketApproval != 'APPROVAL_PENDING' ||  i.l1ticketApproval != 'APPROVAL_PENDING' && i.l2ticketApproval == null "><i
+                  class="las la-times"></i></a>
 
 
 
