@@ -190,7 +190,8 @@ export class TicketComponent {
         var model: any = {
           ticketid:dataItem.ticketId,
           approvalstatus:"APPROVED",
-          updatedBy:this.userData.userId
+          updatedBy:this.userData.userId,
+          comment:data.comment
         }
         this.isProceess = true;
         this.subscription = this.masterAPI.updateMasterData1(model).pipe(take(1)).subscribe(responseData => {
@@ -221,7 +222,8 @@ export class TicketComponent {
         var model: any = {
           ticketid:dataItem.ticketId,
           approvalstatus:"REJECTED",
-          updatedBy:this.userData.userId
+          updatedBy:this.userData.userId,
+          comment:data.comment
         }
         this.isProceess = true;
         this.subscription = this.masterAPI.updateMasterData1(model).pipe(take(1)).subscribe(responseData => {
