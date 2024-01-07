@@ -72,8 +72,11 @@
             <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
             <td>
               <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
-              <a class="btnClick" (click)="onEdit(i)" *ngIf="this.userData?.role?.roleName  !== 'Admin'"><i
+              <a class="btnClick" (click)="onEdit(i)" *ngIf="this.userData?.role?.roleName  !== 'Admin' && this.userData.department.departmentName !== 'Auditor'"><i
                   class="las la-edit"></i></a>
+
+                  <a class="btnClick" (click)="onEditAuditor(i)" *ngIf="this.userData?.role?.roleName  !== 'Admin' && this.userData.department.departmentName == 'Auditor'"><i
+                    class="las la-edit"></i></a>
               <a class="btnClick" *ngIf="i.status && this.userData?.role?.roleName  !== 'Admin'" (click)="onDelete(i)"><i
                   class="las la-trash-alt"></i></a>
             </td>

@@ -252,6 +252,77 @@ export class TicketComponent implements OnInit, OnDestroy {
       })
       .catch(() => {});
   }
+  onEditAuditor(dataItem: ticketMasterModel){
+    const modalRef = this.modalService.open(AuditorAddComponent, {
+      size: 'xl',
+    });
+    if (modalRef) {
+      this.isProceess = false;
+    } else {
+      this.isProceess = false;
+    }
+    var componentInstance =
+      modalRef.componentInstance as AddEditeTicketComponent;
+    componentInstance.ticketsMaster = dataItem;
+    modalRef.result
+      .then((data: ticketMasterModel) => {
+        if (data) {
+          let Tstatus: any;
+          if (this.userData?.role?.roleName !== 'Admin') {
+            Tstatus = dataItem.ticketStatus;
+          } else {
+            Tstatus = data.ticketStatus;
+          }
+          var model: any = {
+            // additionalComments:data.additionalComments,
+            createForUser: data.createForUser,
+            status: data.status,
+            shortNotes: data.shortNotes,
+            assignedTo: dataItem?.assignedTo?.userId,
+
+            departmentId: data.department,
+            issueId: data.issue,
+            priority: data.priority,
+            alternativeContactNo: data.alternativeContactNo,
+            serviceTitleId: data.serviceTitle,
+            subCategoryId: data.subCategory,
+            categoryId: data.category,
+            emailId: dataItem.emailId,
+            updatedBy: this.userData.userId,
+            ticketStatus: Tstatus,
+            comment: data.additionalComments || ' ',
+            mode:"User"
+          };
+          let formData = new FormData();
+          if (data.file === null) {
+          } else {
+            formData.append('file', data.file);
+          }
+          formData.append('userData', JSON.stringify(model));
+          // formData.append('comment', JSON.stringify(commentModel));
+          this.isProceess = true;
+          this.subscription = this.masterAPI
+            .updateMasterData(formData, dataItem.ticketId)
+            .pipe(take(1))
+            .subscribe(
+              (responseData) => {
+                if (responseData) {
+                  this.toastr.success('Ticket Updated!');
+                  this.fatchData();
+                  this.sel3.nativeElement.value = 'All';
+                  this.sel3.nativeElement.dispatchEvent(new Event('change'));
+                  this.isProceess = false;
+                }
+              },
+              (error) => {
+                this.isProceess = false;
+                this.toastr.error('Error while saving Ticket!');
+              }
+            );
+        }
+      })
+      .catch(() => {});
+  }
 
   onEdit(dataItem: ticketMasterModel) {
     const modalRef = this.modalService.open(AddEditeTicketComponent, {

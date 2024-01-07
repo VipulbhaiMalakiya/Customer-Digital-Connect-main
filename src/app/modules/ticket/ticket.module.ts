@@ -11,6 +11,7 @@ import { TicketilterPipe } from 'src/app/_helpers/ticket-filter.pipe';
 import { UpdateTicketComponent } from './update-ticket/update-ticket.component';
 import { FilterTicketComponent } from './components/filter-ticket/filter-ticket.component';
 import { AuditorAddComponent } from './components/auditor-add/auditor-add.component';
+import { AuditorUpdateComponent } from './components/auditor-update/auditor-update.component';
 @NgModule({
   declarations: [
     TicketComponent,
@@ -19,7 +20,8 @@ import { AuditorAddComponent } from './components/auditor-add/auditor-add.compon
     TicketilterPipe,
     UpdateTicketComponent,
     FilterTicketComponent,
-    AuditorAddComponent
+    AuditorAddComponent,
+    AuditorUpdateComponent
   ],
   imports: [
     CommonModule,
