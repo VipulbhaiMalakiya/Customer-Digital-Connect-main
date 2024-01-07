@@ -1,0 +1,28 @@
+
+.ticket-page-tabs .tab-pane{ padding: 20px 0; }
+
+.ticketno-title h3{ font-size: 18px; color: #444; }
+.ticketno-title h3 span{ color:#00ABC5; }
+
+.ticketsub{ background: #eee; padding-left: 15px; padding-top:8px; padding-bottom:8px; margin-top: 15px; margin-bottom: 20px;  }
+.ticketsub h5{ font-size: 16px; color: #676767; margin-bottom:0px;  }
+.ticketsub h5 span{ color:#333; font-size:20px;  }
+
+.common-form .form-group{ margin-bottom:20px; }
+.common-form .form-group label{ margin-bottom:7px; display: block; font-weight: 500; }
+
+.input-group .form-control{ height: auto; padding:10px 0.75rem;  }
+.input-group-text {
+    padding: 0.375rem 16px;
+    font-size: 14px;
+    background-color: #eee;
+    margin-bottom: 0px !important;
+    display: flex !important;
+    font-weight: 400 !important;
+}
+
+.nav-tabs .nav-link{ color:#333; font-weight: 500; background: #eee; margin-right:4px; }
+.nav-tabs .nav-link.active{ color: #00ABC5; }
+
+.ticket-page-tabs .tab-pane .card-header{ background:#00ABC5; color:#fff; padding-top:10px; padding-bottom: 10px;   }
+.card-stat{ border-top:1px solid #ccc; padding-top: 10px; margin-top:20px; }
