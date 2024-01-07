@@ -184,48 +184,31 @@ export class TicketComponent {
     else {
       this.isProceess = false;
     }
-    // var componentInstance = modalRef.componentInstance as AddEditeTicketComponent;
-    // componentInstance.ticketsMaster = dataItem;
-    // modalRef.result.then((data: any) => {
-    //   if (data) {
-    //     var model: any = {
-    //       createForUser: dataItem.createForUser?.userId,
-    //       status: dataItem.status,
-    //       shortNotes: dataItem.shortNotes,
-    //       assignedTo: data.assignedTo,
-    //       departmentId: dataItem.department?.departmentId,
-    //       issueId: dataItem.issue?.issueId,
-    //       priority: dataItem.priority?.id,
-    //       alternativeContactNo: dataItem.alternativeContactNo,
-    //       serviceTitleId: data.serviceTitle,
-    //       subCategoryId: data.subCategory,
-    //       categoryId: dataItem.category?.categoryId,
-    //       emailId: dataItem.emailId,
-    //       updatedBy: this.userData.userId,
-    //       ticketStatus: data.ticketStatus,
-    //       comment:data.additionalComments || ' ',
-    //       mode:"User",
-    //     }
-    //     let formData = new FormData();
-    //     if(data.file === null){
 
-    //     }else{
-    //       formData.append('file', data.file);
-    //     }
-    //     formData.append("userData", JSON.stringify(model));
-    //     this.isProceess = true;
-    //     this.subscription = this.masterAPI.updateMasterData(formData, dataItem.ticketId).pipe(take(1)).subscribe(responseData => {
-    //       this.isProceess = false;
-    //       this.toastr.success("Ticket Updated!");
-    //       this.fatchData();
-    //       this.sel3.nativeElement.value = 'All';
-    //       this.sel3.nativeElement.dispatchEvent(new Event('change'));
-    //     }, error => {
-    //       this.isProceess = false;
-    //       this.toastr.error("Error while saving Ticket!");
-    //     });
-    //   }
-    // }).catch(() => { });
+    modalRef.result.then((data: any) => {
+      if (data) {
+        var model: any = {
+          ticketId:dataItem.ticketId,
+          updatedBy: this.userData.userId,
+          comment:data.comment || ' ',
+          // mode:"User",
+          l1ticketApproval:"APPROVED"
+        }
+        let formData = new FormData();
+        formData.append("userData", JSON.stringify(model));
+        this.isProceess = true;
+        this.subscription = this.masterAPI.updateMasterData(formData, dataItem.ticketId).pipe(take(1)).subscribe(responseData => {
+          this.isProceess = false;
+          this.toastr.success("Ticket Updated!");
+          this.fatchData();
+          this.sel3.nativeElement.value = 'All';
+          this.sel3.nativeElement.dispatchEvent(new Event('change'));
+        }, error => {
+          this.isProceess = false;
+          this.toastr.error("Error while saving Ticket!");
+        });
+      }
+    }).catch(() => { });
   }
 
   onReject(dataItem: ticketMasterModel){
@@ -236,48 +219,31 @@ export class TicketComponent {
     else {
       this.isProceess = false;
     }
-    // var componentInstance = modalRef.componentInstance as AddEditeTicketComponent;
-    // componentInstance.ticketsMaster = dataItem;
-    // modalRef.result.then((data: any) => {
-    //   if (data) {
-    //     var model: any = {
-    //       createForUser: dataItem.createForUser?.userId,
-    //       status: dataItem.status,
-    //       shortNotes: dataItem.shortNotes,
-    //       assignedTo: data.assignedTo,
-    //       departmentId: dataItem.department?.departmentId,
-    //       issueId: dataItem.issue?.issueId,
-    //       priority: dataItem.priority?.id,
-    //       alternativeContactNo: dataItem.alternativeContactNo,
-    //       serviceTitleId: data.serviceTitle,
-    //       subCategoryId: data.subCategory,
-    //       categoryId: dataItem.category?.categoryId,
-    //       emailId: dataItem.emailId,
-    //       updatedBy: this.userData.userId,
-    //       ticketStatus: data.ticketStatus,
-    //       comment:data.additionalComments || ' ',
-    //       mode:"User",
-    //     }
-    //     let formData = new FormData();
-    //     if(data.file === null){
 
-    //     }else{
-    //       formData.append('file', data.file);
-    //     }
-    //     formData.append("userData", JSON.stringify(model));
-    //     this.isProceess = true;
-    //     this.subscription = this.masterAPI.updateMasterData(formData, dataItem.ticketId).pipe(take(1)).subscribe(responseData => {
-    //       this.isProceess = false;
-    //       this.toastr.success("Ticket Updated!");
-    //       this.fatchData();
-    //       this.sel3.nativeElement.value = 'All';
-    //       this.sel3.nativeElement.dispatchEvent(new Event('change'));
-    //     }, error => {
-    //       this.isProceess = false;
-    //       this.toastr.error("Error while saving Ticket!");
-    //     });
-    //   }
-    // }).catch(() => { });
+    modalRef.result.then((data: any) => {
+      if (data) {
+        var model: any = {
+          ticketId:dataItem.ticketId,
+          updatedBy: this.userData.userId,
+          comment:data.comment || ' ',
+          // mode:"User",
+          l1ticketApproval:"REJECTED"
+        }
+        let formData = new FormData();
+        formData.append("userData", JSON.stringify(model));
+        this.isProceess = true;
+        this.subscription = this.masterAPI.updateMasterData(formData, dataItem.ticketId).pipe(take(1)).subscribe(responseData => {
+          this.isProceess = false;
+          this.toastr.success("Ticket Updated!");
+          this.fatchData();
+          this.sel3.nativeElement.value = 'All';
+          this.sel3.nativeElement.dispatchEvent(new Event('change'));
+        }, error => {
+          this.isProceess = false;
+          this.toastr.error("Error while saving Ticket!");
+        });
+      }
+    }).catch(() => { });
   }
 
   onDownload() {
