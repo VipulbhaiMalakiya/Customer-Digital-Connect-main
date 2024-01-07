@@ -28,6 +28,14 @@ export class TickitService {
     return this.http.put<ticketMasterModel>(`${environment.apiUrl}/ticket/${id}`, formData, httpOptions)
   }
 
+  updateMasterData1(formData: FormData){
+    let headers = this.header.getJWTHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    headers.append('Accept', 'application/json')
+    const httpOptions = { headers: headers };
+    return this.http.put<ticketMasterModel>(`${environment.apiUrl}/ticket/ticketapproval`, formData, httpOptions)
+  }
+
   procatupdateMasterData(formData: FormData, id: any) {
     let headers = this.header.getJWTHeaders();
     headers.append('Content-Type', 'multipart/form-data');

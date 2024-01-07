@@ -175,7 +175,7 @@ export class TicketComponent {
       }
     }).catch(() => { });
   }
-
+//l1
   onAprove(dataItem: ticketMasterModel){
     const modalRef = this.modalService.open(OnAproveComponent, { size: "sm" });
     if (modalRef) {
@@ -188,16 +188,12 @@ export class TicketComponent {
     modalRef.result.then((data: any) => {
       if (data) {
         var model: any = {
-          ticketId:dataItem.ticketId,
-          updatedBy: this.userData.userId,
-          comment:data.comment || ' ',
-          // mode:"User",
-          l1ticketApproval:"APPROVED"
+          ticketid:dataItem.ticketId,
+          approvalstatus:"APPROVED",
+          updatedBy:this.userData.userId
         }
-        let formData = new FormData();
-        formData.append("userData", JSON.stringify(model));
         this.isProceess = true;
-        this.subscription = this.masterAPI.updateMasterData(formData, dataItem.ticketId).pipe(take(1)).subscribe(responseData => {
+        this.subscription = this.masterAPI.updateMasterData1(model).pipe(take(1)).subscribe(responseData => {
           this.isProceess = false;
           this.toastr.success("Ticket Updated!");
           this.fatchData();
@@ -223,16 +219,12 @@ export class TicketComponent {
     modalRef.result.then((data: any) => {
       if (data) {
         var model: any = {
-          ticketId:dataItem.ticketId,
-          updatedBy: this.userData.userId,
-          comment:data.comment || ' ',
-          // mode:"User",
-          l1ticketApproval:"REJECTED"
+          ticketid:dataItem.ticketId,
+          approvalstatus:"REJECTED",
+          updatedBy:this.userData.userId
         }
-        let formData = new FormData();
-        formData.append("userData", JSON.stringify(model));
         this.isProceess = true;
-        this.subscription = this.masterAPI.updateMasterData(formData, dataItem.ticketId).pipe(take(1)).subscribe(responseData => {
+        this.subscription = this.masterAPI.updateMasterData1(model).pipe(take(1)).subscribe(responseData => {
           this.isProceess = false;
           this.toastr.success("Ticket Updated!");
           this.fatchData();
@@ -245,7 +237,7 @@ export class TicketComponent {
       }
     }).catch(() => { });
   }
-
+//l1 End
   onDownload() {
     const exportData = this.data.map(x => {
       let updatedBy:any = ' '

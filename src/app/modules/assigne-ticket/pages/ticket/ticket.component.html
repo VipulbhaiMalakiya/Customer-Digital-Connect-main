@@ -63,22 +63,34 @@
             <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
             <td>
               <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
+
               <a class="btnClick" *ngIf="this.userData?.role?.roleName !== 'Approver' " (click)="onEdit(i)"><i
                   class="las la-edit"></i></a>
+
               <a class="btnClick"
                 *ngIf="this.userData?.role?.roleName == 'Approver' && this.userData?.username == i.assignedTo?.username && i.l1ticketApproval == 'APPROVAL_PENDING' "
                 (click)="onAprove(i)"><i class="las la-check"></i>
               </a>
-              <a class="btnClick disabled"
-                *ngIf="this.userData?.role?.roleName == 'Approver' && this.userData?.username == i.assignedTo?.username && i.l1ticketApproval !== 'APPROVAL_PENDING' "><i
-                  class="las la-check"></i>
+
+              <a class="btnClick"
+                *ngIf="this.userData?.role?.roleName == 'Approver' && this.userData?.username == i.assignedTo?.username && i.l1ticketApproval == 'APPROVED' && i.l2ticketApproval == 'APPROVAL_PENDING'"
+                (click)="onAprove(i)"><i class="las la-check"></i>
               </a>
-              <a class="btnClick" *ngIf="this.userData?.role?.roleName == 'Approver' && this.userData?.username == i.assignedTo?.username && i.l1ticketApproval == 'APPROVAL_PENDING' " (click)="onReject(i)"><i
-                  class="las la-times"></i></a>
-              <a class="btnClick disabled"
-                *ngIf="this.userData?.role?.roleName == 'Approver' && this.userData?.username == i.assignedTo?.username && i.l1ticketApproval !== 'APPROVAL_PENDING' "><i
-                  class="las la-times"></i>
-              </a>
+
+
+              <a class="btnClick"
+              *ngIf="this.userData?.role?.roleName == 'Approver' && this.userData?.username == i.assignedTo?.username && i.l1ticketApproval == 'APPROVED' && i.l2ticketApproval == 'APPROVAL_PENDING'"
+              (click)="onReject(i)"><i class="las la-times"></i></a>
+              
+          
+         
+             
+
+              <a class="btnClick"
+                *ngIf="this.userData?.role?.roleName == 'Approver' && this.userData?.username == i.assignedTo?.username && i.l1ticketApproval == 'APPROVAL_PENDING' "
+                (click)="onReject(i)"><i class="las la-times"></i></a>
+
+
 
             </td>
           </tr>
