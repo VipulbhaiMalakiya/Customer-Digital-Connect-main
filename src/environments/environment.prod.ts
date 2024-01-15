@@ -2,7 +2,7 @@ export const environment = {
   production: false,
   //prod
   // apiUrl: 'https://customerdigitalconnect.com',
-  apiUrl: 'http://65.1.109.24:9091', //Uat
+  apiUrl: 'http://13.53.130.198:8080', //Uat
 
   EncryptKey:"1203199320052021",
   SOCKET_ENDPOINT: 'wss://customerdigitalconnect.com/chat',
