@@ -97,7 +97,41 @@
                     </div>
                   </div>
                 </div>
-
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="guestId">guestId <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="guestId" name="guestId" formControlName="guestId"
+                      placeholder="guestId">
+                    <div *ngIf="shouldShowError('guestId','required')" class="form-validate-err">
+                      Please Enter buildBy .
+                    </div>
+                   
+                  </div>
+                </div>
+        
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="invoiceNumber">invoiceNumber <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="invoiceNumber" name="invoiceNumber" formControlName="invoiceNumber"
+                      placeholder="invoiceNumber">
+                    <div *ngIf="shouldShowError('invoiceNumber','required')" class="form-validate-err">
+                      Please Enter invoiceNumber .
+                    </div>
+                   
+                  </div>
+                </div>
+        
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="buildBy">buildBy <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="buildBy" name="buildBy" formControlName="buildBy"
+                      placeholder="buildBy">
+                    <div *ngIf="shouldShowError('buildBy','required')" class="form-validate-err">
+                      Please Enter buildBy .
+                    </div>
+                   
+                  </div>
+                </div>
                 <div class="col-6">
                   <div class="form-group">
                     <label for="additionalComments">Additional Comments <span class="text-danger">*</span></label>

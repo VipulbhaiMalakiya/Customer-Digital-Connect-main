@@ -17,7 +17,7 @@ import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpac
 export class ZeotyAddUpdateComponent {
 
   ticketMasterForm: any;
-  private _tickettsMaster: ticketMasterModel | undefined;
+  private _tickettsMaster: any | undefined;
   data: CategoryMasterModel[] = [];
   sdata: subCategoryMasterModel[] = [];
   data1: servicetitleMasterModel[] = [];
@@ -41,7 +41,6 @@ export class ZeotyAddUpdateComponent {
     this.updatedData = this._tickettsMaster;
     this.Comments = this.updatedData.additionalComments;
 
-    console.log(this._tickettsMaster);
     
 
     this.subject = this._tickettsMaster.shortNotes;
@@ -51,6 +50,10 @@ export class ZeotyAddUpdateComponent {
         serviceTitle: this._tickettsMaster.serviceTitle?.serviceId,
         assignedTo: this._tickettsMaster.assignedTo?.userId,
         ticketStatus:this._tickettsMaster.ticketStatus,
+        guestId:this._tickettsMaster?.guestId,
+        invoiceNumber:this._tickettsMaster?.invoiceNumber,
+        buildBy:this._tickettsMaster?.buildBy,
+
       });
   
         this.ticketMasterForm.controls["subCategory"].disable();
@@ -79,6 +82,9 @@ export class ZeotyAddUpdateComponent {
       additionalComments:['', [Validators.required,noLeadingSpaceValidator()]],
       workNotes:['',[noLeadingSpaceValidator()]],
       file: [''],
+      guestId:['', [Validators.required]],
+      invoiceNumber:['', [Validators.required]],
+      buildBy:['', [Validators.required]],
     });
 
     const d: any = localStorage.getItem("userData");
@@ -189,6 +195,9 @@ export class ZeotyAddUpdateComponent {
         assignedTo : this.ticketMasterForm.value.assignedTo,
         additionalComments:this.ticketMasterForm.value.additionalComments,
         workNotes:this.ticketMasterForm.value.workNotes,
+        guestId: this.ticketMasterForm.value.guestId,
+        invoiceNumber: this.ticketMasterForm.value.invoiceNumber,
+        buildBy: this.ticketMasterForm.value.buildBy,
         file: this.uploadFile || null ,
       }
       this.activeModal.close(data)
@@ -198,6 +207,9 @@ export class ZeotyAddUpdateComponent {
       this.ticketMasterForm.controls['assignedTo'].markAsTouched();
       this.ticketMasterForm.controls['ticketStatus'].markAsTouched();
       this.ticketMasterForm.controls['additionalComments'].markAsTouched();
+      this.ticketMasterForm.controls['guestId'].markAsTouched();
+      this.ticketMasterForm.controls['invoiceNumber'].markAsTouched();
+      this.ticketMasterForm.controls['buildBy'].markAsTouched();
     }
   }
 

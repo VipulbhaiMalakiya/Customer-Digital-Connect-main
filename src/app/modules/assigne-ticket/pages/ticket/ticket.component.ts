@@ -205,6 +205,10 @@ export class TicketComponent {
           updatedBy: this.userData.userId,
           ticketStatus: data.ticketStatus,
           comment:data.additionalComments || ' ',
+          guestId: data.guestId || ' ',
+          buildBy: data.buildBy || ' ',
+          invoiceNumber: data.invoiceNumber|| ' ',
+
           mode:"User",
         }
 
