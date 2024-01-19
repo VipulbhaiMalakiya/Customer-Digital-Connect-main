@@ -10,6 +10,7 @@ import { SharedModule } from '../shared/shared.module';
 import { assignedTickeftilterPipe } from 'src/app/_helpers/assigned-ticket';
 import { OnAproveComponent } from './components/on-aprove/on-aprove.component';
 import { OnRejectComponent } from './components/on-reject/on-reject.component';
+import { ZeotyAddUpdateComponent } from './components/zeoty-add-update/zeoty-add-update.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { OnRejectComponent } from './components/on-reject/on-reject.component';
     ViewTicketComponent,
     assignedTickeftilterPipe,
     OnAproveComponent,
-    OnRejectComponent
+    OnRejectComponent,
+    ZeotyAddUpdateComponent
   ],
   imports: [
     CommonModule,

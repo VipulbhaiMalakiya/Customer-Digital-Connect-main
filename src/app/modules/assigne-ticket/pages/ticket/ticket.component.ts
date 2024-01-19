@@ -13,6 +13,7 @@ import { AddEditeTicketComponent } from '../../components/add-edite-ticket/add-e
 import {  ViewChild, ElementRef } from '@angular/core';
 import { OnAproveComponent } from '../../components/on-aprove/on-aprove.component';
 import { OnRejectComponent } from '../../components/on-reject/on-reject.component';
+import { ZeotyAddUpdateComponent } from '../../components/zeoty-add-update/zeoty-add-update.component';
 
 @Component({
   selector: 'app-ticket',
@@ -133,6 +134,58 @@ export class TicketComponent {
       this.isProceess = false;
     }
     var componentInstance = modalRef.componentInstance as AddEditeTicketComponent;
+    componentInstance.ticketsMaster = dataItem;
+    modalRef.result.then((data: any) => {
+      if (data) {
+        var model: any = {
+          createForUser: dataItem.createForUser?.userId,
+          status: dataItem.status,
+          shortNotes: dataItem.shortNotes,
+          assignedTo: data.assignedTo,
+          departmentId: dataItem.department?.departmentId,
+          issueId: dataItem.issue?.issueId,
+          priority: dataItem.priority?.id,
+          alternativeContactNo: dataItem.alternativeContactNo,
+          serviceTitleId: data.serviceTitle,
+          subCategoryId: data.subCategory,
+          categoryId: dataItem.category?.categoryId,
+          emailId: dataItem.emailId,
+          updatedBy: this.userData.userId,
+          ticketStatus: data.ticketStatus,
+          comment:data.additionalComments || ' ',
+          mode:"User",
+        }
+        let formData = new FormData();
+        if(data.file === null){
+
+        }else{
+          formData.append('file', data.file);
+        }
+        formData.append("userData", JSON.stringify(model));
+        this.isProceess = true;
+        this.subscription = this.masterAPI.updateMasterData(formData, dataItem.ticketId).pipe(take(1)).subscribe(responseData => {
+          this.isProceess = false;
+          this.toastr.success("Ticket Updated!");
+          this.fatchData();
+          this.sel3.nativeElement.value = 'All';
+          this.sel3.nativeElement.dispatchEvent(new Event('change'));
+        }, error => {
+          this.isProceess = false;
+          this.toastr.error("Error while saving Ticket!");
+        });
+      }
+    }).catch(() => { });
+  }
+
+  onApproverEdit(dataItem: ticketMasterModel) {
+    const modalRef = this.modalService.open(ZeotyAddUpdateComponent, { size: "xl" });
+    if (modalRef) {
+      this.isProceess = false;
+    }
+    else {
+      this.isProceess = false;
+    }
+    var componentInstance = modalRef.componentInstance as ZeotyAddUpdateComponent;
     componentInstance.ticketsMaster = dataItem;
     modalRef.result.then((data: any) => {
       if (data) {

@@ -64,10 +64,13 @@
             <td *ngIf="this.userData?.role?.roleName !== 'Approver' ">{{i.ticketStatus}}</td>
             <td *ngIf="this.userData?.role?.roleName !== 'Approver' ">{{i.category?.categoryName}}</td>
             <td>
-              <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
+              <a class="btnClick" *ngIf="this.userData?.role?.roleName !== 'Approver'" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
 
               <a class="btnClick" *ngIf="this.userData?.role?.roleName !== 'Approver'" (click)="onEdit(i)"><i
                   class="las la-edit"></i></a>
+
+                  <a class="btnClick" *ngIf="this.userData?.role?.roleName == 'Approver'" (click)="onApproverEdit(i)"><i
+                    class="las la-edit"></i></a>
 
               <a class="btnClick"
                 *ngIf="this.userData?.role?.roleName == 'Approver' && this.userData?.username == i.assignedTo?.username && i.l1ticketApproval == 'APPROVAL_PENDING' "
