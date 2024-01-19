@@ -16,7 +16,7 @@ import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpac
 })
 export class AuditorUpdateComponent {
   ticketMasterForm: any;
-  private _tickettsMaster: ticketMasterModel | undefined;
+  private _tickettsMaster: any | undefined;
   data: CategoryMasterModel[] = [];
   sdata: subCategoryMasterModel[] = [];
   data1: servicetitleMasterModel[] = [];
@@ -26,7 +26,7 @@ export class AuditorUpdateComponent {
   isProceess: boolean = true;
   duser: UserMaster[] = [];
   uploadFile: any = '';
-  updatedData?: ticketMasterModel;
+  updatedData?: any;
   Comments: any;
   page: number = 1;
   items: any[] = [];
@@ -52,6 +52,9 @@ export class AuditorUpdateComponent {
         serviceTitle: this._tickettsMaster?.serviceTitle?.serviceId,
         assignedTo: this._tickettsMaster.assignedTo?.firstName + ' ' + this._tickettsMaster.assignedTo?.lastName,
         ticketStatus: this._tickettsMaster.ticketStatus,
+        guestId:this._tickettsMaster?.guestId,
+        invoiceNumber:this._tickettsMaster?.invoiceNumber,
+        buildBy:this._tickettsMaster?.buildBy,
       });
       if (this.userData?.role?.roleName !== 'Admin') {
         this.ticketMasterForm.controls['ticketStatus'].disable();
@@ -74,6 +77,9 @@ export class AuditorUpdateComponent {
       file: [''],
       additionalComments: ['', [Validators.required,noLeadingSpaceValidator()]],
       workNotes: ['',[noLeadingSpaceValidator()]],
+      guestId:['', [Validators.required]],
+      invoiceNumber:['', [Validators.required]],
+      buildBy:['', [Validators.required]],
     });
 
     const d: any = localStorage.getItem('userData');
@@ -181,6 +187,9 @@ export class AuditorUpdateComponent {
         assignedTo: this.ticketMasterForm.value.assignedTo,
         additionalComments: this.ticketMasterForm.value.additionalComments,
         workNotes: this.ticketMasterForm.value.workNotes,
+        guestId: this.ticketMasterForm.value.guestId,
+        invoiceNumber: this.ticketMasterForm.value.invoiceNumber,
+        buildBy: this.ticketMasterForm.value.buildBy,
         file: this.uploadFile || null,
       };
       this.activeModal.close(data);
@@ -190,6 +199,9 @@ export class AuditorUpdateComponent {
       this.ticketMasterForm.controls['assignedTo'].markAsTouched();
       this.ticketMasterForm.controls['ticketStatus'].markAsTouched();
       this.ticketMasterForm.controls['additionalComments'].markAsTouched();
+      this.ticketMasterForm.controls['guestId'].markAsTouched();
+      this.ticketMasterForm.controls['invoiceNumber'].markAsTouched();
+      this.ticketMasterForm.controls['buildBy'].markAsTouched();
     }
   }
 

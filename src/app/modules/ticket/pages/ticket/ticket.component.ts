@@ -427,7 +427,7 @@ export class TicketComponent implements OnInit, OnDestroy {
     var componentInstance = modalRef.componentInstance as AuditorUpdateComponent;
     componentInstance.ticketsMaster = dataItem;
     modalRef.result
-      .then((data: ticketMasterModel) => {
+      .then((data: any) => {
         if (data) {
           let Tstatus: any;
           if (this.userData?.role?.roleName !== 'Admin') {
@@ -452,6 +452,9 @@ export class TicketComponent implements OnInit, OnDestroy {
             updatedBy: this.userData.userId,
             ticketStatus: Tstatus,
             comment: data.additionalComments || ' ',
+            guestId: data.guestId || ' ',
+            buildBy: data.buildBy || ' ',
+            invoiceNumber: data.invoiceNumber|| ' ',
             mode:"User"
           };
           let formData = new FormData();
