@@ -193,11 +193,14 @@ export class AddEditeTicketComponent {
       }
       this.activeModal.close(data)
     } else {
-      this.ticketMasterForm.controls['subCategory'].markAsTouched();
-      this.ticketMasterForm.controls['serviceTitle'].markAsTouched();
-      this.ticketMasterForm.controls['assignedTo'].markAsTouched();
-      this.ticketMasterForm.controls['ticketStatus'].markAsTouched();
-      this.ticketMasterForm.controls['additionalComments'].markAsTouched();
+     // if(this.userData?.role?.roleName !== 'Admin'){
+      //   this.ticketMasterForm.controls["subCategory"].disable();
+      //   this.ticketMasterForm.controls["serviceTitle"].disable();
+      //   this.ticketMasterForm.controls["assignedTo"].disable();
+      //   this.ticketMasterForm.controls["ticketStatus"].disable();
+      //   this.ticketMasterForm.controls["additionalComments"].disable();
+      //   this.ticketMasterForm.controls["workNotes"].disable();
+      // }
     }
   }
 

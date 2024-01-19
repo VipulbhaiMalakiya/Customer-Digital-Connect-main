@@ -193,13 +193,13 @@ export class TicketComponent {
           createForUser: dataItem.createForUser?.userId,
           status: dataItem.status,
           shortNotes: dataItem.shortNotes,
-          assignedTo: data.assignedTo,
+          assignedTo: dataItem?.assignedTo?.userId,
           departmentId: dataItem.department?.departmentId,
           issueId: dataItem.issue?.issueId,
           priority: dataItem.priority?.id,
           alternativeContactNo: dataItem.alternativeContactNo,
-          serviceTitleId: data.serviceTitle,
-          subCategoryId: data.subCategory,
+          serviceTitleId: dataItem?.serviceTitle?.serviceId,
+          subCategoryId: dataItem?.subCategory?.subCategoryId,
           categoryId: dataItem.category?.categoryId,
           emailId: dataItem.emailId,
           updatedBy: this.userData.userId,
@@ -207,6 +207,10 @@ export class TicketComponent {
           comment:data.additionalComments || ' ',
           mode:"User",
         }
+
+        console.log(model);
+   
+        
         let formData = new FormData();
         if(data.file === null){
 

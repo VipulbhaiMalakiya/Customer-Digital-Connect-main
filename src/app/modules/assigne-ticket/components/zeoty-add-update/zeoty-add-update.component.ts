@@ -41,7 +41,8 @@ export class ZeotyAddUpdateComponent {
     this.updatedData = this._tickettsMaster;
     this.Comments = this.updatedData.additionalComments;
 
-
+    console.log(this._tickettsMaster);
+    
 
     this.subject = this._tickettsMaster.shortNotes;
     if (this._tickettsMaster) {
@@ -51,14 +52,14 @@ export class ZeotyAddUpdateComponent {
         assignedTo: this._tickettsMaster.assignedTo?.userId,
         ticketStatus:this._tickettsMaster.ticketStatus,
       });
-      // if(this.userData?.role?.roleName !== 'Admin'){
-      //   this.ticketMasterForm.controls["subCategory"].disable();
-      //   this.ticketMasterForm.controls["serviceTitle"].disable();
-      //   this.ticketMasterForm.controls["assignedTo"].disable();
-      //   this.ticketMasterForm.controls["ticketStatus"].disable();
-      //   this.ticketMasterForm.controls["additionalComments"].disable();
-      //   this.ticketMasterForm.controls["workNotes"].disable();
-      // }
+  
+        this.ticketMasterForm.controls["subCategory"].disable();
+        this.ticketMasterForm.controls["serviceTitle"].disable();
+        this.ticketMasterForm.controls["assignedTo"].disable();
+        this.ticketMasterForm.controls["ticketStatus"].disable();
+        // // this.ticketMasterForm.controls["additionalComments"].disable();
+        // // this.ticketMasterForm.controls["workNotes"].disable();
+      
     }
 
   }
