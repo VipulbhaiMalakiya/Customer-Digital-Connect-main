@@ -18,7 +18,7 @@ import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpac
   styleUrls: ['./auditor-add.component.css']
 })
 export class AuditorAddComponent {
-  private _tickettsMaster: ticketMasterModel | undefined;
+  private _tickettsMaster: any | undefined;
 
   isProceess: boolean = true;
   ticketMasterForm: any;
@@ -46,8 +46,10 @@ export class AuditorAddComponent {
   get title(): string {
     return this._tickettsMaster ? 'Edit Ticket' : ' Add Ticket';
   }
-  set ticketsMaster(value: ticketMasterModel) {
+  set ticketsMaster(value: any) {
     this._tickettsMaster = value;
+    console.log(this._tickettsMaster);
+    
 
     this.chek = value;
     if (this._tickettsMaster) {
@@ -63,6 +65,10 @@ export class AuditorAddComponent {
         shortNotes: this._tickettsMaster.shortNotes,
         status: this._tickettsMaster.status,
         createForUser: this._tickettsMaster.createForUser?.userId,
+
+        guestId:this._tickettsMaster?.guestId,
+        invoiceNumber:this._tickettsMaster?.invoiceNumber,
+        buildBy:this._tickettsMaster?.buildBy,
       });
       this.imagePath = this._tickettsMaster.filename;
     }
@@ -77,6 +83,9 @@ export class AuditorAddComponent {
       subCategory: ['', [Validators.required]],
       category: ['', [Validators.required]],
       serviceTitle: ['', [Validators.required]],
+      guestId:['', [Validators.required]],
+      invoiceNumber:['', [Validators.required]],
+      buildBy:['', [Validators.required]],
       alternativeContactNo: [
         '',
         [
@@ -360,6 +369,9 @@ export class AuditorAddComponent {
         createForUser: this.userData.userId,
         status: true,
         file: this.uploadFile || null,
+        guestId: this.ticketMasterForm.value.guestId,
+        invoiceNumber: this.ticketMasterForm.value.invoiceNumber,
+        buildBy: this.ticketMasterForm.value.buildBy,
       };
 
       this.activeModal.close(data);
@@ -372,6 +384,10 @@ export class AuditorAddComponent {
       this.ticketMasterForm.controls['department'].markAsTouched();
       this.ticketMasterForm.controls['shortNotes'].markAsTouched();
       this.ticketMasterForm.controls['additionalComments'].markAsTouched();
+
+      this.ticketMasterForm.controls['guestId'].markAsTouched();
+      this.ticketMasterForm.controls['invoiceNumber'].markAsTouched();
+      this.ticketMasterForm.controls['buildBy'].markAsTouched();
     }
   }
   shouldShowError(controlName: string, errorName: string) {

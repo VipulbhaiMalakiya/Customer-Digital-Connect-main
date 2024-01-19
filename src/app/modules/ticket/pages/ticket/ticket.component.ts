@@ -217,6 +217,10 @@ export class TicketComponent implements OnInit, OnDestroy {
             categoryId: data.category,
             emailId: this.userData.email,
             comment: data.additionalComments || ' ',
+
+            guestId: data.guestId || ' ',
+            buildBy: data.buildBy || ' ',
+            invoiceNumber: data.invoiceNumber|| ' ',
             mode:"User"
           };
           var commentModel: any = {
@@ -253,7 +257,7 @@ export class TicketComponent implements OnInit, OnDestroy {
       })
       .catch(() => {});
   }
-  onEditAuditor(dataItem: ticketMasterModel){
+  onEditAuditor(dataItem: any){
     const modalRef = this.modalService.open(AuditorAddComponent, {
       size: 'xl',
     });
@@ -325,7 +329,7 @@ export class TicketComponent implements OnInit, OnDestroy {
       .catch(() => {});
   }
 
-  onEdit(dataItem: ticketMasterModel) {
+  onEdit(dataItem: any) {
     const modalRef = this.modalService.open(AddEditeTicketComponent, {
       size: 'xl',
     });
@@ -406,7 +410,7 @@ export class TicketComponent implements OnInit, OnDestroy {
       this.isProceess = false;
     }
   }
-  onUpdateTicket1(dataItem: ticketMasterModel){
+  onUpdateTicket1(dataItem: any){
     const modalRef = this.modalService.open(AuditorUpdateComponent, {
       size: 'xl',
     });
