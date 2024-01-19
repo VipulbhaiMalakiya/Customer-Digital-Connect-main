@@ -25,7 +25,7 @@ export class LeftMainmenuComponent implements OnInit {
 
 
   get isAuditor(){
-    return this.userData?.department?.departmentName == 'F&b';
+    return this.userData?.department?.departmentName == 'Zenoti';
   }
   get isAdmin() {
     return this.userData?.role?.roleName == 'Admin';
