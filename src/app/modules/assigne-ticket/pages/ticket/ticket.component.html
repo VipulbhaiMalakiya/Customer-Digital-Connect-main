@@ -51,9 +51,14 @@
             };let ind = index ;trackBy: trackByFn">
             <!-- <td>{{ind + 1}}</td> -->
             <td>{{i.ticketId}}</td>
-            <td *ngIf="this.userData?.role?.roleName !== 'Approver' " (click)="onEdit(i)" class="tblLink">{{i.ticketNo}}
-            </td>
-            <td *ngIf="this.userData?.role?.roleName == 'Approver' ">{{i.ticketNo}}</td>
+            <td
+              *ngIf="(userData?.role?.roleName !== 'Approver' && userData?.role?.roleName !== 'Resolver') || (userData?.role?.roleName === 'Approver' || userData?.role?.roleName === 'Resolver') && i.department.departmentName !== 'Zenoti' || i.department.departmentName == 'Admin'"
+              (click)="onEdit(i)" class="tblLink">{{i.ticketNo}}</td>
+
+            <td
+              *ngIf="(userData?.role?.roleName === 'Approver' || userData?.role?.roleName === 'Resolver') && i.department.departmentName === 'Zenoti' || i.department.departmentName === 'Admin' ">
+              {{i.ticketNo}}</td>
+
 
             <td>{{i.createdDate | date :'medium'}}</td>
 
@@ -64,13 +69,14 @@
             <td *ngIf="this.userData?.role?.roleName !== 'Approver' ">{{i.ticketStatus}}</td>
             <td *ngIf="this.userData?.role?.roleName !== 'Approver' ">{{i.category?.categoryName}}</td>
             <td>
-              <a class="btnClick" *ngIf="this.userData?.role?.roleName !== 'Approver'" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
+              <a class="btnClick" *ngIf="this.userData?.role?.roleName !== 'Approver'" (click)="onViewDetail(i)"><i
+                  class="las la-eye"></i></a>
 
-              <a class="btnClick" *ngIf="this.userData?.role?.roleName !== 'Approver'" (click)="onEdit(i)"><i
+              <a class="btnClick"  *ngIf="(userData?.role?.roleName !== 'Approver' && userData?.role?.roleName !== 'Resolver') || (userData?.role?.roleName === 'Approver' || userData?.role?.roleName === 'Resolver') && i.department.departmentName !== 'Zenoti' || i.department.departmentName == 'Admin'" (click)="onEdit(i)"><i
                   class="las la-edit"></i></a>
 
-                  <a class="btnClick" *ngIf="this.userData?.role?.roleName == 'Approver'" (click)="onApproverEdit(i)"><i
-                    class="las la-edit"></i></a>
+              <a class="btnClick" *ngIf="(userData?.role?.roleName !== 'Approver' && userData?.role?.roleName == 'Resolver') || (userData?.role?.roleName === 'Approver' || userData?.role?.roleName === 'Resolver') && i.department.departmentName !== 'Zenoti' || i.department.departmentName == 'Admin'" (click)="onApproverEdit(i)"><i
+                  class="las la-edit"></i></a>
 
               <a class="btnClick"
                 *ngIf="this.userData?.role?.roleName == 'Approver' && this.userData?.username == i.assignedTo?.username && i.l1ticketApproval == 'APPROVAL_PENDING' "
