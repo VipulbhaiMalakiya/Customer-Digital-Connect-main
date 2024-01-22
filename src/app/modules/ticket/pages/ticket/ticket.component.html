@@ -29,8 +29,8 @@
       </button>
       <ul class="dropdown-menu">
 
-        <li *ngIf="this.userData.department.departmentName != 'Zenoti' && this.userData.department.departmentName != 'Admin'" (click)="onAdd()"><a class="dropdown-item"><i class="las la-plus"></i> Create new Ticket</a></li>
-        <li *ngIf="this.userData.department.departmentName == 'Zenoti' || this.userData.department.departmentName == 'Admin'" (click)="onAuditorAdd()"><a class="dropdown-item"><i class="las la-plus"></i> Create new Ticket</a></li>
+        <li *ngIf="this.userData.department.departmentName != 'Admin'" (click)="onAdd()"><a class="dropdown-item"><i class="las la-plus"></i> Create new Ticket</a></li>
+        <!-- <li *ngIf="this.userData.department.departmentName == 'Zenoti' || this.userData.department.departmentName == 'Admin'" (click)="onAuditorAdd()"><a class="dropdown-item"><i class="las la-plus"></i> Create new Ticket</a></li> -->
 
         <!-- <li (click)="onbulkUpload()"><a class="dropdown-item" ><i class="las la-layer-group"></i> Bulk Upload</a></li> -->
       </ul>
@@ -74,11 +74,11 @@
             <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
             <td>
               <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
-              <a class="btnClick" (click)="onEdit(i)" *ngIf="this.userData?.role?.roleName  !== 'Admin' && this.userData.department.departmentName !== 'Zenoti' && this.userData.department.departmentName !== 'Admin'"><i
+              <a class="btnClick" (click)="onEdit(i)" *ngIf=" this.userData.department.departmentName !== 'Admin'"><i
                   class="las la-edit"></i></a>
-
+<!--
                   <a class="btnClick" (click)="onEditAuditor(i)" *ngIf="this.userData?.role?.roleName  !== 'Admin' && this.userData.department.departmentName == 'Zenoti' || this.userData.department.departmentName == 'Admin'"><i
-                    class="las la-edit"></i></a>
+                    class="las la-edit"></i></a> -->
               <a class="btnClick" *ngIf="i.status && this.userData?.role?.roleName  !== 'Admin'" (click)="onDelete(i)"><i
                   class="las la-trash-alt"></i></a>
             </td>

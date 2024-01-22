@@ -137,7 +137,7 @@ export class TicketComponent implements OnInit, OnDestroy {
       this.isProceess = false;
     }
     modalRef.result
-      .then((data: ticketMasterModel) => {
+      .then((data: any) => {
         if (data) {
           var model: any = {
             createdBy: this.userData.userId,
@@ -154,8 +154,13 @@ export class TicketComponent implements OnInit, OnDestroy {
             categoryId: data.category,
             emailId: this.userData.email,
             comment: data.additionalComments || ' ',
+            guestId: data.guestId || ' ',
+            buildBy: data.buildBy || ' ',
+            invoiceNumber: data.invoiceNumber|| ' ',
             mode:"User"
           };
+
+          console.log(data);
           var commentModel: any = {
             additionalMessage: data.additionalComments || ' ',
             userId: this.userData.userId,
@@ -346,7 +351,7 @@ export class TicketComponent implements OnInit, OnDestroy {
       modalRef.componentInstance as AddEditeTicketComponent;
     componentInstance.ticketsMaster = dataItem;
     modalRef.result
-      .then((data: ticketMasterModel) => {
+      .then((data: any) => {
         if (data) {
           let Tstatus: any;
           if (this.userData?.role?.roleName !== 'Admin') {
@@ -371,6 +376,9 @@ export class TicketComponent implements OnInit, OnDestroy {
             updatedBy: this.userData.userId,
             ticketStatus: Tstatus,
             comment: data.additionalComments || ' ',
+            guestId: data.guestId || ' ',
+            buildBy: data.buildBy || ' ',
+            invoiceNumber: data.invoiceNumber|| ' ',
             mode:"User"
           };
           let formData = new FormData();

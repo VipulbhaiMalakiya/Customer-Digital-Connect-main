@@ -20,7 +20,7 @@ import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpac
   styleUrls: ['./add-edite-ticket.component.css'],
 })
 export class AddEditeTicketComponent {
-  private _tickettsMaster: ticketMasterModel | undefined;
+  private _tickettsMaster: any | undefined;
 
   isProceess: boolean = true;
   ticketMasterForm: any;
@@ -37,6 +37,7 @@ export class AddEditeTicketComponent {
   selectedOption1: any;
   selectedValue: any;
   uploadFile1: any = '';
+
   categoryid: any;
   masterName?: any;
   userData: any;
@@ -44,13 +45,14 @@ export class AddEditeTicketComponent {
   abc: any;
   imagePath?: string;
   chek: any;
+  selectedDepartment?:any;
 
   get title(): string {
     return this._tickettsMaster ? 'Edit Ticket' : ' Add Ticket';
   }
-  set ticketsMaster(value: ticketMasterModel) {
+  set ticketsMaster(value: any) {
     this._tickettsMaster = value;
-
+    this.selectedDepartment =this._tickettsMaster?.department?.departmentName
     this.chek = value;
     if (this._tickettsMaster) {
       this.ticketMasterForm.patchValue({
@@ -65,6 +67,9 @@ export class AddEditeTicketComponent {
         shortNotes: this._tickettsMaster.shortNotes,
         status: this._tickettsMaster.status,
         createForUser: this._tickettsMaster.createForUser?.userId,
+        guestId:this._tickettsMaster?.guestId,
+        invoiceNumber:this._tickettsMaster?.invoiceNumber,
+        buildBy:this._tickettsMaster?.buildBy,
       });
       this.imagePath = this._tickettsMaster.filename;
     }
@@ -95,6 +100,9 @@ export class AddEditeTicketComponent {
       status: [true],
       createForUser: [''],
       file: [''],
+      guestId:[''],
+      invoiceNumber:[''],
+      buildBy:[''],
       additionalComments: ['', [Validators.required,noLeadingSpaceValidator()]],
     });
 
@@ -119,6 +127,8 @@ export class AddEditeTicketComponent {
     this.selectDepartment();
     // this.selectDEPT();
   }
+
+
 
   onKeyDown(event: KeyboardEvent) {
     const allowedKeys = [
@@ -251,6 +261,26 @@ export class AddEditeTicketComponent {
       }
     );
   }
+
+  onDepartmentChange() {
+    const selectedDepartmentId = this.ticketMasterForm.get('department').value;
+
+    // Perform actions with the selected department, e.g., log it
+    console.log('Selected Department ID:', selectedDepartmentId);
+
+    // Find the selected department in the 'dept' array
+    const selectedDepartment1 = this.dept.find((d) => d.departmentId == selectedDepartmentId);
+
+    if (selectedDepartment1) {
+      // If the department is found, log its name
+     this.selectedDepartment = selectedDepartment1.departmentName;
+      console.log('Selected Department Name:', selectedDepartment1.departmentName);
+    } else {
+      // If the department is not found, handle it accordingly
+      console.log('Department not found for ID:', selectedDepartmentId);
+    }
+  }
+
   selectDepartment() {
     this.masterName = `/users/active/${this.userData?.department?.departmentId}`;
     this.apiService.getAll(this.masterName).subscribe(
@@ -264,6 +294,8 @@ export class AddEditeTicketComponent {
       }
     );
   }
+
+
   selectDEPT() {
     this.masterName = `/users/active/${this.categoryid.department?.departmentId}`;
     this.apiService.getAll(this.masterName).subscribe(
@@ -357,13 +389,16 @@ export class AddEditeTicketComponent {
         alternativeContactNo: this.ticketMasterForm.value.alternativeContactNo,
         priority: this.ticketMasterForm.value.priority,
         issue: this.ticketMasterForm.value.issue,
-        department: this.userData?.department?.departmentId,
+        department: this.ticketMasterForm?.value.department,
         assignedTo: this.ticketMasterForm.value.assignedTo,
         shortNotes: this.ticketMasterForm.value.shortNotes,
         additionalComments: this.ticketMasterForm.value.additionalComments,
         createForUser: this.userData.userId,
         status: true,
         file: this.uploadFile || null,
+        guestId: this.ticketMasterForm.value.guestId,
+        invoiceNumber: this.ticketMasterForm.value.invoiceNumber,
+        buildBy: this.ticketMasterForm.value.buildBy,
       };
 
       this.activeModal.close(data);
