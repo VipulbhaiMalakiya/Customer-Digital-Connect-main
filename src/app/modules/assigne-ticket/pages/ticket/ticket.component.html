@@ -75,7 +75,7 @@
               <a class="btnClick"  *ngIf="(userData?.role?.roleName !== 'Approver' && userData?.role?.roleName !== 'Resolver') || (userData?.role?.roleName === 'Approver' || userData?.role?.roleName === 'Resolver') && i.department.departmentName !== 'Zenoti' || i.department.departmentName == 'Admin'" (click)="onEdit(i)"><i
                   class="las la-edit"></i></a>
 
-              <a class="btnClick" *ngIf="(userData?.role?.roleName !== 'Approver' && userData?.role?.roleName == 'Resolver') || (userData?.role?.roleName === 'Approver' || userData?.role?.roleName === 'Resolver') && i.department.departmentName !== 'Zenoti' || i.department.departmentName == 'Admin'" (click)="onApproverEdit(i)"><i
+              <a class="btnClick" *ngIf="(userData?.role?.roleName == 'Approver' && userData?.role?.roleName == 'Resolver') || (userData?.role?.roleName === 'Approver' || userData?.role?.roleName === 'Resolver') && i.department.departmentName == 'Zenoti' || i.department.departmentName == 'Admin'" (click)="onApproverEdit(i)"><i
                   class="las la-edit"></i></a>
 
               <a class="btnClick"
