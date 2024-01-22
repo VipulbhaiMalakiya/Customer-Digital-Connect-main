@@ -203,7 +203,7 @@ export class TicketComponent {
           categoryId: dataItem.category?.categoryId,
           emailId: dataItem.emailId,
           updatedBy: this.userData.userId,
-          ticketStatus: data.ticketStatus,
+          ticketStatus: dataItem.ticketStatus,
           comment:data.additionalComments || ' ',
           guestId: data.guestId || ' ',
           buildBy: data.buildBy || ' ',
@@ -213,8 +213,8 @@ export class TicketComponent {
         }
 
         console.log(model);
-   
-        
+
+
         let formData = new FormData();
         if(data.file === null){
 
