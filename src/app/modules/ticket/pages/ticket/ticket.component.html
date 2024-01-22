@@ -64,8 +64,8 @@
             };let ind = index">
             <!-- <td>{{ind + 1}}</td> -->
             <td>{{i.ticketId}}</td>
-            <td *ngIf="this.userData.department.departmentName !== 'Zenoti' && this.userData.department.departmentName !== 'Admin'" (click)="onUpdateTicket(i)" class="tblLink">{{i.ticketNo}}</td>
-            <td  *ngIf="this.userData.department.departmentName == 'Zenoti' || this.userData.department.departmentName == 'Admin'" (click)="onUpdateTicket1(i)" class="tblLink">{{i.ticketNo}}</td>
+            <td *ngIf="i.department.departmentName !== 'Zenoti' && i.departmentName !== 'Admin'" (click)="onUpdateTicket(i)" class="tblLink">{{i.ticketNo}}</td>
+            <td  *ngIf="i.department.departmentName == 'Zenoti' || i.departmentName == 'Admin'" (click)="onUpdateTicket1(i)" class="tblLink">{{i.ticketNo}}</td>
             <td>{{i.createdDate | date :'medium'}}</td>
             <td>{{i.ticketStatus}}</td>
             <td>{{i.category?.categoryName}}</td>
