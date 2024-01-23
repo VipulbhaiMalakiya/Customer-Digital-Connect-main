@@ -153,6 +153,9 @@ export class TicketComponent {
           updatedBy: this.userData.userId,
           ticketStatus: data.ticketStatus,
           comment:data.additionalComments || ' ',
+          clinicName : data.clinicName || ' ',
+          clientId: data.clientId|| ' ',
+          clientName: data.clientName|| ' ',
           mode:"User",
         }
         let formData = new FormData();

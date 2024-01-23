@@ -18,7 +18,7 @@ import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpac
 export class AddEditeTicketComponent {
 
   ticketMasterForm: any;
-  private _tickettsMaster: ticketMasterModel | undefined;
+  private _tickettsMaster: any | undefined;
   data: CategoryMasterModel[] = [];
   sdata: subCategoryMasterModel[] = [];
   data1: servicetitleMasterModel[] = [];
@@ -31,16 +31,19 @@ export class AddEditeTicketComponent {
   results:any = [];
   uploadFile: any = "";
   updatedData:any;
+  selectedDepartment?:any;
+
   tNo:any;
   subject:any;
   Comments:any;
 
 
-  set ticketsMaster(value: ticketMasterModel) {
+  set ticketsMaster(value: any) {
     this._tickettsMaster = value;
     this.tNo = this._tickettsMaster.ticketNo;
     this.updatedData = this._tickettsMaster;
     this.Comments = this.updatedData.additionalComments;
+    this.selectedDepartment =this._tickettsMaster?.department?.departmentName
 
 
 
@@ -51,6 +54,9 @@ export class AddEditeTicketComponent {
         serviceTitle: this._tickettsMaster.serviceTitle?.serviceId,
         assignedTo: this._tickettsMaster.assignedTo?.userId,
         ticketStatus:this._tickettsMaster.ticketStatus,
+        clinicName :this._tickettsMaster?.clinicName ,
+        clientId:this._tickettsMaster?.clientId,
+        clientName:this._tickettsMaster?.clientName,
       });
       // if(this.userData?.role?.roleName !== 'Admin'){
       //   this.ticketMasterForm.controls["subCategory"].disable();
@@ -74,7 +80,9 @@ export class AddEditeTicketComponent {
       subCategory: ['', [Validators.required]],
       serviceTitle: ['', [Validators.required]],
       assignedTo: ['', [Validators.required]],
-
+      clinicName :[''],
+      clientId:[''],
+      clientName:[''],
       ticketStatus:['', [Validators.required]],
       additionalComments:['', [Validators.required,noLeadingSpaceValidator()]],
       workNotes:['',[noLeadingSpaceValidator()]],
@@ -190,6 +198,9 @@ export class AddEditeTicketComponent {
         additionalComments:this.ticketMasterForm.value.additionalComments,
         workNotes:this.ticketMasterForm.value.workNotes,
         file: this.uploadFile || null ,
+        guestId: this.ticketMasterForm.value.guestId,
+        invoiceNumber: this.ticketMasterForm.value.invoiceNumber,
+        buildBy: this.ticketMasterForm.value.buildBy,
       }
       this.activeModal.close(data)
     } else {
