@@ -70,6 +70,10 @@ export class AddEditeTicketComponent {
         guestId:this._tickettsMaster?.guestId,
         invoiceNumber:this._tickettsMaster?.invoiceNumber,
         buildBy:this._tickettsMaster?.buildBy,
+
+        clinicName :this._tickettsMaster?.clinicName ,
+        clientId:this._tickettsMaster?.clientId,
+        clientName:this._tickettsMaster?.clientName,
       });
       this.imagePath = this._tickettsMaster.filename;
     }
@@ -103,6 +107,9 @@ export class AddEditeTicketComponent {
       guestId:[''],
       invoiceNumber:[''],
       buildBy:[''],
+      clinicName :[''],
+      clientId:[''],
+      clientName:[''],
       additionalComments: ['', [Validators.required,noLeadingSpaceValidator()]],
     });
 
@@ -399,6 +406,10 @@ export class AddEditeTicketComponent {
         guestId: this.ticketMasterForm.value.guestId,
         invoiceNumber: this.ticketMasterForm.value.invoiceNumber,
         buildBy: this.ticketMasterForm.value.buildBy,
+
+        clinicName : this.ticketMasterForm.value.clinicName ,
+        clientId: this.ticketMasterForm.value.clientId,
+        clientName: this.ticketMasterForm.value.clientName,
       };
 
       this.activeModal.close(data);

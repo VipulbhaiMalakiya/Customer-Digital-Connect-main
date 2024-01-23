@@ -157,6 +157,10 @@ export class TicketComponent implements OnInit, OnDestroy {
             guestId: data.guestId || ' ',
             buildBy: data.buildBy || ' ',
             invoiceNumber: data.invoiceNumber|| ' ',
+
+            clinicName : data.clinicName || ' ',
+            clientId: data.clientId|| ' ',
+            clientName: data.clientName|| ' ',
             mode:"User"
           };
 
@@ -379,6 +383,9 @@ export class TicketComponent implements OnInit, OnDestroy {
             guestId: data.guestId || ' ',
             buildBy: data.buildBy || ' ',
             invoiceNumber: data.invoiceNumber|| ' ',
+            clinicName : data.clinicName || ' ',
+            clientId: data.clientId|| ' ',
+            clientName: data.clientName|| ' ',
             mode:"User"
           };
           let formData = new FormData();

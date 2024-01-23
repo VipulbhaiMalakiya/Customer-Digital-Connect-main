@@ -137,6 +137,44 @@
           </div>
         </ng-container>
 
+        <ng-container *ngIf="selectedDepartment == 'Quality'">
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="clinicName">clinicName  <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="clinicName" name="clinicName" formControlName="clinicName"
+                placeholder="clinicName">
+              <div *ngIf="shouldShowError('clinicName','required')" class="form-validate-err">
+                Please Enter buildBy .
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="clientId">clientId <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="clientId" name="clientId" formControlName="clientId"
+                placeholder="clientId">
+              <div *ngIf="shouldShowError('clientId','required')" class="form-validate-err">
+                Please Enter clientId .
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="clientName">clientName <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" id="clientName" name="clientName" formControlName="clientName"
+                placeholder="clientName">
+              <div *ngIf="shouldShowError('clientName','required')" class="form-validate-err">
+                Please Enter clientName .
+              </div>
+
+            </div>
+          </div>
+        </ng-container>
+
         <div class="col-md-3" *ngIf="selectedDepartment != 'Admin' && selectedDepartment != 'Zenoti'">
           <div class="form-group">
             <div class="form-Department">
