@@ -201,6 +201,9 @@ export class AddEditeTicketComponent {
         guestId: this.ticketMasterForm.value.guestId,
         invoiceNumber: this.ticketMasterForm.value.invoiceNumber,
         buildBy: this.ticketMasterForm.value.buildBy,
+        clinicName : this.ticketMasterForm.value.clinicName ,
+        clientId: this.ticketMasterForm.value.clientId,
+        clientName: this.ticketMasterForm.value.clientName,
       }
       this.activeModal.close(data)
     } else {
