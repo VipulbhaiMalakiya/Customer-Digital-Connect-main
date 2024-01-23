@@ -16,7 +16,7 @@ import { noLeadingSpaceValidator } from 'src/app/shared/directives/noLeadingSpac
 })
 export class UpdateTicketComponent {
   ticketMasterForm: any;
-  private _tickettsMaster: ticketMasterModel | undefined;
+  private _tickettsMaster: any | undefined;
   data: CategoryMasterModel[] = [];
   sdata: subCategoryMasterModel[] = [];
   data1: servicetitleMasterModel[] = [];
@@ -26,7 +26,7 @@ export class UpdateTicketComponent {
   isProceess: boolean = true;
   duser: UserMaster[] = [];
   uploadFile: any = '';
-  updatedData?: ticketMasterModel;
+  updatedData?: any;
   Comments: any;
   page: number = 1;
   items: any[] = [];
@@ -39,6 +39,7 @@ export class UpdateTicketComponent {
   results:any = [];
   subject: any;
   updatedUser?: any;
+  dept?:any;
   set ticketsMaster(value: ticketMasterModel) {
     this._tickettsMaster = value;
     this.tNo = this._tickettsMaster.ticketNo;
@@ -46,12 +47,16 @@ export class UpdateTicketComponent {
     this.updatedData = this._tickettsMaster;
     this.Comments = this.updatedData.additionalComments;
     // this.Attachment =
+    this.dept = this._tickettsMaster?.department?.departmentName;
     if (this._tickettsMaster) {
       this.ticketMasterForm.patchValue({
         subCategory: this._tickettsMaster.subCategory?.subCategoryId,
         serviceTitle: this._tickettsMaster?.serviceTitle?.serviceId,
         assignedTo: this._tickettsMaster.assignedTo?.userId,
         ticketStatus: this._tickettsMaster.ticketStatus,
+        clinicName : this._tickettsMaster.clinicName,
+        clientId: this._tickettsMaster.clientId,
+        clientName: this._tickettsMaster.clientName,
       });
       if (this.userData?.role?.roleName !== 'Admin') {
         this.ticketMasterForm.controls['ticketStatus'].disable();
@@ -71,6 +76,9 @@ export class UpdateTicketComponent {
       assignedTo: ['', [Validators.required]],
       ticketStatus: ['', [Validators.required]],
       file: [''],
+      clinicName : [''],
+      clientId: [''],
+      clientName: [''],
       additionalComments: ['', [Validators.required,noLeadingSpaceValidator()]],
       workNotes: ['',[noLeadingSpaceValidator()]],
     });
@@ -181,6 +189,9 @@ export class UpdateTicketComponent {
         additionalComments: this.ticketMasterForm.value.additionalComments,
         workNotes: this.ticketMasterForm.value.workNotes,
         file: this.uploadFile || null,
+        clinicName : this.ticketMasterForm.value.clinicName ,
+        clientId: this.ticketMasterForm.value.clientId,
+        clientName: this.ticketMasterForm.value.clientName,
       };
       this.activeModal.close(data);
     } else {
