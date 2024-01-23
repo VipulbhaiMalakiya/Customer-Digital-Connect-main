@@ -41,7 +41,7 @@ export class ZeotyAddUpdateComponent {
     this.updatedData = this._tickettsMaster;
     this.Comments = this.updatedData.additionalComments;
 
-    
+
 
     this.subject = this._tickettsMaster.shortNotes;
     if (this._tickettsMaster) {
@@ -55,14 +55,19 @@ export class ZeotyAddUpdateComponent {
         buildBy:this._tickettsMaster?.buildBy,
 
       });
-  
+
+      if(this.userData?.role?.roleName == 'Resolver'){
+
+      }else{
         this.ticketMasterForm.controls["subCategory"].disable();
         this.ticketMasterForm.controls["serviceTitle"].disable();
         this.ticketMasterForm.controls["assignedTo"].disable();
         this.ticketMasterForm.controls["ticketStatus"].disable();
+      }
+
         // // this.ticketMasterForm.controls["additionalComments"].disable();
         // // this.ticketMasterForm.controls["workNotes"].disable();
-      
+
     }
 
   }

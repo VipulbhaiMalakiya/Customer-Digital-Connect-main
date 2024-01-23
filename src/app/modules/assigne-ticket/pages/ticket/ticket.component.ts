@@ -189,28 +189,54 @@ export class TicketComponent {
     componentInstance.ticketsMaster = dataItem;
     modalRef.result.then((data: any) => {
       if (data) {
-        var model: any = {
-          createForUser: dataItem.createForUser?.userId,
-          status: dataItem.status,
-          shortNotes: dataItem.shortNotes,
-          assignedTo: dataItem?.assignedTo?.userId,
-          departmentId: dataItem.department?.departmentId,
-          issueId: dataItem.issue?.issueId,
-          priority: dataItem.priority?.id,
-          alternativeContactNo: dataItem.alternativeContactNo,
-          serviceTitleId: dataItem?.serviceTitle?.serviceId,
-          subCategoryId: dataItem?.subCategory?.subCategoryId,
-          categoryId: dataItem.category?.categoryId,
-          emailId: dataItem.emailId,
-          updatedBy: this.userData.userId,
-          ticketStatus: dataItem.ticketStatus,
-          comment:data.additionalComments || ' ',
-          guestId: data.guestId || ' ',
-          buildBy: data.buildBy || ' ',
-          invoiceNumber: data.invoiceNumber|| ' ',
+        if(this.userData?.role?.roleName == 'Resolver'){
+          var model: any = {
+            createForUser: dataItem.createForUser?.userId,
+            status: dataItem.status,
+            shortNotes: dataItem.shortNotes,
+            assignedTo: data.assignedTo,
+            departmentId: dataItem.department?.departmentId,
+            issueId: dataItem.issue?.issueId,
+            priority: dataItem.priority?.id,
+            alternativeContactNo: dataItem.alternativeContactNo,
+            serviceTitleId: data.serviceTitle,
+            subCategoryId: dataItem?.subCategory?.subCategoryId,
+            categoryId: dataItem.category?.categoryId,
+            emailId: dataItem.emailId,
+            updatedBy: this.userData.userId,
+            ticketStatus: data.ticketStatus,
+            comment:data.additionalComments || ' ',
+            guestId: data.guestId || ' ',
+            buildBy: data.buildBy || ' ',
+            invoiceNumber: data.invoiceNumber|| ' ',
 
-          mode:"User",
+            mode:"User",
+          }
+        }else{
+          var model: any = {
+            createForUser: dataItem.createForUser?.userId,
+            status: dataItem.status,
+            shortNotes: dataItem.shortNotes,
+            assignedTo: dataItem?.assignedTo?.userId,
+            departmentId: dataItem.department?.departmentId,
+            issueId: dataItem.issue?.issueId,
+            priority: dataItem.priority?.id,
+            alternativeContactNo: dataItem.alternativeContactNo,
+            serviceTitleId: dataItem?.serviceTitle?.serviceId,
+            subCategoryId: dataItem?.subCategory?.subCategoryId,
+            categoryId: dataItem.category?.categoryId,
+            emailId: dataItem.emailId,
+            updatedBy: this.userData.userId,
+            ticketStatus: dataItem.ticketStatus,
+            comment:data.additionalComments || ' ',
+            guestId: data.guestId || ' ',
+            buildBy: data.buildBy || ' ',
+            invoiceNumber: data.invoiceNumber|| ' ',
+
+            mode:"User",
+          }
         }
+
 
         console.log(model);
 
