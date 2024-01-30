@@ -452,6 +452,7 @@ export class ChatComponent
               this.lastname = data.lastName;
               this.chathistroy();
               let phone = this.data.contact;
+              this.isProceess = true;
               this.masterName = `/chat-activity/${phone}`;
               this.subscription = this.apiService
                 .getAll(this.masterName)
