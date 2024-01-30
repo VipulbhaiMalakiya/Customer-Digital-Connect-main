@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Subscription, take } from 'rxjs';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
 import { AppService } from 'src/app/_services/app.service';
-import { performanceMasterModel } from 'src/app/_models/performance';
+import { ChatReportMasterModel } from 'src/app/_models/chatReport';
 
 @Component({
   selector: 'app-chat-report',
@@ -15,7 +15,7 @@ import { performanceMasterModel } from 'src/app/_models/performance';
 })
 export class ChatReportComponent {
   isProceess: boolean = true;
-  data: performanceMasterModel[] = [];
+  data: ChatReportMasterModel[] = [];
   subscription?: Subscription;
   userData: any;
   masterName?: any;
@@ -38,7 +38,7 @@ export class ChatReportComponent {
     private apiService: ApiService,
     private datePipe: DatePipe
   ) {
-    this.titleService.setTitle('CDC -Agent Performance');
+    this.titleService.setTitle('CDC -Chat Report');
     const d: any = localStorage.getItem('userData');
     this.userData = JSON.parse(d);
 
@@ -64,13 +64,15 @@ export class ChatReportComponent {
       startDate: this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),
       endDate: this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),
     };
-    this.masterName = `/agent-performance?startDate=${model.startDate}&endDate=${model.endDate}`;
+    this.masterName = `/CustomReportBetweenDates?startDate=${model.startDate}&endDate=${model.endDate}`;
     this.subscription = this.apiService
       .getAll(this.masterName)
       .pipe(take(1))
       .subscribe(
         (data) => {
           if (data) {
+            console.log(data);
+
             this.data = data.data;
             this.count = this.data.length;
             this.isProceess = false;
@@ -97,31 +99,17 @@ export class ChatReportComponent {
   onDownload() {
     const exportData = this.data.map((x) => {
       return {
-        'User Name': x.user?.username || '',
-        'Full Name': x.user?.firstName + ' ' + x.user?.lastName || '',
-        Assigned: x?.assigned || '',
-        Responded: x?.responded || '',
-        'Rotal Resolved': x?.totalResolved || '',
-        Reassigned: x?.reassigned || '',
-        Closed: x?.closed || '',
-        'First Response Time': x.firstResponseTime || '',
-        'Avg Response Time': x.avgResponseTime || '',
-        'Resolution Time': x.resolutionTime || '',
+        'Id': x.customerId || '',
+        'Full Name': x.fullName || '',
+        'Contact': x?.contact || '',
       };
     });
     const headers = [
-      'User Name',
+      'Id',
       'Full Name',
-      'Assigned',
-      'Responded',
-      'Rotal Resolved',
-      'Reassigned',
-      'Closed',
-      'First Response Time',
-      'Avg Response Time',
-      'Resolution Time',
+      'Contact',
     ];
-    this.appService.exportAsExcelFile(exportData, 'Agent Performance', headers);
+    this.appService.exportAsExcelFile(exportData, 'Chat-Report', headers);
   }
 
   onValueChange(event: Event) {
@@ -158,7 +146,7 @@ export class ChatReportComponent {
       startDate: this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),
       endDate: this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),
     };
-    this.masterName = `/agent-performance?startDate=${model.startDate}&endDate=${model.endDate}`;
+    this.masterName = `/CustomReportBetweenDates?startDate=${model.startDate}&endDate=${model.endDate}`;
     this.subscription = this.apiService
       .getAll(this.masterName)
       .pipe(take(1))
@@ -187,7 +175,7 @@ export class ChatReportComponent {
         startDate: this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),
         endDate: this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),
       };
-      this.masterName = `/agent-performance?startDate=${model.startDate}&endDate=${model.endDate}`;
+      this.masterName = `/CustomReportBetweenDates?startDate=${model.startDate}&endDate=${model.endDate}`;
       this.isProceess = true;
 
       this.subscription = this.apiService

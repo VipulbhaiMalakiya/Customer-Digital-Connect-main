@@ -3,7 +3,7 @@
 <div class="page-title">
   <h1><i class="las la-chart-bar"></i> Chat Report</h1>
 </div>
-<div class="page-btns-col" *ngIf="!isProceess && data.length > 0">
+<div class="page-btns-col" >
   <div class="dt-buttons">
     <button class="gray-btns" (click)="onDownload()" type="button"><i class="las la-file-excel"></i> Excel</button>
     <div class="table-search">
@@ -51,16 +51,9 @@
       <table class="table">
         <thead>
           <tr>
-            <th>User Name</th>
-            <th>Full Name</th>
-            <th>Assigned</th>
-            <th>Responded</th>
-            <th>Total Resolved</th>
-            <th>Reassigned</th>
-            <th>Closed</th>
-            <th>1st Response </th>
-            <th>Avg Response </th>
-            <th>Resolution </th>
+            <th>#</th>
+            <th>Customer</th>
+            <th>Contact</th>
           </tr>
         </thead>
         <tbody>
@@ -70,16 +63,9 @@
               currentPage: page,
               totalItems: count
             };let ind = index;trackBy: trackByFn">
-            <td>{{i?.user?.username || ''}}</td>
-            <td>{{i.user?.firstName + ' ' + i.user?.lastName |titlecase}}</td>
-            <td>{{i.assigned || ''}}</td>
-            <td>{{i.responded || ''}}</td>
-            <td>{{i.totalResolved || ''}}</td>
-            <td>{{i.reassigned || ''}}</td>
-            <td>{{i.closed || ''}}</td>
-            <td>{{i.firstResponseTime || ''}}</td>
-            <td>{{i.avgResponseTime}}</td>
-            <td>{{i.resolutionTime}}</td>
+            <td>{{ind + 1}}</td>
+            <td>{{i.fullName |titlecase}}</td>
+            <td>{{i.contact || ''}}</td>
           </tr>
         </tbody>
       </table>
