@@ -239,6 +239,9 @@
               <h2 *ngIf="data.firstName !== null && data.lastName !== null ">
                 {{data.firstName}} {{data.lastName}}
               </h2>
+              <h2 *ngIf="data.firstName !== null ">
+                {{data.firstName}}
+              </h2>
             </ng-container>
             <ng-container *ngIf="chatname">
               <h2 *ngIf="chatname !==null ">{{chatname}}</h2>
