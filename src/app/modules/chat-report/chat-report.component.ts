@@ -7,6 +7,7 @@ import { Subscription, take } from 'rxjs';
 import { ApiService } from 'src/app/_api/rxjs/api.service';
 import { AppService } from 'src/app/_services/app.service';
 import { ChatReportMasterModel } from 'src/app/_models/chatReport';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat-report',
@@ -36,7 +37,9 @@ export class ChatReportComponent {
     private titleService: Title,
     private appService: AppService,
     private apiService: ApiService,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    private router: Router,
+
   ) {
     this.titleService.setTitle('CDC -Chat Report');
     const d: any = localStorage.getItem('userData');
@@ -110,6 +113,11 @@ export class ChatReportComponent {
       'Contact',
     ];
     this.appService.exportAsExcelFile(exportData, 'Chat-Report', headers);
+  }
+
+  sendMessage(dataItem: ChatReportMasterModel) {
+    this.router.navigate([`/admin/inbox/${dataItem.customerId}`]);
+    // window.location.href = `/admin/inbox/${dataItem.customerId}`
   }
 
   onValueChange(event: Event) {

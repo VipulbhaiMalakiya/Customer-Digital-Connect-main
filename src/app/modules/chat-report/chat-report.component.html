@@ -52,6 +52,7 @@
         <thead>
           <tr>
             <th>#</th>
+            <th>Id</th>
             <th>Customer</th>
             <th>Contact</th>
           </tr>
@@ -64,8 +65,10 @@
               totalItems: count
             };let ind = index;trackBy: trackByFn">
             <td>{{ind + 1}}</td>
+            <td>{{i.customerId}}</td>
             <td>{{i.fullName |titlecase}}</td>
-            <td>{{i.contact || ''}}</td>
+            <td>{{i.contact}}<span class="ctm-icone"> <i class="lab la-whatsapp"
+              (click)="sendMessage(i)"></i></span></td>
           </tr>
         </tbody>
       </table>

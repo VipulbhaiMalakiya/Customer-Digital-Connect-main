@@ -20,6 +20,11 @@
 }
 
 .dasboard-table.dasboard-scroll {
-  height: 400px !important;
+  height: 350px !important;
   overflow: auto;
+}
+.ctm-icone {
+  float: none;
+  margin-top: -5px;
+  padding-left: 10px;
 }
