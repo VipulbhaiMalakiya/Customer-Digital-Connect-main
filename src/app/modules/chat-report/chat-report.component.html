@@ -1,1 +1,100 @@
-<p>chat-report works!</p>
+<app-header></app-header>
+<app-loading-spin *ngIf="isProceess"></app-loading-spin>
+<div class="page-title">
+  <h1><i class="las la-chart-bar"></i> Chat Report</h1>
+</div>
+<div class="page-btns-col" *ngIf="!isProceess && data.length > 0">
+  <div class="dt-buttons">
+    <button class="gray-btns" (click)="onDownload()" type="button"><i class="las la-file-excel"></i> Excel</button>
+    <div class="table-search">
+      <input type="text" class="form-control" name="name" id="name" [(ngModel)]="term" autocomplete="off"
+        placeholder="Search..." required="">
+    </div>
+  </div>
+  <div class="analytics-dropcols">
+    <div class="analdrop1 analdrop2">
+      <label>Select Date</label>
+      <select id="select-tags4" class="form-select" [(ngModel)]="selectedValue" (change)="onValueChange($event)">
+        <option value="Today">Today</option>
+        <option value="Yesterday">Yesterday</option>
+        <option value="7">Last 7 days</option>
+        <option value="30">Last 30 days</option>
+      </select>
+    </div>
+
+    <div class="analdrop1">
+      <div class="form-group">
+        <label for="startDate">From</label>
+        <input class="form-control" type="date" id="startDate" name="startDate" [(ngModel)]="startDate" [max]="endDate">
+      </div>
+    </div>
+    <div class="analdrop1">
+      <div class="form-group">
+        <label for="endDate">To</label>
+        <input class="form-control" type="date" id="endDate" name="endDate" [(ngModel)]="endDate" [max]="endDate">
+        <div *ngIf="dateRangeError" class="form-validate-err">
+          To Date must be after From Date
+        </div>
+      </div>
+    </div>
+    <div class="analdrop1">
+      <div class="form-group">
+        <label>&nbsp;</label>
+        <button class="btn common-btn" (click)="submitDateRange()">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="inner-middle-content">
+  <div class="dasboard-table dasboard-scroll">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>User Name</th>
+            <th>Full Name</th>
+            <th>Assigned</th>
+            <th>Responded</th>
+            <th>Total Resolved</th>
+            <th>Reassigned</th>
+            <th>Closed</th>
+            <th>1st Response </th>
+            <th>Avg Response </th>
+            <th>Resolution </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of data  | customFilter: term | paginate
+          : {
+              itemsPerPage: tableSize,
+              currentPage: page,
+              totalItems: count
+            };let ind = index;trackBy: trackByFn">
+            <td>{{i?.user?.username || ''}}</td>
+            <td>{{i.user?.firstName + ' ' + i.user?.lastName |titlecase}}</td>
+            <td>{{i.assigned || ''}}</td>
+            <td>{{i.responded || ''}}</td>
+            <td>{{i.totalResolved || ''}}</td>
+            <td>{{i.reassigned || ''}}</td>
+            <td>{{i.closed || ''}}</td>
+            <td>{{i.firstResponseTime || ''}}</td>
+            <td>{{i.avgResponseTime}}</td>
+            <td>{{i.resolutionTime}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="data.length === 0" class="text-center">
+        <Strong class="text-danger">No records found</Strong>
+      </div>
+      <div class="text-center" *ngIf="(data | customFilter: term).length === 0 && data.length > 0">
+        <Strong class="text-danger">No results found.</Strong>
+      </div>
+    </div>
+    <div class="clearfix" *ngIf="!isProceess && data.length > 0">
+      <ul class="pagination">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </ul>
+    </div>
+  </div>
+</div>
