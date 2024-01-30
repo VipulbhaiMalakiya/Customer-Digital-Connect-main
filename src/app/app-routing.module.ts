@@ -275,6 +275,8 @@ const routes: Routes = [
             (m) => m.WorkflowModule
           ),
       },
+      { path: 'chat-report', loadChildren: () => import('./modules/chat-report/chat-report.module').then(m => m.ChatReportModule) },
+
       {
         path: 'overview',
         loadChildren: () =>
