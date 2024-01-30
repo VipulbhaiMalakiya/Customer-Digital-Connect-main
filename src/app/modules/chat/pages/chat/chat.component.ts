@@ -437,6 +437,8 @@ export class ChatComponent
   GetUser() {
     if (this._route.snapshot.paramMap.get('id') != null) {
       this.show = true;
+      this.isProceess = true;
+
       this.subscription = this.CSAPI.customerDetailByID(
         this._route.snapshot.paramMap.get('id')
       )
