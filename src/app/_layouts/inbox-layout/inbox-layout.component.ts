@@ -14,14 +14,10 @@ export class InboxLayoutComponent {
   constructor(private router: Router, private cd: ChangeDetectorRef) {
     this.router.events.forEach((event) => {
       if (event instanceof NavigationStart) {
-
-        if (event['url'] === '/admin/inbox') {
+        if (event['url'] === '/admin/inbox' || event['url'] === '/inbox') {
           this.classToggled = true;
           this.cd.detectChanges();
-        } else if (event['url'] === '/inbox') {
-          this.classToggled = true;
-          this.cd.detectChanges();
-        } else if (event['url'] === '/admin/inbox/:id') {
+        } else if (event['url'].startsWith('/admin/inbox/')) {
           this.classToggled = true;
           this.cd.detectChanges();
         } else {
@@ -35,7 +31,7 @@ export class InboxLayoutComponent {
       this.classToggled = true;
     } else if (this.router.url === '/inbox') {
       this.classToggled = true;
-    } else if (this.router.url === '/admin/inbox/:id') {
+    } else if (this.router.url === '/admin/inbox/id') {
       this.classToggled = true;
     }
   }
