@@ -276,6 +276,7 @@ const routes: Routes = [
           ),
       },
       { path: 'chat-report', loadChildren: () => import('./modules/chat-report/chat-report.module').then(m => m.ChatReportModule) },
+      { path: 'chat-histroy', loadChildren: () => import('./modules/chat-history-reort/chat-history-reort.module').then(m => m.ChatHistoryReortModule) },
 
       {
         path: 'overview',
