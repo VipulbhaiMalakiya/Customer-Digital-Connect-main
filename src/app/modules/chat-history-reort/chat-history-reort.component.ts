@@ -28,8 +28,12 @@ export class ChatHistoryReortComponent {
   term: any;
   page: number = 1;
   count: number = 0;
-  tableSize: number = 10;
+  tableSize: number = 12;
   tableSizes: any = [3, 6, 9, 12];
+  pageSize: number = 10;
+  pageSizeOptions: number[] = [10, 20, 50, 100, 500, 1000]; // Array of page size options
+  currentPage: number = 1;
+  totalItems: number = 0;
   constructor(
     private cd: ChangeDetectorRef,
     private modalService: NgbModal,
@@ -59,6 +63,9 @@ export class ChatHistoryReortComponent {
 
   ngOnInit(): void {
     this.fatchData();
+    const currentPageNumber = this.page;
+    console.log(currentPageNumber);
+
   }
 
   fatchData() {
@@ -68,15 +75,14 @@ export class ChatHistoryReortComponent {
       endDate: this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),
     };
 
-    this.masterName = `/chatlist/chathistoryreport?startDate=2023-08-05&endDate=2024-02-05&page=120&pageSize=12`;
+    this.masterName = `/chatlist/chathistoryreport?startDate=${model.startDate}&endDate=${model.endDate}&page=${this.currentPage}&pageSize=${this.pageSize}`;
     this.subscription = this.apiService
       .getAll(this.masterName)
       .pipe(take(1))
       .subscribe(
         (data) => {
           if (data) {
-            console.log(data);
-
+            this.totalItems = data.totalRecords;
             this.data = data.data;
             this.count = this.data.length;
             this.isProceess = false;
@@ -87,6 +93,12 @@ export class ChatHistoryReortComponent {
           this.isProceess = false;
         }
       );
+  }
+
+  onPageChange(page: number, pageSize: number): void {
+    this.currentPage = page;
+    this.pageSize = pageSize;
+   this.fatchData();
   }
 
   trackByFn(index: number, item: any): number {
@@ -160,7 +172,7 @@ export class ChatHistoryReortComponent {
       startDate: this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),
       endDate: this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),
     };
-    this.masterName = `/chatlist/chathistoryreport?startDate=2023-08-05&endDate=2024-02-05&page=120&pageSize=12`;
+    this.masterName = `/chatlist/chathistoryreport?startDate=${model.startDate}&endDate=${model.endDate}&page=${this.currentPage}&pageSize=${this.pageSize}`;
     this.subscription = this.apiService
       .getAll(this.masterName)
       .pipe(take(1))
@@ -189,7 +201,7 @@ export class ChatHistoryReortComponent {
         startDate: this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),
         endDate: this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),
       };
-      this.masterName = `/chatlist/chathistoryreport?startDate=2023-08-05&endDate=2024-02-05&page=120&pageSize=12`;
+      this.masterName = `/chatlist/chathistoryreport?startDate=${model.startDate}&endDate=${model.endDate}&page=${this.currentPage}&pageSize=${this.pageSize}`;
       this.isProceess = true;
 
       this.subscription = this.apiService

@@ -6,6 +6,7 @@ import { ConfirmationDialogModalComponent } from './components/confirmation-dial
 import { BulkUploadComponent } from './components/bulk-upload/bulk-upload.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { HeaderComponent } from './components/header/header.component';
     LoadingSpinPopupComponent,
     ConfirmationDialogModalComponent,
     BulkUploadComponent,
-    HeaderComponent
+    HeaderComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +26,8 @@ import { HeaderComponent } from './components/header/header.component';
     LoadingSpinPopupComponent,
     ConfirmationDialogModalComponent,
     BulkUploadComponent,
-    HeaderComponent
+    HeaderComponent,
+    PaginationComponent
   ]
 })
 export class SharedModule { }

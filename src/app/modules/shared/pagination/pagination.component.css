@@ -1,0 +1,24 @@
+.pagination {
+  float: right;
+  border-radius: 0px;
+  overflow: hidden;
+  padding-top: 15px;
+  cursor: pointer;
+}
+.hint-text {
+  float: left;
+  padding: 10px;
+  font-size: 13px;
+  color: #000;
+}
+
+.page-link.active, .active > .page-link{
+  z-index: 1;
+  color: #fff;
+  background-color: #00abc5;
+  border-color: #fff;
+
+}
+.page-link{
+  color:#00abc5
+}

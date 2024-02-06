@@ -3,7 +3,7 @@
 <div class="page-title">
   <h1><i class="las la-chart-bar"></i> Chat History Report</h1>
 </div>
-<div class="page-btns-col" >
+<div class="page-btns-col">
   <div class="dt-buttons">
     <button class="gray-btns" (click)="onDownload()" type="button"><i class="las la-file-excel"></i> Excel</button>
     <div class="table-search">
@@ -63,12 +63,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let i of data  | customFilter: term | paginate
-          : {
-              itemsPerPage: tableSize,
-              currentPage: page,
-              totalItems: count
-            };let ind = index;trackBy: trackByFn">
+          <tr *ngFor="let i of data  | customFilter: term ; let ind = index;trackBy: trackByFn">
             <td>{{ind + 1}}</td>
             <td>{{i.category}}</td>
             <td>{{i.guestnumber |titlecase}}</td>
@@ -90,8 +85,8 @@
     </div>
     <div class="clearfix" *ngIf="!isProceess && data.length > 0">
       <ul class="pagination">
-        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
-        </pagination-controls>
+        <app-pagination [currentPage]="currentPage" [pageSize]="pageSize" [totalItems]="totalItems"
+          (pageChange)="onPageChange($event,pageSize)"></app-pagination>
       </ul>
     </div>
   </div>

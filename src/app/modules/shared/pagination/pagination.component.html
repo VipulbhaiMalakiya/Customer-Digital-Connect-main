@@ -1,0 +1,42 @@
+<div class="clearfix">
+  <div class="hint-text">Showing <b>{{ currentPage }}</b> out of <b>{{ totalPages }}</b> entries</div>
+  <ul class="pagination">
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <a class="page-link" (click)="onPageChange(1)">
+        <i class="las la-angle-double-left"></i>
+      </a>
+    </li>
+
+    <li class="page-item" [class.disabled]="currentPage === 1">
+      <a class="page-link" (click)="onPageChange(currentPage - 1)">
+        <i class="las la-angle-left"></i>
+      </a>
+    </li>
+
+    <li class="page-item" *ngIf="visiblePages[0] > 2">
+      <span class="ellipsis">...</span>
+    </li>
+
+    <ng-container *ngFor="let page of visiblePages; ">
+      <li class="page-item" [class.active]="currentPage === page">
+        <a class="page-link" (click)="onPageChange(page)">{{ page }}</a>
+      </li>
+    </ng-container>
+
+    <li class="page-item" *ngIf="totalPages - visiblePages[visiblePages.length - 1] > 1">
+      <span class="ellipsis">...</span>
+    </li>
+
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <a class="page-link" (click)="onPageChange(currentPage + 1)">
+        <i class="las la-angle-right"></i>
+      </a>
+    </li>
+
+    <li class="page-item" [class.disabled]="currentPage === totalPages">
+      <a class="page-link" (click)="onPageChange(totalPages)">
+        <i class="las la-angle-double-right"></i>
+      </a>
+    </li>
+  </ul>
+</div>
