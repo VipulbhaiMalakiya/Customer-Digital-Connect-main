@@ -63,8 +63,6 @@ export class ChatHistoryReortComponent {
 
   ngOnInit(): void {
     this.fatchData();
-    const currentPageNumber = this.page;
-    console.log(currentPageNumber);
 
   }
 
@@ -172,6 +170,7 @@ export class ChatHistoryReortComponent {
       startDate: this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),
       endDate: this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),
     };
+    this.currentPage = 1;
     this.masterName = `/chatlist/chathistoryreport?startDate=${model.startDate}&endDate=${model.endDate}&page=${this.currentPage}&pageSize=${this.pageSize}`;
     this.subscription = this.apiService
       .getAll(this.masterName)
@@ -201,6 +200,7 @@ export class ChatHistoryReortComponent {
         startDate: this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),
         endDate: this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),
       };
+      this.currentPage = 1;
       this.masterName = `/chatlist/chathistoryreport?startDate=${model.startDate}&endDate=${model.endDate}&page=${this.currentPage}&pageSize=${this.pageSize}`;
       this.isProceess = true;
 
