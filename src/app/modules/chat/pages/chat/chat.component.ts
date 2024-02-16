@@ -92,7 +92,9 @@ export class ChatComponent
   isempty: boolean = true;
   reloadFlag = true;
   openCount: any;
+  checkoutdata:any;
   tqty?: any;
+  checkindata:any;
   DefoluteSelect: any;
   @ViewChild('chatContainer', { static: false }) chatContainer!: ElementRef;
   // Emoji Code Start
@@ -211,7 +213,7 @@ export class ChatComponent
     }, 2000);
 
     console.log(this.checkinstatus);
-    
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.data.latitude = position.coords.latitude.toString();
@@ -396,7 +398,8 @@ export class ChatComponent
           guestName: data.guestName.trim(),
           roomNumber: data.roomNumber,
           numberoGuiest: data.numberoGuiest,
-          guestStatus: "CheckIn",
+          // guestStatus: "CheckIn",
+          
           customerMobile: this.contact
         }
         this.masterName = `/customer/checkin`;
@@ -408,6 +411,7 @@ export class ChatComponent
         this.subscription = this.apiService.add(addData).pipe(take(1)).subscribe(res => {
           this.isProceess = false;
           this.toastr.success(res.message);
+          this.checkstatus();
         }, error => {
           this.isProceess = false;
           this.toastr.error(error.messages);
@@ -429,16 +433,27 @@ export class ChatComponent
 
     var componentInstance = modalRef.componentInstance as ConfirmationDialogModalComponent;
     componentInstance.message = "Are you sure you want to check out this?";
+ 
+
     modalRef.result.then((canDelete: boolean) => {
       if (canDelete) {
-        this.masterName = `/customer/checkout/${this.slecteduser.phoneNo}`;
         this.isProceess = true;
-        this.subscription = this.apiService.update(this.masterName).pipe(take(1)).subscribe(data => {
+
+        this.masterName = `/customer/checkout?id=${this.checkindata.guestId}`;
+        console.log(this.masterName);
+        let updateData: any = {
+          url: this.masterName,
+          model: this.checkindata.guestId
+        }
+        
+        this.subscription = this.apiService.update(updateData).pipe(take(1)).subscribe(data => {
           this.isProceess = false;
           this.toastr.success(data.message);
+          this.checkstatus();
+          
         }, error => {
           this.isProceess = false;
-          this.toastr.error(error.message);
+          this.toastr.error(error.error.message);
         });
       }
     }).catch(() => { });
@@ -630,21 +645,7 @@ export class ChatComponent
     this.show = true;
 
 
-    this.masterName = `/customer/checkin-status/${this.contact}`;
-    this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
-      if (data) {
-        this.checkinstatus = data.status;
-        
-        this.isProceess = false;                
-      }
-
-    }, error => {
-      this.checkinstatus = error.error.status
-      console.log(error.error.status);
-      
-      this.isProceess = false;
-    })
-
+    this.checkstatus();
 
 
     if (e.fullName) {
@@ -706,6 +707,26 @@ export class ChatComponent
           this.isProceess = false;
         }
       );
+  }
+
+  checkstatus(){
+    this.masterName = `/customer/checkin-status/${this.contact}`;
+    this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
+      if (data) {
+        this.checkinstatus = data.status;
+        this.checkindata = data.data;
+        this.isProceess = false;
+        this.cd.detectChanges();
+
+      }
+
+    }, error => {
+      this.checkinstatus = error.error.status
+      console.log(error.error.status);
+
+      this.isProceess = false;
+    })
+
   }
 
   // checkChatStatus() {

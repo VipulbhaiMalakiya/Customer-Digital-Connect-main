@@ -351,6 +351,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'sign-up', component: SignUpComponent },
   { path: 'reset-password/:token', component: ResetPasswordComponent },
+  { path: 'chat-history-dept', loadChildren: () => import('./modules/chathistoryreportcount/chathistoryreportcount.module').then(m => m.ChathistoryreportcountModule) },
   { path: '**', component: NotFoundComponent },
 ];
 @NgModule({
