@@ -94,6 +94,12 @@ const routes: Routes = [
               ),
           },
           {
+            path: 'rooms',
+            loadChildren: () =>
+              import('./modules/rooms/rooms.module').then((m) => m.RoomsModule),
+          },
+
+          {
             path: 'department',
             loadChildren: () =>
               import(
@@ -121,6 +127,7 @@ const routes: Routes = [
                 (m) => m.ApprovalMatrixModule
               ),
           },
+
           {
             path: 'approval-matrix',
             loadChildren: () =>
@@ -275,8 +282,20 @@ const routes: Routes = [
             (m) => m.WorkflowModule
           ),
       },
-      { path: 'chat-report', loadChildren: () => import('./modules/chat-report/chat-report.module').then(m => m.ChatReportModule) },
-      { path: 'chat-histroy', loadChildren: () => import('./modules/chat-history-reort/chat-history-reort.module').then(m => m.ChatHistoryReortModule) },
+      {
+        path: 'chat-report',
+        loadChildren: () =>
+          import('./modules/chat-report/chat-report.module').then(
+            (m) => m.ChatReportModule
+          ),
+      },
+      {
+        path: 'chat-histroy',
+        loadChildren: () =>
+          import('./modules/chat-history-reort/chat-history-reort.module').then(
+            (m) => m.ChatHistoryReortModule
+          ),
+      },
 
       {
         path: 'overview',
@@ -301,8 +320,6 @@ const routes: Routes = [
             (m) => m.AgentPerformanceModule
           ),
       },
-
-
 
       {
         path: 'workflow/create-workflow',
@@ -344,4 +361,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

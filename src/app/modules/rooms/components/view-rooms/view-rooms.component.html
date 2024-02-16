@@ -1,0 +1,56 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">View Rooms</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <!-- <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup> -->
+
+
+    <div class="customreply-modalbody">
+      <form class="common-form" [formGroup]="CategoryMasterForm" >
+        <div class="row">
+          <div class="col-md-12">
+            <div class="cutomreply-frominn">
+              <div class="form-group">
+                <label for="input">ID <span class="text-danger">*</span></label>
+                <input type="text" id="input" class="form-control" placeholder="Input" formControlName="roomId">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="cutomreply-frominn">
+              <div class="form-group">
+                <label for="input">Room Number <span class="text-danger">*</span></label>
+                <input type="text" id="input" class="form-control" placeholder="Input" formControlName="roomNumber">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="cutomreply-frominn">
+              <div class="form-group">
+                <label for="input">Room Occupied <span class="text-danger">*</span></label>
+                <input type="text" id="input" class="form-control" placeholder="Input" formControlName="roomOccupied">
+              </div>
+            </div>
+          </div>
+   
+
+          
+          <div class="col-md-12">
+            <div class="cutomreply-frominn">
+              <div class="form-group">
+                <label for="input">Room Status <span class="text-danger">*</span></label>
+                <input type="text" id="input" class="form-control" placeholder="Input" formControlName="roomStatus">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
