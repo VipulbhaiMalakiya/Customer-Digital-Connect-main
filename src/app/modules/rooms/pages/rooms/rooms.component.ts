@@ -84,7 +84,8 @@ export class RoomsComponent implements OnInit, OnDestroy {
       if (data) {
         var model: any = {
           roomNumber: data.roomNumber,
-          roomOccupied:data.roomOccupied
+          roomOccupied:data.roomOccupied,
+          roomStatus:data.roomStatus
         }
         this.masterName = `/rooms`;
         let addData: any = {
@@ -121,7 +122,9 @@ export class RoomsComponent implements OnInit, OnDestroy {
       if (data) {
         var model: any = {
           roomNumber: data.roomNumber,
-          roomOccupied: data.roomOccupied
+          roomOccupied: data.roomOccupied,
+          roomStatus:data.roomStatus
+
         }
         this.masterName = `/rooms/roomId/${dataItem.roomId}`;
         let updateData: any = {

@@ -15,7 +15,7 @@ export class AddEditeRoomsComponent {
   data:any;
   CategoryMasterForm: any;
   get title(): string {
-    return this._categoryMaster ? "Edit Category Master" : " Add Category Master";
+    return this._categoryMaster ? "Edit RooM Master" : " Add Room Master";
   }
   set categoryMaster(value: any) {
     this.data = value;
@@ -25,6 +25,7 @@ export class AddEditeRoomsComponent {
       this.CategoryMasterForm.patchValue({
         roomNumber:this._categoryMaster.roomNumber,
         roomOccupied:this._categoryMaster.roomOccupied,
+        roomStatus:this._categoryMaster.roomStatus,
       });
       // this.rolesPermissionsMasterForm.controls["email"].disable();
       this.isProceess = false;
@@ -39,6 +40,7 @@ export class AddEditeRoomsComponent {
         Validators.required,,
       ]],
       roomOccupied: [false, [Validators.required]],
+      roomStatus: [true, [Validators.required]],
     });
   }
 
