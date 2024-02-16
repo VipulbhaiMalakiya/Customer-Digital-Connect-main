@@ -41,8 +41,7 @@ import { CheckInComponent } from '../../components/check-in/check-in.component';
   styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent
-  implements OnInit, OnDestroy, AfterViewInit, AfterViewChecked
-{
+  implements OnInit, OnDestroy, AfterViewInit, AfterViewChecked {
   show: boolean = false;
   data: any = [];
   bgclass: any;
@@ -54,13 +53,15 @@ export class ChatComponent
   chatVisible: boolean = true;
   isProceess: boolean = true;
   firstname: any;
-  phone:any;
-  ticketflag?:any;
+  phone: any;
+  ticketflag?: any;
   lastname: any;
   userData: any;
   totalQuantity?: number = 0;
   userMessage = [];
   chatname: any;
+  ischeckout: boolean = false;
+  ischeckin: boolean = true;
   label: any;
   latitude?: number;
   longitude?: number;
@@ -71,6 +72,7 @@ export class ChatComponent
   private socket$!: WebSocketSubject<any>;
   public receivedData: MessageData[] = [];
   item: any = [];
+  checkinstatus: any[] = [];
   open: any = [];
   contact: any;
   closed: any = [];
@@ -99,7 +101,7 @@ export class ChatComponent
   showupload = false;
   showupload1 = false;
   unreadmessage?: any = [];
-  slecteduser:any  = {};
+  slecteduser: any = {};
   private notificationSound?: HTMLAudioElement;
 
   toggleEmojiPicker() {
@@ -368,7 +370,7 @@ export class ChatComponent
       );
   }
 
-  onCheckIn(){
+  onCheckIn() {
     this.isProceess = true;
     const modalRef = this.modalService.open(CheckInComponent, { size: "sm" });
 
@@ -393,7 +395,7 @@ export class ChatComponent
           roomNumber: data.roomNumber,
           numberoGuiest: data.numberoGuiest,
           guestStatus: "CheckIn",
-          customerMobile:this.contact
+          customerMobile: this.contact
         }
         this.masterName = `/customer/checkin`;
         let addData: any = {
@@ -413,7 +415,7 @@ export class ChatComponent
   }
 
 
-  onCheckOut(){
+  onCheckOut() {
     this.isProceess = true;
     const modalRef = this.modalService.open(ConfirmationDialogModalComponent, { size: "sm", centered: true, backdrop: "static" });
     if (modalRef) {
@@ -422,7 +424,7 @@ export class ChatComponent
     else {
       this.isProceess = false;
     }
-    
+
     var componentInstance = modalRef.componentInstance as ConfirmationDialogModalComponent;
     componentInstance.message = "Are you sure you want to check out this?";
     modalRef.result.then((canDelete: boolean) => {
@@ -485,7 +487,7 @@ export class ChatComponent
   // Define a flag to track scrolling state
   private isScrolling = false;
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() { }
 
   ngAfterViewChecked() {
     this.scrollToBottom();
@@ -624,6 +626,25 @@ export class ChatComponent
     this.contact = e.phoneNo;
     this.slecteduser = e;
     this.show = true;
+
+
+    this.masterName = `/customer/checkin-status/${this.contact}`;
+    this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
+      if (data) {
+        this.checkinstatus = data.data;
+        this.isProceess = false;      
+        console.log(this.checkinstatus);
+          
+      }
+
+    }, error => {
+      console.log();
+      this.checkinstatus =[]      
+      this.isProceess = false;
+    })
+
+
+
     if (e.fullName) {
       this.chatname = e.fullName;
 
@@ -634,6 +655,7 @@ export class ChatComponent
     }
     this.label = e.customerLabel;
     this.isProceess = true;
+
     this.subscription = this.whatsappService
       .chatHistory(e.phoneNo)
       .pipe(take(1))
@@ -764,7 +786,7 @@ export class ChatComponent
             );
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }
 
   submitNoteForm(form: any) {
@@ -835,7 +857,7 @@ export class ChatComponent
       .then((data: any) => {
         this.message = data;
       })
-      .catch(() => {});
+      .catch(() => { });
   }
 
   submitForm(form: any) {
@@ -1003,7 +1025,7 @@ export class ChatComponent
             );
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }
 
   selectDepartment(e: any) {
@@ -1139,7 +1161,7 @@ export class ChatComponent
             );
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }
 
   onaudioAdd() {
@@ -1192,7 +1214,7 @@ export class ChatComponent
             );
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }
 
   ondocumentAdd() {
@@ -1246,7 +1268,7 @@ export class ChatComponent
             );
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }
 
   onvideoAdd() {
@@ -1300,7 +1322,7 @@ export class ChatComponent
             );
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }
 
   onLocationAdd() {
@@ -1357,7 +1379,7 @@ export class ChatComponent
             );
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }
 
   getTemplates(e: any) {
@@ -1420,6 +1442,6 @@ export class ChatComponent
             );
         }
       })
-      .catch(() => {});
+      .catch(() => { });
   }
 }
