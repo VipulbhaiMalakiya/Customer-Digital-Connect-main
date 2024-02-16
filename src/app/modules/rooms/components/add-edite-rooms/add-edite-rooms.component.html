@@ -1,1 +1,31 @@
-<p>add-edite-rooms works!</p>
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">{{ title }}</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-modal-form" [formGroup]="CategoryMasterForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="categoryName">Name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="categoryName" name="categoryName" formControlName="roomNumber"
+          placeholder="Category Name">
+        <div *ngIf="shouldShowError('roomNumber','required')" class="form-validate-err">
+          roomNumber  cannot be blank.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="status">Status</label>
+        <select class="form-select" id="status" formControlName="roomOccupied">
+          <option value="true">Active</option>
+          <option value="false">Deactive</option>
+        </select>
+        <div *ngIf="shouldShowError('roomOccupied','required')" class="text-danger">This field is required
+        </div>
+      </div>
+      <div class="form-group mb-0 text-end">
+        <button type="submit" class="common-btn">{{this.data ?'Update Now' : 'Add New'}}</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -11,6 +11,7 @@ import { BulkUploadComponent } from 'src/app/modules/shared/components/bulk-uplo
 import { ConfirmationDialogModalComponent } from 'src/app/modules/shared/components/confirmation-dialog-modal/confirmation-dialog-modal.component';
 import { Title } from '@angular/platform-browser';
 import { ViewRoomsComponent } from '../../components/view-rooms/view-rooms.component';
+import { AddEditeRoomsComponent } from '../../components/add-edite-rooms/add-edite-rooms.component';
 
 
 @Component({
@@ -72,22 +73,20 @@ export class RoomsComponent implements OnInit, OnDestroy {
 
   onAdd() {
     this.isProceess = true;
-    const modalRef = this.modalService.open(AddEditeCustomReplyComponent, { size: "lg" });
+    const modalRef = this.modalService.open(AddEditeRoomsComponent, { size: "md" });
     if (modalRef) {
       this.isProceess = false;
     }
     else {
       this.isProceess = false;
     }
-    modalRef.result.then((data: customReplyMaster) => {
+    modalRef.result.then((data: any) => {
       if (data) {
-        var model: customReplyMaster = {
-          input: data.input.trim(),
-          inputVariations: data.inputVariations,
-          messageBody: data.messageBody.trim(),
-          createdBy: this.userData.userId,
+        var model: any = {
+          roomNumber: data.roomNumber,
+          roomOccupied:data.roomOccupied
         }
-        this.masterName = `/auto-reply`;
+        this.masterName = `/rooms`;
         let addData: any = {
           url: this.masterName,
           model: model
@@ -107,27 +106,24 @@ export class RoomsComponent implements OnInit, OnDestroy {
   }
 
 
-  onEdit(dataItem: customReplyMaster) {
+  onEdit(dataItem: any) {
     this.isProceess = true;
-    const modalRef = this.modalService.open(AddEditeCustomReplyComponent, { size: "lg" });
+    const modalRef = this.modalService.open(AddEditeRoomsComponent, { size: "md" });
     if (modalRef) {
       this.isProceess = false;
     }
     else {
       this.isProceess = false;
     }
-    var componentInstance = modalRef.componentInstance as AddEditeCustomReplyComponent;
+    var componentInstance = modalRef.componentInstance as AddEditeRoomsComponent;
     componentInstance.categoryMaster = dataItem;
-    modalRef.result.then((data: customReplyMaster) => {
+    modalRef.result.then((data: any) => {
       if (data) {
-        var model: customReplyMaster = {
-          input: data.input.trim(),
-          inputVariations: data.inputVariations,
-          messageBody: data.messageBody,
-          updatedBy: this.userData.userId,
-          autoReplyId: dataItem.autoReplyId
+        var model: any = {
+          roomNumber: data.roomNumber,
+          roomOccupied: data.roomOccupied
         }
-        this.masterName = `/auto-reply`;
+        this.masterName = `/rooms/roomId/${dataItem.roomId}`;
         let updateData: any = {
           url: this.masterName,
           model: model
@@ -172,7 +168,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
     this.appService.exportAsExcelFile(exportData, "Room Master", headers);
   }
 
-  onDelete(dataItem: customReplyMaster) {
+  onDelete(dataItem: any) {
     this.isProceess = true;
     const modalRef = this.modalService.open(ConfirmationDialogModalComponent, { size: "sm", centered: true, backdrop: "static" });
     if (modalRef) {
@@ -185,7 +181,7 @@ export class RoomsComponent implements OnInit, OnDestroy {
     componentInstance.message = "Are you sure you want to delete this ?";
     modalRef.result.then((canDelete: boolean) => {
       if (canDelete) {
-        this.masterName = `/auto-reply/${dataItem?.autoReplyId}`;
+        this.masterName = `/rooms/roomId/${dataItem?.roomId}`;
         this.isProceess = true;
         this.subscription = this.apiService.deleteID(this.masterName).pipe(take(1)).subscribe(data => {
           this.isProceess = false;
