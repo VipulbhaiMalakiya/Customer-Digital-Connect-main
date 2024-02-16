@@ -1,0 +1,43 @@
+<div class="common-modal green-modal">
+  <div class="modal-header">
+    <h1 class="modal-title fs-5">{{ title }}</h1>
+    <button type="button" class="btn-close" (click)="onCancel()" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body mb-0">
+    <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
+    <form class="common-modal-form" [formGroup]="issueForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="issueName">Gest name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="issueName" name="issueName" formControlName="guestName"
+          placeholder="Gest Name">
+        <div *ngIf="shouldShowError('guestName','required')" class="form-validate-err">
+          Please Enter Gest Name.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="calculationSLA">Room Number <span class="text-danger">*</span></label>
+    
+        <select class="form-select" id="categoryId" formControlName="roomNumber">
+          <option value="">Select</option>
+          <option *ngFor="let i of data" [value]="i.roomNumber">{{i.roomNumber}}</option>
+          <option *ngIf="data.length === 0" value="">No records found</option>
+        </select>
+        <div *ngIf="shouldShowError('roomNumber','required')" class="text-danger">This field is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="issueName">Number fo Gest <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" id="issueName" name="issueName" formControlName="numberoGuiest"
+          placeholder="Nmber Of Gest">
+        <div *ngIf="shouldShowError('numberoGuiest','required')" class="form-validate-err">
+          Please Enter number of gest.
+        </div>
+      </div>
+
+      <div class="form-group mb-0 text-end">
+        <button type="submit" class="common-btn">Check In</button>
+      </div>
+    </form>
+  </div>
+</div>

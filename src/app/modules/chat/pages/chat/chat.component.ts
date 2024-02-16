@@ -34,6 +34,7 @@ import { VideoComponent } from '../../components/video/video.component';
 import { LocationDetailsComponent } from '../../components/location-details/location-details.component';
 import { QuickReplyComponent } from '../../components/quick-reply/quick-reply.component';
 import { TempletsComponent } from '../../components/templets/templets.component';
+import { CheckInComponent } from '../../components/check-in/check-in.component';
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
@@ -53,6 +54,7 @@ export class ChatComponent
   chatVisible: boolean = true;
   isProceess: boolean = true;
   firstname: any;
+  phone:any;
   ticketflag?:any;
   lastname: any;
   userData: any;
@@ -97,6 +99,7 @@ export class ChatComponent
   showupload = false;
   showupload1 = false;
   unreadmessage?: any = [];
+  slecteduser:any [] = [];
   private notificationSound?: HTMLAudioElement;
 
   toggleEmojiPicker() {
@@ -365,6 +368,77 @@ export class ChatComponent
       );
   }
 
+  onCheckIn(){
+    this.isProceess = true;
+    const modalRef = this.modalService.open(CheckInComponent, { size: "sm" });
+
+    if (modalRef) {
+      this.isProceess = false;
+    } else {
+      this.isProceess = false;
+    }
+    var componentInstance = modalRef.componentInstance as CheckInComponent;
+    componentInstance.customersMaster = this.slecteduser;
+
+    if (modalRef) {
+      this.isProceess = false;
+    }
+    else {
+      this.isProceess = false;
+    }
+    modalRef.result.then((data: any) => {
+      if (data) {
+        var model: any = {
+          guestName: data.guestName.trim(),
+          roomNumber: data.roomNumber,
+          numberoGuiest: data.numberoGuiest,
+          guestStatus: "CheckIn",
+          customerMobile:this.contact
+        }
+        this.masterName = `/customer/checkin`;
+        let addData: any = {
+          url: this.masterName,
+          model: model
+        }
+        this.isProceess = true;
+        this.subscription = this.apiService.add(addData).pipe(take(1)).subscribe(res => {
+          this.isProceess = false;
+          this.toastr.success(res.message);
+        }, error => {
+          this.isProceess = false;
+          this.toastr.error(error.messages);
+        });
+      }
+    }).catch(() => { });
+  }
+
+
+  onCheckOut(){
+    this.isProceess = true;
+    const modalRef = this.modalService.open(ConfirmationDialogModalComponent, { size: "sm", centered: true, backdrop: "static" });
+    if (modalRef) {
+      this.isProceess = false;
+    }
+    else {
+      this.isProceess = false;
+    }
+    var componentInstance = modalRef.componentInstance as ConfirmationDialogModalComponent;
+    componentInstance.message = "Are you sure you want to check out this?";
+    modalRef.result.then((canDelete: boolean) => {
+      if (canDelete) {
+        this.masterName = `/customer/checkout/1`;
+        this.isProceess = true;
+        this.subscription = this.apiService.update(this.masterName).pipe(take(1)).subscribe(data => {
+          this.isProceess = false;
+          this.toastr.success(data.message);
+        }, error => {
+          this.isProceess = false;
+          this.toastr.error(error.message);
+        });
+      }
+    }).catch(() => { });
+  }
+
   isOverflowing(el: any) {
     return el.offsetWidth < el.scrollWidth;
   }
@@ -547,6 +621,7 @@ export class ChatComponent
     this.showupload = false;
     this.showupload1 = false;
     this.contact = e.phoneNo;
+    this.slecteduser = e;
     this.show = true;
     if (e.fullName) {
       this.chatname = e.fullName;

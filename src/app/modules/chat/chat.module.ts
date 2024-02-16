@@ -22,6 +22,7 @@ import { TotalPricePipe } from 'src/app/_helpers/total-price.pipe';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { ParseFloatPipe } from 'src/app/_helpers/parseFloat.pipe';
 import { WhitespaceValidatorDirective } from 'src/app/_helpers/whitespace-validator.directive';
+import { CheckInComponent } from './components/check-in/check-in.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +40,8 @@ import { WhitespaceValidatorDirective } from 'src/app/_helpers/whitespace-valida
         TempletilterPipe,
         ShortenFileNamePipe,
         ParseFloatPipe,
-        WhitespaceValidatorDirective
+        WhitespaceValidatorDirective,
+        CheckInComponent
 
     ],
     imports: [
