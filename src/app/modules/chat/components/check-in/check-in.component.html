@@ -7,15 +7,15 @@
     <app-loading-spin-popup *ngIf="isProceess"></app-loading-spin-popup>
     <form class="common-modal-form" [formGroup]="issueForm" (ngSubmit)="onSubmit()">
       <div class="form-group">
-        <label for="issueName">Gest name <span class="text-danger">*</span></label>
+        <label for="issueName">Guest name <span class="text-danger">*</span></label>
         <input type="text" class="form-control" id="issueName" name="issueName" formControlName="guestName"
           placeholder="Gest Name">
         <div *ngIf="shouldShowError('guestName','required')" class="form-validate-err">
-          Please Enter Gest Name.
+          Please Enter Guest Name.
         </div>
       </div>
       <div class="form-group">
-        <label for="calculationSLA">Room Number <span class="text-danger">*</span></label>
+        <label for="calculationSLA">Select room <span class="text-danger">*</span></label>
     
         <select class="form-select" id="categoryId" formControlName="roomNumber">
           <option value="">Select</option>
@@ -27,11 +27,14 @@
       </div>
 
       <div class="form-group">
-        <label for="issueName">Number fo Gest <span class="text-danger">*</span></label>
-        <input type="text" class="form-control" id="issueName" name="issueName" formControlName="numberoGuiest"
-          placeholder="Nmber Of Gest">
+        <label for="issueName">Number fo Guest <span class="text-danger">*</span></label>
+        <input type="number" class="form-control" id="issueName" name="issueName" formControlName="numberoGuiest"
+          placeholder="Nmber Of Guest" min="1">
         <div *ngIf="shouldShowError('numberoGuiest','required')" class="form-validate-err">
           Please Enter number of gest.
+        </div>
+        <div *ngIf="shouldShowError('numberoGuiest','positiveNumber')" class="form-validate-err">
+          Please enter a positive number.
         </div>
       </div>
 

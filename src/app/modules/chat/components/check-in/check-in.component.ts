@@ -15,7 +15,7 @@ export class CheckInComponent {
   isProceess: boolean = false;
   data: any;
   issueForm: any;
-  _labelsMaster: any
+  _labelsMaster: any ;
 
   subscription?: Subscription;
   masterName?: any;
@@ -46,13 +46,19 @@ export class CheckInComponent {
   ) {
     this.issueForm = this.formBuilder.group({
       guestName: ["", [Validators.required,]],
-      roomNumber: ['', [Validators.required]],
+      roomNumber: ['', [Validators.required,this.positiveNumberValidator]],
       numberoGuiest: ['', [Validators.required]],
     });
     this.fatchData();
   }
 
-
+  positiveNumberValidator(control:any) {
+    const value = control.value;
+    if (value <= 0 || isNaN(value)) {
+      return { 'positiveNumber': true };
+    }
+    return null;
+  }
 
   fatchData() {
     this.isProceess = true;

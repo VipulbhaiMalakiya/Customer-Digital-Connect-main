@@ -99,7 +99,7 @@ export class ChatComponent
   showupload = false;
   showupload1 = false;
   unreadmessage?: any = [];
-  slecteduser:any [] = [];
+  slecteduser:any  = {};
   private notificationSound?: HTMLAudioElement;
 
   toggleEmojiPicker() {
@@ -422,11 +422,12 @@ export class ChatComponent
     else {
       this.isProceess = false;
     }
+    
     var componentInstance = modalRef.componentInstance as ConfirmationDialogModalComponent;
     componentInstance.message = "Are you sure you want to check out this?";
     modalRef.result.then((canDelete: boolean) => {
       if (canDelete) {
-        this.masterName = `/customer/checkout/1`;
+        this.masterName = `/customer/checkout/${this.slecteduser.phoneNo}`;
         this.isProceess = true;
         this.subscription = this.apiService.update(this.masterName).pipe(take(1)).subscribe(data => {
           this.isProceess = false;
