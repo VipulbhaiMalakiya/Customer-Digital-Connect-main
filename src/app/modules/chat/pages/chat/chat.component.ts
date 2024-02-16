@@ -72,7 +72,7 @@ export class ChatComponent
   private socket$!: WebSocketSubject<any>;
   public receivedData: MessageData[] = [];
   item: any = [];
-  checkinstatus: any[] = [];
+  checkinstatus: any;
   open: any = [];
   contact: any;
   closed: any = [];
@@ -210,6 +210,8 @@ export class ChatComponent
       this.ActiveLabels();
     }, 2000);
 
+    console.log(this.checkinstatus);
+    
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.data.latitude = position.coords.latitude.toString();
@@ -631,15 +633,15 @@ export class ChatComponent
     this.masterName = `/customer/checkin-status/${this.contact}`;
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
       if (data) {
-        this.checkinstatus = data.data;
-        this.isProceess = false;      
-        console.log(this.checkinstatus);
-          
+        this.checkinstatus = data.status;
+        
+        this.isProceess = false;                
       }
 
     }, error => {
-      console.log();
-      this.checkinstatus =[]      
+      this.checkinstatus = error.error.status
+      console.log(error.error.status);
+      
       this.isProceess = false;
     })
 
