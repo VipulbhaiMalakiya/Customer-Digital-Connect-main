@@ -68,3 +68,31 @@
   opacity: 0.5; /* or any other value */
   /* Add other styles for a disabled appearance */
 }
+
+.checkin-btn{ margin-right: 10px; }
+
+.checkin-btn a {
+    background: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    color: #00abc5;
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid #00abc5;
+}
+
+.checkin-btn a i{ font-size:22px; vertical-align: sub; }
+
+.checkout-btn{ margin-right: 10px; }
+
+.checkout-btn a {
+    background:#f3fffc;
+    font-size: 13px;
+    font-weight: 500;
+    color: #00abc5;
+    padding: 5px 10px;
+    border-radius: 6px;
+    border: 1px solid #00abc5;
+}
+
+.checkout-btn a i{ font-size:22px; vertical-align: sub; }

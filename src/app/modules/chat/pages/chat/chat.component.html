@@ -265,6 +265,8 @@
         </div>
         <!-- chat header right -->
         <div class="mainuser-right">
+          <div class="checkin-btn"><a href="#">Check In <i class="las la-door-closed"></i> </a></div>
+          <div class="checkout-btn"><a href="#">Check Out <i class="las la-door-open"></i> </a></div>
           <div class="mainuser-dropdown">
             <div class="dropdown">
               <button class="form-control dropdown-toggle" type="button" id="dropdownMenuButton2"
@@ -292,12 +294,12 @@
           </div>
           <span *ngIf="!ticketflag">
             <div class="clschat-btn" *ngIf='Userinfo?.isopen'><a (click)="onClose(contactinfo)">Close
-              <i class="las la-check"></i> </a></div>
+                <i class="las la-check"></i> </a></div>
           </span>
 
           <span *ngIf="ticketflag">
-            <div class="clschat-btn disabled"  *ngIf='Userinfo?.isopen'><a >Close
-              <i class="las la-check"></i> </a></div>
+            <div class="clschat-btn disabled" *ngIf='Userinfo?.isopen'><a>Close
+                <i class="las la-check"></i> </a></div>
           </span>
 
         </div>
