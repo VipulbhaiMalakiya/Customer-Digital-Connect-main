@@ -297,6 +297,7 @@ const routes: Routes = [
           ),
       },
       { path: 'chat-history-dept', loadChildren: () => import('./modules/chathistoryreportcount/chathistoryreportcount.module').then(m => m.ChathistoryreportcountModule) },
+      { path: 'active-room-number', loadChildren: () => import('./modules/activecustomerwithroomnumber/activecustomerwithroomnumber.module').then(m => m.ActivecustomerwithroomnumberModule) },
 
       {
         path: 'overview',
