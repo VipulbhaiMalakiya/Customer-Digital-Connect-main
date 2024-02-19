@@ -24,7 +24,7 @@
             <th>Guest Number</th>
             <th>Guest Checked In Time</th>
             <th>Room Number</th>
-         
+
 
           </tr>
         </thead>
@@ -49,8 +49,8 @@
     </div>
     <div class="clearfix" *ngIf="!isProceess && data.length > 0">
       <ul class="pagination">
-        <app-pagination [currentPage]="currentPage" [pageSize]="pageSize" [totalItems]="totalItems"
-          (pageChange)="onPageChange($event,pageSize)"></app-pagination>
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
       </ul>
     </div>
   </div>
