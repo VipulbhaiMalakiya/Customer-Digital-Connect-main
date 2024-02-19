@@ -29,8 +29,12 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let i of data  | customFilter: term ; let ind = index;trackBy: trackByFn">
-            <td>{{ind + 1}}</td>
+          <tr *ngFor="let i of data  | customFilter: term | paginate
+          : {
+              itemsPerPage: tableSize,
+              currentPage: page,
+              totalItems: count
+            };let ind = index;trackBy: trackByFn">            <td>{{ind + 1}}</td>
             <td>{{i.guestName}}</td>
             <td>{{i.guestNumber}}</td>
             <td>{{i.guestCheckedInTime | date}}</td>
