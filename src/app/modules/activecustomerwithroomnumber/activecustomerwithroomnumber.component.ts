@@ -27,12 +27,8 @@ export class ActivecustomerwithroomnumberComponent {
   term: any;
   page: number = 1;
   count: number = 0;
-  tableSize: number = 12;
+  tableSize: number = 10;
   tableSizes: any = [3, 6, 9, 12];
-  pageSize: number = 10;
-  pageSizeOptions: number[] = [10, 20, 50, 100, 500, 1000]; // Array of page size options
-  currentPage: number = 1;
-  totalItems: number = 0;
   constructor(
     private cd: ChangeDetectorRef,
     private modalService: NgbModal,
@@ -67,10 +63,7 @@ export class ActivecustomerwithroomnumberComponent {
 
   fatchData() {
     this.isProceess = true;
-    var model: any = {
-      startDate: this.datePipe.transform(this.startDate, 'yyyy-MM-dd'),
-      endDate: this.datePipe.transform(this.endDate, 'yyyy-MM-dd'),
-    };
+
 
     this.masterName = `/customer/activecustomerwithroomnumber`;
     this.subscription = this.apiService
@@ -79,29 +72,17 @@ export class ActivecustomerwithroomnumberComponent {
       .subscribe(
         (data) => {
           if (data) {
-            this.totalItems = data.totalRecords;
             this.data = data.data;
-            console.log(this.data);
-            
             this.count = this.data.length;
             this.isProceess = false;
             this.cd.detectChanges();
+
           }
         },
         (error) => {
           this.isProceess = false;
         }
       );
-  }
-
-  onPageChange(page: number, pageSize: number): void {
-    this.currentPage = page;
-    this.pageSize = pageSize;
-   this.fatchData();
-  }
-
-  trackByFn(index: number, item: any): number {
-    return item.categoryId;
   }
 
   onTableDataChange(event: any) {
@@ -111,6 +92,12 @@ export class ActivecustomerwithroomnumberComponent {
     this.tableSize = event.target.value;
     this.page = 1;
   }
+
+  trackByFn(index: number, item: any): number {
+    return item.categoryId;
+  }
+
+
   onDownload() {
     const exportData = this.data.map((x) => {
       return {
@@ -118,7 +105,7 @@ export class ActivecustomerwithroomnumberComponent {
         'guestNumber': x.guestNumber || '',
         'guestCheckedInTime': x?.guestCheckedInTime || '',
         'roomNumber': x?.roomNumber || '',
-    
+
       };
     });
     const headers = [
