@@ -1,7 +1,7 @@
 <app-header></app-header>
 <app-loading-spin *ngIf="isProceess"></app-loading-spin>
 <div class="page-title">
-  <h1><i class="las la-chart-bar"></i> Chat History Department</h1>
+  <h1><i class="las la-chart-bar"></i> Department Wise Chat History Report</h1>
 </div>
 <div class="page-btns-col" >
   <div class="dt-buttons">
@@ -44,25 +44,21 @@
 <div class="inner-middle-content">
   <div class="dasboard-table dasboard-scroll">
     <div class="table-responsive">
-      <table class="table">
+      <table class="table w-50">
         <thead>
           <tr>
-            <th>Housekeeping</th>
-            <th>F&B</th>
-            <th>Front Office</th>
-            <th>IT</th>
+            <th>Department Name</th>
+            <th>Department Value</th>
           </tr>
         </thead>
         <tbody>
-          <tr >
-
-            <td>{{data.Housekeeping}}</td>
-            <td>{{data['Housekeeping']}}</td>
-            <td>{{data['F&B'] }}</td>
-            <td>{{data.IT}}</td>
+          <tr *ngFor="let item of data">
+            <td>{{ item.deptName }}</td>
+            <td>{{ item.deptValue }}</td>
           </tr>
         </tbody>
       </table>
+
 
 
     </div>

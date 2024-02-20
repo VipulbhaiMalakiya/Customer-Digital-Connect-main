@@ -16,7 +16,7 @@ import { AppService } from 'src/app/_services/app.service';
 })
 export class ChathistoryreportcountComponent {
   isProceess: boolean = true;
-  data: any;
+  data: any[] = [];
   subscription?: Subscription;
   userData: any;
   masterName?: any;
@@ -75,7 +75,9 @@ export class ChathistoryreportcountComponent {
         (data) => {
           if (data) {
             this.data = data.data;
-                        this.count = this.data.length;
+            console.log( this.data);
+
+            this.count = this.data.length;
             this.isProceess = false;
             this.cd.detectChanges();
           }
@@ -146,7 +148,7 @@ export class ChathistoryreportcountComponent {
         (data) => {
           if (data) {
             this.data = data.data;
-            
+
             this.isProceess = false;
             this.cd.detectChanges();
           }
@@ -179,7 +181,7 @@ export class ChathistoryreportcountComponent {
             if (data) {
               this.data = data.data;
               console.log(this.data);
-              
+
               this.isProceess = false;
               this.cd.detectChanges();
             }
