@@ -1,0 +1,30 @@
+.form-select{
+  height: 36px;
+}
+.form-control{
+  height: 36px;
+}
+.page-btns-col{
+  align-items:end;
+}
+
+.analdrop1 {
+  max-width: 100%;
+  flex: auto;
+  margin-right: 10px;
+}
+
+.analdrop1 .btn.common-btn {
+  width: 100%;
+  height: 36px;
+}
+
+.dasboard-table.dasboard-scroll {
+  height: 350px !important;
+  overflow: auto;
+}
+.ctm-icone {
+  float: none;
+  margin-top: -5px;
+  padding-left: 10px;
+}
