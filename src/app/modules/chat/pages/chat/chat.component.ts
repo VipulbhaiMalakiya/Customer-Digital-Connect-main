@@ -398,7 +398,7 @@ export class ChatComponent
           guestName: data.guestName.trim(),
           roomNumber: data.roomNumber,
           numberoGuiest: data.numberoGuiest,
-          // guestStatus: "CheckIn",
+          //guestStatus: "CheckIn",
           
           customerMobile: this.contact
         }

@@ -265,8 +265,8 @@
         </div>
         <!-- chat header right -->
         <div class="mainuser-right">
-          <div class="checkin-btn"  *ngIf="this.checkindata.guestStatus === false"><a  (click)="onCheckIn()">Check In <i class="las la-door-closed"></i> </a></div>
-          <div class="checkout-btn"  *ngIf="this.checkindata.guestStatus === true"><a  (click)="onCheckOut()">Check Out <i class="las la-door-open"></i> </a></div>
+          <!-- <div class="checkin-btn"  *ngIf="this.checkindata.guestStatus === false"><a  (click)="onCheckIn()">Check In <i class="las la-door-closed"></i> </a></div>
+          <div class="checkout-btn"  *ngIf="this.checkindata.guestStatus === true"><a  (click)="onCheckOut()">Check Out <i class="las la-door-open"></i> </a></div> -->
           <div class="mainuser-dropdown">
             <div class="dropdown">
               <button class="form-control dropdown-toggle" type="button" id="dropdownMenuButton2"
@@ -715,7 +715,7 @@
                           *ngIf="data.templateButton1">{{data.templateButton1}} <i class="las la-sign-in-alt"></i></a>
                         <a class="temppay-btn text-left mb-2" *ngIf="data.templateButton1">{{data.templateButton2}} <i
                             class="las la-sign-in-alt"></i></a>
-                        <a class="temppay-btn text-left mb-2" *ngIf="data.templateButton1">{{data.templateButton2}} <i
+                        <a class="temppay-btn text-left mb-2" *ngIf="data.templateButton1">{{data.templateButton3}} <i
                             class="las la-sign-in-alt"></i></a>
                       </p>
                     </div>
