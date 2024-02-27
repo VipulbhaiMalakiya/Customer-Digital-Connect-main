@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -101,16 +101,16 @@ export class RepeatedCustomerComponent {
   onDownload() {
     const exportData = this.data.map((x) => {
       return {
-        'customerName': x.customerName || '',
-        'mobilenumber': x.mobilenumber || '',
-        'lastCheckedInDateTime': x?.lastCheckedInDateTime || '',
-        'lastCheckedoutDateTime': x?.lastCheckedoutDateTime || '',
+        'Customer': x.customerName || '',
+        'Phone': x.mobilenumber || '',
+        'lastCheckedInDateTime': x?.lastCheckedInDateTime ? formatDate(x.lastCheckedInDateTime, 'medium', 'en-IN', 'IST') : '',
+        'lastCheckedoutDateTime': x?.lastCheckedoutDateTime ? formatDate(x.lastCheckedoutDateTime, 'medium', 'en-IN', 'IST') : '',
 
       };
     });
     const headers = [
-      'customerName',
-      'mobilenumber',
+      'Customer',
+      'Phone',
       'lastCheckedInDateTime',
       'lastCheckedoutDateTime'
 
