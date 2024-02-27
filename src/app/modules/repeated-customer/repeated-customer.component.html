@@ -1,7 +1,7 @@
 <app-header></app-header>
 <app-loading-spin *ngIf="isProceess"></app-loading-spin>
 <div class="page-title">
-  <h1><i class="las la-chart-bar"></i> Happy Customer</h1>
+  <h1><i class="las la-chart-bar"></i> Repeated Customer</h1>
 </div>
 <div class="page-btns-col">
   <div class="dt-buttons">
@@ -20,10 +20,10 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Customer Name</th>
-            <th>mobileNumber</th>
-            <th>Feedback</th>
-            <th>FeedbackDate</th>
+            <th>customerName</th>
+            <th>mobilenumber</th>
+            <th>lastCheckedInDateTime</th>
+            <th>lastCheckedoutDateTime</th>
           </tr>
         </thead>
         <tbody>
@@ -35,9 +35,9 @@
             };let ind = index;trackBy: trackByFn">
             <td>{{ind + 1}}</td>
             <td>{{i.customerName}}</td>
-            <td>{{i.mobileNumber}}</td>
-            <td>{{i.feedback}}</td>
-            <td>{{i.feedbackDate | date}}</td>
+            <td>{{i.mobilenumber}}</td>
+            <td>{{i.lastCheckedInDateTime | date}}</td>
+            <td>{{i.lastCheckedoutDateTime | date}}</td>
 
 
           </tr>

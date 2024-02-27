@@ -299,6 +299,7 @@ const routes: Routes = [
       { path: 'chat-history-dept', loadChildren: () => import('./modules/chathistoryreportcount/chathistoryreportcount.module').then(m => m.ChathistoryreportcountModule) },
       { path: 'active-room-number', loadChildren: () => import('./modules/activecustomerwithroomnumber/activecustomerwithroomnumber.module').then(m => m.ActivecustomerwithroomnumberModule) },
       { path: 'happy-customer', loadChildren: () => import('./modules/happycustomer/happycustomer.module').then(m => m.HappycustomerModule) },
+      { path: 'repeated-customer', loadChildren: () => import('./modules/repeated-customer/repeated-customer.module').then(m => m.RepeatedCustomerModule) },
 
       {
         path: 'overview',
