@@ -117,6 +117,21 @@ export class UserDashboardComponent implements OnInit {
 
   }
 
+  get isAdmin() {
+    return this.userData?.role?.roleName == 'Admin';
+  }
+  get isUser() {
+    return this.userData?.role?.roleName == 'User';
+  }
+
+  get isResolver() {
+    return this.userData?.role?.roleName == 'Resolver';
+  }
+
+  get isApprover() {
+    return this.userData?.role?.roleName == 'Approver';
+  }
+
 
   TicketOvertheSLAcreatedbymedepartmentwise() {
     this.masterName = `/ticket/department-wise/${this.userData.department.departmentId}/user/${this.userData.userId}`;

@@ -7,8 +7,8 @@
     </div>
   </div>
 </div>
-<ng-container *ngIf="isAdmin">
-  <div class="data-tabs mb-1">
+
+  <div class="data-tabs mb-1" *ngIf="isAdmin">
 
     <div class="main-user-dash-left">
 
@@ -126,10 +126,10 @@
     </div>
 
   </div>
-  <! </ng-container>
 
 
-    <div class="inner-middle-content" *ngIf="!isAdmin">
+
+    <div class="inner-middle-content" *ngIf="isUser || isResolver || isApprover">
       <div class="data-tabs">
         <div class="main-user-dash-left" *ngIf="data && this.userData?.role?.roleName !== 'Admin' && !isProceess ">
           <div class="dash-blck-title">My Tickets </div>

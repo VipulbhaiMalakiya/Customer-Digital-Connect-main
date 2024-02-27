@@ -123,6 +123,17 @@ export class AdminDashboardComponent implements OnInit {
   get isAdmin() {
     return this.userData?.role?.roleName == 'Admin';
   }
+  get isUser() {
+    return this.userData?.role?.roleName == 'User';
+  }
+
+  get isResolver() {
+    return this.userData?.role?.roleName == 'Resolver';
+  }
+
+  get isApprover() {
+    return this.userData?.role?.roleName == 'Approver';
+  }
 
 
   TicketOvertheSLAcreatedbymedepartmentwise() {
