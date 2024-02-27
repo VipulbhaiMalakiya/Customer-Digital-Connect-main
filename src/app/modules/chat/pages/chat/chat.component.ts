@@ -713,15 +713,14 @@ export class ChatComponent
     this.masterName = `/customer/checkin-status/${this.contact}`;
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
       if (data) {
-        this.checkinstatus = data.status;
         this.checkindata = data.data;
+        
         this.isProceess = false;
         this.cd.detectChanges();
 
       }
 
     }, error => {
-      this.checkinstatus = error.error.status
       console.log(error.error.status);
 
       this.isProceess = false;
