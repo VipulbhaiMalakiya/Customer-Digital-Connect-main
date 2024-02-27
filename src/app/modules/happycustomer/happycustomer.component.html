@@ -1,0 +1,59 @@
+<app-header></app-header>
+<app-loading-spin *ngIf="isProceess"></app-loading-spin>
+<div class="page-title">
+  <h1><i class="las la-chart-bar"></i>  Happy Customer</h1>
+</div>
+<div class="page-btns-col">
+  <div class="dt-buttons">
+    <button class="gray-btns" (click)="onDownload()" type="button"><i class="las la-file-excel"></i> Excel</button>
+    <div class="table-search">
+      <input type="text" class="form-control" name="name" id="name" [(ngModel)]="term" autocomplete="off"
+        placeholder="Search..." required="">
+    </div>
+  </div>
+
+</div>
+<div class="inner-middle-content">
+  <div class="dasboard-table dasboard-scroll">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Customer Name</th>
+            <th>mobileNumber</th>
+            <th>Feedback</th>
+            <th>FeedbackDate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of data  | customFilter: term | paginate
+          : {
+              itemsPerPage: tableSize,
+              currentPage: page,
+              totalItems: count
+            };let ind = index;trackBy: trackByFn">            <td>{{ind + 1}}</td>
+            <td>{{i.customerName}}</td>
+            <td>{{i.mobileNumber}}</td>
+            <td>{{i.feedback}}</td>
+            <td>{{i.feedbackDate | date}}</td>
+
+
+          </tr>
+        </tbody>
+      </table>
+      <div *ngIf="data.length === 0" class="text-center">
+        <Strong class="text-danger">No records found</Strong>
+      </div>
+      <div class="text-center" *ngIf="(data | customFilter: term).length === 0 && data.length > 0">
+        <Strong class="text-danger">No results found.</Strong>
+      </div>
+    </div>
+    <div class="clearfix" *ngIf="!isProceess && data.length > 0">
+      <ul class="pagination">
+        <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+        </pagination-controls>
+      </ul>
+    </div>
+  </div>
+</div>
