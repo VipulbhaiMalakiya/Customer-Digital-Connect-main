@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
@@ -101,18 +101,18 @@ export class HappycustomerComponent {
   onDownload() {
     const exportData = this.data.map((x) => {
       return {
-        'customerName': x.customerName || '',
-        'mobileNumber': x.mobileNumber || '',
-        'feedback': x?.feedback || '',
-        'feedbackDate': x?.feedbackDate || '',
+        'Customer': x.customerName || '',
+        'Mobile Number': x.mobileNumber || '',
+        'Feedback': x?.feedback || '',
+        'Feedback Date': x?.feedbackDate ? formatDate(x.feedbackDate, 'medium', 'en-IN', 'IST') : '',
 
       };
     });
     const headers = [
-      'customerName',
-      'mobileNumber',
-      'feedback',
-      'feedbackDate'
+      'Customer',
+      'Mobile Number',
+      'Feedback',
+      'Feedback Date'
 
     ];
     this.appService.exportAsExcelFile(exportData, ' happy-customer', headers);
