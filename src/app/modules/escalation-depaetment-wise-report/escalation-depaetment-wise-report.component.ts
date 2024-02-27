@@ -16,7 +16,7 @@ import { AppService } from 'src/app/_services/app.service';
 })
 export class EscalationDepaetmentWiseReportComponent {
   isProceess: boolean = true;
-  data: ChatReportMasterModel[] = [];
+  data: any[] = [];
   subscription?: Subscription;
   userData: any;
   masterName?: any;
@@ -102,17 +102,19 @@ export class EscalationDepaetmentWiseReportComponent {
   onDownload() {
     const exportData = this.data.map((x) => {
       return {
-        'Id': x.customerId || '',
-        'Full Name': x.fullName || '',
-        'Contact': x?.contact || '',
+        'Department': x?.departmentname || '',
+        'Total Chat': x.totalAssChat || '',
+        'Escalation': x?.escalation || '',
+        'Response': x?.response || '',
+        'escalationSla': x?.escalationSla || '',
       };
     });
     const headers = [
-      'Id',
-      'Full Name',
-      'Contact',
+      'departmentname',
+      'Total Chat',
+      'Escalation','Response','escalationSla'
     ];
-    this.appService.exportAsExcelFile(exportData, 'Chat-Report', headers);
+    this.appService.exportAsExcelFile(exportData, 'Escalation Department Wise Report', headers);
   }
 
   sendMessage(dataItem: ChatReportMasterModel) {
