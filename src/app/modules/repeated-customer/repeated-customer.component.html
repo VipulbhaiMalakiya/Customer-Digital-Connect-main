@@ -20,10 +20,10 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>customerName</th>
-            <th>mobilenumber</th>
-            <th>lastCheckedInDateTime</th>
-            <th>lastCheckedoutDateTime</th>
+            <th>Customer Name</th>
+            <th>Mobile Number</th>
+            <th>LastChecked In DateTime</th>
+            <th>LastChecked Out DateTime </th>
           </tr>
         </thead>
         <tbody>
@@ -36,8 +36,8 @@
             <td>{{ind + 1}}</td>
             <td>{{i.customerName}}</td>
             <td>{{i.mobilenumber}}</td>
-            <td>{{i.lastCheckedInDateTime | date}}</td>
-            <td>{{i.lastCheckedoutDateTime | date}}</td>
+            <td>{{i.lastCheckedInDateTime | date:'short' }}</td>
+            <td>{{i.lastCheckedoutDateTime  | date:'short' }}</td>
 
 
           </tr>
