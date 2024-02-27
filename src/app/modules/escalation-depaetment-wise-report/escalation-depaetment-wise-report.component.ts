@@ -104,13 +104,13 @@ export class EscalationDepaetmentWiseReportComponent {
       return {
         'Department': x?.departmentname || '',
         'Total Chat': x.totalAssChat || '',
-        'Escalation': x?.escalation || '',
+        'Escalation': x?.escalation || 0,
         'Response': x?.response || '',
         'escalationSla': x?.escalationSla || '',
       };
     });
     const headers = [
-      'departmentname',
+      'Department',
       'Total Chat',
       'Escalation','Response','escalationSla'
     ];
