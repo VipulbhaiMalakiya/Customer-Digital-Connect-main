@@ -7,323 +7,447 @@
     </div>
   </div>
 </div>
-<div class="inner-middle-content">
-  <div class="data-tabs">
-    <div class="main-user-dash-left" *ngIf="data && this.userData?.role?.roleName !== 'Admin' && !isProceess ">
-      <div class="dash-blck-title">My Tickets </div>
-      <div class="user-dash-left-card">
+<ng-container *ngIf="isAdmin">
+  <div class="data-tabs mb-1">
+
+    <div class="main-user-dash-left">
+
+      <div class="topdash-cols">
         <ul>
-          <a routerLink="/ticket">
+
+          <a href="#">
             <li>
-              <div class="u-dashbidcol">
-                <h3>{{data[0].name}}</h3>
-                <div class="big-text">{{data[0].total}} </div>
+              <div class="topin-dashcol">
+                <h3>Total Customers</h3>
+                <div class="big-text">98 <span class="perctg">2.3%</span></div>
               </div>
             </li>
           </a>
-          <a routerLink="/ticket">
+
+          <a href="#">
             <li>
-              <div class="u-dashbidcol u-dashbidcol2">
-                <h3>{{data[1].name}}</h3>
-                <div class="big-text">{{data[1].total}} </div>
+              <div class="topin-dashcol topin-dashcol2">
+                <h3>Total Conversations</h3>
+                <div class="big-text">69 <span class="perctg">1.6%</span></div>
               </div>
             </li>
           </a>
-          <a routerLink="/ticket">
+
+          <a href="#">
             <li>
-              <div class="u-dashbidcol u-dashbidcol3">
-                <h3>{{data[2].name}}</h3>
-                <div class="big-text">{{data[2].total}} </div>
+              <div class="topin-dashcol topin-dashcol3">
+                <h3>Responded</h3>
+                <div class="big-text">39 <span class="perctg">56.52%</span></div>
               </div>
             </li>
           </a>
-          <a routerLink="/ticket">
+
+          <a href="#">
             <li>
-              <div class="u-dashbidcol u-dashbidcol6">
-                <h3>{{data[3].name}}</h3>
-                <div class="big-text">{{data[3].total}} </div>
-              </div>
-            </li>
-          </a>
-          <a routerLink="/ticket">
-            <li>
-              <div class="u-dashbidcol u-dashbidcol4">
-                <h3>{{data[4].name}}</h3>
-                <div class="big-text">{{data[4].total}} </div>
-              </div>
-            </li>
-          </a>
-          <a routerLink="/ticket">
-            <li>
-              <div class="u-dashbidcol u-dashbidcol5">
-                <h3>{{data[5].name}}</h3>
-                <div class="big-text">{{data[5].total}} </div>
+              <div class="topin-dashcol topin-dashcol4">
+                <h3>Closed</h3>
+                <div class="big-text">01 <span class="perctg">1.45%</span></div>
               </div>
             </li>
           </a>
 
         </ul>
+
       </div>
+
     </div>
 
-    <div class="main-user-dash-left" *ngIf="data && this.userData?.role?.roleName === 'Admin' && !isProceess">
-      <div class="user-dash-left-card">
-        <ul>
-          <a routerLink="/admin/master/category-list">
-            <li>
-              <div class="u-dashbidcol">
-                <h3>{{data[0].name}}</h3>
-                <div class="big-text">{{data[0].total}} </div>
-              </div>
-            </li>
-          </a>
+    <div class="dashboard-no5cols">
+      <div class="inner-no5cols"><a href="#">
+          <div class="no5cols-ico"><img src="../assets/images/dash-ico-1.png" alt=""></div>
+          <h1>36</h1>
+          <p>Active Customers</p>
+        </a></div>
 
-          <a routerLink="/admin/master/subcategory-list">
-            <li>
-              <div class="u-dashbidcol u-dashbidcol2">
-                <h3>{{data[1].name}}</h3>
-                <div class="big-text">{{data[1].total}} </div>
-              </div>
-            </li>
-          </a>
+      <div class="inner-no5cols"><a href="#">
+          <div class="no5cols-ico"><img src="../assets/images/dash-ico-2.png" alt=""></div>
+          <h1>17</h1>
+          <p>Rooms Occupied</p>
+        </a></div>
 
-          <a routerLink="/admin/master/service-title-list">
-            <li>
-              <div class="u-dashbidcol u-dashbidcol3">
-                <h3>{{data[2].name}}</h3>
-                <div class="big-text">{{data[2].total}} </div>
-              </div>
-            </li>
-          </a>
+      <div class="inner-no5cols"><a href="#">
+          <div class="no5cols-ico"><img src="../assets/images/dash-ico-3.png" alt=""></div>
+          <h1>09</h1>
+          <p>Open Chats</p>
+        </a></div>
 
-          <a [routerLink]="['/admin/master/department']">
-            <li>
-              <div class="u-dashbidcol u-dashbidcol4">
-                <h3>{{data[3].name}}</h3>
-                <div class="big-text">{{data[3].total}} </div>
-              </div>
-            </li>
-          </a>
-        </ul>
-      </div>
+      <div class="inner-no5cols"><a href="#">
+          <div class="no5cols-ico"><img src="../assets/images/dash-ico-4.png" alt=""></div>
+          <h1>14</h1>
+          <p>Active Agents</p>
+        </a></div>
+
+      <div class="inner-no5cols"><a href="#">
+          <div class="no5cols-ico"><img src="../assets/images/dash-ico-5.png" alt=""></div>
+          <h1>21</h1>
+          <p>Assigned Tickets</p>
+        </a></div>
+
     </div>
 
-    <!-- <div class="main-user-dash-right" *ngIf="resolverData && this.userData?.role?.roleName === 'Resolver'&& !isProceess "> -->
-    <!-- <div class="main-user-dash-right"
-      *ngIf="resolverData && this.userData?.role?.roleName !== 'Admin'&& !isProceess "> -->
-      <div class="main-user-dash-right"
-      *ngIf="resolverData && !isProceess ">
-      <div class="dash-blck-title">Assign to me</div>
-      <div class="user-dash-right-card">
-        <ul>
-          <a routerLink="/assigned-ticket-list">
-            <li>
-              <div class="u-dashbidcol blue-border">
-                <h3>{{resolverData[0].name}}</h3>
-                <div class="big-text">{{resolverData[0].total}}</div>
-              </div>
-            </li>
-          </a>
+    <div class="below-dashboard-chart">
 
+      <div class="row">
 
-          <a routerLink="/assigned-ticket-list">
-            <li>
-              <div class="u-dashbidcol red-border">
-                <h3>{{resolverData[1].name}}</h3>
-                <div class="big-text">{{resolverData[1].total}}</div>
-              </div>
-            </li>
-          </a>
-
-          <a routerLink="/assigned-ticket-list">
-            <li>
-              <div class="u-dashbidcol yellow-border">
-                <h3>{{resolverData[2].name}}</h3>
-                <div class="big-text">{{resolverData[2].total}}</div>
-              </div>
-            </li>
-          </a>
-
-          <a routerLink="/assigned-ticket-list">
-            <li>
-              <div class="u-dashbidcol green-border1">
-                <h3>{{resolverData[3].name}}</h3>
-                <div class="big-text">{{resolverData[3].total}}</div>
-              </div>
-            </li>
-          </a>
-          <a routerLink="/assigned-ticket-list">
-            <li>
-              <div class="u-dashbidcol green-border">
-                <h3>{{resolverData[4].name}}</h3>
-                <div class="big-text">{{resolverData[4].total}}</div>
-              </div>
-            </li>
-          </a>
-
-          <a routerLink="/assigned-ticket-list">
-            <li>
-              <div class="u-dashbidcol orange-border">
-                <h3>{{resolverData[5].name}}</h3>
-                <div class="big-text">{{resolverData[5].total}}</div>
-              </div>
-            </li>
-          </a>
-
-        </ul>
-      </div>
-    </div>
-
-  </div><!--data-tabs-->
-
-  <div class="dashboard-tabs-grid">
-    <div class="row">
-
-      <div class="col-md-3 pr-0" *ngIf="!isProceess">
-        <div class="search-ticdash">
-          <input type="text" placeholder="Search Ticket" [(ngModel)]="term" id="ticket_number_search"
-            class="form-control">
-        </div>
-        <section class="card mt-2">
-          <div class="card-body nopadding">
-            <div class="best-seller" id="searched_tickets">
-              <h4 class="small-title2" *ngIf="this.userData?.role?.roleName !== 'Resolver'">Recent tickets</h4>
-              <h4 class="small-title2" *ngIf="this.userData?.role?.roleName === 'Resolver'">Recent tickets assigned to
-                me
-              </h4>
-              <div class="inner-dashres-col">
-                <article class="media" *ngFor="let i of recenttickets | customFilter: term">
-                  <div class="media-body">
-                    <a class=" p-head" *ngIf="this.userData?.role?.roleName !== 'Resolver'"
-                      (click)="onUpdateTicket(i)">{{i.ticketNo}}</a>
-                    <a class=" p-head" *ngIf="this.userData?.role?.roleName === 'Resolver'"
-                      (click)="onUpdateResolverTicket(i)">{{i.ticketNo}}</a>
-                    <p>{{i.shortNotes}}</p>
-                  </div>
-                </article>
-              </div>
-              <div class="text-center" *ngIf="(recenttickets | customFilter: term).length === 0">
-                <strong class="text-danger"> No results found.</strong>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-
-      <div class="col-md-9" *ngIf="!isProceess">
-        <div class="dashboard-charts-sec">
-          <div class="row">
-            <div class="col-md-4 pr-0">
-              <div class="card" style="padding: 15px;height:280px">
-                <div class="chartjs-size-monitor">
-                  <div class="chartjs-size-monitor-expand">
-                    <div class=""></div>
-                  </div>
-                  <div class="chartjs-size-monitor-shrink">
-                    <div class=""></div>
-                  </div>
-                </div>
-                <div class="border-0">
-                  <div class="d-flex justify-content-between">
-                    <small *ngIf="this.userData?.role?.roleName !== 'Admin'" class=" gray_color"
-                      style="font-size:15px;">Status wise my tickets
-                    </small>
-                    <small *ngIf="this.userData?.role?.roleName === 'Admin'" class=" gray_color"
-                      style="font-size:15px;">Status wise tickets count</small>
-                  </div>
-                </div>
-                <ng-container *ngIf="this.userData?.role?.roleName === 'Admin' && !isProceess">
-                  <google-chart [type]="ColumnChart" [options]="option" [data]="statuswiseticketscount"
-                    style="width: 100%;">
-                  </google-chart>
-                </ng-container>
-
-                <ng-container *ngIf="this.userData?.role?.roleName !== 'Admin' && !isProceess">
-                  <google-chart [type]="ColumnChart" [options]="options" [data]="data1" style="width: 100%;">
-                  </google-chart>
-                </ng-container>
-
-              </div>
-            </div>
-            <div class="col-md-8">
-              <div class="card" style="padding: 15px;height:280px">
-                <div class="chartjs-size-monitor">
-                  <div class="chartjs-size-monitor-expand">
-                    <div class=""></div>
-                  </div>
-                  <div class="chartjs-size-monitor-shrink">
-                    <div class=""></div>
-                  </div>
-                </div>
-                <div class="border-0">
-                  <div class="d-flex justify-content-between">
-                    <small class="gray_color" *ngIf="this.userData?.role?.roleName === 'Admin' && !isProceess"
-                      style="font-size:15px;">Ticket Over the SLA to users</small>
-                    <small class="gray_color" *ngIf="this.userData?.role?.roleName === 'Resolver'"
-                      style="font-size:15px;">Assign to me</small>
-                    <small class="gray_color" *ngIf="this.userData?.role?.roleName === 'User'"
-                      style="font-size:15px;">Ticket Over the SLA created by me department wise</small>
-                  </div>
-                </div>
-                <ng-container
-                  *ngIf="this.userData?.role?.roleName === 'Admin' && !isProceess && ticketOvertheSLAtousers.length > 0">
-                  <google-chart style="width: 100%;" id="ticket_belch_assign_to_users" [type]="ColumnChart"
-                    [options]="options" [data]="ticketOvertheSLAtousers">
-                  </google-chart>
-                </ng-container>
-                <ng-container *ngIf="this.userData?.role?.roleName === 'Resolver'">
-                  <google-chart style="display: block;width: 100%;" [width]="width1" id="ticket_belch_assign_to_users"
-                    [type]="ColumnChart" [options]="options" [data]="data2">
-                  </google-chart>
-                </ng-container>
-                <ng-container
-                  *ngIf="this.userData?.role?.roleName === 'User' && ticketOvertheSLAcreatedbymedepartmentwise.length > 0">
-                  <google-chart style="display: block;width: 100%;" [width]="width1" id="ticket_belch_assign_to_users"
-                    [type]="ColumnChart" [options]="options" [data]="ticketOvertheSLAcreatedbymedepartmentwise">
-                  </google-chart>
-                </ng-container>
-
-              </div>
-            </div>
-
-            <div class="col-md-12 mt-3" *ngIf="this.userData?.role?.roleName !== 'User' && !isProceess">
-              <div class="card" style="padding: 15px;height:300px">
-                <div class="chartjs-size-monitor">
-                  <div class="chartjs-size-monitor-expand">
-                    <div class=""></div>
-                  </div>
-                  <div class="chartjs-size-monitor-shrink">
-                    <div class=""></div>
-                  </div>
-                </div>
-                <div class="border-0">
-                  <div class="d-flex justify-content-between">
-                    <small class="gray_color" *ngIf="this.userData?.role?.roleName === 'Resolver' && !isProceess"
-                      style="font-size:15px;">Department tickets status</small>
-                    <small class="gray_color" *ngIf="this.userData?.role?.roleName === 'Admin' && !isProceess "
-                      style="font-size:15px;">Ticket assign to users</small>
-                  </div>
-                </div>
-
-                <ng-container
-                  *ngIf="this.userData?.role?.roleName === 'Admin' && !isProceess && ticketassigntousers.length > 0">
-                  <google-chart style="width: 100%;" [options]="chartOptions" [type]="ColumnChart"
-                    [data]="ticketassigntousers">
-                  </google-chart>
-                </ng-container>
-
-                <ng-container *ngIf="this.userData?.role?.roleName === 'Resolver' && !isProceess">
-                  <google-chart style="width: 100%;" [type]="ColumnChart" [options]="chartOptions"
-                    [data]="departmentticketsstatus">
-                  </google-chart>
-                </ng-container>
-              </div>
-            </div>
-
+        <div class="col-md-4 col-sm-6">
+          <div class="analybidcol analgrph">
+            <div class="info-tblg"><i class="las la-info-circle"></i></div>
+            <h3>Wait Time for 1st Agent Response</h3>
+            <div class="anltbig-text">1 <small>min</small></div>
+            <div class="anltb-graph"><img src="../assets/images/graph-not-available.svg" alt=""></div>
           </div>
         </div>
+
+        <div class="col-md-4 col-sm-6">
+          <div class="analybidcol analgrph">
+            <div class="info-tblg"><i class="las la-info-circle"></i></div>
+            <h3>Average Wait Time for Agent Responses</h3>
+            <div class="anltbig-text">38 <small>min</small></div>
+            <div class="anltb-graph"><img src="../assets/images/graph-not-available.svg" alt=""></div>
+          </div>
+        </div>
+
+        <div class="col-md-4 col-sm-12">
+          <div class="analybidcol analgrph">
+            <div class="info-tblg"><i class="las la-info-circle"></i></div>
+            <h3>Resolution Time</h3>
+            <div class="anltbig-text">5 <small>hr</small> 12 <small>min</small></div>
+            <div class="anltb-graph"><img src="../assets/images/graph-not-available.svg" alt=""></div>
+          </div>
+        </div>
+
       </div>
 
     </div>
 
   </div>
+  <! </ng-container>
+
+
+    <div class="inner-middle-content" *ngIf="!isAdmin">
+      <div class="data-tabs">
+        <div class="main-user-dash-left" *ngIf="data && this.userData?.role?.roleName !== 'Admin' && !isProceess ">
+          <div class="dash-blck-title">My Tickets </div>
+          <div class="user-dash-left-card">
+            <ul>
+              <a routerLink="/ticket">
+                <li>
+                  <div class="u-dashbidcol">
+                    <h3>{{data[0].name}}</h3>
+                    <div class="big-text">{{data[0].total}} </div>
+                  </div>
+                </li>
+              </a>
+              <a routerLink="/ticket">
+                <li>
+                  <div class="u-dashbidcol u-dashbidcol2">
+                    <h3>{{data[1].name}}</h3>
+                    <div class="big-text">{{data[1].total}} </div>
+                  </div>
+                </li>
+              </a>
+              <a routerLink="/ticket">
+                <li>
+                  <div class="u-dashbidcol u-dashbidcol3">
+                    <h3>{{data[2].name}}</h3>
+                    <div class="big-text">{{data[2].total}} </div>
+                  </div>
+                </li>
+              </a>
+              <a routerLink="/ticket">
+                <li>
+                  <div class="u-dashbidcol u-dashbidcol6">
+                    <h3>{{data[3].name}}</h3>
+                    <div class="big-text">{{data[3].total}} </div>
+                  </div>
+                </li>
+              </a>
+              <a routerLink="/ticket">
+                <li>
+                  <div class="u-dashbidcol u-dashbidcol4">
+                    <h3>{{data[4].name}}</h3>
+                    <div class="big-text">{{data[4].total}} </div>
+                  </div>
+                </li>
+              </a>
+              <a routerLink="/ticket">
+                <li>
+                  <div class="u-dashbidcol u-dashbidcol5">
+                    <h3>{{data[5].name}}</h3>
+                    <div class="big-text">{{data[5].total}} </div>
+                  </div>
+                </li>
+              </a>
+
+            </ul>
+          </div>
+        </div>
+
+        <div class="main-user-dash-left" *ngIf="data && this.userData?.role?.roleName === 'Admin' && !isProceess">
+          <div class="user-dash-left-card">
+            <ul>
+              <a routerLink="/admin/master/category-list">
+                <li>
+                  <div class="u-dashbidcol">
+                    <h3>{{data[0].name}}</h3>
+                    <div class="big-text">{{data[0].total}} </div>
+                  </div>
+                </li>
+              </a>
+
+              <a routerLink="/admin/master/subcategory-list">
+                <li>
+                  <div class="u-dashbidcol u-dashbidcol2">
+                    <h3>{{data[1].name}}</h3>
+                    <div class="big-text">{{data[1].total}} </div>
+                  </div>
+                </li>
+              </a>
+
+              <a routerLink="/admin/master/service-title-list">
+                <li>
+                  <div class="u-dashbidcol u-dashbidcol3">
+                    <h3>{{data[2].name}}</h3>
+                    <div class="big-text">{{data[2].total}} </div>
+                  </div>
+                </li>
+              </a>
+
+              <a [routerLink]="['/admin/master/department']">
+                <li>
+                  <div class="u-dashbidcol u-dashbidcol4">
+                    <h3>{{data[3].name}}</h3>
+                    <div class="big-text">{{data[3].total}} </div>
+                  </div>
+                </li>
+              </a>
+            </ul>
+          </div>
+        </div>
+
+        <!-- <div class="main-user-dash-right" *ngIf="resolverData && this.userData?.role?.roleName === 'Resolver'&& !isProceess "> -->
+        <!-- <div class="main-user-dash-right"
+      *ngIf="resolverData && this.userData?.role?.roleName !== 'Admin'&& !isProceess "> -->
+        <div class="main-user-dash-right" *ngIf="resolverData && !isProceess ">
+          <div class="dash-blck-title">Assign to me</div>
+          <div class="user-dash-right-card">
+            <ul>
+              <a routerLink="/assigned-ticket-list">
+                <li>
+                  <div class="u-dashbidcol blue-border">
+                    <h3>{{resolverData[0].name}}</h3>
+                    <div class="big-text">{{resolverData[0].total}}</div>
+                  </div>
+                </li>
+              </a>
+
+
+              <a routerLink="/assigned-ticket-list">
+                <li>
+                  <div class="u-dashbidcol red-border">
+                    <h3>{{resolverData[1].name}}</h3>
+                    <div class="big-text">{{resolverData[1].total}}</div>
+                  </div>
+                </li>
+              </a>
+
+              <a routerLink="/assigned-ticket-list">
+                <li>
+                  <div class="u-dashbidcol yellow-border">
+                    <h3>{{resolverData[2].name}}</h3>
+                    <div class="big-text">{{resolverData[2].total}}</div>
+                  </div>
+                </li>
+              </a>
+
+              <a routerLink="/assigned-ticket-list">
+                <li>
+                  <div class="u-dashbidcol green-border1">
+                    <h3>{{resolverData[3].name}}</h3>
+                    <div class="big-text">{{resolverData[3].total}}</div>
+                  </div>
+                </li>
+              </a>
+              <a routerLink="/assigned-ticket-list">
+                <li>
+                  <div class="u-dashbidcol green-border">
+                    <h3>{{resolverData[4].name}}</h3>
+                    <div class="big-text">{{resolverData[4].total}}</div>
+                  </div>
+                </li>
+              </a>
+
+              <a routerLink="/assigned-ticket-list">
+                <li>
+                  <div class="u-dashbidcol orange-border">
+                    <h3>{{resolverData[5].name}}</h3>
+                    <div class="big-text">{{resolverData[5].total}}</div>
+                  </div>
+                </li>
+              </a>
+
+            </ul>
+          </div>
+        </div>
+
+      </div><!--data-tabs-->
+
+      <div class="dashboard-tabs-grid">
+        <div class="row">
+
+          <div class="col-md-3 pr-0" *ngIf="!isProceess">
+            <div class="search-ticdash">
+              <input type="text" placeholder="Search Ticket" [(ngModel)]="term" id="ticket_number_search"
+                class="form-control">
+            </div>
+            <section class="card mt-2">
+              <div class="card-body nopadding">
+                <div class="best-seller" id="searched_tickets">
+                  <h4 class="small-title2" *ngIf="this.userData?.role?.roleName !== 'Resolver'">Recent tickets</h4>
+                  <h4 class="small-title2" *ngIf="this.userData?.role?.roleName === 'Resolver'">Recent tickets assigned
+                    to
+                    me
+                  </h4>
+                  <div class="inner-dashres-col">
+                    <article class="media" *ngFor="let i of recenttickets | customFilter: term">
+                      <div class="media-body">
+                        <a class=" p-head" *ngIf="this.userData?.role?.roleName !== 'Resolver'"
+                          (click)="onUpdateTicket(i)">{{i.ticketNo}}</a>
+                        <a class=" p-head" *ngIf="this.userData?.role?.roleName === 'Resolver'"
+                          (click)="onUpdateResolverTicket(i)">{{i.ticketNo}}</a>
+                        <p>{{i.shortNotes}}</p>
+                      </div>
+                    </article>
+                  </div>
+                  <div class="text-center" *ngIf="(recenttickets | customFilter: term).length === 0">
+                    <strong class="text-danger"> No results found.</strong>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <div class="col-md-9" *ngIf="!isProceess">
+            <div class="dashboard-charts-sec">
+              <div class="row">
+                <div class="col-md-4 pr-0">
+                  <div class="card" style="padding: 15px;height:280px">
+                    <div class="chartjs-size-monitor">
+                      <div class="chartjs-size-monitor-expand">
+                        <div class=""></div>
+                      </div>
+                      <div class="chartjs-size-monitor-shrink">
+                        <div class=""></div>
+                      </div>
+                    </div>
+                    <div class="border-0">
+                      <div class="d-flex justify-content-between">
+                        <small *ngIf="this.userData?.role?.roleName !== 'Admin'" class=" gray_color"
+                          style="font-size:15px;">Status wise my tickets
+                        </small>
+                        <small *ngIf="this.userData?.role?.roleName === 'Admin'" class=" gray_color"
+                          style="font-size:15px;">Status wise tickets count</small>
+                      </div>
+                    </div>
+                    <ng-container *ngIf="this.userData?.role?.roleName === 'Admin' && !isProceess">
+                      <google-chart [type]="ColumnChart" [options]="option" [data]="statuswiseticketscount"
+                        style="width: 100%;">
+                      </google-chart>
+                    </ng-container>
+
+                    <ng-container *ngIf="this.userData?.role?.roleName !== 'Admin' && !isProceess">
+                      <google-chart [type]="ColumnChart" [options]="options" [data]="data1" style="width: 100%;">
+                      </google-chart>
+                    </ng-container>
+
+                  </div>
+                </div>
+                <div class="col-md-8">
+                  <div class="card" style="padding: 15px;height:280px">
+                    <div class="chartjs-size-monitor">
+                      <div class="chartjs-size-monitor-expand">
+                        <div class=""></div>
+                      </div>
+                      <div class="chartjs-size-monitor-shrink">
+                        <div class=""></div>
+                      </div>
+                    </div>
+                    <div class="border-0">
+                      <div class="d-flex justify-content-between">
+                        <small class="gray_color" *ngIf="this.userData?.role?.roleName === 'Admin' && !isProceess"
+                          style="font-size:15px;">Ticket Over the SLA to users</small>
+                        <small class="gray_color" *ngIf="this.userData?.role?.roleName === 'Resolver'"
+                          style="font-size:15px;">Assign to me</small>
+                        <small class="gray_color" *ngIf="this.userData?.role?.roleName === 'User'"
+                          style="font-size:15px;">Ticket Over the SLA created by me department wise</small>
+                      </div>
+                    </div>
+                    <ng-container
+                      *ngIf="this.userData?.role?.roleName === 'Admin' && !isProceess && ticketOvertheSLAtousers.length > 0">
+                      <google-chart style="width: 100%;" id="ticket_belch_assign_to_users" [type]="ColumnChart"
+                        [options]="options" [data]="ticketOvertheSLAtousers">
+                      </google-chart>
+                    </ng-container>
+                    <ng-container *ngIf="this.userData?.role?.roleName === 'Resolver'">
+                      <google-chart style="display: block;width: 100%;" [width]="width1"
+                        id="ticket_belch_assign_to_users" [type]="ColumnChart" [options]="options" [data]="data2">
+                      </google-chart>
+                    </ng-container>
+                    <ng-container
+                      *ngIf="this.userData?.role?.roleName === 'User' && ticketOvertheSLAcreatedbymedepartmentwise.length > 0">
+                      <google-chart style="display: block;width: 100%;" [width]="width1"
+                        id="ticket_belch_assign_to_users" [type]="ColumnChart" [options]="options"
+                        [data]="ticketOvertheSLAcreatedbymedepartmentwise">
+                      </google-chart>
+                    </ng-container>
+
+                  </div>
+                </div>
+
+                <div class="col-md-12 mt-3" *ngIf="this.userData?.role?.roleName !== 'User' && !isProceess">
+                  <div class="card" style="padding: 15px;height:300px">
+                    <div class="chartjs-size-monitor">
+                      <div class="chartjs-size-monitor-expand">
+                        <div class=""></div>
+                      </div>
+                      <div class="chartjs-size-monitor-shrink">
+                        <div class=""></div>
+                      </div>
+                    </div>
+                    <div class="border-0">
+                      <div class="d-flex justify-content-between">
+                        <small class="gray_color" *ngIf="this.userData?.role?.roleName === 'Resolver' && !isProceess"
+                          style="font-size:15px;">Department tickets status</small>
+                        <small class="gray_color" *ngIf="this.userData?.role?.roleName === 'Admin' && !isProceess "
+                          style="font-size:15px;">Ticket assign to users</small>
+                      </div>
+                    </div>
+
+                    <ng-container
+                      *ngIf="this.userData?.role?.roleName === 'Admin' && !isProceess && ticketassigntousers.length > 0">
+                      <google-chart style="width: 100%;" [options]="chartOptions" [type]="ColumnChart"
+                        [data]="ticketassigntousers">
+                      </google-chart>
+                    </ng-container>
+
+                    <ng-container *ngIf="this.userData?.role?.roleName === 'Resolver' && !isProceess">
+                      <google-chart style="width: 100%;" [type]="ColumnChart" [options]="chartOptions"
+                        [data]="departmentticketsstatus">
+                      </google-chart>
+                    </ng-container>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>

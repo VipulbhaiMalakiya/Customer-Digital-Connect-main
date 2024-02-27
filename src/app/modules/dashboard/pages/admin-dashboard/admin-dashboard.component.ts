@@ -103,6 +103,7 @@ export class AdminDashboardComponent implements OnInit {
     this.GetResolver();
     this.Recenttickets();
 
+
     if (this.userData?.role?.roleName === 'Admin') {
       this.Statuswiseticketscount();
       this.Ticketassigntousers();
@@ -117,6 +118,10 @@ export class AdminDashboardComponent implements OnInit {
       this.TicketOvertheSLAcreatedbymedepartmentwise();
     }
 
+  }
+
+  get isAdmin() {
+    return this.userData?.role?.roleName == 'Admin';
   }
 
 
