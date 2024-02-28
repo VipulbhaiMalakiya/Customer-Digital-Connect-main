@@ -34,6 +34,7 @@ export class AdminDashboardComponent implements OnInit {
   ColumnChart = ChartType.ColumnChart;
   customerdata:any [] = [];
   conversationsdata:any [] = [];
+  escalationdata:any [] = [];
   term: any;
   data1: any[] = [];
   data2: any[] = [];
@@ -109,6 +110,7 @@ export class AdminDashboardComponent implements OnInit {
       this.Ticketassigntousers();
       this.TicketOvertheSLAtousers();
       this.isAdminconversationsdata();
+      this.isAdminescalationdata();
 
     }
     else if (this.userData?.role?.roleName === 'Resolver') {
@@ -136,12 +138,11 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   isAdminconversationsdata() {
-    this.masterName = `/dashboard/customer-data`;
+    this.masterName = `/dashboard/conversations-data`;
     this.isProceess = true;
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
       .subscribe(data => {
         this.conversationsdata = data.data;
-        console.log(this.conversationsdata);
 
         this.isProceess = false;
         this.cd.detectChanges();
@@ -149,6 +150,22 @@ export class AdminDashboardComponent implements OnInit {
         this.isProceess = false;
       })
   }
+
+  
+  isAdminescalationdata() {
+    this.masterName = `/dashboard/escalation-data`;
+    this.isProceess = true;
+    this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
+      .subscribe(data => {
+        this.escalationdata = data.data;
+
+        this.isProceess = false;
+        this.cd.detectChanges();
+      }, error => {
+        this.isProceess = false;
+      })
+  }
+
 
   get isAdmin() {
     return this.userData?.role?.roleName == 'Admin';
