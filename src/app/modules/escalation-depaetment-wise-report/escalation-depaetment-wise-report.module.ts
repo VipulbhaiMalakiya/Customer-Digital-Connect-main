@@ -20,7 +20,8 @@ import { eeFilterPipe } from 'src/app/_helpers/EscalationDepaetment-filter';
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+
   ]
 })
 export class EscalationDepaetmentWiseReportModule { }
