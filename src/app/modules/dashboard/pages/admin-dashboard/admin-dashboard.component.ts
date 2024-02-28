@@ -33,7 +33,7 @@ export class AdminDashboardComponent implements OnInit {
   pieChart = ChartType.PieChart;
   ColumnChart = ChartType.ColumnChart;
   customerdata:any [] = [];
-
+  conversationsdata:any [] = [];
   term: any;
   data1: any[] = [];
   data2: any[] = [];
@@ -108,6 +108,7 @@ export class AdminDashboardComponent implements OnInit {
       this.Statuswiseticketscount();
       this.Ticketassigntousers();
       this.TicketOvertheSLAtousers();
+      this.isAdminconversationsdata();
 
     }
     else if (this.userData?.role?.roleName === 'Resolver') {
@@ -126,7 +127,21 @@ export class AdminDashboardComponent implements OnInit {
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
       .subscribe(data => {
         this.customerdata = data.data;
-        console.log(this.customerdata);
+
+        this.isProceess = false;
+        this.cd.detectChanges();
+      }, error => {
+        this.isProceess = false;
+      })
+  }
+
+  isAdminconversationsdata() {
+    this.masterName = `/dashboard/customer-data`;
+    this.isProceess = true;
+    this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
+      .subscribe(data => {
+        this.conversationsdata = data.data;
+        console.log(this.conversationsdata);
 
         this.isProceess = false;
         this.cd.detectChanges();
