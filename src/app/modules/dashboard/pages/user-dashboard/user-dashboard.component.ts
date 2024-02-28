@@ -30,8 +30,9 @@ export class UserDashboardComponent implements OnInit {
   ticketOvertheSLAcreatedbymedepartmentwise: any = [];
   pieChart = ChartType.PieChart;
   ColumnChart = ChartType.ColumnChart;
-
-
+  customerdata:any [] = [];
+  conversationsdata:any [] = [];
+  escalationdata:any [] = [];
   term: any;
   data1: any[] = [];
   data2: any[] = [];
@@ -100,11 +101,14 @@ export class UserDashboardComponent implements OnInit {
     this.fatchData();
     this.GetResolver();
     this.Recenttickets();
+    this.isAdmincustomerdata();
 
     if (this.userData?.role?.roleName === 'Admin') {
       this.Statuswiseticketscount();
       this.Ticketassigntousers();
       this.TicketOvertheSLAtousers();
+      this.isAdminconversationsdata();
+      this.isAdminescalationdata();
 
     }
     else if (this.userData?.role?.roleName === 'Resolver') {
@@ -116,6 +120,50 @@ export class UserDashboardComponent implements OnInit {
     }
 
   }
+
+  isAdmincustomerdata() {
+    this.masterName = `/dashboard/customer-data`;
+    this.isProceess = true;
+    this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
+      .subscribe(data => {
+        this.customerdata = data.data;
+
+        this.isProceess = false;
+        this.cd.detectChanges();
+      }, error => {
+        this.isProceess = false;
+      })
+  }
+
+  isAdminconversationsdata() {
+    this.masterName = `/dashboard/conversations-data`;
+    this.isProceess = true;
+    this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
+      .subscribe(data => {
+        this.conversationsdata = data.data;
+
+        this.isProceess = false;
+        this.cd.detectChanges();
+      }, error => {
+        this.isProceess = false;
+      })
+  }
+
+  
+  isAdminescalationdata() {
+    this.masterName = `/dashboard/escalation-data`;
+    this.isProceess = true;
+    this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
+      .subscribe(data => {
+        this.escalationdata = data.data;
+
+        this.isProceess = false;
+        this.cd.detectChanges();
+      }, error => {
+        this.isProceess = false;
+      })
+  }
+
 
   get isAdmin() {
     return this.userData?.role?.roleName == 'Admin';
@@ -285,10 +333,10 @@ export class UserDashboardComponent implements OnInit {
       this.masterName = "/ticket/resentAllTickets";
     }
     else if (this.userData?.role?.roleName === 'Resolver') {
-      this.masterName = `/ticket/resentTicketsByAssignedTo/${this.userData.userId}`;
+      this.masterName = `/ticket/resentTicketsByAssignedTo/${this?.userData?.userId}`;
     }
     else if (this.userData?.role?.roleName === 'User') {
-      this.masterName = `/ticket/resentTicketsBycreatedBy/${this.userData.userId}`;
+      this.masterName = `/ticket/resentTicketsBycreatedBy/${this?.userData?.userId}`;
     }
     this.isProceess = true;
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
@@ -372,7 +420,7 @@ export class UserDashboardComponent implements OnInit {
       this.masterName = "/ticket/admin/statistics";
     }
     else if (this.userData?.role?.roleName !== 'Admin') {
-      this.masterName = `/ticket/createdBy/statistics/${this.userData.userId}`;
+      this.masterName = `/ticket/createdBy/statistics/${this.userData?.userId}`;
       this.title = "My Tickets";
     }
 
@@ -396,7 +444,7 @@ export class UserDashboardComponent implements OnInit {
 
 
   GetResolver() {
-    if (this.userData?.role?.roleName == 'Resolver') {
+    if (this.userData?.role?.roleName == 'Resolver' || 'User' || 'Admin') {
       this.masterName = `/ticket/resolver-assigned/statistics/${this.userData.userId}`;
     }
     this.isProceess = true;

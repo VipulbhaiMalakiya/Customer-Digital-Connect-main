@@ -15,42 +15,50 @@
       <div class="topdash-cols">
         <ul>
 
-          <a href="#">
+          <a routerLink="/admin/master/customers">
             <li>
               <div class="topin-dashcol">
-                <h3>Total Customers</h3>
-                <div class="big-text">98 <span class="perctg">2.3%</span></div>
+                <h3>{{this.customerdata[0]?.name}}</h3>
+                <div class="big-text">{{this.customerdata[0]?.count}}</div>
               </div>
             </li>
           </a>
 
-          <a href="#">
+          <a routerLink="/admin/active-room-number">
             <li>
               <div class="topin-dashcol topin-dashcol2">
-                <h3>Total Conversations</h3>
-                <div class="big-text">69 <span class="perctg">1.6%</span></div>
+                <h3>{{this.customerdata[1]?.name}}</h3>
+                <div class="big-text">{{this.customerdata[1]?.count}}</div>
               </div>
             </li>
           </a>
 
-          <a href="#">
+          <a routerLink="/admin/repeated-customer">
             <li>
               <div class="topin-dashcol topin-dashcol3">
-                <h3>Responded</h3>
-                <div class="big-text">39 <span class="perctg">56.52%</span></div>
+                <h3>{{this.customerdata[2]?.name}}</h3>
+                <div class="big-text">{{this.customerdata[2]?.count}}</div>
               </div>
             </li>
           </a>
 
-          <a href="#">
+          <a routerLink="/admin/happy-customer">
             <li>
               <div class="topin-dashcol topin-dashcol4">
-                <h3>Closed</h3>
-                <div class="big-text">01 <span class="perctg">1.45%</span></div>
+                <h3>{{this.customerdata[3]?.name}}</h3>
+                <div class="big-text">{{this.customerdata[3]?.count}}</div>
               </div>
             </li>
           </a>
 
+          <a routerLink="/admin/master/user">
+            <li>
+              <div class="topin-dashcol topin-dashcol4">
+                <h3>{{this.customerdata[4]?.name}}</h3>
+                <div class="big-text">{{this.customerdata[4]?.count}}</div>
+              </div>
+            </li>
+          </a>
         </ul>
 
       </div>
@@ -60,33 +68,58 @@
     <div class="dashboard-no5cols">
       <div class="inner-no5cols"><a href="#">
           <div class="no5cols-ico"><img src="../assets/images/dash-ico-1.png" alt=""></div>
-          <h1>36</h1>
-          <p>Active Customers</p>
+          <h1>{{this.conversationsdata[0]?.count}}</h1>
+          <p>{{this.conversationsdata[0]?.name}}</p>
         </a></div>
 
       <div class="inner-no5cols"><a href="#">
           <div class="no5cols-ico"><img src="../assets/images/dash-ico-2.png" alt=""></div>
-          <h1>17</h1>
-          <p>Rooms Occupied</p>
+          <h1>{{this.conversationsdata[1]?.count}}</h1>
+          <p>{{this.conversationsdata[1]?.name}}</p>
         </a></div>
 
       <div class="inner-no5cols"><a href="#">
           <div class="no5cols-ico"><img src="../assets/images/dash-ico-3.png" alt=""></div>
-          <h1>09</h1>
-          <p>Open Chats</p>
+          <h1>{{this.conversationsdata[2]?.count}}</h1>
+          <p>{{this.conversationsdata[2]?.name}}</p>
         </a></div>
 
       <div class="inner-no5cols"><a href="#">
           <div class="no5cols-ico"><img src="../assets/images/dash-ico-4.png" alt=""></div>
-          <h1>14</h1>
-          <p>Active Agents</p>
+          <h1>{{this.conversationsdata[3]?.count}}</h1>
+          <p>{{this.conversationsdata[3]?.name}}</p>
+        </a></div>
+
+
+
+    </div>
+
+    <div class="dashboard-no5cols">
+      <div class="inner-no5cols"><a href="#">
+          <div class="no5cols-ico"><img src="../assets/images/dash-ico-1.png" alt=""></div>
+          <h1>{{this.escalationdata[0]?.count}}</h1>
+          <p>{{this.escalationdata[0]?.name}}</p>
         </a></div>
 
       <div class="inner-no5cols"><a href="#">
-          <div class="no5cols-ico"><img src="../assets/images/dash-ico-5.png" alt=""></div>
-          <h1>21</h1>
-          <p>Assigned Tickets</p>
+          <div class="no5cols-ico"><img src="../assets/images/dash-ico-2.png" alt=""></div>
+          <h1>{{this.escalationdata[1]?.count}}</h1>
+          <p>{{this.escalationdata[1]?.name}}</p>
         </a></div>
+
+      <div class="inner-no5cols"><a href="#">
+          <div class="no5cols-ico"><img src="../assets/images/dash-ico-3.png" alt=""></div>
+          <h1>{{this.escalationdata[2]?.count}}</h1>
+          <p>{{this.escalationdata[2]?.name}}</p>
+        </a></div>
+
+      <div class="inner-no5cols"><a href="#">
+          <div class="no5cols-ico"><img src="../assets/images/dash-ico-4.png" alt=""></div>
+          <h1>{{this.escalationdata[3]?.count}}</h1>
+          <p>{{this.escalationdata[3]?.name}}</p>
+        </a></div>
+
+
 
     </div>
 
