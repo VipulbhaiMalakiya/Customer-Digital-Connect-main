@@ -15,42 +15,50 @@
       <div class="topdash-cols">
         <ul>
 
-          <a href="#">
+          <a routerLink="/admin/master/customers">
             <li>
               <div class="topin-dashcol">
-                <h3>Total Customers</h3>
-                <div class="big-text">98 <span class="perctg">2.3%</span></div>
+                <h3>{{this.customerdata[0]?.name}}</h3>
+                <div class="big-text">{{this.customerdata[0]?.count}}</div>
               </div>
             </li>
           </a>
 
-          <a href="#">
+          <a routerLink="/admin/active-room-number">
             <li>
               <div class="topin-dashcol topin-dashcol2">
-                <h3>Total Conversations</h3>
-                <div class="big-text">69 <span class="perctg">1.6%</span></div>
+                <h3>{{this.customerdata[1]?.name}}</h3>
+                <div class="big-text">{{this.customerdata[1]?.count}}</div>
               </div>
             </li>
           </a>
 
-          <a href="#">
+          <a routerLink="/admin/repeated-customer">
             <li>
               <div class="topin-dashcol topin-dashcol3">
-                <h3>Responded</h3>
-                <div class="big-text">39 <span class="perctg">56.52%</span></div>
+                <h3>{{this.customerdata[2]?.name}}</h3>
+                <div class="big-text">{{this.customerdata[2]?.count}}</div>
               </div>
             </li>
           </a>
 
-          <a href="#">
+          <a routerLink="/admin/happy-customer">
             <li>
               <div class="topin-dashcol topin-dashcol4">
-                <h3>Closed</h3>
-                <div class="big-text">01 <span class="perctg">1.45%</span></div>
+                <h3>{{this.customerdata[3]?.name}}</h3>
+                <div class="big-text">{{this.customerdata[3]?.count}}</div>
               </div>
             </li>
           </a>
 
+          <a routerLink="/admin/master/user">
+            <li>
+              <div class="topin-dashcol topin-dashcol4">
+                <h3>{{this.customerdata[4]?.name}}</h3>
+                <div class="big-text">{{this.customerdata[4]?.count}}</div>
+              </div>
+            </li>
+          </a>
         </ul>
 
       </div>

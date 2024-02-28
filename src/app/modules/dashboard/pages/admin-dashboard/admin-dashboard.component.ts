@@ -32,7 +32,7 @@ export class AdminDashboardComponent implements OnInit {
   ticketOvertheSLAcreatedbymedepartmentwise: any = [];
   pieChart = ChartType.PieChart;
   ColumnChart = ChartType.ColumnChart;
-
+  customerdata:any [] = [];
 
   term: any;
   data1: any[] = [];
@@ -102,7 +102,7 @@ export class AdminDashboardComponent implements OnInit {
     this.fatchData();
     this.GetResolver();
     this.Recenttickets();
-
+    this.isAdmincustomerdata();
 
     if (this.userData?.role?.roleName === 'Admin') {
       this.Statuswiseticketscount();
@@ -118,6 +118,21 @@ export class AdminDashboardComponent implements OnInit {
       this.TicketOvertheSLAcreatedbymedepartmentwise();
     }
 
+  }
+
+  isAdmincustomerdata() {
+    this.masterName = `/dashboard/customer-data`;
+    this.isProceess = true;
+    this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
+      .subscribe(data => {
+        this.customerdata = data.data;
+        console.log(this.customerdata);
+
+        this.isProceess = false;
+        this.cd.detectChanges();
+      }, error => {
+        this.isProceess = false;
+      })
   }
 
   get isAdmin() {
