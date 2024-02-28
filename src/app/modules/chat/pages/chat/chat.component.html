@@ -179,8 +179,10 @@
                 <div class="nochat-vector"><img src="../assets/images/nochat-vector.png" alt="File Not Found"></div>
                 <p class="text-danger">No conversations here...</p>
               </div>
-              <li *ngFor="let i of closed  |  customFilter: term  ; let isFirst = first ; let ind=index;"
-                [ngClass]="{ 'new-message': isFirst }" (click)="onViewContact(i,getColorClass(ind))">
+              <!-- <li *ngFor="let i of closed  |  customFilter: term  ; let isFirst = first ; let ind=index;"
+                [ngClass]="{ 'new-message': isFirst }" (click)="onViewContact(i,getColorClass(ind))"> -->
+                <li *ngFor="let i of closed  | customFilter: term ; let ind=index; let isFirst = first"
+                [ngClass]="{ 'new-message': i.phoneNo === contact }" (click)="onViewContact(i ,getColorClass(ind))">
                 <div class="avata">
                   <span class="chatpro-nmg" [ngClass]="getColorClass(ind)" *ngIf="i.fullName !== null">
                     {{getShortName(i.fullName)}} </span>
