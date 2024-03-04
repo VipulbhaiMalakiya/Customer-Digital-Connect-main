@@ -148,7 +148,7 @@
 
     <div class="row">
 
-      <!-- <div class="col-md-4 col-sm-6">
+      <div class="col-md-4 col-sm-6">
         <div class="analybidcol analgrph">
           <div class="info-tblg"><i class="las la-info-circle"></i></div>
           <h3>Wait Time for 1st Agent Response</h3>
@@ -173,7 +173,7 @@
           <div class="anltbig-text">36 <small>min</small></div>
           <div class="anltb-graph"><img src="../assets/images/graph-not-available.svg" alt=""></div>
         </div>
-      </div> -->
+      </div>
 
     </div>
 
@@ -183,7 +183,7 @@
 
 
 
-<div class="inner-middle-content">
+<div class="inner-middle-content" *ngIf="isUser || isResolver || isApprover">
   <div class="data-tabs">
     <div class="main-user-dash-left" *ngIf="data && this.userData?.role?.roleName !== 'Admin' && !isProceess ">
       <div class="dash-blck-title">My Tickets </div>
@@ -242,7 +242,7 @@
       </div>
     </div>
 
-    <!-- <div class="main-user-dash-left" *ngIf="data && this.userData?.role?.roleName === 'Admin' && !isProceess">
+    <div class="main-user-dash-left" *ngIf="data && this.userData?.role?.roleName === 'Admin' && !isProceess">
       <div class="user-dash-left-card">
         <ul>
           <a routerLink="/admin/master/category-list">
@@ -282,14 +282,14 @@
           </a>
         </ul>
       </div>
-    </div> -->
+    </div>
 
     <!-- <div class="main-user-dash-right" *ngIf="resolverData && this.userData?.role?.roleName === 'Resolver'&& !isProceess "> -->
     <!-- <div class="main-user-dash-right"
       *ngIf="resolverData && this.userData?.role?.roleName !== 'Admin'&& !isProceess "> -->
     <div class="main-user-dash-right" *ngIf="resolverData && !isProceess ">
-      <div class="dash-blck-title" *ngIf="isUser || isResolver || isApprover">Assign to me</div>
-      <div class="user-dash-right-card" *ngIf="isUser || isResolver || isApprover">
+      <div class="dash-blck-title">Assign to me</div>
+      <div class="user-dash-right-card">
         <ul>
           <a routerLink="/assigned-ticket-list">
             <li>
@@ -389,7 +389,7 @@
       <div class="col-md-9" *ngIf="!isProceess">
         <div class="dashboard-charts-sec">
           <div class="row">
-            <!-- <div class="col-md-4 pr-0">
+            <div class="col-md-4 pr-0">
               <div class="card" style="padding: 15px;height:280px">
                 <div class="chartjs-size-monitor">
                   <div class="chartjs-size-monitor-expand">
@@ -399,7 +399,7 @@
                     <div class=""></div>
                   </div>
                 </div>
-                <div class="border-0" *ngIf="isUser || isResolver || isApprover">
+                <div class="border-0">
                   <div class="d-flex justify-content-between">
                     <small *ngIf="this.userData?.role?.roleName !== 'Admin'" class=" gray_color"
                       style="font-size:15px;">Status wise my tickets
@@ -420,8 +420,8 @@
                 </ng-container>
 
               </div>
-            </div> -->
-            <div class="col-md-12">
+            </div>
+            <div class="col-md-8">
               <div class="card" style="padding: 15px;height:280px">
                 <div class="chartjs-size-monitor">
                   <div class="chartjs-size-monitor-expand">
