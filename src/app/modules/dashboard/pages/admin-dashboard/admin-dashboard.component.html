@@ -153,7 +153,11 @@
           <div class="info-tblg"><i class="las la-info-circle"></i></div>
           <h3>Wait Time for 1st Agent Response</h3>
           <div class="anltbig-text">1 <small>min</small></div>
-          <div class="anltb-graph"><img src="../assets/images/graph-not-available.svg" alt=""></div>
+          <div class="anltb-graph">
+            <google-chart [type]="ColumnChart" [options]="option" [data]="firstAgentResponseData"
+            style="width: 100%;">
+          </google-chart>
+          </div>
         </div>
       </div>
 

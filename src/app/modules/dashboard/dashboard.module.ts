@@ -26,7 +26,7 @@ import { FormsModule } from '@angular/forms';
         NgChartsModule,
         SharedModule,
         GoogleChartsModule,
-        FormsModule
+        FormsModule,
     ]
 })
 export class DashboardModule { }

@@ -36,6 +36,7 @@ export class AdminDashboardComponent implements OnInit {
   conversationsdata:any [] = [];
   escalationdata:any [] = [];
   term: any;
+  firstAgentResponseData:any [] = [];
   data1: any[] = [];
   data2: any[] = [];
   width = 231;
@@ -86,6 +87,12 @@ export class AdminDashboardComponent implements OnInit {
   donutOptions = {
     pieHole: 1
   }
+  AgentResponsedata1:any[] =  [];
+  graphresolutiondata:any[] = [];
+
+
+
+  
 
   constructor(private titleService: Title,
     private apiService: ApiService,
@@ -111,7 +118,9 @@ export class AdminDashboardComponent implements OnInit {
       this.TicketOvertheSLAtousers();
       this.isAdminconversationsdata();
       this.isAdminescalationdata();
-
+      this.ISAdminFirstAgentResponsedata();
+      this.ISAdminAgentResponsedata();
+      this.ISAdmingraphresolutiondata();
     }
     else if (this.userData?.role?.roleName === 'Resolver') {
       this.Departmentticketsstatus();
@@ -120,8 +129,66 @@ export class AdminDashboardComponent implements OnInit {
     else if (this.userData?.role?.roleName === 'User') {
       this.TicketOvertheSLAcreatedbymedepartmentwise();
     }
-
+    
   }
+
+
+  ISAdminFirstAgentResponsedata() {
+    this.masterName = `/dashboard/firstAgentResponse-data`;
+    this.isProceess = true;
+    this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
+      .subscribe(data => {
+
+        this.firstAgentResponseData = [];
+      data.data.forEach((row:any) => {
+        this.firstAgentResponseData.push([
+          row.lessThan5mins,
+          row.between5to10mins,
+          row.between10to15mins,
+          row.between15to20mins,
+          row.moreThan20mins,
+        ]);
+      });
+      console.log(this.firstAgentResponseData);
+        
+
+        this.isProceess = false;
+        this.cd.detectChanges();
+      }, error => {
+        this.isProceess = false;
+      })
+  }
+
+
+  ISAdminAgentResponsedata() {
+    this.masterName = `/dashboard/AgentResponse-data`;
+    this.isProceess = true;
+    this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
+      .subscribe(data => {
+        this.AgentResponsedata1 = data.data;
+
+        this.isProceess = false;
+        this.cd.detectChanges();
+      }, error => {
+        this.isProceess = false;
+      })
+  }
+
+  ISAdmingraphresolutiondata() {
+    this.masterName = `/dashboard/AgentResponse-data`;
+    this.isProceess = true;
+    this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
+      .subscribe(data => {
+        this.graphresolutiondata = data.data;
+
+        this.isProceess = false;
+        this.cd.detectChanges();
+      }, error => {
+        this.isProceess = false;
+      })
+  }
+
+
 
   isAdmincustomerdata() {
     this.masterName = `/dashboard/customer-data`;
@@ -151,7 +218,7 @@ export class AdminDashboardComponent implements OnInit {
       })
   }
 
-  
+
   isAdminescalationdata() {
     this.masterName = `/dashboard/escalation-data`;
     this.isProceess = true;
