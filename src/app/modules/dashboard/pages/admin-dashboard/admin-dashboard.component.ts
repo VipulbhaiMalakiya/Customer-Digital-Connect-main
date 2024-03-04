@@ -131,8 +131,6 @@ export class AdminDashboardComponent implements OnInit {
     if (this.userData?.role?.roleName === 'Admin') {
    
       this.ISAdminFirstAgentResponsedata();
-      this.ISAdminAgentResponsedata();
-      this.ISAdmingraphresolutiondata();
       this.Statuswiseticketscount();
       this.Ticketassigntousers();
       this.TicketOvertheSLAtousers();
@@ -165,8 +163,7 @@ export class AdminDashboardComponent implements OnInit {
           ['> 20', this.firstAgentResponseData.moreThan20mins]
         ];
 
-
-        this.isProceess = false;
+        this.ISAdminAgentResponsedata()
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -187,7 +184,7 @@ export class AdminDashboardComponent implements OnInit {
           ['15 - 20', this.firstAgentResponseData.between15to20mins],
           ['> 20', this.firstAgentResponseData.moreThan20mins]
         ];
-        this.isProceess = false;
+        this.ISAdmingraphresolutiondata();
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -195,12 +192,18 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   ISAdmingraphresolutiondata() {
-    this.masterName = `/dashboard/AgentResponse-data`;
+    this.masterName = `/dashboard/graphresolution-data`;
     this.isProceess = true;
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
       .subscribe(data => {
         this.graphresolutiondata = data.data;
-
+        this.dataQW2 = [
+          ['< 5', this.firstAgentResponseData.lessThan5mins],
+          ['5 - 10', this.firstAgentResponseData.between5to10mins],
+          ['10 - 15', this.firstAgentResponseData.between10to15mins],
+          ['15 - 20', this.firstAgentResponseData.between15to20mins],
+          ['> 20', this.firstAgentResponseData.moreThan20mins]
+        ];
         this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
@@ -229,7 +232,7 @@ export class AdminDashboardComponent implements OnInit {
       .subscribe(data => {
         this.conversationsdata = data.data;
 
-        this.isProceess = false;
+        // this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -244,7 +247,7 @@ export class AdminDashboardComponent implements OnInit {
       .subscribe(data => {
         this.escalationdata = data.data;
 
-        this.isProceess = false;
+        // this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -282,8 +285,6 @@ export class AdminDashboardComponent implements OnInit {
             data[i].count,
           ]);
         }
-
-        this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -303,7 +304,7 @@ export class AdminDashboardComponent implements OnInit {
           ]);
         }
 
-        this.isProceess = false;
+        // this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -404,7 +405,6 @@ export class AdminDashboardComponent implements OnInit {
         formData.append("userData", JSON.stringify(model));
         this.isProceess = true;
         this.subscription = this.masterAPI.updateMasterData(formData, dataItem.ticketId).pipe(take(1)).subscribe(responseData => {
-          this.isProceess = false;
           this.toastr.success("Ticket Updated!");
           this.Recenttickets();
         }, error => {
@@ -429,7 +429,6 @@ export class AdminDashboardComponent implements OnInit {
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
       .subscribe(data => {
         this.recenttickets = data;
-        this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
