@@ -156,8 +156,8 @@
           <div class="anltb-graph">
 
 
-            <google-chart #chart [title]="title" [type]="ColumnChart" [data]="dataQW" 
-              [options]="options123"  style="width: 100%;">
+            <google-chart #chart [title]="title" [type]="ColumnChart" [data]="dataQW" [options]="options123"
+              style="width: 100%;">
             </google-chart>
 
           </div>
@@ -170,9 +170,9 @@
           <h3>{{AgentResponsedata1.graphName}}</h3>
           <div class="anltbig-text">{{AgentResponsedata1.averageTime}} <small>min</small></div>
           <div class="anltb-graph">
-            <google-chart #chart [title]="title" [type]="ColumnChart" [data]="dataQW1" 
-            [options]="options123"  style="width: 100%;">
-          </google-chart>
+            <google-chart #chart [title]="title" [type]="ColumnChart" [data]="dataQW1" [options]="options123"
+              style="width: 100%;">
+            </google-chart>
           </div>
         </div>
       </div>
@@ -180,9 +180,13 @@
       <div class="col-md-4 col-sm-12">
         <div class="analybidcol analgrph">
           <div class="info-tblg"><i class="las la-info-circle"></i></div>
-          <h3>Resolution Time</h3>
-          <div class="anltbig-text">36 <small>min</small></div>
-          <div class="anltb-graph"><img src="../assets/images/graph-not-available.svg" alt=""></div>
+          <h3>{{graphresolutiondata.graphName}}</h3>
+          <div class="anltbig-text">{{graphresolutiondata.averageTime}} <small>min</small></div>
+          <div class="anltb-graph">
+            <google-chart #chart [title]="title" [type]="ColumnChart" [data]="dataQW2" [options]="options123"
+            style="width: 100%;">
+          </google-chart>
+          </div>
         </div>
       </div>
 

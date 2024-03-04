@@ -97,6 +97,7 @@ export class AdminDashboardComponent implements OnInit {
 
   dataQW: any[] = [];
   dataQW1:any[] = [];
+  dataQW2:any[] = [];
   columnNames = ['Browser', 'Percentage'];
   options123 = {
     colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'], is3D: true, vAxis: {
@@ -128,14 +129,15 @@ export class AdminDashboardComponent implements OnInit {
     this.isAdmincustomerdata();
 
     if (this.userData?.role?.roleName === 'Admin') {
+   
+      this.ISAdminFirstAgentResponsedata();
+      this.ISAdminAgentResponsedata();
+      this.ISAdmingraphresolutiondata();
       this.Statuswiseticketscount();
       this.Ticketassigntousers();
       this.TicketOvertheSLAtousers();
       this.isAdminconversationsdata();
       this.isAdminescalationdata();
-      this.ISAdminFirstAgentResponsedata();
-      this.ISAdminAgentResponsedata();
-      this.ISAdmingraphresolutiondata();
     }
     else if (this.userData?.role?.roleName === 'Resolver') {
       this.Departmentticketsstatus();
@@ -214,8 +216,6 @@ export class AdminDashboardComponent implements OnInit {
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
       .subscribe(data => {
         this.customerdata = data.data;
-
-        this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -355,7 +355,7 @@ export class AdminDashboardComponent implements OnInit {
           if (responseData) {
             this.toastr.success("Ticket Updated!");
             this.Recenttickets();
-            this.isProceess = false;
+            // this.isProceess = false;
           }
         }, error => {
           this.isProceess = false;
@@ -450,7 +450,7 @@ export class AdminDashboardComponent implements OnInit {
             data[i].totalOverCount,
           ]);
         }
-        this.isProceess = false;
+        // this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -472,7 +472,7 @@ export class AdminDashboardComponent implements OnInit {
             data[i].totalTicketAssigned,
           ]);
         }
-        this.isProceess = false;
+        // this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -494,7 +494,7 @@ export class AdminDashboardComponent implements OnInit {
             result[row].total,
           ]);
         }
-        this.isProceess = false;
+        // this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -522,7 +522,7 @@ export class AdminDashboardComponent implements OnInit {
             result[row].total,
           ]);
         }
-        this.isProceess = false;
+        // this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -545,7 +545,7 @@ export class AdminDashboardComponent implements OnInit {
             result[row].total,
           ]);
         }
-        this.isProceess = false;
+        // this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
