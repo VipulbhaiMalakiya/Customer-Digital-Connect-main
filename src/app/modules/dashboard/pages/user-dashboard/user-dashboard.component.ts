@@ -15,6 +15,7 @@ import { UpdateTicketComponent } from 'src/app/modules/ticket/update-ticket/upda
   templateUrl: './user-dashboard.component.html'
 })
 export class UserDashboardComponent implements OnInit {
+
   isProceess: boolean = true;
   userData: any;
   masterName?: any;
@@ -30,10 +31,11 @@ export class UserDashboardComponent implements OnInit {
   ticketOvertheSLAcreatedbymedepartmentwise: any = [];
   pieChart = ChartType.PieChart;
   ColumnChart = ChartType.ColumnChart;
-  customerdata:any [] = [];
-  conversationsdata:any [] = [];
-  escalationdata:any [] = [];
+  customerdata: any[] = [];
+  conversationsdata: any[] = [];
+  escalationdata: any[] = [];
   term: any;
+  firstAgentResponseData: any;
   data1: any[] = [];
   data2: any[] = [];
   width = 231;
@@ -84,6 +86,26 @@ export class UserDashboardComponent implements OnInit {
   donutOptions = {
     pieHole: 1
   }
+  AgentResponsedata1: any;
+  graphresolutiondata: any;
+
+
+
+
+  dataQW: any[] = [];
+  dataQW1:any[] = [];
+  dataQW2:any[] = [];
+  columnNames = ['Browser', 'Percentage'];
+  options123 = {
+    colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'], is3D: true, vAxis: {
+      gridlines: {
+        color: 'transparent', // Set gridline color to transparent
+      },
+    },
+  };
+
+
+
 
   constructor(private titleService: Title,
     private apiService: ApiService,
@@ -104,12 +126,13 @@ export class UserDashboardComponent implements OnInit {
     this.isAdmincustomerdata();
 
     if (this.userData?.role?.roleName === 'Admin') {
+   
+      this.ISAdminFirstAgentResponsedata();
       this.Statuswiseticketscount();
       this.Ticketassigntousers();
       this.TicketOvertheSLAtousers();
       this.isAdminconversationsdata();
       this.isAdminescalationdata();
-
     }
     else if (this.userData?.role?.roleName === 'Resolver') {
       this.Departmentticketsstatus();
@@ -121,14 +144,78 @@ export class UserDashboardComponent implements OnInit {
 
   }
 
+
+  ISAdminFirstAgentResponsedata() {
+    this.masterName = `/dashboard/firstAgentResponse-data`;
+    this.isProceess = true;
+    this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
+      .subscribe(data => {
+        this.firstAgentResponseData = data.data;
+        // Access properties of firstAgentResponseData correctly
+        this.dataQW = [
+          ['< 5', this.firstAgentResponseData.lessThan5mins],
+          ['5 - 10', this.firstAgentResponseData.between5to10mins],
+          ['10 - 15', this.firstAgentResponseData.between10to15mins],
+          ['15 - 20', this.firstAgentResponseData.between15to20mins],
+          ['> 20', this.firstAgentResponseData.moreThan20mins]
+        ];
+
+        this.ISAdminAgentResponsedata()
+        this.cd.detectChanges();
+      }, error => {
+        this.isProceess = false;
+      })
+  }
+
+
+  ISAdminAgentResponsedata() {
+    this.masterName = `/dashboard/AgentResponse-data`;
+    this.isProceess = true;
+    this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
+      .subscribe(data => {
+        this.AgentResponsedata1 = data.data;
+        this.dataQW1 = [
+          ['< 5', this.firstAgentResponseData.lessThan5mins],
+          ['5 - 10', this.firstAgentResponseData.between5to10mins],
+          ['10 - 15', this.firstAgentResponseData.between10to15mins],
+          ['15 - 20', this.firstAgentResponseData.between15to20mins],
+          ['> 20', this.firstAgentResponseData.moreThan20mins]
+        ];
+        this.ISAdmingraphresolutiondata();
+        this.cd.detectChanges();
+      }, error => {
+        this.isProceess = false;
+      })
+  }
+
+  ISAdmingraphresolutiondata() {
+    this.masterName = `/dashboard/graphresolution-data`;
+    this.isProceess = true;
+    this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
+      .subscribe(data => {
+        this.graphresolutiondata = data.data;
+        this.dataQW2 = [
+          ['< 5', this.firstAgentResponseData.lessThan5mins],
+          ['5 - 10', this.firstAgentResponseData.between5to10mins],
+          ['10 - 15', this.firstAgentResponseData.between10to15mins],
+          ['15 - 20', this.firstAgentResponseData.between15to20mins],
+          ['> 20', this.firstAgentResponseData.moreThan20mins]
+        ];
+        this.isProceess = false;
+        this.cd.detectChanges();
+      }, error => {
+        this.isProceess = false;
+      })
+  }
+
+
+
   isAdmincustomerdata() {
     this.masterName = `/dashboard/customer-data`;
     this.isProceess = true;
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
       .subscribe(data => {
         this.customerdata = data.data;
-
-        this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -142,14 +229,14 @@ export class UserDashboardComponent implements OnInit {
       .subscribe(data => {
         this.conversationsdata = data.data;
 
-        this.isProceess = false;
+        // this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
       })
   }
 
-  
+
   isAdminescalationdata() {
     this.masterName = `/dashboard/escalation-data`;
     this.isProceess = true;
@@ -157,7 +244,7 @@ export class UserDashboardComponent implements OnInit {
       .subscribe(data => {
         this.escalationdata = data.data;
 
-        this.isProceess = false;
+        // this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -195,8 +282,6 @@ export class UserDashboardComponent implements OnInit {
             data[i].count,
           ]);
         }
-
-        this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -216,7 +301,7 @@ export class UserDashboardComponent implements OnInit {
           ]);
         }
 
-        this.isProceess = false;
+        // this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -268,7 +353,7 @@ export class UserDashboardComponent implements OnInit {
           if (responseData) {
             this.toastr.success("Ticket Updated!");
             this.Recenttickets();
-            this.isProceess = false;
+            // this.isProceess = false;
           }
         }, error => {
           this.isProceess = false;
@@ -317,7 +402,6 @@ export class UserDashboardComponent implements OnInit {
         formData.append("userData", JSON.stringify(model));
         this.isProceess = true;
         this.subscription = this.masterAPI.updateMasterData(formData, dataItem.ticketId).pipe(take(1)).subscribe(responseData => {
-          this.isProceess = false;
           this.toastr.success("Ticket Updated!");
           this.Recenttickets();
         }, error => {
@@ -342,7 +426,6 @@ export class UserDashboardComponent implements OnInit {
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1))
       .subscribe(data => {
         this.recenttickets = data;
-        this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -363,7 +446,7 @@ export class UserDashboardComponent implements OnInit {
             data[i].totalOverCount,
           ]);
         }
-        this.isProceess = false;
+        // this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -385,7 +468,7 @@ export class UserDashboardComponent implements OnInit {
             data[i].totalTicketAssigned,
           ]);
         }
-        this.isProceess = false;
+        // this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -407,7 +490,7 @@ export class UserDashboardComponent implements OnInit {
             result[row].total,
           ]);
         }
-        this.isProceess = false;
+        // this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -435,7 +518,7 @@ export class UserDashboardComponent implements OnInit {
             result[row].total,
           ]);
         }
-        this.isProceess = false;
+        // this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
@@ -458,7 +541,7 @@ export class UserDashboardComponent implements OnInit {
             result[row].total,
           ]);
         }
-        this.isProceess = false;
+        // this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
         this.isProceess = false;
