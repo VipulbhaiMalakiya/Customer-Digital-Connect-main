@@ -151,12 +151,15 @@
       <div class="col-md-4 col-sm-6">
         <div class="analybidcol analgrph">
           <div class="info-tblg"><i class="las la-info-circle"></i></div>
-          <h3>Wait Time for 1st Agent Response</h3>
-          <div class="anltbig-text">1 <small>min</small></div>
+          <h3>{{this.firstAgentResponseData.graphName}}</h3>
+          <div class="anltbig-text">{{firstAgentResponseData.averageTime}} <small>min</small></div>
           <div class="anltb-graph">
-            <google-chart [type]="ColumnChart" [options]="option" [data]="firstAgentResponseData"
-            style="width: 100%;">
-          </google-chart>
+
+
+            <google-chart #chart [title]="title" [type]="ColumnChart" [data]="dataQW" 
+              [options]="options123"  style="width: 100%;">
+            </google-chart>
+
           </div>
         </div>
       </div>
@@ -164,9 +167,13 @@
       <div class="col-md-4 col-sm-6">
         <div class="analybidcol analgrph">
           <div class="info-tblg"><i class="las la-info-circle"></i></div>
-          <h3>Average Wait Time for Agent Responses</h3>
-          <div class="anltbig-text">12 <small>min</small></div>
-          <div class="anltb-graph"><img src="../assets/images/graph-not-available.svg" alt=""></div>
+          <h3>{{AgentResponsedata1.graphName}}</h3>
+          <div class="anltbig-text">{{AgentResponsedata1.averageTime}} <small>min</small></div>
+          <div class="anltb-graph">
+            <google-chart #chart [title]="title" [type]="ColumnChart" [data]="dataQW1" 
+            [options]="options123"  style="width: 100%;">
+          </google-chart>
+          </div>
         </div>
       </div>
 
@@ -353,7 +360,8 @@
       </div>
     </div>
 
-  </div><!--data-tabs-->
+  </div>
+  <!--data-tabs-->
 
   <div class="dashboard-tabs-grid">
     <div class="row">
