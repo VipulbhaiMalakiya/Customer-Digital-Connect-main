@@ -145,6 +145,7 @@ export class AdminDashboardComponent implements OnInit {
       this.TicketOvertheSLAcreatedbymedepartmentwise();
     }
 
+  
   }
 
 

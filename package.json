@@ -83,6 +83,7 @@
     "@angular/cli": "^15.2.8",
     "@angular/compiler-cli": "^16.0.0",
     "@angular/localize": "^16.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.23.3",
     "@ngrx/schematics": "^16.0.0",
     "@types/datatables.net": "^1.10.24",
     "@types/googlemaps": "^3.39.13",
