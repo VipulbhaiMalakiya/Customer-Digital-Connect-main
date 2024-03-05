@@ -100,7 +100,7 @@ export class AdminDashboardComponent implements OnInit {
   dataQW2:any[] = [];
   columnNames = ['Browser', 'Percentage'];
   options123 = {
-    colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'], is3D: true, vAxis: {
+    colors: ['#00abc5', '#67BB75', '#E1CE17', '#f3b49f', '#f6c7b6'], is3D: true, vAxis: {
       gridlines: {
         color: 'transparent', // Set gridline color to transparent
       },
@@ -129,7 +129,7 @@ export class AdminDashboardComponent implements OnInit {
     this.isAdmincustomerdata();
 
     if (this.userData?.role?.roleName === 'Admin') {
-   
+
       this.ISAdminFirstAgentResponsedata();
       this.Statuswiseticketscount();
       this.Ticketassigntousers();

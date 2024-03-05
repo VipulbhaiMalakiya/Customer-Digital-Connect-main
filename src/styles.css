@@ -988,8 +988,8 @@ textarea.form-control {
 }
 
 .dasboard-table.dasboard-scroll {
-  height: 420px !important;
-  overflow: auto;
+  height:70vh !important;
+  overflow-y: auto;
 }
 
 .dasboard-table thead {
@@ -1495,7 +1495,7 @@ button.search-ico {
 .nav-pills .nav-link {
   background: #fff;
   color: #333;
-  border-radius: 40px;
+  border-radius: 08px;
   padding-left: 12px;
   padding-right: 6px;
   font-weight: 400;
@@ -1858,7 +1858,7 @@ button.search-ico {
   position: absolute;
   width: 97%;
   z-index: 0;
-  bottom: -10 !important;
+  bottom: -10px !important;
   left: 10px;
   border-radius: 10px;
 }
@@ -2760,8 +2760,8 @@ article.media .media-body p {
 }
 
 .main-outer-wrapper.left-colapse .rightouter70 #pills-tab .nav-item {
-  max-width: 32%;
-  flex: 0 0 32%;
+  max-width: 50%;
+  flex: 0 0 50%;
   text-align: center;
   padding-left: 10px;
   margin: 0;
