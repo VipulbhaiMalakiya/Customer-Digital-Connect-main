@@ -97,14 +97,16 @@ export class UserDashboardComponent implements OnInit {
   dataQW2:any[] = [];
   columnNames = ['Browser', 'Percentage'];
   options123 = {
-    colors: ['#e0440e', '#e6693e', '#ec8f6e', '#f3b49f', '#f6c7b6'], is3D: true, vAxis: {
+    colors: ['#00abc5', '#67BB75', '#E1CE17', '#f3b49f', '#f6c7b6'], is3D: true, vAxis: {
       gridlines: {
         color: 'transparent', // Set gridline color to transparent
       },
     },
   };
 
-
+  chartOptionsNew:any;
+  chartOptionsNew1:any;
+  chartOptionsNew2:any;
 
 
   constructor(private titleService: Title,
@@ -120,13 +122,14 @@ export class UserDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
+    
     this.fatchData();
     this.GetResolver();
     this.Recenttickets();
     this.isAdmincustomerdata();
 
     if (this.userData?.role?.roleName === 'Admin') {
-   
+
       this.ISAdminFirstAgentResponsedata();
       this.Statuswiseticketscount();
       this.Ticketassigntousers();
@@ -141,6 +144,8 @@ export class UserDashboardComponent implements OnInit {
     else if (this.userData?.role?.roleName === 'User') {
       this.TicketOvertheSLAcreatedbymedepartmentwise();
     }
+
+
 
   }
 
@@ -160,6 +165,26 @@ export class UserDashboardComponent implements OnInit {
           ['> 20', this.firstAgentResponseData.moreThan20mins]
         ];
 
+        this.chartOptionsNew = {
+      
+          theme: 'light2',
+          animationEnabled: true,
+          exportEnabled: true,
+          axisY: {
+            includeZero: true,
+            // valueFormatString: '$#,##0k',
+          },
+          data: [{
+            type: "column",
+            indexLabelFontColor: "#5A5757",
+            dataPoints: this.dataQW.map(([label, value], index) => ({
+              x: index + 1,
+              y: value,
+              indexLabel: label
+            }))
+          }]
+        };
+
         this.ISAdminAgentResponsedata()
         this.cd.detectChanges();
       }, error => {
@@ -175,12 +200,32 @@ export class UserDashboardComponent implements OnInit {
       .subscribe(data => {
         this.AgentResponsedata1 = data.data;
         this.dataQW1 = [
-          ['< 5', this.firstAgentResponseData.lessThan5mins],
-          ['5 - 10', this.firstAgentResponseData.between5to10mins],
-          ['10 - 15', this.firstAgentResponseData.between10to15mins],
-          ['15 - 20', this.firstAgentResponseData.between15to20mins],
-          ['> 20', this.firstAgentResponseData.moreThan20mins]
+          ['< 5', this.AgentResponsedata1.lessThan5mins],
+          ['5 - 10', this.AgentResponsedata1.between5to10mins],
+          ['10 - 15', this.AgentResponsedata1.between10to15mins],
+          ['15 - 20', this.AgentResponsedata1.between15to20mins],
+          ['> 20', this.AgentResponsedata1.moreThan20mins]
         ];
+
+        this.chartOptionsNew1 = {
+      
+          theme: 'light2',
+          animationEnabled: true,
+          exportEnabled: true,
+          axisY: {
+            includeZero: true,
+            // valueFormatString: '$#,##0k',
+          },
+          data: [{
+            type: "column",
+            indexLabelFontColor: "#5A5757",
+            dataPoints: this.dataQW1.map(([label, value], index) => ({
+              x: index + 1,
+              y: value,
+              indexLabel: label
+            }))
+          }]
+        };
         this.ISAdmingraphresolutiondata();
         this.cd.detectChanges();
       }, error => {
@@ -195,12 +240,32 @@ export class UserDashboardComponent implements OnInit {
       .subscribe(data => {
         this.graphresolutiondata = data.data;
         this.dataQW2 = [
-          ['< 5', this.firstAgentResponseData.lessThan5mins],
-          ['5 - 10', this.firstAgentResponseData.between5to10mins],
-          ['10 - 15', this.firstAgentResponseData.between10to15mins],
-          ['15 - 20', this.firstAgentResponseData.between15to20mins],
-          ['> 20', this.firstAgentResponseData.moreThan20mins]
+          ['< 5', this.graphresolutiondata.lessThan5mins],
+          ['5 - 10', this.graphresolutiondata.between5to10mins],
+          ['10 - 15', this.graphresolutiondata.between10to15mins],
+          ['15 - 20', this.graphresolutiondata.between15to20mins],
+          ['> 20', this.graphresolutiondata.moreThan20mins]
         ];
+
+        this.chartOptionsNew2 = {
+      
+          theme: 'light2',
+          animationEnabled: true,
+          exportEnabled: true,
+          axisY: {
+            includeZero: true,
+            // valueFormatString: '$#,##0k',
+          },
+          data: [{
+            type: "column",
+            indexLabelFontColor: "#5A5757",
+            dataPoints: this.dataQW2.map(([label, value], index) => ({
+              x: index + 1,
+              y: value,
+              indexLabel: label
+            }))
+          }]
+        };
         this.isProceess = false;
         this.cd.detectChanges();
       }, error => {
