@@ -4883,3 +4883,6 @@ margin-left:10px;
 .below-dashboard-chart{ margin-top:20px; }
 
 /*----------end new dashboard--------*/
+a.canvasjs-chart-credit {
+  display: none;
+}

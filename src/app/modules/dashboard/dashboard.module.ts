@@ -10,7 +10,7 @@ import { MyticketComponent } from './pages/myticket/myticket.component';
 import { AssigntomeComponent } from './pages/assigntome/assigntome.component';
 import { DashboardTicketFilter } from 'src/app/_helpers/dashboard ticket-filter';
 import { FormsModule } from '@angular/forms';
-
+import { CanvasJSAngularChartsModule } from '@canvasjs/angular-charts';
 
 @NgModule({
     declarations: [
@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
         SharedModule,
         GoogleChartsModule,
         FormsModule,
+        CanvasJSAngularChartsModule
     ]
 })
 export class DashboardModule { }
