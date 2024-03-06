@@ -28,3 +28,21 @@
   margin-top: -5px;
   padding-left: 10px;
 }
+
+
+.truncate-text {
+    max-width: 150px; /* Adjust as needed */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer; /* Change cursor on hover */
+  }
+
+  .truncate-text:hover {
+    white-space: normal;
+    overflow: visible;
+    z-index: 1000; /* Ensure the tooltip appears above other elements */
+    position: relative;
+    background-color: #fff; /* Background color for better readability */
+  }
+

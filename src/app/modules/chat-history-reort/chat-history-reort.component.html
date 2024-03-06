@@ -68,10 +68,10 @@
             <td>{{i.category}}</td>
             <td>{{i.guestnumber |titlecase}}</td>
             <td>{{i.responseTime}}</td>
-            <td>{{i.responseText}}</td>
-            <td>{{i.textByGuest}}</td>
+            <td class="truncate-text">{{i.responseText}}</td>
+            <td class="truncate-text">{{i.textByGuest}}</td>
             <td>{{i.guestName}}</td>
-            <td>{{i.messageDateTime | date:'fullDate'}}</td>
+            <td>{{i.messageDateTime | date:'short'}}</td>
 
           </tr>
         </tbody>

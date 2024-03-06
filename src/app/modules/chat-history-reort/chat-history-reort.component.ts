@@ -30,7 +30,7 @@ export class ChatHistoryReortComponent {
   count: number = 0;
   tableSize: number = 12;
   tableSizes: any = [3, 6, 9, 12];
-  pageSize: number = 10;
+  pageSize: number = 6;
   pageSizeOptions: number[] = [10, 20, 50, 100, 500, 1000]; // Array of page size options
   currentPage: number = 1;
   totalItems: number = 0;
