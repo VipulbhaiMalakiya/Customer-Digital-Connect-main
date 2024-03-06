@@ -97,8 +97,8 @@ export class AdminDashboardComponent implements OnInit {
 
 
   dataQW: any[] = [];
-  dataQW1:any[] = [];
-  dataQW2:any[] = [];
+  dataQW1: any[] = [];
+  dataQW2: any[] = [];
   columnNames = ['Browser', 'Percentage'];
   options123 = {
     colors: ['#00abc5', '#67BB75', '#E1CE17', '#f3b49f', '#f6c7b6'], is3D: true, vAxis: {
@@ -108,9 +108,9 @@ export class AdminDashboardComponent implements OnInit {
     },
   };
 
-  chartOptionsNew:any;
-  chartOptionsNew1:any;
-  chartOptionsNew2:any;
+  chartOptionsNew: any;
+  chartOptionsNew1: any;
+  chartOptionsNew2: any;
 
 
   constructor(private titleService: Title,
@@ -126,7 +126,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    
+
     this.fatchData();
     this.GetResolver();
     this.Recenttickets();
@@ -170,16 +170,17 @@ export class AdminDashboardComponent implements OnInit {
         ];
 
         this.chartOptionsNew = {
-      
+
           theme: 'light2',
           animationEnabled: true,
-          exportEnabled: true,
+          exportEnabled: false,
           axisY: {
             includeZero: true,
-            // valueFormatString: '$#,##0k',
+            gridThickness: 0,
           },
           data: [{
             type: "column",
+            
             indexLabelFontColor: "#5A5757",
             dataPoints: this.dataQW.map(([label, value], index) => ({
               x: index + 1,
@@ -187,6 +188,7 @@ export class AdminDashboardComponent implements OnInit {
               indexLabel: label
             }))
           }]
+          
         };
 
         this.ISAdminAgentResponsedata()
@@ -212,13 +214,13 @@ export class AdminDashboardComponent implements OnInit {
         ];
 
         this.chartOptionsNew1 = {
-      
+
           theme: 'light2',
           animationEnabled: true,
-          exportEnabled: true,
+          exportEnabled: false,
           axisY: {
             includeZero: true,
-            // valueFormatString: '$#,##0k',
+            gridThickness: 0,
           },
           data: [{
             type: "column",
@@ -252,13 +254,14 @@ export class AdminDashboardComponent implements OnInit {
         ];
 
         this.chartOptionsNew2 = {
-      
+
           theme: 'light2',
           animationEnabled: true,
-          exportEnabled: true,
+          // exportEnabled: true,
           axisY: {
             includeZero: true,
-            // valueFormatString: '$#,##0k',
+            gridThickness: 0,
+
           },
           data: [{
             type: "column",
@@ -278,7 +281,7 @@ export class AdminDashboardComponent implements OnInit {
   }
 
 
-
+  
   isAdmincustomerdata() {
     this.masterName = `/dashboard/customer-data`;
     this.isProceess = true;
