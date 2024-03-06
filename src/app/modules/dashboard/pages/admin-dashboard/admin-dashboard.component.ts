@@ -103,7 +103,7 @@ export class AdminDashboardComponent implements OnInit {
   options123 = {
     colors: ['#00abc5', '#67BB75', '#E1CE17', '#f3b49f', '#f6c7b6'], is3D: true, vAxis: {
       gridlines: {
-        color: 'transparent', // Set gridline color to transparent
+        color: 'transparent',
       },
     },
   };
@@ -180,7 +180,7 @@ export class AdminDashboardComponent implements OnInit {
           },
           data: [{
             type: "column",
-            
+
             indexLabelFontColor: "#5A5757",
             dataPoints: this.dataQW.map(([label, value], index) => ({
               x: index + 1,
@@ -190,7 +190,7 @@ export class AdminDashboardComponent implements OnInit {
 
             }))
           }]
-          
+
         };
 
         this.ISAdminAgentResponsedata()
@@ -288,7 +288,7 @@ export class AdminDashboardComponent implements OnInit {
     var colors = ['#00abc5', '#67BB75', '#E1CE17', '#f3b49f', '#f6c7b6'];
     return colors[index % colors.length];
   }
-  
+
   isAdmincustomerdata() {
     this.masterName = `/dashboard/customer-data`;
     this.isProceess = true;
