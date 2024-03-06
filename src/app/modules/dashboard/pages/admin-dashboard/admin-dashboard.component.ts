@@ -195,6 +195,12 @@ export class AdminDashboardComponent implements OnInit {
                             const intervals = ['< 5', '5 - 10', '10 - 15', '15 - 20', '> 20'];
                             return intervals[e.value];
                         }
+                    },
+                    toolTip: {
+                        contentFormatter: function (e: any) {
+                            const intervals = ['< 5', '5 - 10', '10 - 15', '15 - 20', '> 20'];
+                            return "Interval: " + intervals[e.entries[0].dataPoint.x] + "<br/>Value: " + e.entries[0].dataPoint.y;
+                        }
                     }
 
                 };
@@ -245,6 +251,12 @@ export class AdminDashboardComponent implements OnInit {
                             const intervals = ['< 5', '5 - 10', '10 - 15', '15 - 20', '> 20'];
                             return intervals[e.value];
                         }
+                    },
+                    toolTip: {
+                        contentFormatter: function (e: any) {
+                            const intervals = ['< 5', '5 - 10', '10 - 15', '15 - 20', '> 20'];
+                            return "Interval: " + intervals[e.entries[0].dataPoint.x] + "<br/>Value: " + e.entries[0].dataPoint.y;
+                        }
                     }
                 };
 
@@ -269,7 +281,6 @@ export class AdminDashboardComponent implements OnInit {
                     ['> 20', this.graphresolutiondata.moreThan20mins]
                 ];
 
-                const xAxisLabels = ['Less than 5', 'Between 5 to 10', 'Between 10 to 15', 'Between 15 to 20', 'More than 20'];
 
                 this.chartOptionsNew2 = {
 
@@ -295,6 +306,12 @@ export class AdminDashboardComponent implements OnInit {
                         labelFormatter: function (e: any) {
                             const intervals = ['< 5', '5 - 10', '10 - 15', '15 - 20', '> 20'];
                             return intervals[e.value];
+                        }
+                    },
+                    toolTip: {
+                        contentFormatter: function (e: any) {
+                            const intervals = ['< 5', '5 - 10', '10 - 15', '15 - 20', '> 20'];
+                            return "Interval: " + intervals[e.entries[0].dataPoint.x] + "<br/>Value: " + e.entries[0].dataPoint.y;
                         }
                     }
                 };
