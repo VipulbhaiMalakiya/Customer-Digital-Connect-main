@@ -185,7 +185,9 @@ export class AdminDashboardComponent implements OnInit {
             dataPoints: this.dataQW.map(([label, value], index) => ({
               x: index + 1,
               y: value,
-              indexLabel: label
+              indexLabel: label,
+              color: this.getColorForColumn(index)
+
             }))
           }]
           
@@ -228,7 +230,8 @@ export class AdminDashboardComponent implements OnInit {
             dataPoints: this.dataQW1.map(([label, value], index) => ({
               x: index + 1,
               y: value,
-              indexLabel: label
+              indexLabel: label,
+              color: this.getColorForColumn(index)
             }))
           }]
         };
@@ -269,7 +272,8 @@ export class AdminDashboardComponent implements OnInit {
             dataPoints: this.dataQW2.map(([label, value], index) => ({
               x: index + 1,
               y: value,
-              indexLabel: label
+              indexLabel: label,
+              color: this.getColorForColumn(index)
             }))
           }]
         };
@@ -280,7 +284,10 @@ export class AdminDashboardComponent implements OnInit {
       })
   }
 
-
+  getColorForColumn(index:any) {
+    var colors = ['#00abc5', '#67BB75', '#E1CE17', '#f3b49f', '#f6c7b6'];
+    return colors[index % colors.length];
+  }
   
   isAdmincustomerdata() {
     this.masterName = `/dashboard/customer-data`;
