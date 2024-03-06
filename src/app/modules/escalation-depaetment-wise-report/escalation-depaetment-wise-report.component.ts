@@ -28,7 +28,7 @@ export class EscalationDepaetmentWiseReportComponent {
   term: any;
   page: number = 1;
   count: number = 0;
-  tableSize: number = 10;
+  tableSize: number = 7;
   tableSizes: any = [3, 6, 9, 12];
   constructor(
     private cd: ChangeDetectorRef,
