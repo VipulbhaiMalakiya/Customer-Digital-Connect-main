@@ -281,7 +281,7 @@ export class UserDashboardComponent implements OnInit {
     }
   
     getColorForColumn(index:any) {
-      var colors = ['#00abc5', '#67BB75', '#E1CE17', '#f3b49f', '#f6c7b6'];
+        var colors = ['#00abc5', '#61B979', '#DBCD1C', '#DF7970', '#BF864D'];
       return colors[index % colors.length];
     }
     
