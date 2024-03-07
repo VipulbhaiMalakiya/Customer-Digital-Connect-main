@@ -301,6 +301,7 @@ const routes: Routes = [
       { path: 'happy-customer', loadChildren: () => import('./modules/happycustomer/happycustomer.module').then(m => m.HappycustomerModule) },
       { path: 'repeated-customer', loadChildren: () => import('./modules/repeated-customer/repeated-customer.module').then(m => m.RepeatedCustomerModule) },
       { path: 'escalation-depaetment-wise-report', loadChildren: () => import('./modules/escalation-depaetment-wise-report/escalation-depaetment-wise-report.module').then(m => m.EscalationDepaetmentWiseReportModule) },
+      { path: 'top-ten', loadChildren: () => import('./modules/top-ten/top-ten.module').then(m => m.TopTenModule) },
 
       {
         path: 'overview',
