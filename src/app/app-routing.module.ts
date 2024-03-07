@@ -302,6 +302,7 @@ const routes: Routes = [
       { path: 'repeated-customer', loadChildren: () => import('./modules/repeated-customer/repeated-customer.module').then(m => m.RepeatedCustomerModule) },
       { path: 'escalation-depaetment-wise-report', loadChildren: () => import('./modules/escalation-depaetment-wise-report/escalation-depaetment-wise-report.module').then(m => m.EscalationDepaetmentWiseReportModule) },
       { path: 'top-ten', loadChildren: () => import('./modules/top-ten/top-ten.module').then(m => m.TopTenModule) },
+      { path: 'escallation-level/:id', loadChildren: () => import('./modules/escallation-level/escallation-level.module').then(m => m.EscallationLevelModule) },
 
       {
         path: 'overview',
