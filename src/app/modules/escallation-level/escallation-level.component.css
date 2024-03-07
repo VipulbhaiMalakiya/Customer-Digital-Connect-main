@@ -1,0 +1,11 @@
+.active td{ background: #EFFBEF; }
+.inactive td{ background: #FFF1F1; }
+.table td {
+  font-size: 12px;
+  color: #414141;
+  vertical-align: middle;
+  padding: 0.5rem 0.4rem;
+}
+.gray-bg {
+  background: #E6EAEE;
+}
