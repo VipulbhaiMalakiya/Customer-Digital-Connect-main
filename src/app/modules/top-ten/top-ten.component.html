@@ -52,7 +52,7 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Name</th>
+            <th>Name </th>
             <th>Count</th>
           </tr>
         </thead>
@@ -64,7 +64,7 @@
               totalItems: count
             };let ind = index;trackBy: trackByFn">
             <td>{{ind + 1}}</td>
-            <td>{{i.name}}</td>
+            <td>{{i.name | titlecase}}</td>
             <td>{{i.count}}</td>
           </tr>
         </tbody>
