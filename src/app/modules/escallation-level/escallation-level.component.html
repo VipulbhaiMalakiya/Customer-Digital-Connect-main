@@ -19,13 +19,10 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>Ticket No</th>
-            <th>Mode</th>
-            <th>Resolve TimeStamp</th>
-            <th>sla</th>
-            <th>Status</th>
-            <th>Ticket Status</th>
-            <th class="action-cl">Action</th>
+            <th>Department</th>
+            <th>Escalation By</th>
+            <th>Level</th>
+            <th>Time</th>
           </tr>
         </thead>
         <tbody>
@@ -36,16 +33,11 @@
               totalItems: count
             };let ind = index"
             [ngClass]="{'active': i.sla === 'Under', 'inactive': i.sla === 'Over', 'gray-bg':i.sla === null}">
-            <td>{{i.ticketId}}</td>
-            <td>{{i.ticketNo}}</td>
-            <td>{{i.mode}}</td>
-            <td>{{i.resolveTimeStamp}}</td>
-            <td> {{i.sla}}</td>
-            <td>{{i.status ? 'Active' : 'Deactivate'}}</td>
-            <td>{{i.ticketStatus}}</td>
-            <td>
-              <a class="btnClick" (click)="onViewDetail(i)"><i class="las la-eye"></i></a>
-            </td>
+            <td>{{i.slaId}}</td>
+            <td>{{i.department?.departmentName}}</td>
+            <td>{{i.escalatedBy?.username}}</td>
+            <td>{{i.escationlevel | titlecase}}</td>
+            <td> {{i.time | date:'short'}}</td>
           </tr>
         </tbody>
       </table>

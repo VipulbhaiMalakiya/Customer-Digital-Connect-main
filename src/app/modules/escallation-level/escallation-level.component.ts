@@ -8,11 +8,12 @@ import { slaMasterModel } from 'src/app/_models/sla';
 import { AppService } from 'src/app/_services/app.service';
 import { ViewSlaComponent } from '../sla/components/view-sla/view-sla.component';
 import { Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-escallation-level',
-  templateUrl: './escallation-level.component.html',
-  styleUrls: ['./escallation-level.component.css']
+    selector: 'app-escallation-level',
+    templateUrl: './escallation-level.component.html',
+    styleUrls: ['./escallation-level.component.css']
 })
 export class EscallationLevelComponent {
 
@@ -26,149 +27,92 @@ export class EscallationLevelComponent {
     count: number = 0;
     tableSize: number = 10;
     tableSizes: any = [3, 6, 9, 12];
-  
+    level?: any;
+
+
     constructor(
-      private cd: ChangeDetectorRef,
-      private modalService: NgbModal,
-      private toastr: ToastrService,
-      private titleService: Title,
-      private appService: AppService,
-      private apiService: ApiService,
+        private cd: ChangeDetectorRef,
+        private modalService: NgbModal,
+        private toastr: ToastrService,
+        private titleService: Title,
+        private appService: AppService,
+        private apiService: ApiService,
+        private route: ActivatedRoute,
     ) {
-      this.titleService.setTitle("CDC -Escalation Level");
-      const d: any = localStorage.getItem("userData");
-      this.userData = JSON.parse(d);
+        this.titleService.setTitle("CDC -Escalation Level");
+        const d: any = localStorage.getItem("userData");
+        this.userData = JSON.parse(d);
     }
-  
+
     ngOnInit(): void {
-      this.fatchData();
+   
+
+        this.route.params.subscribe(params => {
+            this.level = params['id'];
+            this.masterName = `/chatlist/chat-escalation?escallationLevel=${this.level}`;
+            this.fatchData();
+        });
+        
+
     }
-  
+
     fatchData() {
-      this.isProceess = true;
-      this.masterName = "/ticket/sla";
-      this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
-        if (data) {
-          this.data = data.data;
-          this.count = this.data.length;
-          this.isProceess = false;
-          this.cd.detectChanges();
-        }
-  
-      }, error => {
-        this.isProceess = false;
-      })
+        this.isProceess = true;
+    
+        this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
+            if (data) {
+                this.data = data.data;
+                this.count = this.data.length;
+                this.isProceess = false;
+                this.cd.detectChanges();
+            }
+
+        }, error => {
+            this.isProceess = false;
+        })
     }
     onTableDataChange(event: any) {
-      this.page = event;
+        this.page = event;
     }
     onTableSizeChange(event: any): void {
-      this.tableSize = event.target.value;
-      this.page = 1;
+        this.tableSize = event.target.value;
+        this.page = 1;
     }
     onDownload() {
-      const exportData = this.data.map(x => {
-        let updatedBy: any = ' '
-        if (x.updatedBy?.firstName != undefined) {
-          updatedBy = x.updatedBy?.firstName + ' ' + x.updatedBy?.lastName
-        }
-        else {
-          updatedBy = ''
-        }
-  
-        let assignedTo: any = ' '
-        if (x.assignedTo?.firstName != undefined) {
-          assignedTo = x.assignedTo?.firstName || '' + ' '  + x.assignedTo?.lastName || ''
-        }
-        else {
-          assignedTo = ''
-        }
-  
-        let resolveBy: any = ' '
-        if (x.resolveBy?.firstName != undefined) {
-          resolveBy =x.resolveBy?.firstName || '' + ' '  + x.resolveBy?.lastName || ''
-        }
-        else {
-          resolveBy = ''
-        }
-  
-        let createForUser: any = ' '
-        if (x.createForUser?.firstName != undefined) {
-          createForUser =x.createForUser?.firstName || '' + ' '  + x.createForUser?.lastName || ''
-        }
-        else {
-          createForUser = ''
-        }
-  
-        let createForCustomer: any = ' '
-        if (x.createForUser?.firstName != undefined) {
-          createForCustomer =x.createForCustomer?.firstName || '' + ' '  + x.createForCustomer?.lastName || ''
-        }
-        else {
-          createForCustomer = ''
-        }
-  
-        let updatedByCustomer: any = ' '
-        if (x.updatedByCustomer?.firstName != undefined) {
-          createForCustomer =x.updatedByCustomer?.firstName || '' + ' '  + x.updatedByCustomer?.lastName || ''
-        }
-        else {
-          updatedByCustomer = ''
-        }
-  
-        return {
-          "Id": x.ticketId || '',
-          "ticketNo": x.ticketNo || '',
-          "emailId": x.emailId || '',
-          "category":x.category?.categoryName || '',
-          "subCategory":x.subCategory?.subCategoryName || '',
-          "serviceTitle":x.serviceTitle?.serviceName ||'' ,
-          "department":x.department?.departmentName || '',
-          "alternativeContactNo":x.alternativeContactNo || '',
-          "priority":x.priority || '',
-          "issue":x.issue?.issueName || '',
-          "assignedTo":assignedTo,
-          "resolveBy":resolveBy,
-          "createForUser":createForUser,
-          "createForCustomer":createForCustomer,
-          "updatedByCustomer":updatedByCustomer,
-          "mode":x.mode || '',
-          "resolveTimeStamp":x.resolveTimeStamp || '',
-          "sla":x.sla,
-          "ticketStatus":x.ticketStatus || '',
-          "Created By": x.createdBy?.firstName + ' ' + x.createdBy?.lastName || '',
-          "Created Date": moment(x.createdDate || '').format("llll"),
-          "Updated By": updatedBy,
-          "Updated Date": moment(x.updatedDate || '').format("llll"),
-          "Status": x.status ? 'Active' : 'Deactivate'
-        }
-      });
-      const headers = [
-        "Id", "ticketNo", "emailId","category","subCategory","serviceTitle",
-        "department","alternativeContactNo","priority","issue","assignedTo",
-        "resolveBy","createForUser","createForCustomer","updatedByCustomer",
-        "mode","resolveTimeStamp","sla","ticketStatus",
-        "Created By", "Created Date", "Updated By", "Updated Date", "Status"
-      ];
-      this.appService.exportAsExcelFile(exportData, "sla-Report", headers);
+        const exportData = this.data.map(x => {
+    
+
+            return {
+                "Id": x.slaId || '',
+                "Department": x.department?.departmentName || '',
+                "Escalation By": x.escalatedBy?.username || '',
+                "Level": x.escationlevel || '',
+                "Time": x.time || '',
+              
+      
+            }
+        });
+        const headers = [
+            "Id", "Department",'Escalation By','Level','Time'
+        ];
+        this.appService.exportAsExcelFile(exportData, "Escalation Level", headers);
     }
-  
-  
-  
+
+
+
     ngOnDestroy(): void {
-      this.subscription?.unsubscribe();
+        this.subscription?.unsubscribe();
     }
-  
+
     onViewDetail(dataItem: slaMasterModel) {
-      this.isProceess = true;
-      const modalRef = this.modalService.open(ViewSlaComponent, { size: "xl", centered: true, backdrop: "static" });
-      if (modalRef) {
-        this.isProceess = false;
-      } else {
-        this.isProceess = false;
-      }
-      var componentInstance = modalRef.componentInstance as ViewSlaComponent;
-      componentInstance.serviceTitleMaster = dataItem;
+        this.isProceess = true;
+        const modalRef = this.modalService.open(ViewSlaComponent, { size: "xl", centered: true, backdrop: "static" });
+        if (modalRef) {
+            this.isProceess = false;
+        } else {
+            this.isProceess = false;
+        }
+        var componentInstance = modalRef.componentInstance as ViewSlaComponent;
+        componentInstance.serviceTitleMaster = dataItem;
     }
-  }
-  
+}
