@@ -1,0 +1,48 @@
+.form-select{
+    height: 36px;
+  }
+  .form-control{
+    height: 36px;
+  }
+  .page-btns-col{
+    align-items:end;
+  }
+
+  .analdrop1 {
+    max-width: 100%;
+    flex: auto;
+    margin-right: 10px;
+  }
+
+  .analdrop1 .btn.common-btn {
+    width: 100%;
+    height: 36px;
+  }
+
+  .dasboard-table.dasboard-scroll {
+    height: 350px !important;
+    overflow: auto;
+  }
+  .ctm-icone {
+    float: none;
+    margin-top: -5px;
+    padding-left: 10px;
+  }
+
+
+  .truncate-text {
+      max-width: 150px; /* Adjust as needed */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      cursor: pointer; /* Change cursor on hover */
+    }
+
+    .truncate-text:hover {
+      white-space: normal;
+      overflow: visible;
+      z-index: 1000; /* Ensure the tooltip appears above other elements */
+      position: relative;
+      background-color: #fff; /* Background color for better readability */
+    }
+
