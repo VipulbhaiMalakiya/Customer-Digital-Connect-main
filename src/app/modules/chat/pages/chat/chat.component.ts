@@ -399,7 +399,7 @@ export class ChatComponent
           roomNumber: data.roomNumber,
           numberoGuiest: data.numberoGuiest,
           //guestStatus: "CheckIn",
-          
+
           customerMobile: this.contact
         }
         this.masterName = `/customer/checkin`;
@@ -433,7 +433,7 @@ export class ChatComponent
 
     var componentInstance = modalRef.componentInstance as ConfirmationDialogModalComponent;
     componentInstance.message = "Are you sure you want to check out this?";
- 
+
 
     modalRef.result.then((canDelete: boolean) => {
       if (canDelete) {
@@ -445,12 +445,12 @@ export class ChatComponent
           url: this.masterName,
           model: this.checkindata.guestId
         }
-        
+
         this.subscription = this.apiService.update(updateData).pipe(take(1)).subscribe(data => {
           this.isProceess = false;
           this.toastr.success(data.message);
           this.checkstatus();
-          
+
         }, error => {
           this.isProceess = false;
           this.toastr.error(error.error.message);
@@ -714,7 +714,7 @@ export class ChatComponent
     this.subscription = this.apiService.getAll(this.masterName).pipe(take(1)).subscribe(data => {
       if (data) {
         this.checkindata = data.data;
-        
+
         this.isProceess = false;
         this.cd.detectChanges();
 
