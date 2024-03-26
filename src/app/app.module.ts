@@ -28,6 +28,7 @@ import { LocationStrategy, HashLocationStrategy, DatePipe } from '@angular/commo
 import { AuthGaurdGuard } from './_helpers/auth-gaurd.guard';
 import {GoogleMapsModule} from '@angular/google-maps';  // added
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { PrivacyPolicyComponent } from './modules/privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     MainlayoutComponent,
     ResetPasswordComponent,
     NotFoundComponent,
+    PrivacyPolicyComponent,
 
   ],
   imports: [
